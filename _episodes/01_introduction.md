@@ -58,4 +58,6 @@ In general, here are the topics to be covered:
 
 If you do not intend on being involved in loading data to an OTN-style Node (and would prefer to be a spectator) please let us know, so we can identify who our hands-on learners will be.
 
+A great resource for Node Managers as they get started will be OTN's FAQ page - https://members.oceantrack.org/faq. Your local telemetry community will likely have many questions about the Node and how it works, which may include some of these questions.
+
 {% include links.md %}
