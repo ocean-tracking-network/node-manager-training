@@ -11,7 +11,7 @@ objectives:
 - "Understand the relationship between OTN and its Nodes."
 - "Ensure attendees have required background information."
 keypoints:
-- "Your Node is fully compatible with all other like it."
+- "Your Node is fully compatible with all others like it."
 - "A well-connected Node Manager is essential."
 - "OTN staff are always availble to support Node Managers."
 ---
