@@ -24,62 +24,62 @@ If there is a feature that you'd like to see, you can bring this to OTN's attent
 
 Here is the "new_feature" template, for your information:
 
-```
-Note that this template is **ONLY** used for tracking new features. Bugs should be filed separately using the Bug template.
 
-The new feature should be proposed, scoped, and approved **before** you fill out this template. Don't use this to request pet features, pipe dreams, fond desires, or other casual whimsies that you have not run past the broader team.
+            Note that this template is **ONLY** used for tracking new features. Bugs should be filed separately using the Bug template.
 
-## Summary
-**Provide a general summary of the feature to be built.**
+            The new feature should be proposed, scoped, and approved **before** you fill out this template.
 
-## Rationale
-**Why do we want this?**
+            ## Summary
+            **Provide a general summary of the feature to be built.**
 
-## End Users
-**Who is expected to use this functionality most?**
+            ## Rationale
+            **Why do we want this?**
 
-## Scope
-**What are the expected qualities and functionality of this new feature? One per line.**
+            ## End Users
+            **Who is expected to use this functionality most?**
 
-## Minimum viable product
-**What subset of the above functionality is necessary before the feature is considered finished? Be honest.**
+            ## Scope
+            **What are the expected qualities and functionality of this new feature? One per line.**
 
-## Timeline
-**Give a brief, ballpark estimate on when you would want this done. Be specific and realistic, and justify your answer.**
-```
+            ## Minimum viable product
+            **What subset of the above functionality is necessary before the feature is considered finished?**
+
+            ## Timeline
+            **Give a brief, ballpark estimate on when you would want this done.**
+
 
 ## Bug-fixes
 
 If you encounter an error in your Nodebooks, its possible there is an issue with your dataset. Sometime, however, the case is that the Nodebook is not functioning as expected! If you believe a certain Nodebook is malfunctioning, you will want to identify this bug to OTN developers as soon as possible.
 
 To identify a bug, here are the steps to take:
-1. Ask in our Slack channels to see if the error is caused by your dataset. This can include posting an error message, or just decribing the output from the Nodebook, and why it is not as expected.
+1. Ask in our Slack channels to see if the error is caused by your dataset. This can include posting an error message, or just describing the output from the Nodebook, and why it is not as expected.
 2. If OTN developers identify that the problem is not your dataset, the next step will be to create a Gitlab Issue here https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/issues, using the `bug` template. You should assign to one of the OTN developers, and use the label `bugfix`.
 
 Here is the "bug" template, for your information:
 
-```
-Note that this template is **ONLY** used for reporting bugs. New features must be vetted and filed separately using the New Feature template.
 
-As such, before you continue, ask yourself:
-**Does this ticket concern existing functionality that is broken? Or is it a deficiency in the system as-designed that needs net new work to complete?**
-If it's the former, then use this template, otherwise, use the New Feature template.
+            Note that this template is **ONLY** used for reporting bugs. New features must be vetted and filed separately using the New Feature template.
 
-## Summary
-**Provide a general summary of the problem.**
+            As such, before you continue, ask yourself:
+            **Does this ticket concern existing functionality that is broken? Or is it a deficiency in the system as-designed that needs net new work to complete?**
+            If it's the former, then use this template, otherwise, use the New Feature template.
 
-## Expected Behavior
-**What should be happening?**
+            ## Summary
+            **Provide a general summary of the problem.**
 
-## Current Behavior
-**What is actually happening?**
+            ## Expected Behavior
+            **What should be happening?**
 
-## Steps to Reproduce
-**How can I see this bug happening? Where does it happen? Provide links to specific pages where the bug is visible, along with steps to reproduce it.**
+            ## Current Behavior
+            **What is actually happening?**
 
-## Priority
-**On a scale from 1 to 5, approximate the severity of the issue. Be honest.**
-```
+            ## Steps to Reproduce
+            **How can I see this bug happening? Where does it happen? Provide links to specific pages where the bug is visible, along with steps to reproduce it.**
+
+            ## Priority
+            **On a scale from 1 to 5, approximate the severity of the issue. Be honest.**
+
 
 ## Testing Features/Fixes
 
@@ -89,7 +89,7 @@ Here are instructions for changing branches:
 
 (Replace anything in <> with the sensible value for your installation/situation)
 
-Open git bach.
+Open git bash or terminal.
 
 From your git bash window, type:
 
@@ -99,7 +99,7 @@ cd "/path/to/your/ipython-utilities"
 This will put your terminal or git bash terminal in the folder where this codebase lives on your computer. Now we're going to 
 * reset any changes you have made locally (save anything you might want to keep with `git stash`), 
 * switch to the new branch
-* and update that branch with any new code
+* update that branch with any new code
 
 ```
 git reset --hard
