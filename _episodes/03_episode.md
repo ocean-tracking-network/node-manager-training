@@ -88,4 +88,3 @@ ___
 **Source Tree** - For managing git, avoiding command line.
 * https://www.sourcetreeapp.com
 
-[Home](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/wikis/home)
