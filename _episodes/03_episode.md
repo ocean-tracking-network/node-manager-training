@@ -22,7 +22,7 @@ keypoints:
 
 Python is a popular general-purpose programming language that can be used for a wide variety of applications. It is the main language used by OTN and our data processing pipeline.
 
-Anaconda is a python distribution and a package manager. When you install anaconda you get python and many of the popular python libraries. Anaconda allows you to be able to install all the packages needed to run the notebooks with one command rather than having to install each one individually. There is a smaller version of Anaconda with only essential packages we recommend installing called miniconda.
+Anaconda is a python distribution and a package manager. When you install Anaconda you get python and many of the popular python libraries. Anaconda allows you to be able to install all the packages needed to run the notebooks with one command rather than having to install each one individually. There is a smaller version of Anaconda with only essential packages we recommend installing called miniconda.
 
  **Install Miniconda** - https://docs.conda.io/en/latest/miniconda.html
   - Select the option to "add to PATH environment variable" (during install steps)!!
@@ -52,7 +52,7 @@ These are the collection of notebooks used to load data into the OTN datasystem.
 **Install iPython Utilities** 
 
 1. Navigate to the folder you wish to keep the iPython Utilities notebooks in
-2. Open your terminal or command prompt app. Type `cd` then `space` and drag the folder into the terminal or command prompt app and hit `enter`
+2. Open your terminal or command prompt app. Type `cd` then `space`. You then need to get the path of the folder you will be keeping the notebooks in. You can either drag the folder into the terminal or command prompt app or hit shift/option while right clicking and select copy as path then paste that in the terminal or command prompt and hit `enter`
 3. You are now able to run commands in that folder. Now run: 
 `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`
 This will get the latest version iPython Utilities from our gitlab
