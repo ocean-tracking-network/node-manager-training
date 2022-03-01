@@ -14,11 +14,11 @@ keypoints:
 - "Loading project metadata is the first step towards a functioning project"
 ---
 
-The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, the is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researchrer to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
+The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, the is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
 
-## Completed Metadata
+# Completed Metadata
 
-Immidiately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue template.
+Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue template.
 
 Here is the template, for reference:
 
@@ -63,7 +63,7 @@ Below is an example of a properly completed metadata form, for your reference.
 
 ```
 ===FORM START===
-0. Intended/preferred project project code, if known? (May be altered by OTNDC)
+0. Intended/preferred project code, if known? (May be altered by OTNDC)
 format: XXXX (3-6 uppercase letters that do not already have a representation in the OTN DB. Will be assigned if left blank)
 
 NSBS
@@ -125,7 +125,7 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 ===FORM END===
 ```
 
-## Quality Control - Create and Update Projects
+# Quality Control - Create and Update Projects
 
 Each step in the Issue template will be discussed here, along with other important notes required to use the Nodebooks.
 
@@ -135,7 +135,7 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 
 You will have to edit one section: `engine = get_engine()` 
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
-- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we reccomend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
 
 ### Project Metadata Parser
@@ -149,10 +149,10 @@ Once either option is selected, you can run the cell to complete the quality con
 
 The output will have useful information:
 - Are there strange characters in the collectioncode, project title, or abstract?
-- Were the names and affiliations of each contact successfully parsed? Are there any affiliated-instiutions which are not found? Are there any contacts which were not found that you expected to be?
+- Were the names and affiliations of each contact successfully parsed? Are there any affiliated institutions which are not found? Are there any contacts which were not found that you expected to be?
 - Is the project URL formatted correctly?
-- Are all the species studies found in WoRMS? Are any of them non-accepted taxonomy (look at top of each species-record for success: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)?
-- Is the suggested Bounding Box appropriate based on the abstract?
+- Are all the species studies found in WoRMS? Are any of them non-accepted taxonomy (look at top of each species-record for success: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with commonname can be fixed at a later stage, make a note in the Issue for your records**
+- Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Issue for your records**
 - Are the start and end dates formatted correctly?
 
 Generally, most of the error messages arise from the **Contacts** and **Species** sections.
@@ -182,7 +182,7 @@ To save and parse your inputted values **DO NOT** re-run the cell - this will cl
 
 Verify the output from the parser cell, looking for several things:
 1. Are all the fields marked with a green `OK`?
-1. Is this feedback included in the institution code section: `Found institution record for DFO in your database:` followed by a small embedded Table.
+1. Is this feedback included in the institution code section: `Found institution record for DFO in your database:` followed by a small, embedded Table.
 
 If anything is wrong, please begin again from the Manual Field input cell.
 
@@ -190,7 +190,7 @@ If the institution code **IS NOT** found - compare to values found in the databa
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**`
 
@@ -221,7 +221,7 @@ Longitude:
 
 ### Create New Institution
 
-Remember above, where we noted whether or not an instiution existed on `obis.institution_codes` or if it was a new institution? This cell is our oppourunity to add any institutions, if they are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
+Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions if they are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
 
 To run the cell, you will need to complete:
 1. a short-code for the institution (ex: DAL)
@@ -246,7 +246,7 @@ You will see some output - confirm each line is accompanied by a green `OK`.
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME create schema and project records ("Creating and Updating project metadata" notebook)`
 
@@ -266,7 +266,7 @@ Valid contact:  Fred Whoriskey OTN principalInvestigator fwhoriskey@dal.ca
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME add project contact information ("Creating and Updating project metadata" notebook)`
 
@@ -288,7 +288,7 @@ There will be confirmation display in the notebook to demonstrate if the inserti
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME add scientificnames ("Creating and Updating project metadata" notebook)`
 
@@ -298,17 +298,17 @@ The following section is used by OTN staff to track projects which are recipient
 
 ### Skip to Verification
 
-Once you scroll passed the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the botttom of the notebook, where the `Verify` section is located.
+Once you scroll passed the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the bottom of the notebook, where the `Verify` section is located.
 
 This is a chance to visually review all the fields you just entered. You should enter run these cells and review all output to ensure the database values align with the intended insertions.
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME verify all of above ("Creating and Updating project metadata" notebook)`
 
-### Other Features of the Nodebooks
+### Other Features of this Notebook
 
 There are more features in the `Create and Update Projects` notebook than those covered above.
 
@@ -337,7 +337,7 @@ The output should look like this to confirm success:
 ```
 
 
-## Quality Control - Create Plone Users and Access
+# Quality Control - Create Plone Users and Access
 
 If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
 
@@ -347,7 +347,7 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 
 You will have to edit one section: `engine = get_engine()` 
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
-- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we reccomend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
 
 ### Plone Login
@@ -356,11 +356,11 @@ The first cell is another import step.
 
 The second cell requires input: 
 
-- Proper plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
+- Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
 - In order to do this, click on the `Jupyter` icon in the top left corner of the page. 
-- This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your plone base url, username, and password. 
+- This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. 
 - Ensure that "verify" is set to false.
-- You can now succesfully log into Plone.
+- You can now successfully log into Plone.
 
 Now, when you run the cell, you should get following output:
 
@@ -388,7 +388,7 @@ There are three ways to enter this information:
 1. Manual Project Information Form - Parse Contacts
 1. Manual Project Information Form - Insert Contacts into Textfields
 
-The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors you can click the `SKIP` button which will take you down the notebook to the next section.
+The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
 
 
 ### Create Missing Users
@@ -399,13 +399,13 @@ If a user is found: you will **not** need to create a new account for them.
 
 If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
 
-The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including an attemped username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
+The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
 
 Once all contacts have Plone accounts (new or otherwise) you are finished.
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME [OTN only] create new project repo users ("Create Plone Folders and Add Users" notebook)`
 
@@ -424,13 +424,13 @@ The expected format:
 If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 
 ```
-Creating collection folder 'idlm'. Done!
+Creating collection folder 'collectioncode'. Done!
 https://members.oceantrack.org/data/repository/node_name/collectioncode
 ```
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME [OTN only] create project repo folder ("Create Plone Folders and Add Users" notebook)`
 
@@ -447,7 +447,7 @@ Type in the Plone username of each contact (new and existing). Search results wi
 
 Review for the following success message:
 ```
-Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for cbate:
+Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
 	Contributor=True Reviewer=True Editor=True Reader=True
 ```
 
@@ -460,11 +460,11 @@ The acceptable folder permissions may vary depending on the project role of the 
 - Technician: only `Contributor` and `Reader`
 - Collaborator: only `Contributor` and `Reader`
 
-This is very fluid and and be edited at any time. These are guidelines only!
+This is very fluid and can be edited at any time. These are guidelines only!
 
 #### Task list checkpoint
 
-In gitlab, this task can be completed at this stage:
+In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME [OTN only] add project repo users to folder ("Create Plone Folders and Add Users" notebook)`
 
@@ -472,7 +472,7 @@ In gitlab, this task can be completed at this stage:
 
 The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
 
-## Final Steps
+# Final Steps
 
 The remaining steps in the Gitlab Checklist are completed outside the notebooks.
 
