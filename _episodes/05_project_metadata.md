@@ -14,7 +14,7 @@ keypoints:
 - "Loading project metadata is the first step towards a functioning project"
 ---
 
-The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, the is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
+The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, this is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
 
 # Completed Metadata
 
@@ -170,7 +170,7 @@ You will run this cell, and a fillable form will appear.
 1. Ocean: choose the most appropriate ocean region based on the abstract.
 1. Shortname: use the Title provided by the researcher, or something else, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
 1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
-1. Series Code: this will generally by the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
+1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
 1. State: based upon the abstract. Multiple countries can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
@@ -284,7 +284,7 @@ You should review to confirm the following:
 
 Once you are sure that both the scientific and common names are correct, based on the information provided by both the project and the notebook, you may click the `Add to project` button for each animal record you'd like to insert.
 
-There will be confirmation display in the notebook to demonstrate if the insertion was successful.
+There will be a confirmation display in the notebook to demonstrate if the insertion was successful.
 
 #### Task list checkpoint
 
@@ -298,7 +298,7 @@ The following section is used by OTN staff to track projects which are recipient
 
 ### Skip to Verification
 
-Once you scroll passed the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the bottom of the notebook, where the `Verify` section is located.
+Once you scroll past the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the bottom of the notebook, where the `Verify` section is located.
 
 This is a chance to visually review all the fields you just entered. You should enter run these cells and review all output to ensure the database values align with the intended insertions.
 
@@ -326,7 +326,7 @@ To save and parse your inputted values **DO NOT** re-run the cell - this will cl
 
 Review the output and check for typos. 
 
-The next cell will show the changes that will be made to the project data. You can copy this output and paste it into the relevant Gitlab Issue to tracking.
+The next cell will show the changes that will be made to the project data. You can copy this output and paste it into the relevant Gitlab Issue for tracking.
 
 The final cell will make the desired changes in the database. Ensure `printSQL = False` if you want the cell to execute directly.
 
