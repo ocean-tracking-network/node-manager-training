@@ -190,8 +190,8 @@ The notebook will indicate the success of the table-creation with the following 
 ```
 Reading file: otn_metadata_tagging.xlsx.
 Tag Metadata sheet found, reading file... OK
-Loading 'otn_metadata_tagging.xlsx' file into collectioncode.c_tag_meta_2021_09... OK
-Loaded 37 records into table collectioncode.c_tag_meta_2021_09
+Loading 'otn_metadata_tagging.xlsx' file into collectioncode.c_tag_meta_YYYY_mm... OK
+Loaded 37 records into table collectioncode.c_tag_meta_YYYY_mm
 True
 ```
 
@@ -199,9 +199,9 @@ True
 
 In Gitlab, this task can be completed at this stage:
 
-`- [ ] - NAME load raw tag metadata (`tag-1` notebook) **put_table_name_in_ticket**`
+`- [ ] - NAME load raw tag metadata ('tag-1' notebook) **put_table_name_in_ticket**`
 
-Ensure you paste the table name (ex: c_tag_meta_2021_09) into the section indicated, before you check the box.
+Ensure you paste the table name (ex: c_tag_meta_YYYY_mm) into the section indicated, before you check the box.
 
 # Quality Control - Tag-1b Notebook
 
