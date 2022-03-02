@@ -336,7 +336,7 @@ The output should look like this to confirm success:
 'Resource record for HFX has been updated.'
 ```
 
-**The followin, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
+**The following, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
 
 > # Quality Control - Create Plone Users and Access
@@ -366,19 +366,19 @@ The output should look like this to confirm success:
 > 
 > Now, when you run the cell, you should get following output:
 > 
-```
-Auth Loaded:
-------------------------------------------------------------------------------
-base_url: https://members.oceantrack.org/
-user_name: cbate
-verify ssl: False
-```
+> ```
+> Auth Loaded:
+> ------------------------------------------------------------------------------
+> base_url: https://members.oceantrack.org/
+> user_name: cbate
+> verify ssl: False
+> ```
 > 
 > Finally, the third cell in this section will allow you to login. You should see this message:
 > 
-```
-Login Successful!
-```
+> ```
+> Login Successful!
+> ```
 > 
 > ### Access Project Info
 > 
@@ -398,7 +398,7 @@ Login Successful!
 > This section will use the registered project contacts and compare against existing Plone users. It will compare by 1) email, 2) fullname, 3) lastname.
 > 
 > If a user is found: you will **not** need to create a new account for them.
-
+> 
 > If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
 > 
 > The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
@@ -409,7 +409,7 @@ Login Successful!
 > 
 > In Gitlab, this task can be completed at this stage:
 > 
-`- [ ] - NAME [OTN only] create new project repo users ("Create Plone Folders and Add Users" notebook)`
+> `- [ ] - NAME [OTN only] create new project repo users ("Create Plone Folders and Add Users" notebook)`
 > 
 > ### Create Project Repository
 > 
@@ -425,16 +425,16 @@ Login Successful!
 > 
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 > 
-```
-Creating collection folder 'collectioncode'. Done!
-https://members.oceantrack.org/data/repository/node_name/collectioncode
-```
+> ```
+> Creating collection folder 'collectioncode'. Done!
+> https://members.oceantrack.org/data/repository/node_name/collectioncode
+> ```
 > 
 > #### Task list checkpoint
 > 
 > In Gitlab, this task can be completed at this stage:
 > 
-`- [ ] - NAME [OTN only] create project repo folder ("Create Plone Folders and Add Users" notebook)`
+> `- [ ] - NAME [OTN only] create project repo folder ("Create Plone Folders and Add Users" notebook)`
 > 
 > ### Add Users to Repository
 > 
@@ -448,10 +448,10 @@ https://members.oceantrack.org/data/repository/node_name/collectioncode
 > 1. click "Change repo permissions" to add them to the folder.
 > 
 > Review for the following success message:
-```
-Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
-	Contributor=True Reviewer=True Editor=True Reader=True
-```
+> ```
+> Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
+> 	Contributor=True Reviewer=True Editor=True Reader=True
+> ```
 > 
 > Then you may choose `Add another user` and begin again.
 > 
@@ -468,7 +468,7 @@ Changed https://members.oceantrack.org/data/repository/node_name/collectioncode 
 > 
 > In Gitlab, this task can be completed at this stage:
 > 
-`- [ ] - NAME [OTN only] add project repo users to folder ("Create Plone Folders and Add Users" notebook)`
+> `- [ ] - NAME [OTN only] add project repo users to folder ("Create Plone Folders and Add Users" notebook)`
 > 
 > ### OPTIONAL: Add Project Loan Information
 > 
