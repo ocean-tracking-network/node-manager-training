@@ -336,34 +336,36 @@ The output should look like this to confirm success:
 'Resource record for HFX has been updated.'
 ```
 
+**The followin, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
-# Quality Control - Create Plone Users and Access
 
-If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
-
-### Imports cell
-
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
-
-You will have to edit one section: `engine = get_engine()` 
-- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
-- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
-
-### Plone Login
-
-The first cell is another import step.
-
-The second cell requires input: 
-
-- Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
-- In order to do this, click on the `Jupyter` icon in the top left corner of the page. 
-- This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. 
-- Ensure that "verify" is set to false.
-- You can now successfully log into Plone.
-
-Now, when you run the cell, you should get following output:
-
+> # Quality Control - Create Plone Users and Access
+> 
+> If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
+> 
+> ### Imports cell
+> 
+> This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+> 
+> You will have to edit one section: `engine = get_engine()` 
+> - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+> - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+> - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+> 
+> ### Plone Login
+> 
+> The first cell is another import step.
+> 
+> The second cell requires input: 
+> 
+> - Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
+> - In order to do this, click on the `Jupyter` icon in the top left corner of the page. 
+> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. 
+> - Ensure that "verify" is set to false.
+> - You can now successfully log into Plone.
+> 
+> Now, when you run the cell, you should get following output:
+> 
 ```
 Auth Loaded:
 ------------------------------------------------------------------------------
@@ -371,106 +373,107 @@ base_url: https://members.oceantrack.org/
 user_name: cbate
 verify ssl: False
 ```
-
-Finally, the third cell in this section will allow you to login. You should see this message:
-
+> 
+> Finally, the third cell in this section will allow you to login. You should see this message:
+> 
 ```
 Login Successful!
 ```
+> 
+> ### Access Project Info
+> 
+> Some information is needed in order to create the project Plone folders.
+> 
+> There are three ways to enter this information:
+> 
+> 1. Access Project Information from Database
+> 1. Manual Project Information Form - Parse Contacts
+> 1. Manual Project Information Form - Insert Contacts into Textfields
+> 
+> The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
+> 
+> 
+> ### Create Missing Users
+> 
+> This section will use the registered project contacts and compare against existing Plone users. It will compare by 1) email, 2) fullname, 3) lastname.
+> 
+> If a user is found: you will **not** need to create a new account for them.
 
-### Access Project Info
-
-Some information is needed in order to create the project Plone folders.
-
-There are three ways to enter this information:
-
-1. Access Project Information from Database
-1. Manual Project Information Form - Parse Contacts
-1. Manual Project Information Form - Insert Contacts into Textfields
-
-The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
-
-
-### Create Missing Users
-
-This section will use the registered project contacts and compare against existing Plone users. It will compare by 1) email, 2) fullname, 3) lastname.
-
-If a user is found: you will **not** need to create a new account for them.
-
-If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
-
-The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
-
-Once all contacts have Plone accounts (new or otherwise) you are finished.
-
-#### Task list checkpoint
-
-In Gitlab, this task can be completed at this stage:
-
+> If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
+> 
+> The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
+> 
+> Once all contacts have Plone accounts (new or otherwise) you are finished.
+> 
+> #### Task list checkpoint
+> 
+> In Gitlab, this task can be completed at this stage:
+> 
 `- [ ] - NAME [OTN only] create new project repo users ("Create Plone Folders and Add Users" notebook)`
-
-### Create Project Repository
-
-To create the project folder you must first enter the relevant Node:
-- otnunit: `node = None`
-- other Nodes:`node = "node"` - lowercase with quotation marks.
-
-Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
-
-The expected format:
-
-`https://members.oceantrack.org/data/repository/node_name/collectioncode`
-
-If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
-
+> 
+> ### Create Project Repository
+> 
+> To create the project folder you must first enter the relevant Node:
+> - otnunit: `node = None`
+> - other Nodes:`node = "node"` - lowercase with quotation marks.
+> 
+> Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
+> 
+> The expected format:
+> 
+> `https://members.oceantrack.org/data/repository/node_name/collectioncode`
+> 
+> If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
+> 
 ```
 Creating collection folder 'collectioncode'. Done!
 https://members.oceantrack.org/data/repository/node_name/collectioncode
 ```
-
-#### Task list checkpoint
-
-In Gitlab, this task can be completed at this stage:
-
+> 
+> #### Task list checkpoint
+> 
+> In Gitlab, this task can be completed at this stage:
+> 
 `- [ ] - NAME [OTN only] create project repo folder ("Create Plone Folders and Add Users" notebook)`
-
-### Add Users to Repository
-
-Now that the users AND folder have been created, the users must be given access to the new folder.
-
-Using the final cell in the `Plone repository folder creation` section, you will be provided with an editable search-bar.
-
-Type in the Plone username of each contact (new and existing). Search results will appear: 
-1. select the User who you would like to add
-1. choose their permissions
-1. click "Change repo permissions" to add them to the folder.
-
-Review for the following success message:
+> 
+> ### Add Users to Repository
+> 
+> Now that the users AND folder have been created, the users must be given access to the new folder.
+> 
+> Using the final cell in the `Plone repository folder creation` section, you will be provided with an editable search-bar.
+> 
+> Type in the Plone username of each contact (new and existing). Search results will appear: 
+> 1. select the User who you would like to add
+> 1. choose their permissions
+> 1. click "Change repo permissions" to add them to the folder.
+> 
+> Review for the following success message:
 ```
 Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
 	Contributor=True Reviewer=True Editor=True Reader=True
 ```
-
-Then you may choose `Add another user` and begin again.
-
-The acceptable folder permissions may vary depending on the project role of the contact. Here are some guidelines:
-- Principal Investigator: all permissions
-- Researcher: all permissions except `Reviewer`
-- Student: all permissions except `Reviewer`
-- Technician: only `Contributor` and `Reader`
-- Collaborator: only `Contributor` and `Reader`
-
-This is very fluid and can be edited at any time. These are guidelines only!
-
-#### Task list checkpoint
-
-In Gitlab, this task can be completed at this stage:
-
+> 
+> Then you may choose `Add another user` and begin again.
+> 
+> The acceptable folder permissions may vary depending on the project role of the contact. Here are some guidelines:
+> - Principal Investigator: all permissions
+> - Researcher: all permissions except `Reviewer`
+> - Student: all permissions except `Reviewer`
+> - Technician: only `Contributor` and `Reader`
+> - Collaborator: only `Contributor` and `Reader`
+> 
+> This is very fluid and can be edited at any time. These are guidelines only!
+> 
+> #### Task list checkpoint
+> 
+> In Gitlab, this task can be completed at this stage:
+> 
 `- [ ] - NAME [OTN only] add project repo users to folder ("Create Plone Folders and Add Users" notebook)`
-
-### OPTIONAL: Add Project Loan Information
-
-The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+> 
+> ### OPTIONAL: Add Project Loan Information
+> 
+> The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+> 
 
 # Final Steps
 
