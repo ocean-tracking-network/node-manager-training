@@ -5,7 +5,7 @@ exercises: 0
 questions:
 - "How do I register a new project in the Database?"
 objectives:
-- "Understand the proper template-completion"
+- "Understand how to complete the template"
 - "Understand how to use the Gitlab checklist"
 - "Learn how to use the `Create and Update Projects` notebook"
 - "Learn how to use the `Create Plone folders and add users` notebook"
@@ -18,9 +18,9 @@ The **first** step when you are contacted by a researcher who wants to register 
 
 # Completed Metadata
 
-Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue template.
+Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue checklist template.
 
-Here is the template, for reference:
+Here is the Issue checklist, for reference:
 
 ```
 Project Metadata
@@ -47,7 +47,7 @@ Project Metadata
 
 ### Visual Inspection
 
-Once the completed file is received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
+Once the completed file is received from a researcher, the Data Manager should complete a visual check for formatting and accuracy.
 
 Things to check:
 
@@ -127,7 +127,7 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 
 # Quality Control - Create and Update Projects
 
-Each step in the Issue template will be discussed here, along with other important notes required to use the Nodebooks.
+Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebooks.
 
 ### Imports cell
 
@@ -136,7 +136,7 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 You will have to edit one section: `engine = get_engine()` 
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
 
 ### Project Metadata Parser
 
@@ -182,7 +182,7 @@ To save and parse your inputted values **DO NOT** re-run the cell - this will cl
 
 Verify the output from the parser cell, looking for several things:
 1. Are all the fields marked with a green `OK`?
-1. Is this feedback included in the institution code section: `Found institution record for DFO in your database:` followed by a small, embedded Table.
+1. Is this feedback included in the institution code section: ie `Found institution record for DFO in your database:` followed by a small, embedded Table.
 
 If anything is wrong, please begin again from the Manual Field input cell.
 
