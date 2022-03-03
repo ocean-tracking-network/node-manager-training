@@ -10,7 +10,7 @@ keypoints:
 - "ipython-utilities has many useful notebooks for Node Managers to help them"
 ---
 
-OTN maintains several additonal Nodebooks, where fall outside the core `tag`, `deployment` and `detection` tools. These may be useful to explore in certain scenarios.
+OTN maintains several additional Nodebooks, where fall outside the core `tag`, `deployment` and `detection` tools. These may be useful to explore in certain scenarios.
 
 ## Check Environment 
 
