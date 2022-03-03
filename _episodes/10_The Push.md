@@ -1,40 +1,54 @@
 ---
-title: "The Push"
-teaching: 60
+title: "Data Push"
+teaching: 10
 exercises: 0
 questions:
-- "What it the Push?"
-- "What do I need to do as a node manager for the push?"
-- "What are the end products of the push?"
+- "What is a Data Push?"
+- "What do I need to do as a Node Manager for a Data Push?"
+- "What are the end products of a Data Push?"
 objectives:
-- "Understand a basic overview of the push"
-- "Understand what a node managers responsibilities are during the push"
-- "Understand what detection extracts are
+- "Understand a basic overview of a Data Push"
+- "Understand what a Node Manager's responsibilities are during a Data Push"
+- "Understand the format of Detection Extracts"
 keypoints:
-- "The Push is when we verify all the data in the system, fix any issue, and then send it out to researchers so they can use it"
-- "As node managers its your responsibility to get the data into the system so OTN can verify and get it ready to be sent out"
-- "Detection extracts are the main end product of the push"
+- "A Data Push is when we verify all the data in the system, fix any issues, and then provide detection matches to researchers"
+- "As Node Managers its your responsibility to get the data into the system so OTN can verify and get it ready to be sent out"
+- "Detection Extracts are the main end product of the Push"
 ---
 
-## What it the Push?
+## What it a Data Push?
 
-The Push is when the OTN data system is reverified and any new relevant information is sent to researchers. New data being brought in is cut off so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when publication tables such as discovery, erddap, and geoserver are updated.
+A Data Push is when the OTN data system is reverified and any new relevant information is sent to researchers. New data being brought in is cut off so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
 
-## When is the Push 
+## What is the Push Schedule?
 
-Push events happen three times a year. They start on the third Thursday of the push month which are February, June, and October. This date would be the date that OTN would like to cut off all data coming into the system. We have this schedule to ensure dates are known well in advance so everyone can better prepare and schedule in advance. 
+Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this. 
 
-Push schedule for till 2023:
-June 23, 2022
-October 20, 2022
-February 16, 2023
-June 15, 2023
-October 19, 2023
+With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
-## What do I need to do as a node manager for the push?
+Push schedule through 2023:
+- June 23, 2022
+- October 20, 2022
+- February 16, 2023
+- June 15, 2023
+- October 19, 2023
 
-Node managers have two main jobs during The Push. The first job is to get the node’s data loaded in time for the push. Data will be coming to you throughout all times so we do encourage you to try and continuously load data throughout the year. Closer to push dates you will get a larger amount of data coming in so it is good to get ahead and avoid a backlog. The second job node managers have is to create and send out detection extracts when OTN gives the go ahead that they are ready to be made. This will be done using the detections - create detection extracts notebook.
+## Node Manager Roles During a Push
 
-## Detection extracts
+Node Managers have two main jobs during a Push: 
+1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to attempt to prevent a backlog near the Push date. 
+1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` notebook.
 
-Detection extracts are the main output of the push. They are files that contain relevant detection data. There are multiple types of detection extracts OTN creates: 'qualified' which contain detections matched to animals of other projects, 'unqualified' which contain the project's unmatched or mystery detections which are not associated with any deployed tag, 'sentinel' which contain the detections matched to test or transceiver tags, and 'tracker' which contain animal metadata that have been matched to detections. Detection extracts are ready for use in many analysis packages, such as glatos and resonate. 
+Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required. 
+
+Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again.
+
+## Detection Extracts
+
+[Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are the main output of the Push. They contain all the new detection matches for each project. There are multiple types of detection extracts OTN creates: 
+- 'qualified' which contain detections collected by an array but matched to animals of other projects 
+- 'unqualified' which contain the unmatched or mystery detections collected by an array 
+- 'sentinel' which contain the detections matched to test or transceiver tags collected by an array
+- 'tracker' which contains detections that have been mapped to animals tagged by a project that can originate from any receiver in the entire Network
+
+Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate).  
