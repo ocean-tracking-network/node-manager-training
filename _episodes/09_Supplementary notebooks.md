@@ -14,7 +14,7 @@ OTN maintains several additonal Nodebooks, where fall outside the core `tag`, `d
 
 ## Check Environment 
 
-This notebook checks your system python environment against our `environment.yml`. This is to see if the python packages and libraies you have installed are inline with what is required to run the ipython. This will assist you with updating your packages if they become out-of-date, or if OTN develops new tools which rely on new packages.
+This notebook checks your system python environment against our `environment.yml`. This is to see if the python packages and libraries you have installed are inline with what is required to run the ipython. This will assist you with updating your packages if they become out-of-date, or if OTN develops new tools which rely on new packages.
  
 ## scientific_name_check
 
@@ -50,20 +50,20 @@ This notebook will process and load detection data collected by a `wave` glider 
 
 ## create and update contacts' notebook
 
-This notebooks can be used to add new contacts to a project and update existing contacts in the database.
+This notebook can be used to add new contacts to a project and update existing contacts in the database.
 
 ## Active Tags and IUCN Status
 
-Loacted in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements and data policy.
+Located in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements and data policy.
 
 ## Generate Receiver Map
 
-Loacted in the `vis` subfolder. This creates a map to show recivers from Nodes. Tailored for OTN's reporting requirements and data policy.
+Located in the `vis` subfolder. This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
 
 ##  Receiver Operator Report
 
-Loacted in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
+Located in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
 
 ## DB-Fix Notebooks
 
-These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the mean time, if you see notes in the notebooks such as "Use the DB FIx notebook called XXXX to correct this error", please contact OTN for assistance.
+These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please contact OTN for assistance.
