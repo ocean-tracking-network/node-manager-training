@@ -1,11 +1,12 @@
 ---
-title: "Detections"
-teaching: 0
+title: "Detection Loading"
+teaching: 30
 exercises: 0
 questions:
 - "What is the workflow for loading detection data?"
-- "What do I need to look out for as a node manager when looking for detections?"
+- "What do I need to look out for as a Node Manager when loading detections?"
 objectives:
+- "Understand how to use the Gitlab checklist"
 - "Understand the workflow for detction data in the OTN system"
 - "Learn common errors and pitfalls that come up when loading detections"
 keypoints:
@@ -13,208 +14,716 @@ keypoints:
 - "OTN finsihes off detections tickets running Matching and sensor tag processing"
 ---
 
-## Create gitlab issue
+Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only tranmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
 
-When you recieve new detection detection metadata you should create a new Gitlab Issue using the detection meta data template below.
+# Submitted Records
+
+Immediately, upon receipt of the data files, a new Gitlab Issue should be created. Please use the `Detections` Issue checklist template.
+
+Here is the Issue checklist, for reference:
 
 ```
-- [ ] - NODE MANAGER load raw detections and events (detections-1 notebook, events-1 notebook) (put_table_names_in_ticket) 
-- [ ] - NODE MANAGER verify raw detections table (detections-1 notebook)
-- [ ] - NODE MANAGER load to detections_yyyy (detections-2 notebook) (put detection years that were affected here)
-- [ ] - NODE MANAGER verify detections_yyyy (looking for duplicates) (detections-2 notebook)
-- [ ] - NODE MANAGER load to sensor_match_yyyy (detections-2 notebook)(put sensor_match years that were affected here)
-- [ ] - NODE MANAGER timedrift correction (detections-2b notebook)
-- [ ] - NODE MANAGER verify timedrift corrections (detections-2b notebook)
-- [ ] - NODE MANAGER check for open unverified receiver metadata (put issue number here) (manual check)
-- [ ] - NODE MANAGER load to otn_detections_yyyy (detections-3 notebook)
-- [ ] - NODE MANAGER verify otn_detections_yyyy (detections-3 notebook)
-- [ ] - NODE MANAGER load sentinel records (detections-3 notebook)
-- [ ] - NODE MANAGER check for missing receiver metadata (detections-3b notebook)
-- [ ] - NODE MANAGER load download records (events-2 notebook)
-- [ ] - NODE MANAGER verify download records (events-2 notebook)
-- [ ] - NODE MANAGER pass issue to analyst for final steps
-- [ ] - OTN check for double reporting (detections verification script)
-- [ ] - OTN match tags to animals (detections-4 notebook)
-- [ ] - OTN mark test/transceiver tags (detections verification script)
-- [ ] - OTN do sensor tag processing (only done by OTN as it requires vendor specifications)
-- [ ] - OTN update detection extract table
+Detections
+- [ ] - NAME add label *'loading records'*
+- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Batch Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
+- [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
+- [ ] - NAME verify raw detections table (`detections-1` notebook)
+- [ ] - NAME load raw events to events table (`events-2` notebook)
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **(put detection years that were loaded here)**
+- [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
+- [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
+- [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab issue number here)**
+------
+- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook)
+- [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
+- [ ] - NAME load sentinel records (`detections-3` notebook)
+- [ ] - NAME check for missing receiver metadata (`detections-3b` notebook)
+- [ ] - NAME check for missing data records (`detections-3c` notebook)
+- [ ] - NAME load download records (`events-3` notebook)
+- [ ] - NAME verify download records (`events-3` notebook)
+- [ ] - NAME process receiver configuration (`events-4` notebook)
+- [ ] - NAME label issue with *'Verify'*
+- [ ] - NAME pass issue to analyst for final steps
+- [ ] - NAME check for double reporting (`detections verification script`)
+- [ ] - NAME match tags to animals (`detections-4` notebook)
+- [ ] - NAME do sensor tag processing (only done by OTN as it requires vendor specifications)
+- [ ] - NAME update detection extract table
+
+**detections files/path:**
 ```
 
-## detections - 1 - load csv detections
+### Visual Inspection
 
-Detections 1 loads a raw CSV detection file into a new database table.
+Once the files are received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
 
-## Import cells and Database connections
+Things to visually check:
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
+- Do the files appear edited? Look for `_edited` in file name.
+- Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
+- Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
-## User input
+# Convert to CSV
 
-Cell two requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+Once the raw files are obtained, the data must be convered to `csv` format. There are several ways this can be done, depending on the manufacturer.
 
-You will need to input: 
-- `file_or_folder_path`: This is the path to the you detection input file
-- `table_suffix`: The  table suffix used to create in the raw tables in the form YYYY_MM
-- `schema`: This database schema that you want to load detections to 
+For Innovasea
+- VUE
+    - Open a new `database`
+    - Import all the `VRL` files
+    - Select `export detections` and choose the location you want to save the files
+    - Select `export events` and choose the location you want to save the files
+- Fathom App
+    - choose "export data"
+    - select the relevant files and import into the Fathom Desktop application
+    - export all data types, and choose the location you want to save the files
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook
+    - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
+    - select the folder containing the relevant files and the location you'd like the CSVs saved
+    - run the cells to `convert`
+
+For Thelma Biotel
+- use the `comport` software to open the `.tbdb` file and export as CSV
+
+For Lotek
+- exporting to CSV is more complicated, please reach out to OTN for specific steps
+
+Other manufacturers: contact OTN staff.
+
+
+# detections - 1 - load csv detections
+
+Detections 1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these tools combine the detections and events data in one CSV file.
+
+### Import cells and Database Connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Input
+
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `file_or_folder_path = r'C:/Users/path/to/detections_CSVs'`
+    * paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
+    * this can be a path to a single CSV file, or a folder of multiple CSVs.
+1. `table_suffix = 'YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+There are also some optional inputs:
 - `load_detections`: a true or false value using the table suffix you supplied
 - `stacked`: this is for Fathom exports only and is a way to know how to parse them
 
-## Verify detection file and loading into a database table
+Once you have added your information, you can run the cell.
 
-Cell three allows you to review and verify the detection file’s format. Upon successful verification, you can then run cell four which will  load the degtections  into a new raw table.
+### Verify detection file and loading into a database table
 
-## Verify Raw Detection Table
+Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run cell below which will attempt to load the detections into a new raw table.
 
-You will now need to verify the newly loaded raw detection table. After verification if no major issues are found you are ready to move on to events - 1 - load events into c_events_yyyy.
+The notebook will indicate the success of the table-creation with a message such as this:
 
-## events - 1 - load events into c_events_yyyy
+```
+Reading fathom files...
+Loading Files...
+7/7
+```
 
-Events 1 is responsible for loading receiver events files into raw tables.
+#### Task list checkpoint
 
-## Import cells and Database connections
+In Gitlab, this task can be completed at this stage:
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
+`- [ ] - NAME load raw detections and events ('detections-1' notebook and 'events-1' notebook **OR** 'Batch Fathom Export' notebook and 'detections-1' notebook) **(put table names here)**`
 
-## User inputs 
+Ensure you paste the table name (ex: c_detections_YYYY_mm) into the section indicated, before you check the box.
 
-To load the events, the notebook will require information from you about the events file and table you need to load to. 
+### Verify Raw Detection Table
 
-You will need to input:
-- `filepath`: This is the path to the you events csv
-- `table_name`: The raw table to load the events file into 'c_events_YYYY'
-- `schema`: This database schema that you want to load detections to 
+This cell will now complete the Quality Control checks of the raw table. This is to ensure the nodebook loaded the records correctly from the CSVs.
+
+The output will have useful information:
+- Are there any duplicates?
+- Are the serial numbers formatted correctly?
+- Are the models formatted correctly?
+
+The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+
+If there are any errors contact OTN for next steps.
+
+#### Task list checkpoint
+
+In Gitlab, these tasks can be completed at this stage:
+
+`- [ ] - NAME verify raw detections table ('detections-1' notebook)`
+
+# events - 1 - load events into c_events_yyyy
+
+Events 1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook.
+
+### Import cell
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+### User Inputs 
+
+Cell two requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
+
+1. `filepath = r'C:/Users/path/to/events.csv'`
+    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+1. `table_name = 'c_events_YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+There are also some optional inputs:
 - `file_encoding`: The file_encoding: ISO-8859-1 in the event export. The  default encoding used in VUE's event export
 
-## Verifying the events file
+Once you have added your information, you can run the cell.
 
-Before attempting to load the event files to  a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no major issues you will be able to run the second last cell to load the events file.
+### Verifying the events file
 
+Before attempting to load the event files to a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors you will be able to continue.
 
- ## Load the events file into the c_events_yyyy table
+The notebook will indicate the success of the file verification with a message such as this:
+
+```
+Reading file 'events.csv' as CSV.
+Verifying the file.
+Format: VUE 2.6+
+Mandatory Columns: OK
+date_and_time datetime:OK
+Initialization(s): XX
+Data Upload(s): XX
+Reset(s): XX
+```
+
+### Database Connection
+
+You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### Load the events file into the c_events_yyyy table
 
 The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading and can dispose of the engine then move on to the next notebook.
 
-## detections - 2 - c_table into detections_yyyy
+The notebook will indicate the success of the table-creation with the following message:
 
-This notebook takes the raw detection data from detections - 1 - load csv detections and places it into the next level detection_yyyy tables.
+```
+File loaded with XXXXX records.
+100%
+```
 
-## Import cells and Database connections
+#### Task list checkpoint
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
+In Gitlab, these tasks can be completed at this stage:
 
-## User inputs 
+`- [ ] - NAME load raw detections and events ('detections-1' notebook and 'events-1' notebook **OR** 'Batch Fathom Export' notebook and 'detections-1' notebook) **(put table names here)**`
 
-To load the to the detection_yyyy tables the notebook will require information about the schema you are working in and the raw table that you created in detections 1.
+Ensure you paste the table name (ex: c_events_YYYY_mm) into the section indicated, before you check the box.
 
-You will need to input:
-- `c_table`: The raw table that you created in detections 1 (c_detections_yyyy)
-- `schema`: This database schema that you want to load detections to 
+# events - 2 - move c_events into events table
+
+This notebook will move the `raw` events records in the `intermediate` events table.
+
+### Import cell
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+### User input
+
+This cell requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
+
+1. `c_events_table = 'c_events_YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`. 
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+### Database Connection
+
+You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+ ### Verify table format
+
+You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
+
+The notebook will indicate the success of the table verification with a message such as this:
+
+```
+Checking table name format... OK
+Checking if schema collectioncode exists... OK!
+Checking collectioncode schema for c_events_YYYY_mm table... OK!
+collectioncode.c_events_YYYY_mm table found.
+```
+If there are any errors in this section, please contact OTN.
+
+### Load to Events table
+
+Pending nothing comes up in the verification cells, you run the `loading` cell.
+
+The notebook will indicate the success of the processing with a message such as this:
+
+```
+Checking for the collectioncode.events table... OK!
+Loading events... OK!
+Loaded XX rows into collectioncode.events table.
+```
+
+#### Task list checkpoint
+
+In Gitlab, these tasks can be completed at this stage:
+
+`- [ ] - NAME load raw events to events table ("events-2" notebook)`
+
+# detections - 2 - c_table into detections_yyyy
+
+This notebook takes the `raw` detection data from detections-1 and moves it into the `intermediate` detection_yyyy tables (split out by year).
+
+### Import cells and Database Connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs 
+
+To load the to the detection_yyyy tables the notebook will require information about the schema you are working in and the raw table that you created in `detections-1`.
+
+1. `c_table = 'c_detections_YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix, which you have just loaded in `detections-1`
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+The notebook will indicate success with the following message:
+
+```
+Checking table name format... OK
+Checking if schema collectioncode exists... OK!
+Checking collectioncode schema for c_detections_yyyy_mm table... OK!
+collectioncode.c_detections_yyyy_mm table found.
+```
+
+### Create Missing Tables
+
+Detections tables are only created on an as-needed basis. So these cells will detect any tables you are missing and create them as needed, based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`. 
+
+Firt the notebook with gather and print the missing tables. If there are none missing, the notebook will report that as well.
+
+```
+vemco: Match
+You are missing the following tables:
+[collectioncode.detections_YYYY, v2lbeiar.otn_detections_YYYY, v2lbeiar.sensor_match_YYYY]
+Create these tables by passing the missing_tables variable into the create_detection_tables function.
+```
+
+If you proceed in the notebook, there is a `creation` cell which will add these tables to the project schema in the database. Success will be indicated with the following message:
+
+```
+Creating table collectioncode.detections_YYYY... OK
+Creating table collectioncode.otn_detections_YYYY... OK
+Creating table collectioncode.sensor_match_YYYY... OK
+```
+
+### Create Detection Sequence
+
+Before loading detections a detection sequence is created. The sequence is used to populate the `det_key` column. The `det_key` value is an unique ID for that detection to help ensure there are no duplicates. If a sequence is required, you will see this output:
+
+```
+creating sequence v2lbeiar.detections_seq... OK
+```
+
+No further action is needed.
+
+### Load to Detections_YYYY
+
+Duplicate detections are then checked for and will not be inserted into the detections_yyyy tables. 
+
+If no duplicates are found you will see:
+
+`No duplicates found. All of the detections will be loaded into the detections_yyyy table(s).`
+
+If duplicates are found you will see:
+- a bar chart showing the number of detections per year which
+    * have already been loaded
+    * are new, and will be loaded this time
+- you may want to investigate if the results are not what you expected.
+
+After all this, the `raw` detection records are ready to be loaded into the `detection_yyyy` tables. The notebook will indicate success with the following message:
+
+```
+Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2018... OK
+Added XXXXX rows.
+Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2019... OK
+Added XXXXX rows.
+Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2020... OK
+Added XXXXX rows.
+Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2021... OK
+Added XXXXX rows.
+```
+
+**You must note which years have been loaded!** In the example above, this would be 2018, 2019, 2020, and 2021.
+
+#### Task list checkpoint
+
+In Gitlab, these tasks can be completed at this stage:
+
+`- [ ] - NAME load to detections_yyyy ("detections-2" notebook) **(put detection years that were loaded here)**`
+
+Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box.
+
+### Verify Detections YYYY Tables
+
+This cell will now complete the Quality Control checks of the `detections_yyyy` tables. This is to ensure the nodebook loaded the records correctly.
+
+First, you will need to list **all** of the years that were affected by the previous loading step, so the notebook knows which tables need to be verified.
+The format will look like this:
+
+`years = ['YYYY','YYYY','YYYY', 'YYYY']`
+
+Run this cell, then you can verify in the next cell.
+
+The output will have useful information:
+- Were all the detections loaded?
+- Are the serial numbers formatted correctly?
+- Are the models formatted correctly?
+- Are there duplicate detections?
+- What sensors will need to be loaded?
+
+The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+
+If there are any errors contact OTN for next steps.
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME verify detections_yyyy (looking for duplicates) ("detections-2" notebook)`
+
+###  Load sensors_match Tables by Year
+
+For the last part of this notebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor infromation into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values. 
+
+Output will appear like this:
+
+```
+Inserting records from collectioncode.detections_2019 INTO sensor_match_2019... OK
+Added XXX rows.
+Inserting records from collectioncode.detections_2021 INTO sensor_match_2021... OK
+Added XXX rows.
+```
+
+**You must note which years have been loaded!** In the example above, this would be 2019 and 2021.
+
+#### Task list checkpoint
+
+In Gitlab, these tasks can be completed at this stage:
+
+```
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
+```
+
+Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box. Then, comment these years into the Issue as well.
+
+# detections - 2b - timedrift calculations
+
+This notebook calculates time drift factors and applies the corrections to the `detection_yyyy` tables, in a field called `corrected_time`. OTN's Data Manager toolbox (the Nodebooks) corrects for timedrift between each initialization and offload of a receiver. If a receiver is offloaded several times in one data file, time correction does not occur linearly from start to end, but between each download, to ensure the most accurate correction. If there is only one download in a data file then the time correction in `VUE` software will match the time correction performed by OTN.
+
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs
+
+To load the to the detection_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
 
 
-## Create missing tables
+### Calculating Time Drift Factors
 
-With detections you only get tables based on the years that you need. So these cells will detect any tables you are missing and create them as needed  based on the years covered in the raw detection tables (c_table). This will cover all tables such as detections_yyyy, sensor_match_yyyy and otn_detections_yyyy. 
+`create_tbl_time_drift_factors`. This function will create the `time_drift_factors` table in the schema if it doesn't exist.
 
-## Create Detection Sequence
+The next step is to run `check_time_drifts` which gives a display of the time drift factor values that will be added to the time_drift_factors table given an events table. At this stage, you should review for any erroneous/large timedrifts.
 
-Before loading detections a detection sequence is created. The sequence is used to populate the det_key value. The det_key value is an unique ID for that detection to help ensure there are no duplicates. Duplicate detections are then checked for and will not be inserted into the detections_yyyy tables. After all this the raw detection records are ready to be loaded into the detection_yyyy tables.
+If everything looks good, you may proceed to the next cell whcih adds new time drift factors to the time_drift_factors table from the events file. A success message will appear:
 
-## Verify Detections YYYY Tables
+```
+Adding XXX records to collectioncode.time_drift_factors table from collectioncode.events... OK!
+```
 
-After the records are successfully loaded into the  detections_yyyy  you will now run the verification and fix any major issues that come up. As you may have noticed there are a lot of verification and checks in loading. It is important to keep in mind that all these verifications are being done to try and catch issues as early as possible when they are easiest to fix. OTN is alway available to help if you have any questions with verifications.
+You will then see a cell to create missing views which creates the time drift `views` which the database will use to calculate drift values for both the `detections_yyyy` and `sensor_match_yyyy` tables.
 
-##  Load sensors_match Tables by Year
+### Correcting Time Drift
 
-For the last part of this notebook you will need to load the sensors_match tables. This loads sensor detections into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values. After this you are ready to dispose of the database connection and move to detections-2b.
+Finally,  we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view. 
 
-## detections - 2b - timedrift calculations
+First, you will need to ensure you run this cell on **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
-This notebook calculates time drift factors and applies the corrections to the detection_yyyy tables
+The format will look like this: 
+```
+year = 2021 # Year as int
+```
 
-## Import cells and Database connections
+Once the timedirft calculation is done (indicated by **green checkmarks**) you then have to **re-run** the cell again, for each affected year.
+****************TODO********* IS THAT RIGHT?? OR CAN WE PROVIDE A LIST???**********
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
+#### Task list checkpoint
 
-## Calculating and adding the time_drift_factors
+In Gitlab, this task can be completed at this stage:
 
-For this notebook you just need to provide the schema you are working in. After that you can run `create_tbl_time_drift_factors`. This function will create the time_drift_factors table in the schema if it doesn't exist.
+`- [ ] - NAME timedrift correction for affected detection and sensor years ("detections-2b" notebook)`
 
-The next step is to run `check_time_drifts`. Which gives a display of the time drift factor values that will be added to the time_drift_factors table given an events table.
+### Verify Detections After Time Drift Calculations
 
-If everything looks good `add_time_drift_factors` is ready to be run which adds new time drift factors to the time_drift_factors table from the events file.
+After running the above cells you will then verify the time drift corrections on the `detections_yyyy` and `sensor_match_yyyy` tables. 
 
-You will then run `create_time_drift_views` which creates the time drift views used to calculate drift values for both the detections and sensor_match tables
+The output will have useful information:
+- Are there any erroneous timedrift values?
+- Did the time correction cause detections to need moving to another `yyyy` table? If so, select the "move detections" button.
+- Are the receiver models formatted correctly?
 
-Finally,  `update_detection_time`  is ready to be run. This function updates both the detections and sensor_match tables with corrected time values using the vw_time_drift_cor view. You will need to provide the years you want to be adjusted. 
+The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
 
-## Verify Detections After Time Drift Calculations
+If there are any errors contact OTN for next steps.
 
-After running the above cells you will then verify the time drift corrections on the detections_yyyy and sensor_match_yyyy tables. Pending no major issue coming from the verification you are ready to dispose of the engine and move on to the next notebook.
+#### Task list checkpoint
 
+In Gitlab, this task can be completed at this stage:
 
-## detections - 3 - detections_yyyy into otn_detections
+`- [ ] - NAME verify timedrift corrections ("detections-2b" notebook)`
 
-The detections - 3 notebook moves the detections from detection_yyyy and sensor_match_yyyy tables into the final otn_detections_yyyy tables.
+# detections - 3 - detections_yyyy into otn_detections
 
-## Imports and user inputs
+The `detections - 3` notebook moves the detections from `detection_yyyy` and `sensor_match_yyyy` tables into the final `otn_detections_yyyy` tables. This will join the detections records to their associated deployment records, providing geographic context to each detection. If there is no metadata for a specific detection (no receiver record to match with) it will not be promoted to `otn_detections_yyyy`.
 
-Like in the notebooks before it you will need to run the import cells, fill in your auth string for the database, and provide some user input. The input in this case is the schema you wish to work in. Before moving on from this you will need to confirm 2 things:
+### Imports and user inputs
 
-1) Confirm that NO push is currently ongoing 
+### Import cells and Database connections
 
-2) confirm rcvr_locations for this schema have been verified.
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
- If a push is ongoing, or if verification has not yet occured, you must wait for it to be completed before processing beyond this point.
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
 
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
- ## Creating detection veiws and loading in otn_detections
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
 
-Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies creates views for detection data. These are then used to run the function in the next cell `load_into_otn_detections_new`, which loads the detections from those views into otn_detections.
+### User Inputs
 
- ##  Syncing Corrected Times
+To load the to the detection_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
 
-The next two cells are used only if you have loaded detections through to the otn_detections_yyyy without first running the detections - 2b - timedrift calculations. You will need to provide the date of the current push and the link of the issue you are loading. You will then be able to correct the times and if  a node's detection times are updated the node's obis.detection_extract list will also be updated.
+Before moving on from this you will need to confirm 2 things:
 
-## Verify OTN Detections
+1) Confirm that **NO Push** is currently ongoing 
 
-After running your needed cells you will then verify otn_detection_yyyy detections. Pending no major issue coming from the verification you are ready to dispose of the engine and move on to the next notebook.
+2) confirm `rcvr_locations` for this schema have been verified.
 
+If a Push is ongoing, or if verification has not yet occured, you **must** wait for it to be completed before processing beyond this point.
 
-## detections - 3b - missing_metadata_check
+#### Task list checkpoint
 
-This notebook is for checking detections that have not been inserted into otn_detections_yyyy, and will show potentially missing receiver metadata. 
+In Gitlab, this task can be completed at this stage:
 
+`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab issue number here)**`
+
+ ### Creating detection veiws and loading in otn_detections
+
+Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data. 
+
+Output will look like:
+```
+Creating view collectioncode.vw_detections_2020... OK
+Creating view collectioncode.vw_sentinel_2020... OK
+Creating view collectioncode.vw_detections_2021... OK
+```
+
+These are then used to run the function in the next cell `load_into_otn_detections_new`, which loads the detections from those views into otn_detections. You will be asked to select all relevant tables here, with a dropdown menu and checkboxes.
+
+You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps. Then click the `Load Detections` button to being loading. There will be a status bar indicating your progress.
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
+
+ ###  OPTIONAL: Syncing Corrected Times
+
+The next two cells are used **only** if you have loaded detections through to the `otn_detections_yyyy` tables **without** first running the `detections - 2b - timedrift` calculations. You will need to provide the date of the current push and the link of the issue you are loading. You will then be able to correct the times and if  a node's detection times are updated the node's `obis.detection_extract` list will also be updated.
+
+### Verify OTN Detections
+
+After running your needed cells you will then verify `otn_detection_yyyy` detections. 
+
+The output will have useful information:
+- Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button.
+- Are all the sensors loaded to the `sensor_match` tables? Compare the counts between `detections_yyyy` and `sensor_match_yyyy` provided.
+- Are all the detections loaded from `detections_yyyy` to `otn_detections_yyyy`? Compare the counts provided. If there is a mismatch, we will get more details in the `detections-3b` notebook
+- Is the formatting for the dates correct?
+- Is the formatting for the_geom correct?
+- Are there detections without receivers? If so, we will get more details in the `detections-3b` notebook
+- Are there receivers without detections? If so, we will get more details in the `detections-3c` notebook
+
+The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+
+If there are any errors contact OTN for next steps.
+
+#### Task list checkpoint
+
+In Gitlab, these tasks can be completed at this stage:
+
+```
+- [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
+- [ ] - NAME load sentinel records (`detections-3` notebook)
+```
+
+# detections - 3b - missing_metadata_check
+
+This notebook is for checking for detections that have not been inserted into `otn_detections_yyyy`, which will indicate missing receiver metadata. 
 
 The user will be able to set a threshold for the minimum number of detections to look at (default is 100). It will also separate animal detections from transceiver detections in a graph.At the end, it will show a SQL command to run so that the missing metadata can be seen in table format.
 
-## Import cells and Database connections
+### Import cells and Database connections
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-## User inputs
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs
+
+Information regarding the tables we want to check against is required.
+
+1. `schema = 'collectioncode'` 
+    * edit to include the relevant project code, in lowercase, between the quotes.
+1. `years = []`
+    * A comma-separated list of detection table years for detections_yyyy, should be in form `[yyyy]` or a list such as `[yyyy,yyyy,'early']`
+
+Once you have edited these values, you can run the cell. You should see the following success message:
+
+```
+All tables exist!
+```
+
+###  Check for Missing Metadata in Detections_yyyy
+
+This step will perform the check for missing metadata in `detections_yyyy` and display results for each record where the number of excluded detections is greater than the sepcified threshold. 
+
+First: enter your threshold. Formatted like: `threshold = 100`. Then you may run the cell.
+
+The output will include useful information:
+- Which receiver is missing detections from `otn_detections_yyyy?
+- How many are missing?
+- What type of detections are missing? Transceiver, animal tags, or test tags.
+- What are the date-ranges of these missing detections? These dates can be used to determine the period for which we are missing metadata.
+- Other notes: is this date range before known deployments? After know deployments? Between known deployments?
+
+There will be a visualization of the missing metadata for each instance where the number of missing detections is over the threshold. 
+
+Any instance with missing detections (greater than the threshold) should be identified, and the results pasted into a **new Gitlab Issue**. The format will look like:
+
+```
+VR2W-123456
+	missing XX detections (0 transceiver tags, XX animal tags, 0 test tags) (before deployments) (YYYY-MM-DD HH:MM:SS to YYYY-MM-DD HH:MM:SS)
+
+VR2W-567891
+	missing XX detections (0 transceiver tags, XX animal tags, 0 test tags) (before deployments) (YYYY-MM-DD HH:MM:SS to YYYY-MM-DD HH:MM:SS)
+```
+
+There are also two cells at the end that allow you create reports for researchers in CSV or HTML format.
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME check for missing receiver metadata ("detections-3b" notebook)`
 
 
-For this notebook you will need to provide: 
-- `schema`: This database schema that you want to load detections to 
-- `years`: A comma-separated list of detection table years for detections_yyyy, should be in form [yyyy] or [yyyy,yyyy,'early']
+# detections -3c - missing_vrl_check
 
-##  Check for Missing Metadata in Detections_yyyy
+# events-3 - create download records
 
-This step will perform the check for missing metadata in detections_yyyy. Based on an acceptable threshold (e.g. 100) of number of detections without metadata. You will then get a query and visualization of the missing metadata. One note with the visualization is that you will see receivers with less than this threshold but they will not be given in the query that comes up. There are also two cells at the end that allow you create  reports for researchers in CSV or HTML form.
-
-## events - 2 - move c_events into events table
-
-## Import cells and Database connections
-
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. You will also want to insert the path of your auth file into `engine = get_engine()` so you will be able to connect to the database.
-
-# User input
-
-The second cell of this notebook is where you input the required information move events c_events tables into the events table:
-- `c_events_table`: This is the path to the you detection input file
-- `schema`: This database schema that you want to load detections to 
-
- # Verify a table format
-
-You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications. You will also see a `datecreated` variable which you can leave as none so it uses the current date as the date created value. Pending nothing comes up in the verification you run the load cell and when it loads successfully you have finished your position of detections. You can now pass it to OTN who will finish the rest of the task list.
+# events-4 - process receiever configuration
 
