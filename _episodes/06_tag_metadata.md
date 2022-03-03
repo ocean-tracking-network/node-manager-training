@@ -78,7 +78,7 @@ Things to visually check in the metadata:
 
 In general, most commonly formatting errors occur in the information about the `tag` section. Pay close attention here.
 
-The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some reccommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
+The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
 - Animals with ONLY a floy tag: ensure the `TAG_TYPE` column = `FLOY`. You may leave the following columns empty - `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
@@ -153,7 +153,7 @@ The following cell will map the locations of all the `tag deployments`, compared
 1. the tag release locations are in the part of the world expected based on the project abstract. Ex: lat/long have correct +/- signs
 1. the project bounding box is correct
 
-If it appears the tag release locations have incorrect signs, you can fix in the source file and re-run the cell.
+If it appears the tag release locations have incorrect signs, you can fix it in the source file and re-run the cell.
 
 If it appears there are tag release locations which are on land, you may want to reach out to the researcher for corrected coordinates.
 
@@ -169,7 +169,7 @@ The output will have useful information:
 1. Is the information about the `animal` formatted according to the Data Dictionary?
 	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted if possible. Otherwise, use the `add_lifestage_codes` notebook
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
-	* Are all the age units in in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
+	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
 1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
 1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species. 
 1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model. 
@@ -319,7 +319,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 You will have to edit **two** sections: 
 
 1. `table_name = 'c_tag_meta_YYYY_mm'`
-	* Within the quotes, please add the name of the raw table. May be the `no_dup` table if relevant.
+	* Within the quotes, please add the name of the raw table. Maybe the `no_dup` table if relevant.
 1. `schema = 'collectioncode'`
 	* please edit to include the relevant project code, in lowercase, between the quotes.
 
@@ -334,7 +334,7 @@ The output will have useful information:
 1. Is the information about the `animal` formatted according to the Data Dictionary?
 	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted if possible. Otherwise, use the `add_lifestage_codes` notebook
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
-	* Are all the age units in in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
+	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
 1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
 1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species. 
 1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model. 
@@ -371,7 +371,7 @@ Added XX records to the schema.animalcache_YYYY_mm table
 Added XX records to the schema.tagcache_YYYY_mm table
 ```
 
-You need to pay special attention to the number of records loaded to the animal and tag caches. If this number doesn't match you may need to investiagte why there are more tags than animals or vis versa. Possible reasons the values may not match:
+You need to pay special attention to the number of records loaded to the animal and tag caches. If this number doesn't match you may need to investigate why there are more tags than animals or vice versa. Possible reasons the values may not match:
 
 - There are some animals with only FLOY tags, no acoustic tags (no record added to `tag_cache`).
 - There are some animals with >1 tag attached, or a tag with >1 pinger ID (multiple records added to `tag_cache`)
@@ -439,7 +439,7 @@ The output will have useful information:
 - Are there tags outside of the project bounding box?
 - Are the values formatted properly for `the_geom`, `lenthtype`, `length2type`, `ageunits`, `sex`
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
-- Are there extra spaces that need to be clipped? If so, press `Remove extra spaces` button.
+- Are there extra spaces that need to be clipped? If so, press the `Remove extra spaces` button.
 - Visually confirm that the length/weight values make sense for that species/lifestage, and if not, change in the `otn_animals` table, or contact researcher.
 - Are the date-fields formatted correctly?
 - Confirm there are Tag Specifications available, and they match the records provided. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
@@ -447,7 +447,7 @@ The output will have useful information:
 
 The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
 
-If there are any errors go into database and fix the `otn` tables themselves, or contact the researcher, and re-run.
+If there are any errors, go into the database and fix the `otn` tables themselves, or contact the researcher, and re-run.
 
 #### Task list checkpoint
 
