@@ -319,7 +319,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 You will have to edit **two** sections: 
 
 1. `table_name = 'c_tag_meta_YYYY_mm'`
-	* Within the quotes, please add the name of the raw table. Maybe the `no_dup` table if relevant.
+	* Within the quotes, please add the name of the raw table. Might be the `no_dup` table if relevant.
 1. `schema = 'collectioncode'`
 	* please edit to include the relevant project code, in lowercase, between the quotes.
 
