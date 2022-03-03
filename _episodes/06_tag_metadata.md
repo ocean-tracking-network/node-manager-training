@@ -21,9 +21,9 @@ Remembering a previous lesson, there are multiple levels of data-tables in the d
 
 # Completed Metadata
 
-Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Tag Metadata` Issue template.
+Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Tag Metadata` Issue checklist template.
 
-Here is the template, for reference:
+Here is the Issue checklist, for reference:
 
 ```
 Tag Meta Data
@@ -78,11 +78,16 @@ Things to visually check in the metadata:
 
 In general, most commonly formatting errors occur in the information about the `tag` section. Pay close attention here.
 
-The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.
+The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some reccommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
+
+- Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
+- Animals with ONLY a floy tag: ensure the `TAG_TYPE` column = `FLOY`. You may leave the following columns empty - `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
+- Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty - `tag_id_code` and `tag_code_space`.
+
 
 # Quality Control - Tag-1 Notebook
 
-Each step in the Issue template will be discussed here, along with other important notes required to use the Nodebook.
+Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
 
 ### Imports cell
 
