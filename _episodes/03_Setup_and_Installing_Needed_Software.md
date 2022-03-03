@@ -17,9 +17,9 @@ keypoints:
 
 ### In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
 
-OTN has built custom qualtiy control tools for Node Managers, called the OTN Nodebooks. These are written in `python` and interacted with by running through `Jupyter` notebooks. In order to use these tools, and interact with your database, you will need to install several different applications. All installation instructions are also available on our Gitlab [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/home). 
+OTN has built custom quality control tools for Node Managers, called the OTN Nodebooks. These are written in `python` and interacted with by running through `Jupyter` notebooks. In order to use these tools, and interact with your database, you will need to install several different applications. All installation instructions are also available on our Gitlab [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/home). 
 
-This lesson will give attendees a change to install all the relevant software, under the supervison of OTN staff.
+This lesson will give attendees a change to install all the relevant software, under the supervision of OTN staff.
 
 # Python/Anaconda
 
@@ -61,7 +61,7 @@ These are the collection of Nodebooks used to load data into the OTN data system
 1. Now to install all required python packages by running the following: `mamba env update -n root -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC**: Open your terminal, and naviagte to your ipython-utilities directory, usinng `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
+- **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
 - **WINDOWS**: Double-click the `start-juptyer.bat` file in your ipython-utlities folder, which will open the Nodebooks.
 
 More operating system-specific instructions and troubleshooting tips can be found at: https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities
@@ -69,7 +69,7 @@ More operating system-specific instructions and troubleshooting tips can be foun
 
 # Database Console Viewer
 
-There are database administration applications to assist with interacting directly with your database. There are many options available but `dBeaver` and `DataGrip` are the most popular options at OTN. 
+There are database administration applications to assist with interacting directly with your database. There are many options available but `DBeaver` and `DataGrip` are the most popular options at OTN. 
 
 * https://dbeaver.io/ (free and open access - **recommended**)
 * https://www.jetbrains.com/datagrip (free institutional/student access options - another option)
