@@ -57,10 +57,10 @@ Detection Extract files are formatted for direct ingestion by analysis packages 
 # Detections - Create Detection Extracts Notebook
 
 During the Push process, any new detection matches that are made are noted in the `obis.detection_extracts_list` table of your Node. These entries will have several pieces of useful information:
-- detection_extract: this contains the project code, year, and type of extract that needs to be created.
+- `detection_extract`: this contains the project code, year, and type of extract that needs to be created.
     * ex: `ABC,2022,t` will suggest that project ABC needs the extract `matched to animals 2022` (tracker format) created.
-- git_issue_link: the issue in which these detection matches were impacted
-- push_date: the date of the Push when this extract will have to be made
+- `git_issue_link`: the issue in which these detection matches were impacted
+- `push_date`: the date of the Push when this extract will have to be made
 
 Using these fields, the `detections-create detection extracts` notebook can determine which extracts need to be created for each push.
 
@@ -144,5 +144,27 @@ This cell will begin creating the identified detection extracts, one by one. You
 > If you are pleased with the output, you can then set `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
 
 ### Emailing Researchers - Manual
-### Update Extract List
 
+If you are not using the Plone system for sending emails, you can use the `manual` email tool.
+
+You will first enter the collectioncode which has the new Detection Extract file requiring notification: `cntct_schema = 'schema'`. Please edit to include the project code, in lowercase, between the quotation marks.
+
+An interactive menu will then appear, listing all the contacts associated with the project. You can select each of those you'd like to email.
+
+The following cell will print out the resulting contact list.
+
+Next, you will be able to review the email template. Required input includes:
+- `email_auth_path = '/path/to/email.auth'`: please paste the filepath to your email `.auth` between the quotes.
+- `template = './emailtools/templates/email_researcher.html'` : you can select the template you'd like to use. If the ones provided are not adequate, you can edit the template by changing the `email_researcher.html` template by navigating from the `ipython-utilities` main folder to `emailtools` then into the `templates` folder. Save your edited file and re-run
+
+If the email preview is acceptable, you may run the final cell in this section which will send the emails.
+
+### Update Extract Table
+
+Once all extracts are made, uploaded to your file management system and emails have been sent to researchers, the final step is to ensure we mark in the `obis.detection_extracts_list` table that we have completed these tasks.
+
+Please enter `current_push_date = 'yyyy-mm-dd` : the date of the Push when these extracts have been made.
+
+Then, an interactive dataframe will appear. This dataframe will allow you to check-off the extracts as `completed` based on those you were able to successfully create.
+
+Now you're done with Detection Extracts until next Push!
