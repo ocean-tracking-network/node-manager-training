@@ -721,9 +721,232 @@ In Gitlab, this task can be completed at this stage:
 `- [ ] - NAME check for missing receiver metadata ("detections-3b" notebook)`
 
 
-# detections -3c - missing_vrl_check
+# detections - 3c - missing_vrl_check
 
-# events-3 - create download records
+This notebook will check for missing data files in the database by comparing the `rcvr_locations` and `events` tables. For any receiver deployments that are missing events, it will check if there are `detections` during that time period for that receiver. 
 
-# events-4 - process receiever configuration
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs
+
+Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
+
+There are also optional fields:
+- `start_year = YYYY`: The user will be to select a time range (in years) to limit the receivers to only ones that where active at some point during the time range.
+- `end_year = YYYY`: The user will be to select a time range (in years) to limit the receivers to only ones that where active at some point during the time range.
+- `skip_events = False`: By changing to True, this will skip the events check and go right to checking if there are detections for each period. Only skip the events check if you know there won't be any events, the detections check takes longer than the event check.
+
+Once you have edited the values, you can run the cell. You should see the following success message:
+
+```
+Checking if collectioncode schema exists...
+OK
+```
+
+### Checking For Missing Data Files
+
+The next cell will begin scanning the project's schema to identify if there are any missing data files. 
+If there are no missing files, you will see this output:
+
+```
+Checking if all deployment periods have events...
+X/X
+Checking if deployment periods missing events have detections...
+⭐ All deployment periods had events! Skipping detection check. ⭐
+```
+
+If the notebook has detection missing file, you will see this output:
+```
+Checking if all deployment periods have events...
+XXX/XXX
+Checking if deployment periods missing events have detections...
+XX/XX
+```
+
+### Displaying Missing  Data Files
+
+Now the notebook will begin plotting a Gantt chart, displaying the periods of deployment for which the database is missing data files. There are some optional customizations you can try:
+
+- `split_plots = False`: you can set to True if you would like multiple, smaller plots created
+- `rcvrs_per_split = 20`: if you are splitting the plots, how many receiver deployments should be depicted on each plot?
+
+Running the cell will safe your configuration options. And the next cell creates the chart(s).
+
+The plot will have useful information:
+- the receiver (x axis)
+- the date range (y axis)
+- the state of the data for that date-range
+    * all detections and events present
+    * missing events, detections present
+    * missing some events 
+    * missing ALL events
+- hovering over a deployment period with give details regarding the date range
+
+### Exporting Results
+
+After investigating the Gantt chart, a `CSV` export can be created to send to the researcher.
+
+First, you must select which types of records you'd like to export from this list:
+- all detections and events present
+- missing events, detections present
+- missing some events (**recommended**)
+- missing ALL events (**recommended**)
+
+Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination.
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME check for missing data records ("detections-3c" notebook)`
+
+# events - 3 - create download records
+
+This notebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this notebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
+
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs
+
+Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
+
+Once you have edited the value, you can run the cell. 
+
+### Detecting Download Records
+
+The next cell will scan the `events` table looking for data download events, and attempt to match them to their corresponding receiver deployment.
+
+You should see output like this:
+
+```
+Found XXX download records to add to the moorings table
+```
+
+The next cell will print out all the identified download records, in a dataframe for you to view.
+
+### Loading Download Records
+
+Before moving on from this you will need to confirm 2 things:
+
+1) Confirm that **NO Push** is currently ongoing 
+
+2) confirm `rcvr_locations` for this schema have been verified.
+
+If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
+
+If everything is OK, you can run the cell. The notebook will indicate success with a message like:
+```
+Added XXX records to the moorings table
+```
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME load download records ("events-3" notebook)`
+
+### Verify Download Records
+
+This cell will have useful information:
+- Are the instrument models formatted correctly?
+- Are receiver serial numbers formatting correctly?
+- Are there any other outstanding download records which haven't been loaded?
+
+The notebook will indicate the table has passed verification by the presence of **green checkmarks**. 
+
+If there are any errors, contact OTN for next steps.
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME verify download records ("events-3" notebook)`
+
+# events-4 - process receiver configuration
+
+This notebook will process the receiver configurations (such as MAP code) from the events table and load them into the database's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
+
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+``` 
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+```
+
+### User Inputs
+
+Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
+
+Once you have edited the value, you can run the cell. 
+
+### Get Receiver Configuration
+
+Using the receiver deployment records, and the information found in the `events` table, this cell will identify and important configuration information for each deployment. A dataframe will be displayed.
+
+The following cell will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
+
+### Load Configuration to Database
+
+Finally, the notebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
+
+```
+The following XX receiver configurations are new and have been inserted:
+```
+
+#### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - NAME process receiver configuration ("events-4" notebook)`
+
+# Final Steps
+
+The remaining steps in the Gitlab Checklist are completed outside the notebooks.
+
+First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
+
+Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
 
