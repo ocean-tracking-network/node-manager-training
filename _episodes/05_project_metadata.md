@@ -221,6 +221,8 @@ Longitude:
 
 ### Create New Institution
 
+**STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point.
+
 Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions if they are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
 
 To run the cell, you will need to complete:
@@ -237,6 +239,8 @@ Institution record 'DAL' created.
 You can re-run this cell as many times as you need, to add each missing institution.
 
 ### Write Project to the Database
+
+**STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point.
 
 Finally, it is time to write the project records to the database and create the new project!
 

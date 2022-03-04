@@ -1,13 +1,16 @@
 ---
 title: "Deployment Metadata"
-teaching: 0
+teaching:30
 exercises: 0
 questions:
-- "Add questions"
+- "How do I load new deployments into the Database?"
 objectives:
-- "Add objectives."
+- "Understand the proper template-completion"
+- "Understand how to use the Gitlab checklist"
+- "Learn how to use the `Deploy` notebook"
 keypoints:
-- "Add key points."
+- "Loading tagging metadata requires judgement from the Data Manager"
+- "Communication with the researcher is essential when errors are found"
 ---
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
 
@@ -66,7 +69,7 @@ Things to visually check in the metadata:
 
 In general, most commonly formatting errors occur in records where there are >1 instrument deployed at a station, or if the receiver was deployed and recovered from the same site.
 
-The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these definitions often. We have also included some reccommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
+The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these definitions often. We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Deployment, download, and recovery information for each station is entered on a single line.
 -  When more than one instrument is deployed, downloaded, or recovered at the same station, enter each one on a separate line using the same `OTN_ARRAY`, `STATION_NO`.
@@ -179,7 +182,7 @@ Ensure you paste the table name (ex: c_shortform_YYYY_mm) into the section indic
 
 ### Verify Raw Table 
 
-This cell will now complete the Quality Control checks of the raw table. This is to ensure the nodebook loaded the records correctly from the Excel sheet.
+This cell will now complete the Quality Control checks of the raw table. This is to ensure the Nodebook loaded the records correctly from the Excel sheet.
 
 The output will have useful information:
 - Are there any duplicate records?
@@ -203,7 +206,9 @@ In Gitlab, this task can be completed at this stage:
 
 ### Loading Stations Records
 
-**ONLY** once the raw table has successfully passed ALL quality control checks can you load the stations information to the database `stations` table.
+**STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point
+
+Only once the raw table has successfully passed ALL quality control checks can you load the stations information to the database `stations` table.
 
 Running this cell will first check for any new stations to add, then confirm the records in the `stations` table matches the records in the `moorings` table where `basisofrecord = 'STATION'`.
 
@@ -234,7 +239,7 @@ The output will have useful information:
 
 - Were all the stations from our `raw` table promoted to the `stations` table, and the `moorings` table?
 - Are all stations in unique locations?
-- Are all sations within the project's bounding box?
+- Are all stations within the project's bounding box?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are any of the dates in the future?
 
@@ -249,25 +254,117 @@ In Gitlab, this task can be completed at this stage:
 `- [ ] - verify stations("deploy" notebook)`
 
 ### Load to rcvr_locations
+Once the `station` table is verified, the receiver deployment records can now be promoted to the `intermediate` rcvr_locations table.
+
+The cell will identify any new deployments to add, and any previously-loaded deployments which need updating (ex: they have been recovered).
+
+If new deployments are identified:
+- Compare these deployments to existing deployments in the `rcvr_locations` table in the database. Are they truly new, or is there a typo in the raw table? Did the station change names, but is in the same location as before? Did the serial number change, but the deployment location and date are the same?
+- If there are fixes to be made, change the records in the `raw` table, or contact the researcher.
+- If all deployments are truly new, you can then select `Add Deployments`.
+
+If deployment updates are identified:
+- Review the suggested changes: **do not** select changes which remove information (ex: release 590023 --> `None` is not a good change to accept).
+- Use the check boxes to select only the appropriate changes
+- Once you are sure the changes are correct, you can then select `Update Deployments`.
+
+Each instance will give a success message such as:
+
+```
+XX deployments load to rcvr_locations
+```
 #### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - load to rcvr_locations ("deploy" notebook)`
+
 
 ### Verify rcvr_locations
+
+This cell will now complete the Quality Control checks of the rcvr_locations records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+
+The output will have useful information:
+- Have all deployments been loaded from the raw table? Please note that instruments where a sentinel tag is deployed alone at a station will not be loaded to rcvr_locations, and so these will likely be flagged in this section for your review.
+- Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
+- Based on comments, are there any instances where a receiver's status should be changed to "lost"?
+- Are all instruments in the `obis.instrument_models` table?
+- Are there any overlapping deployments?
+- Is the geom, serial number and catalognumber formatted correctly?
+
+The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+
+If there are any errors contact OTN, or contact the researcher, to resolve. 
+
 #### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - verify rcvr_locations ("deploy" notebook)`
 
 ### Load Transmitter Records to Moorings
+
+The `transmitter` values associated with transceivers, co-deployed sentinel tags or stand-alone test tags will be loaded to the `moorings` table in this section. Existing transmitter records will also be updated if relevant.
+
+If new transmitters are identified:
+- Review for accuracy then select `Add Transmitters`.
+
+If transmitter updates are identified:
+- Review the suggested changes: **do not** select changes which remove information (ex: release 590023 --> `None` is not a good change to accept).
+- Use the check boxes to select only the appropriate changes
+- Once you are sure the changes are correct, you can then select `Update Transmitters`.
+
 #### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - load transmitter records receivers with integral pingers ("deploy" notebook)`
 
 ### Load Receivers to Moorings
+
+The final, highest-level table for instrument deployments is `moorings`.
+
+The cell will identify any new deployments to add, and any previously-loaded deployments which need updating (ex: they have been recovered).
+
+Please review all new deployments and deployment update for accuracy, then press the associated buttons to make the changes. At this stage, the updates are not editable: any updated chosen from the `rcvr_locations` section will be processed here.
+
+You may be asked to select an `instrumenttype` for certain receivers. Use the drop-down menu to select before adding the deployment.
+
 #### Task list checkpoint
 
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - load to moorings ("deploy" notebook)`
+
 ### Verify Moorings
+
+This cell will now complete the Quality Control checks of the moorings records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+
+The output will have useful information:
+- Have all deployments been loaded from rcvr_locations? 
+- Do we have manufacturer specifications for the receivers or tags deployed?
+- Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
+- Do the `STATIONS` records match the information in the `stations` table?
+- Are all instruments in the `obis.instrument_models` table?
+- Are there any overlapping deployments or receivers or tags?
+- Are there duplicate download records?
+- Is the lat/long, geom, serial number and catalognumber formatted correctly?
+
+The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+
+If there are any errors contact OTN to resolve. 
+
 #### Task list checkpoint
+
+In Gitlab, this task can be completed at this stage:
+
+`- [ ] - verify moorings ("deploy" notebook)`
 
 # Final Steps
 
 The remaining steps in the Gitlab Checklist are completed outside the notebooks.
 
-First: you should access the Repository folder in your browser and add the cleaned Deloyment Metadata `.xlsx` file into the "Data and Metadata" folder.
+First: you should access the Repository folder in your browser and add the cleaned Deployment Metadata `.xlsx` file into the "Data and Metadata" folder.
 
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
 

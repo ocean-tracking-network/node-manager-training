@@ -413,6 +413,8 @@ In Gitlab, this task can be completed at this stage:
 
 ### Loading to OTN Tables
 
+**STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point
+
 This cell will populate the `otn_animals` and `otn_transmitters` master-tables, with the following success messaging:
 
 ```
