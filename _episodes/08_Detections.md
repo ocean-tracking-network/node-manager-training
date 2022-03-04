@@ -1,20 +1,20 @@
 ---
 title: "Detection Loading"
-teaching: 30
+teaching: 40
 exercises: 0
 questions:
 - "What is the workflow for loading detection data?"
 - "What do I need to look out for as a Node Manager when loading detections?"
 objectives:
 - "Understand how to use the Gitlab checklist"
-- "Understand the workflow for detction data in the OTN system"
+- "Understand the workflow for detection data in the OTN system"
 - "Learn common errors and pitfalls that come up when loading detections"
 keypoints:
 - "Its important to handle errors when they come up as they can have implications on detections"
-- "OTN finsihes off detections tickets running Matching and sensor tag processing"
+- "OTN finishes off detections Issues by running Matching and sensor tag processing"
 ---
 
-Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only tranmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
+Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
 
 # Submitted Records
 
@@ -67,7 +67,7 @@ Things to visually check:
 
 # Convert to CSV
 
-Once the raw files are obtained, the data must be convered to `csv` format. There are several ways this can be done, depending on the manufacturer.
+Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
 
 For Innovasea
 - VUE
@@ -85,7 +85,7 @@ For Innovasea
     - run the cells to `convert`
 
 For Thelma Biotel
-- use the `comport` software to open the `.tbdb` file and export as CSV
+- use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 For Lotek
 - exporting to CSV is more complicated, please reach out to OTN for specific steps
@@ -133,7 +133,7 @@ There are also some optional inputs:
 
 Once you have added your information, you can run the cell.
 
-### Verify detection file and loading into a database table
+### Verify Detection File and Load to Raw Table
 
 Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run cell below which will attempt to load the detections into a new raw table.
 
@@ -155,7 +155,7 @@ Ensure you paste the table name (ex: c_detections_YYYY_mm) into the section indi
 
 ### Verify Raw Detection Table
 
-This cell will now complete the Quality Control checks of the raw table. This is to ensure the nodebook loaded the records correctly from the CSVs.
+This cell will now complete the Quality Control checks of the raw table. This is to ensure the Nodebook loaded the records correctly from the CSVs.
 
 The output will have useful information:
 - Are there any duplicates?
@@ -164,7 +164,7 @@ The output will have useful information:
 
 The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
 
-If there are any errors contact OTN for next steps.
+If there are any errors, contact OTN for next steps.
 
 #### Task list checkpoint
 
@@ -198,7 +198,7 @@ Once you have added your information, you can run the cell.
 
 ### Verifying the events file
 
-Before attempting to load the event files to a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors you will be able to continue.
+Before attempting to load the event files to a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors, you will be able to continue.
 
 The notebook will indicate the success of the file verification with a message such as this:
 
@@ -315,7 +315,7 @@ In Gitlab, these tasks can be completed at this stage:
 
 # detections - 2 - c_table into detections_yyyy
 
-This notebook takes the `raw` detection data from detections-1 and moves it into the `intermediate` detection_yyyy tables (split out by year).
+This notebook takes the `raw` detection data from detections-1 and moves it into the `intermediate` detections_yyyy tables (split out by year).
 
 ### Import cells and Database Connections
 
@@ -337,7 +337,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 
 ### User Inputs 
 
-To load the to the detection_yyyy tables the notebook will require information about the schema you are working in and the raw table that you created in `detections-1`.
+To load the to the detections_yyyy tables the notebook will require information about the schema you are working in and the raw table that you created in `detections-1`.
 
 1. `c_table = 'c_detections_YYYY_mm'`
 	  * Within the quotes, please add your custom table suffix, which you have just loaded in `detections-1`
@@ -355,9 +355,9 @@ collectioncode.c_detections_yyyy_mm table found.
 
 ### Create Missing Tables
 
-Detections tables are only created on an as-needed basis. So these cells will detect any tables you are missing and create them as needed, based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`. 
+Detections tables are only created on an as-needed basis. These cells will detect any tables you are missing and create them as needed, based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`. 
 
-Firt the notebook with gather and print the missing tables. If there are none missing, the notebook will report that as well.
+First the notebook with gather and print the missing tables. If there are none missing, the notebook will report that as well.
 
 ```
 vemco: Match
@@ -376,7 +376,7 @@ Creating table collectioncode.sensor_match_YYYY... OK
 
 ### Create Detection Sequence
 
-Before loading detections a detection sequence is created. The sequence is used to populate the `det_key` column. The `det_key` value is an unique ID for that detection to help ensure there are no duplicates. If a sequence is required, you will see this output:
+Before loading detections, a detection sequence is created. The sequence is used to populate the `det_key` column. The `det_key` value is an unique ID for that detection to help ensure there are no duplicates. If a sequence is required, you will see this output:
 
 ```
 creating sequence v2lbeiar.detections_seq... OK
@@ -398,7 +398,7 @@ If duplicates are found you will see:
     * are new, and will be loaded this time
 - you may want to investigate if the results are not what you expected.
 
-After all this, the `raw` detection records are ready to be loaded into the `detection_yyyy` tables. The notebook will indicate success with the following message:
+After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
 ```
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2018... OK
@@ -425,7 +425,7 @@ Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated
 
 This cell will now complete the Quality Control checks of the `detections_yyyy` tables. This is to ensure the nodebook loaded the records correctly.
 
-First, you will need to list **all** of the years that were affected by the previous loading step, so the notebook knows which tables need to be verified.
+First, you will need to list **all** of the years that were affected by the previous loading step, so the Notebook knows which tables need to be verified.
 The format will look like this:
 
 `years = ['YYYY','YYYY','YYYY', 'YYYY']`
@@ -451,7 +451,7 @@ In Gitlab, this task can be completed at this stage:
 
 ###  Load sensors_match Tables by Year
 
-For the last part of this notebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor infromation into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values. 
+For the last part of this notebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor information into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values. 
 
 Output will appear like this:
 
@@ -477,7 +477,7 @@ Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated
 
 # detections - 2b - timedrift calculations
 
-This notebook calculates time drift factors and applies the corrections to the `detection_yyyy` tables, in a field called `corrected_time`. OTN's Data Manager toolbox (the Nodebooks) corrects for timedrift between each initialization and offload of a receiver. If a receiver is offloaded several times in one data file, time correction does not occur linearly from start to end, but between each download, to ensure the most accurate correction. If there is only one download in a data file then the time correction in `VUE` software will match the time correction performed by OTN.
+This notebook calculates time drift factors and applies the corrections to the `detections_yyyy` tables, in a field called `corrected_time`. OTN's Data Manager toolbox (the Nodebooks) corrects for timedrift between each initialization and offload of a receiver. If a receiver is offloaded several times in one data file, time correction does not occur linearly from start to end, but between each download, to ensure the most accurate correction. If there is only one download in a data file then the time correction in `VUE` software will match the time correction performed by OTN.
 
 ### Import cells and Database connections
 
@@ -499,7 +499,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 
 ### User Inputs
 
-To load the to the detection_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
+To load the to the detections_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
 
 
 ### Calculating Time Drift Factors
@@ -508,7 +508,7 @@ To load the to the detection_yyyy tables the notebook will require information a
 
 The next step is to run `check_time_drifts` which gives a display of the time drift factor values that will be added to the time_drift_factors table given an events table. At this stage, you should review for any erroneous/large timedrifts.
 
-If everything looks good, you may proceed to the next cell whcih adds new time drift factors to the time_drift_factors table from the events file. A success message will appear:
+If everything looks good, you may proceed to the next cell which adds new time drift factors to the time_drift_factors table from the events file. A success message will appear:
 
 ```
 Adding XXX records to collectioncode.time_drift_factors table from collectioncode.events... OK!
@@ -557,7 +557,7 @@ In Gitlab, this task can be completed at this stage:
 
 # detections - 3 - detections_yyyy into otn_detections
 
-The `detections - 3` notebook moves the detections from `detection_yyyy` and `sensor_match_yyyy` tables into the final `otn_detections_yyyy` tables. This will join the detections records to their associated deployment records, providing geographic context to each detection. If there is no metadata for a specific detection (no receiver record to match with) it will not be promoted to `otn_detections_yyyy`.
+The `detections - 3` notebook moves the detections from `detections_yyyy` and `sensor_match_yyyy` tables into the final `otn_detections_yyyy` tables. This will join the detections records to their associated deployment records, providing geographic context to each detection. If there is no metadata for a specific detection (no receiver record to match with) it will not be promoted to `otn_detections_yyyy`.
 
 ### Imports and user inputs
 
@@ -581,7 +581,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 
 ### User Inputs
 
-To load the to the detection_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
+To load the to the detections_yyyy tables the notebook will require information about the schema you are working in. Please edit `schema = 'collectioncode'` to include the relevant project code, in lowercase, between the quotes.
 
 Before moving on from this you will need to confirm 2 things:
 
@@ -589,7 +589,7 @@ Before moving on from this you will need to confirm 2 things:
 
 2) confirm `rcvr_locations` for this schema have been verified.
 
-If a Push is ongoing, or if verification has not yet occured, you **must** wait for it to be completed before processing beyond this point.
+If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
 #### Task list checkpoint
 
@@ -597,7 +597,7 @@ In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab issue number here)**`
 
- ### Creating detection veiws and loading in otn_detections
+ ### Creating detection views and loading to otn_detections
 
 Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data. 
 
@@ -624,7 +624,7 @@ The next two cells are used **only** if you have loaded detections through to th
 
 ### Verify OTN Detections
 
-After running your needed cells you will then verify `otn_detection_yyyy` detections. 
+After running your needed cells you will then verify `otn_detections_yyyy` detections. 
 
 The output will have useful information:
 - Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button.
@@ -689,7 +689,7 @@ All tables exist!
 
 ###  Check for Missing Metadata in Detections_yyyy
 
-This step will perform the check for missing metadata in `detections_yyyy` and display results for each record where the number of excluded detections is greater than the sepcified threshold. 
+This step will perform the check for missing metadata in `detections_yyyy` and display results for each record where the number of excluded detections is greater than the specified threshold. 
 
 First: enter your threshold. Formatted like: `threshold = 100`. Then you may run the cell.
 
