@@ -36,7 +36,9 @@ In addition to the project-specific `schemas`, there are some important common s
 - The `erddap` schema holds data formatted to be used to populate ERDDAP instances. 
 - The `geoserver` schema holds data formatted to be used to create Geoserver layers. 
 - The `vendor` schema holds manufacturer Specifications for tags and receivers, used for quality control purposes. 
-- The `discovery` schema holds summaries of data across the OTN ecosystem. These tables are used to create summary reports and populate statistics and maps on partner webpages. The amount of information shared through the discovery tables can be adjusted based on sharing and reporting requirements for each Node.
+- The `discovery` schema holds summaries of data across the OTN ecosystem. These tables are used to create summary reports and populate statistics and maps on partner webpages. 
+
+The amount of information shared through the discovery tables can be adjusted based on sharing and reporting requirements for each Node.
 
 # The Path of Data
 
