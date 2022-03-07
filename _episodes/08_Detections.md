@@ -528,7 +528,6 @@ year = 2021 # Year as int
 ```
 
 Once the timedirft calculation is done (indicated by **green checkmarks**) you then have to **re-run** the cell again, for each affected year.
-****************TODO********* IS THAT RIGHT?? OR CAN WE PROVIDE A LIST???**********
 
 #### Task list checkpoint
 
