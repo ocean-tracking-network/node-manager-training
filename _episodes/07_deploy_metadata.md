@@ -9,7 +9,7 @@ objectives:
 - "Understand how to use the Gitlab checklist"
 - "Learn how to use the `Deploy` notebook"
 keypoints:
-- "Loading tagging metadata requires judgement from the Data Manager"
+- "Loading receiver metadata requires judgement from the Data Manager"
 - "Communication with the researcher is essential when errors are found"
 ---
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
