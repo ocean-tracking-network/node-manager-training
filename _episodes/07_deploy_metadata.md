@@ -1,32 +1,31 @@
 ---
 title: "Deployment Metadata"
-teaching:30
+teaching: 30
 exercises: 0
 questions:
 - "How do I load new deployments into the Database?"
 objectives:
 - "Understand the proper template-completion"
-- "Understand how to use the Gitlab checklist"
+- "Understand how to use the GitLab checklist"
 - "Learn how to use the `Deploy` notebook"
 keypoints:
-- "Loading tagging metadata requires judgement from the Data Manager"
+- "Loading receiver metadata requires judgement from the Data Manager"
 - "Communication with the researcher is essential when errors are found"
 ---
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
 
-Remembering a previous lesson, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading tagging metadata reflects this, as does the Gitlab task list.
+Remembering our previous lessons, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
 
-# Completed Metadata
+# Submitted Metadata
 
-Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Receiver_metadata` Issue checklist template.
+Immediately, upon receipt of the metadata, a new GitLab Issue should be created. Please use the `Receiver_metadata` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
-```
+```markdown
 Receiver Metadata
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw receiver metadata (`deploy` notebook) **put_table_name_in_ticket**
-- [ ] - NAME [OTN only] check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating, tag OTN daq personnel
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 - [ ] - NAME verify raw table (`deploy` notebook)
 - [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc)
@@ -38,8 +37,11 @@ Receiver Metadata
 - [ ] - NAME load to moorings (`deploy` notebook)
 - [ ] - NAME verify moorings (`deploy` notebook)
 - [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME pass issue to OTN daq for reassignment to analyst
+- [ ] - NAME check if project is OTN loan, if yes, check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating.
+- [ ] - NAME pass issue to OTN analyst for final verification
 - [ ] - NAME check for double reporting (`deploy-4 verification script`)
+
 ```
 ### Visual Inspection
 
@@ -75,7 +77,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 -  When more than one instrument is deployed, downloaded, or recovered at the same station, enter each one on a separate line using the same `OTN_ARRAY`, `STATION_NO`.
 - When sentinel tags are co-deployed with receivers, their information can be added to `TRANSMITTER` and `TRANSMIT_MODEL` columns, on the same line as the receiver deployment.
 - If a sentinel tag is deployed alone then a new line for that station, with as much information as possible, is added. 
-- When an instrument is deemed lost, `l` or `lost` should be entered in the "recovered" field; it can subsequently be unlost, by changing this field to `f` or `found` and resubmitting the metadata sheet.
+- When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter "y" to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
 # Quality Control - Deploy Notebook
@@ -109,9 +111,10 @@ excel_fmt = 'otn' # Deployment metadata format 'otn' or 'fact'
 
 Once you have added your filepath and chosen your template format, you can run the cell.
 
-Next, you must choose which *sheet* you would like to quality control. Generally, it will be names `Deployment` but is often customized by researchers. Once you have selected the sheet name, **do not** re-run the cell to save the output - simply ensure the correct sheet is highlighted and move onto the next cell.
+Next, you must choose which *sheet* you would like to quality control. Generally, it will be named `Deployment` but is often customized by researchers. Once you have selected the sheet name, **do not** re-run the cell to save the output - simply ensure the correct sheet is highlighted and move onto the next cell.
 
-### Table Name and Database Connection
+### Table Name and Database 
+
 
 You will have to edit **three** sections: 
 
@@ -122,7 +125,7 @@ You will have to edit **three** sections:
 1. `engine = get_engine()` 
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
@@ -130,7 +133,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### Verification of File Contents
@@ -147,13 +150,13 @@ The output will have useful information:
 - Are all the deployments within the Bounding Box of the project. If the bounding box needs to be expanded to include the stations, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all stations are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
 - Are there possible gaps in the metadata, based on previously-loaded `detections` files?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
+The notebook will indicate the sheet has passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
 
 Using the map, please confirm the following:
 1. the instrument deployment locations are in the part of the world expected based on the project abstract. Ex: lat/long have correct +/- signs
 1. the instrument deployments do not occur on land 
 
-If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
+If there is information which is not passing quality control, you should fix the source-file (potentially after speaking to the researcher) and try again.
 
 ### Loading the Raw Table
 
@@ -170,9 +173,9 @@ Table Loading Complete:
 ```
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
-```
+```markdown
 - [ ] - NAME load raw receiver metadata ("deploy" notebook) **put_table_name_in_ticket**
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 ```
@@ -193,14 +196,14 @@ The output will have useful information:
 - Is the `recovered` column completed correctly, based on the `comments` and the `recovery_date` columns?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a :heavy_check_mark:**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run.
 
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify raw table ("deploy" notebook)`
 
@@ -227,13 +230,13 @@ If the `stations` and `moorings` tables are not in-sync, the difference between 
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - load station records ("deploy" notebook)`
 
 ### Verify Stations Table
 
-This cell will now complete the Quality Control checks of the stations records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+This cell will now complete the Quality Control checks of the stations records contained in the entire schema. We are no longer only checking against our newly-loaded records, but also each previously-loaded record in this schema/project.
 
 The output will have useful information:
 
@@ -243,13 +246,13 @@ The output will have useful information:
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are any of the dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run. If there are problems with the `stations` or `moorings` table, you will need to contact an OTN database staff member to resolve these.
+If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run. If there are problems with records that have already been promoted to the `stations` or `moorings` table, you will need to contact an OTN database staff member to resolve these.
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - verify stations("deploy" notebook)`
 
@@ -275,14 +278,14 @@ XX deployments load to rcvr_locations
 ```
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - load to rcvr_locations ("deploy" notebook)`
 
 
 ### Verify rcvr_locations
 
-This cell will now complete the Quality Control checks of the rcvr_locations records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+This cell will now complete the Quality Control checks of the rcvr_locations records contained in the entire schema. We are no longer only checking our newly-loaded records, but also each previously-loaded record for this schema/project.
 
 The output will have useful information:
 - Have all deployments been loaded from the raw table? Please note that instruments where a sentinel tag is deployed alone at a station will not be loaded to rcvr_locations, and so these will likely be flagged in this section for your review.
@@ -292,13 +295,13 @@ The output will have useful information:
 - Are there any overlapping deployments?
 - Is the geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+The notebook will indicate the table has passed quality control by adding a ✔️**green checkmark** beside each section. 
 
 If there are any errors contact OTN, or contact the researcher, to resolve. 
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - verify rcvr_locations ("deploy" notebook)`
 
@@ -316,7 +319,7 @@ If transmitter updates are identified:
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - load transmitter records receivers with integral pingers ("deploy" notebook)`
 
@@ -332,13 +335,13 @@ You may be asked to select an `instrumenttype` for certain receivers. Use the dr
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - load to moorings ("deploy" notebook)`
 
 ### Verify Moorings
 
-This cell will now complete the Quality Control checks of the moorings records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+This cell will now complete the Quality Control checks of the moorings records contained in the entire schema. We are no longer only checking our newly-loaded records, but also each previously-loaded record in this project/schema.
 
 The output will have useful information:
 - Have all deployments been loaded from rcvr_locations? 
@@ -350,19 +353,19 @@ The output will have useful information:
 - Are there duplicate download records?
 - Is the lat/long, geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+The notebook will indicate the table has passed quality control by adding a ✔️ **green checkmark** beside each section. 
 
 If there are any errors contact OTN to resolve. 
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - verify moorings ("deploy" notebook)`
 
 # Final Steps
 
-The remaining steps in the Gitlab Checklist are completed outside the notebooks.
+The remaining steps in the GitLab Checklist are completed outside the notebooks.
 
 First: you should access the Repository folder in your browser and add the cleaned Deployment Metadata `.xlsx` file into the "Data and Metadata" folder.
 
