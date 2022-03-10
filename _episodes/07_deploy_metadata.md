@@ -14,19 +14,18 @@ keypoints:
 ---
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
 
-Remembering a previous lesson, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading tagging metadata reflects this, as does the Gitlab task list.
+Remembering our previous lessons, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the Gitlab task list.
 
-# Completed Metadata
+# Submitted Metadata
 
 Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Receiver_metadata` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
-```
+```markdown
 Receiver Metadata
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw receiver metadata (`deploy` notebook) **put_table_name_in_ticket**
-- [ ] - NAME [OTN only] check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating, tag OTN daq personnel
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 - [ ] - NAME verify raw table (`deploy` notebook)
 - [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc)
@@ -38,8 +37,11 @@ Receiver Metadata
 - [ ] - NAME load to moorings (`deploy` notebook)
 - [ ] - NAME verify moorings (`deploy` notebook)
 - [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME pass issue to OTN daq for reassignment to analyst
+- [ ] - NAME check if project is OTN loan, if yes, check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating.
+- [ ] - NAME pass issue to OTN analyst for final verification
 - [ ] - NAME check for double reporting (`deploy-4 verification script`)
+
 ```
 ### Visual Inspection
 
@@ -75,7 +77,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 -  When more than one instrument is deployed, downloaded, or recovered at the same station, enter each one on a separate line using the same `OTN_ARRAY`, `STATION_NO`.
 - When sentinel tags are co-deployed with receivers, their information can be added to `TRANSMITTER` and `TRANSMIT_MODEL` columns, on the same line as the receiver deployment.
 - If a sentinel tag is deployed alone then a new line for that station, with as much information as possible, is added. 
-- When an instrument is deemed lost, `l` or `lost` should be entered in the "recovered" field; it can subsequently be unlost, by changing this field to `f` or `found` and resubmitting the metadata sheet.
+- When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter "y" to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
 # Quality Control - Deploy Notebook
@@ -122,7 +124,7 @@ You will have to edit **three** sections:
 1. `engine = get_engine()` 
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
@@ -147,7 +149,7 @@ The output will have useful information:
 - Are all the deployments within the Bounding Box of the project. If the bounding box needs to be expanded to include the stations, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all stations are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
 - Are there possible gaps in the metadata, based on previously-loaded `detections` files?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
 
 Using the map, please confirm the following:
 1. the instrument deployment locations are in the part of the world expected based on the project abstract. Ex: lat/long have correct +/- signs
@@ -172,7 +174,7 @@ Table Loading Complete:
 
 In Gitlab, these tasks can be completed at this stage:
 
-```
+```markdown
 - [ ] - NAME load raw receiver metadata ("deploy" notebook) **put_table_name_in_ticket**
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 ```
@@ -193,7 +195,7 @@ The output will have useful information:
 - Is the `recovered` column completed correctly, based on the `comments` and the `recovery_date` columns?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a :heavy_check_mark:**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run.
 
@@ -243,7 +245,7 @@ The output will have useful information:
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are any of the dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run. If there are problems with the `stations` or `moorings` table, you will need to contact an OTN database staff member to resolve these.
 
@@ -292,7 +294,7 @@ The output will have useful information:
 - Are there any overlapping deployments?
 - Is the geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+The notebook will indicate the table has passed quality control by adding a ✔️**green checkmark** beside each section. 
 
 If there are any errors contact OTN, or contact the researcher, to resolve. 
 
@@ -350,7 +352,7 @@ The output will have useful information:
 - Are there duplicate download records?
 - Is the lat/long, geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a **green checkmark** beside each section. 
+The notebook will indicate the table has passed quality control by adding a ✔️ **green checkmark** beside each section. 
 
 If there are any errors contact OTN to resolve. 
 
