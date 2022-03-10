@@ -25,7 +25,7 @@ Immediately, upon receipt of the metadata, a new Gitlab Issue should be created.
 
 Here is the Issue checklist, for reference:
 
-```
+```markdown
 Tag Meta Data
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw tag metadata (`tag-1` notebook) **put_table_name_in_ticket**
@@ -101,7 +101,7 @@ In this cell, you need to paste a filepath to the relevant Tagging Metadata file
 
 Correct formatting looks something like this:
 
-```
+```markdown
 # Path to your tagging metadata file - Formats Accepted: (csv, xls or xlsx)
 filepath = r"C:/Users/path/to/tag_metadata.xlsx"
 ```
@@ -123,7 +123,7 @@ The output will have useful information:
 - Are there potential transcription errors in the `tag_code_space`? Ex: drag-and-drop errors from Excel
 - Are the scientific and common names used accepted by WoRMS? **If there are errors flagged here which state `Vernacular records not found for Aphia ID: 12345` please make a note, but continue on. This will be fixed at a later stage**
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section. There should also be an interactive plot generated, summarizing the tags released over time, by species, for you to explore.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the tags released over time, by species, for you to explore.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
@@ -140,7 +140,7 @@ You will have to edit **two** sections:
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -177,7 +177,7 @@ The output will have useful information:
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
@@ -187,18 +187,19 @@ If there is information which is not passing quality control, you should fix the
 
 In this cell, you will have to edit one section in order to name the raw table. Between the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently tagged animal in the metadata sheet.
 
-```
+```markdown
 table_suffix = "YYYY_mm"
 ```
 The notebook will indicate the success of the table-creation with the following message:
 
-```
+```markdown
 Reading file: otn_metadata_tagging.xlsx.
 Tag Metadata sheet found, reading file... OK
 Loading 'otn_metadata_tagging.xlsx' file into collectioncode.c_tag_meta_YYYY_mm... OK
 Loaded 37 records into table collectioncode.c_tag_meta_YYYY_mm
 True
 ```
+
 
 #### Task list checkpoint
 
@@ -234,7 +235,7 @@ You will have to edit **three** sections:
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -248,7 +249,7 @@ If there is output identifying duplicates, some review is necessary.
 
 Immediately, the notebook will create a new table, named `schema.c_tag_meta_YYYY_mm_no_dup` which is an exact copy of your raw table. There will be a print-out saying the following (under a table):
 
-```
+```markdown
 Building schema.c_tag_meta_YYYY_mm_no_dup table:
 The following SQL queries will display the differences/similarities between the raw table (schema.c_tag_meta_YYYY_mm_no_dup) record and the otn_animals or otn_transmitters table record.
 ```
@@ -273,11 +274,12 @@ Once you have selected a row to be deleted, the text will turn `red` to help you
 
 Once you have identified all the true duplicate records, this next cell will remove them from the `no_dup` table. Success will be indicated with this message, and a table:
 
-```
+```markdown
 Compiling list of deletions to the schema.c_tag_meta_YYYY_mm_no_dup table.
 Delete the following XXX records from schema.c_tag_meta_YYYY_mm_no_dup?
 ```
 You will be able to press the button to confirm, and the notebook will remove all the records.
+
 
 #### Task list checkpoint
 
@@ -308,7 +310,7 @@ You will have to edit **one** section:
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -342,21 +344,22 @@ The output will have useful information:
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher), delete or edit the raw table, and try again.
+
 
 #### Task list checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
-` [ ] - NAME verify raw table ("tag-2" notebook)`
+`- [ ] - NAME verify raw table ("tag-2" notebook)`
 
 ### Loading to Cache Tables
 
 The first cell will create the cache tables, with the following success messaging:
 
-```
+```markdown
 Creating table schema.tagcache_YYYY_mm
 Creating table schema.animalcache_YYYY_mm
 Table creation finished.
@@ -366,7 +369,7 @@ The next step will populate the `tag_cache` and `animal_cache` tables, but split
 
 Running this cell will provide the following success message:
 
-```
+```markdown
 Added XX records to the schema.animalcache_YYYY_mm table
 Added XX records to the schema.tagcache_YYYY_mm table
 ```
@@ -377,6 +380,7 @@ You need to pay special attention to the number of records loaded to the animal 
 - There are some animals with >1 tag attached, or a tag with >1 pinger ID (multiple records added to `tag_cache`)
 
 If the values are acceptable, you can move on.
+
 
 #### Task list checkpoint
 
@@ -401,9 +405,10 @@ The output will have useful information:
 - Confirm there are no overlapping tags remaining
 - Confirm there are Tag Specifications available, and they match the records. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the cache tables themselves, and re-run
+
 
 #### Task list checkpoint
 
@@ -417,11 +422,12 @@ In Gitlab, this task can be completed at this stage:
 
 This cell will populate the `otn_animals` and `otn_transmitters` master-tables, with the following success messaging:
 
-```
+```markdown
 Added XX records to schema.otn_animals table from animalcache_YYYY_mm
 Added XX records to schema.otn_transmitters table from tagcache_YYYY_mm
 ```
 The number of records added should match the number from the `cache` table loading step.
+
 
 #### Task list checkpoint
 
@@ -447,15 +453,16 @@ The output will have useful information:
 - Confirm there are Tag Specifications available, and they match the records provided. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 - Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors, go into the database and fix the `otn` tables themselves, or contact the researcher, and re-run.
+
 
 #### Task list checkpoint
 
 In Gitlab, these tasks can be completed at this stage:
 
-```
+```markdown
 - [ ] - NAME verify otn tables ("tag-2" notebook)
 - [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
 ```

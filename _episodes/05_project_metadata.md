@@ -22,7 +22,7 @@ Immediately, upon receipt of the metadata, a new Gitlab Issue should be created.
 
 Here is the Issue checklist, for reference:
 
-```
+```markdown
 Project Metadata
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**
@@ -61,7 +61,7 @@ In general, most commonly formatting errors occur in the `Contacts` section. Pay
 
 Below is an example of a properly completed metadata form, for your reference.
 
-```
+```markdown
 ===FORM START===
 0. Intended/preferred project code, if known? (May be altered by OTNDC)
 format: XXXX (3-6 uppercase letters that do not already have a representation in the OTN DB. Will be assigned if left blank)
@@ -188,6 +188,7 @@ If anything is wrong, please begin again from the Manual Field input cell.
 
 If the institution code **IS NOT** found - compare to values found in the database `obis.institution_codes` and `obis.otn_resources`. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 
+
 #### Task list checkpoint
 
 In Gitlab, this task can be completed at this stage:
@@ -213,7 +214,7 @@ The cell titled `Verify the new project details before writing to the DB` is the
 
 Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
 
-```
+```markdown
 --- Midpoint ---
 Latitude:
 Longitude: 
@@ -232,7 +233,7 @@ To run the cell, you will need to complete:
 
 Once all values are completed, run the cell and confirm the following output:
 
-```
+```markdown
 Institution record 'DAL' created.
 ```
 
@@ -247,6 +248,7 @@ Finally, it is time to write the project records to the database and create the 
 First, you should run this cell with `printSQL = True`. If there are no errors, you can edit and change to `printSQL = False` and run again. This will register the project! 
 
 You will see some output - confirm each line is accompanied by a green `OK`.
+
 
 #### Task list checkpoint
 
@@ -264,9 +266,10 @@ First, you should run this cell with `printSQL = True`. If there are no errors, 
 
 There should be output similar to this:
 
-```
+```markdown
 Valid contact:  Fred Whoriskey OTN principalInvestigator fwhoriskey@dal.ca
 ```
+
 
 #### Task list checkpoint
 
@@ -290,6 +293,7 @@ Once you are sure that both the scientific and common names are correct, based o
 
 There will be a confirmation display in the notebook to demonstrate if the insertion was successful.
 
+
 #### Task list checkpoint
 
 In Gitlab, this task can be completed at this stage:
@@ -305,6 +309,7 @@ The following section is used by OTN staff to track projects which are recipient
 Once you scroll past the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the bottom of the notebook, where the `Verify` section is located.
 
 This is a chance to visually review all the fields you just entered. You should enter run these cells and review all output to ensure the database values align with the intended insertions.
+
 
 #### Task list checkpoint
 
@@ -336,7 +341,7 @@ The final cell will make the desired changes in the database. Ensure `printSQL =
 
 The output should look like this to confirm success:
 
-```
+```markdown
 'Resource record for HFX has been updated.'
 ```
 
@@ -370,7 +375,7 @@ The output should look like this to confirm success:
 > 
 > Now, when you run the cell, you should get following output:
 > 
-> ```
+> ```markdown
 > Auth Loaded:
 > ------------------------------------------------------------------------------
 > base_url: https://members.oceantrack.org/
@@ -380,7 +385,7 @@ The output should look like this to confirm success:
 > 
 > Finally, the third cell in this section will allow you to login. You should see this message:
 > 
-> ```
+> ```markdown
 > Login Successful!
 > ```
 > 
@@ -409,6 +414,7 @@ The output should look like this to confirm success:
 > 
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
 > 
+>
 > #### Task list checkpoint
 > 
 > In Gitlab, this task can be completed at this stage:
@@ -429,11 +435,12 @@ The output should look like this to confirm success:
 > 
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 > 
-> ```
+> ```markdown
 > Creating collection folder 'collectioncode'. Done!
 > https://members.oceantrack.org/data/repository/node_name/collectioncode
 > ```
 > 
+>
 > #### Task list checkpoint
 > 
 > In Gitlab, this task can be completed at this stage:
@@ -452,7 +459,8 @@ The output should look like this to confirm success:
 > 1. click "Change repo permissions" to add them to the folder.
 > 
 > Review for the following success message:
-> ```
+>
+> ```markdown
 > Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
 > 	Contributor=True Reviewer=True Editor=True Reader=True
 > ```
@@ -468,6 +476,7 @@ The output should look like this to confirm success:
 > 
 > This is very fluid and can be edited at any time. These are guidelines only!
 > 
+>
 > #### Task list checkpoint
 > 
 > In Gitlab, this task can be completed at this stage:
