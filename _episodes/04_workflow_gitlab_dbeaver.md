@@ -138,7 +138,7 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 
 This cell needs to be edited. Between the quotes you will type the filepath to the `.kdbx` file you would like to create, or one which already exists that you would like to edit. The format should look like:
 
-```
+```markdown
 file_location = 'C:/Users/path/to/node_auth.kdbx'
 ```
 
@@ -178,7 +178,7 @@ Once you have saved your new DBLink connection, you can create another. Continue
 
 The next two cells will test the connection information you entered. Success messages will look like:
 
-```
+```markdown
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -187,7 +187,7 @@ Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Nod
 
 and also like:
 
-```
+```markdown
 Testing dblink connections:
 	fact-link-to-Node1: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE1
 	fact-link-to-Node2: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE2

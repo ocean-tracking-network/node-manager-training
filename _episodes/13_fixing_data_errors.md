@@ -29,7 +29,7 @@ Once an error has been identified, the correction needs to be scoped. This inclu
 
 Here is the template for reference:
 
-```
+```markdown
 # **DB Fix Issue**
 
 __This issue title should include schema name, year of record affected__
