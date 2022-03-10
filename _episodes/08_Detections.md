@@ -6,7 +6,7 @@ questions:
 - "What is the workflow for loading detection data?"
 - "What do I need to look out for as a Node Manager when loading detections?"
 objectives:
-- "Understand how to use the Gitlab checklist"
+- "Understand how to use the GitLab checklist"
 - "Understand the workflow for detection data in the OTN system"
 - "Learn common errors and pitfalls that come up when loading detections"
 keypoints:
@@ -18,7 +18,7 @@ Once `deployment metadata` has been processed for a project, the related detecti
 
 # Submitted Records
 
-Immediately, upon receipt of the data files, a new Gitlab Issue should be created. Please use the `Detections` Issue checklist template.
+Immediately, upon receipt of the data files, a new GitLab Issue should be created. Please use the `Detections` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
@@ -35,7 +35,7 @@ Detections
 - [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
 - [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
-- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab issue number here)**
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**
 ------
 - [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
@@ -112,7 +112,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Input
@@ -135,7 +135,7 @@ Once you have added your information, you can run the cell.
 
 ### Verify Detection File and Load to Raw Table
 
-Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run cell below which will attempt to load the detections into a new raw table.
+Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
 
 The notebook will indicate the success of the table-creation with a message such as this:
 
@@ -147,7 +147,7 @@ Loading Files...
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load raw detections and events ('detections-1' notebook and 'events-1' notebook **OR** 'Batch Fathom Export' notebook and 'detections-1' notebook) **(put table names here)**`
 
@@ -168,7 +168,7 @@ If there are any errors, contact OTN for next steps.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME verify raw detections table ('detections-1' notebook)`
 
@@ -226,7 +226,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### Load the events file into the c_events_yyyy table
@@ -242,7 +242,7 @@ File loaded with XXXXX records.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME load raw detections and events ('detections-1' notebook and 'events-1' notebook **OR** 'Batch Fathom Export' notebook and 'detections-1' notebook) **(put table names here)**`
 
@@ -278,7 +278,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
  ### Verify table format
@@ -309,7 +309,7 @@ Loaded XX rows into collectioncode.events table.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME load raw events to events table ("events-2" notebook)`
 
@@ -332,7 +332,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs 
@@ -415,7 +415,7 @@ Added XXXXX rows.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME load to detections_yyyy ("detections-2" notebook) **(put detection years that were loaded here)**`
 
@@ -445,7 +445,7 @@ If there are any errors contact OTN for next steps.
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify detections_yyyy (looking for duplicates) ("detections-2" notebook)`
 
@@ -466,7 +466,7 @@ Added XXX rows.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 ```
 - [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
@@ -494,7 +494,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs
@@ -531,7 +531,7 @@ Once the timedirft calculation is done (indicated by **green checkmarks**) you t
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME timedrift correction for affected detection and sensor years ("detections-2b" notebook)`
 
@@ -550,7 +550,7 @@ If there are any errors contact OTN for next steps.
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify timedrift corrections ("detections-2b" notebook)`
 
@@ -592,9 +592,9 @@ If a Push is ongoing, or if verification has not yet occurred, you **must** wait
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
-`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab issue number here)**`
+`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**`
 
  ### Creating detection views and loading to otn_detections
 
@@ -613,7 +613,7 @@ You must select **all** years that were impacted by `detections_yyyy` or `sensor
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
 
@@ -640,7 +640,7 @@ If there are any errors contact OTN for next steps.
 
 #### Task list checkpoint
 
-In Gitlab, these tasks can be completed at this stage:
+In GitLab, these tasks can be completed at this stage:
 
 ```
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
@@ -668,7 +668,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs
@@ -701,7 +701,7 @@ The output will include useful information:
 
 There will be a visualization of the missing metadata for each instance where the number of missing detections is over the threshold. 
 
-Any instance with missing detections (greater than the threshold) should be identified, and the results pasted into a **new Gitlab Issue**. The format will look like:
+Any instance with missing detections (greater than the threshold) should be identified, and the results pasted into a **new GitLab Issue**. The format will look like:
 
 ```
 VR2W-123456
@@ -715,7 +715,7 @@ There are also two cells at the end that allow you create reports for researcher
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME check for missing receiver metadata ("detections-3b" notebook)`
 
@@ -739,7 +739,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs
@@ -811,7 +811,7 @@ Then, the next cell will print the relevant dataframe, with an option below to `
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME check for missing data records ("detections-3c" notebook)`
 
@@ -834,7 +834,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs
@@ -872,7 +872,7 @@ Added XXX records to the moorings table
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load download records ("events-3" notebook)`
 
@@ -889,7 +889,7 @@ If there are any errors, contact OTN for next steps.
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify download records ("events-3" notebook)`
 
@@ -912,7 +912,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
 ### User Inputs
@@ -937,13 +937,13 @@ The following XX receiver configurations are new and have been inserted:
 
 #### Task list checkpoint
 
-In Gitlab, this task can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME process receiver configuration ("events-4" notebook)`
 
 # Final Steps
 
-The remaining steps in the Gitlab Checklist are completed outside the notebooks.
+The remaining steps in the GitLab Checklist are completed outside the notebooks.
 
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 

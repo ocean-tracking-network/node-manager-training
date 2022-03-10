@@ -18,7 +18,7 @@ keypoints:
 
 ## What it a Data Push?
 
-A Data Push is when the OTN data system is reverified and any new relevant information is sent to researchers. New data being brought in is cut off so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
+A Data Push is when the OTN data system is re-verified and any new relevant information is sent to researchers. New data being brought in is cut off so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
 
 ## What is the Push Schedule?
 
@@ -85,7 +85,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:NEP
+Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Node: Node
 Testing dblink connections:
 	nep-on-fact: DBLink established on user@fact.secoora.org:1234 - Node: FACT
 	nep-on-migramar: DBLink established on user@db.load.oceantrack.org:1234 - Node: MIGRAMAR

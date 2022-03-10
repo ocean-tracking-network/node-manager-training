@@ -10,15 +10,15 @@ keypoints:
 - "ipython-utilities has many useful notebooks for Node Managers to help them"
 ---
 
-OTN maintains several additional Nodebooks, where fall outside the core `tag`, `deployment` and `detection` tools. These may be useful to explore in certain scenarios.
+OTN maintains several additional Nodebooks that fall outside the core `tag`, `deployment` and `detection` tools. These may be useful to Node managers who also deal with these particular scenarios.
 
 ## Check Environment 
 
-This notebook checks your system python environment against our `environment.yml`. This is to see if the python packages and libraries you have installed are inline with what is required to run the ipython. This will assist you with updating your packages if they become out-of-date, or if OTN develops new tools which rely on new packages.
+This notebook checks your system Python environment against our `environment.yml`. This is to see if the Python packages and libraries you have installed are inline with what is required to run the ipython. This will assist you with updating your packages if they become out-of-date, or if OTN develops and publishes new tools which rely on new packages.
  
 ## scientific_name_check
 
-This notebook uses [WoRMs](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this notebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` notebook
+This notebook uses [WoRMS](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this notebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` notebook
  
 ## Add Instrument Models to Database  
 
@@ -42,11 +42,11 @@ This notebook will process and load detection data collected by a `slocum` glide
  
 ## Load Health Report 
 
-This notebook will load "health reports" collected by `wave` gliders while remotely offloading `VR4` receivers.
+This notebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
   
 ## Telemetry Processing for Wave Gliders and Animals 
 
-This notebook will process and load detection data collected by a `wave` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
+This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
 
 ## create and update contacts' notebook
 

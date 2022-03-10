@@ -23,15 +23,15 @@ OTN recommends creating a "Data Request Response Policy".
 This is an example of how OTN handles these requests:
 
 1. Request for data (from person other than data owner) submitted
-2. Data request is scoped, in a Gitlab Issue. All details from requester is included.
+2. Data request is scoped, in a GitLab Issue. All details from requester is included.
 3. Impacted PIs are identified, and contacted, seeking written permission for requester to access the information.
-4. Written permission is documented in Gitlab Issue, to preserve the paper-trail.
+4. Written permission is documented in GitLab Issue, to preserve the paper-trail.
 5. Data request report is compiled and provided to requester, once all permissions have been received.
 
 
 ## Internal Requests
 
-Internal requests, from other Network staff, need to be handled in a similar way. While all Network staff should be familiar with the Data Policy, this may not be the case. It is the Node Manager's responsibility to ensure that information from the database is not shared outside of internal reports. We need to track requests from all sources, this includes the Glider and Field teams too, so we can have a record of who knows what, and be able to remind them of our policies officially.
+Internal requests, from other Network staff, need to be handled in a similar way. While all Network staff should be familiar with the Data Policy, this may not be the case. It is the Node Manager's responsibility to ensure that information from the database is not shared outside of internal reports. We need to track requests from all sources, for OTN this even includes the OTN Glider and Field teams too, so we can have a record of who knows what, and be able to remind them of our policies officially.
 
 
 ## Partner-Node Data Policies
