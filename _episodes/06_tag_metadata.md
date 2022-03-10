@@ -62,11 +62,11 @@ Things to visually check in the metadata:
 	* tag_serial_number (if not completed, `unknown` can be entered **ONLY IF** animal_id is also completed with unique values)
 	* tag_id_code
 	* tag_code_space
-	* tag_implant_type ********TODO***** is this mandatory??
+	* tag_implant_type
 	* est_tag_life
 	* common_name_e
 	* scientific_name
-	* release_location ********TODO***** is this mandatory??
+	* release_location
 	* release_latitude
 	* release_longitude
 	* utc_release_date_time
@@ -412,6 +412,8 @@ In Gitlab, this task can be completed at this stage:
 `- [ ] - NAME verify cache tables ("tag-2" notebook)`
 
 ### Loading to OTN Tables
+
+**STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point
 
 This cell will populate the `otn_animals` and `otn_transmitters` master-tables, with the following success messaging:
 
