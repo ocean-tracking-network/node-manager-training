@@ -1,6 +1,6 @@
 ---
 title: "Deployment Metadata"
-teaching:30
+teaching: 30
 exercises: 0
 questions:
 - "How do I load new deployments into the Database?"
