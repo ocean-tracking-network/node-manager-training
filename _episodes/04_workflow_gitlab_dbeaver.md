@@ -8,9 +8,9 @@ questions:
 - "How can a Node Manager interact with their database directly?"
 objectives:
 - "Understand the data-loading workflow"
-- "Understand how to create and use Gitlab Issues"
+- "Understand how to create and use GitLab Issues"
 - "Understand how to access and query your database tables"
-- "Understand how to use the `AUTH - Create and Update` notebook"
+- "Understand how to use the `AUTH - Create and Update` notebook to maintain your database credentials file"
 keypoints:
 - "Node-members cannot access the database, you are the liason"
 - "Data submissions and QC processes should be trackable and archived"
@@ -18,8 +18,8 @@ keypoints:
 ---
 
 Data Managers receive data from a researcher and then begin a several-step process of QA/QC and matching of data.
-1) Records are received, and immediately a Gitlab Issue is created.
-2) Data are QA/QC'd using the OTN Nodebook tools (covered in detail later in the curriculum), and all progress is tracked in Gitlab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all Gitlab tasks are completed.
+1) Records are received, and immediately a GitLab Issue is created.
+2) Data are QA/QC'd using the OTN Nodebook tools (covered in detail later in the curriculum), and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
 3) The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
 
 # Researcher data submission
@@ -48,15 +48,15 @@ It is not recommended to use a personal email account for this, since all the fi
 
 Using one of the suggested means above, a user has submitted data and metadata to the Node Manager. Now what?
 
-OTN uses Gitlab Issue's with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox.
+OTN uses GitLab Issue's with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox.
 
-Immediately upon receipt of a data file, you are advised to log-in to OTN's Gitlab website. You will have a project for your Node named <YOURNODE-DAQ>. This is where you will navigate to. You may want to bookmark this webpage!
+Immediately upon receipt of a data file, you are advised to log-in to OTN's GitLab website. You will have a project for your Node named <YOURNODE-DAQ>. This is where you will navigate to. You may want to bookmark this webpage!
 
-Once on the project page, you should navigate to the **Issues** menu option, on the left side. Think of your Gitlab issues as your running "TODO List"! You will want to create a new Issue for each piece of data that is submitted.
+Once on the project page, you should navigate to the **Issues** menu option, on the left side. Think of your GitLab issues as your running "TODO List"! You will want to create a new Issue for each piece of data that is submitted.
 
-*NOTE: Gitlab Issues are often referred to as "tickets"*
+*NOTE: GitLab Issues are often referred to as "tickets"*
 
-### Creating Gitlab issues
+### Creating GitLab issues
 
 By choosing the **New Issue** button in the top-right of your screen, you will be taken to a new, blank, issue form. To fill out the fields you will need to do the following:
 
@@ -71,21 +71,21 @@ OR use the `Attach a file` option to attach a copy of the submitted data file to
 
 Now, with all information completed, you can select **Create Issue**. 
 
-### Using Gitlab to track progress
+### Using GitLab to track progress
 
 As you approach the deadline for data-loading, before a data PUSH, you should begin to work on your Issues which fall under that Milestone. When you open an issue, you will be able to see the remaining tasks to properly load/process that data along with the name of the OTN Nodebook you should use to complete the task.
 
-Keep Gitlab open in your browser as you work through the relevant Nodebooks. You should check-off the tasks as you complete them, and insert any comments you have into the bottom of the ticket. Comments can include error messages from the Nodebook, questions you have for the researcher, and re-formatting required, etc. At any time you can change the `Labels` on the issue, to help you remember the issue's status at-a-glance.
+Keep GitLab open in your browser as you work through the relevant Nodebooks. You should check-off the tasks as you complete them, and insert any comments you have into the bottom of the ticket. Comments can include error messages from the Nodebook, questions you have for the researcher, and re-formatting required, etc. At any time you can change the `Labels` on the issue, to help you remember the issue's status at-a-glance.
 
 Once you are done for the day, you'll be able to come back and see exactly where you left off, thanks to the checklist!
 
-You can tag anyone from the OTN Data Team in your Gitlab issue (using the `@NAME` syntax). We will be notified via email to come and check out the Issue and answer any questions that have been commented.
+You can tag anyone from the OTN Data Team in your GitLab issue (using the `@NAME` syntax). We will be notified via email to come and check out the Issue and answer any questions that have been commented.
 
 Once you have completed all the tasks in the template, you can edit the `Assignee` value in the top-right corner, and assign to someone from OTN's Database team (currently, Angela and Patrick). They will complete the final verification of the data, and close the issue when completed. At this time, you can change to the `Verify` issue label, or something similar, to help visually "mark it off" your issue list on the main page.
 
-# Gitlab practice
+# GitLab practice
 
-At this time we will take a moment to practice making Gitlab Issues, and explore other pages on our Gitlab like, `Milestones`, `Repository`, `Snippets`, and `Wiki`.
+At this time we will take a moment to practice making GitLab Issues, and explore other pages on our GitLab like, `Milestones`, `Repository`, `Snippets`, and `Wiki`.
 
 # Database access
 
@@ -146,7 +146,7 @@ Run this cell to save the input.
 
 ### Create Password
 
-Next you will be prompted to create a password for the file (if it is a new file) or enter the existing password if you are accessing an existing file. Ensure that you remember your password, as you will be using it every time you connect to the database through the Nodebooks.
+You will be prompted to create a password for the file (if it is a new file) or to enter the existing password if you are accessing an existing file. Ensure that you remember this password, as you will be using it every time you connect to the database through the Nodebooks.
 
 ### Create or Update Main Connections
 
@@ -167,10 +167,10 @@ This section will have an editable form. If it is a new file, all fields will be
 Please contact OTN if you need any of the following information:
 
 - Conn Name: this is customizable - what is the name of this connection? Something like `fact-link-to-migramar` is informative.
-- Host: this will be something like `matos.asascience.com` for the DB you are trying to connect to (not your Main db).
-- Port: this will be the port required to connect to the remote DB (not your Main db).
-- DB Name: this will be the name of the database you are trying to connect to (not your Main db), something like `ucd_db`. 
-- User/Password: the username and password of the DBLink user for your database. Not your personal information.
+- Host: this will be something like `matos.asascience.com` for the DB you are trying to connect to (i.e. not your own Node db host).
+- Port: this will be the port required to connect to the remote DB (not your Node db).
+- DB Name: this will be the name of the database you are trying to connect to (not your Node db), something like `ucd_db`. 
+- User/Password: the username and password of the DBLink user for your database. Not your own node admin's connection information.
 
 Once you have saved your new DBLink connection, you can create another. Continue until you have established connections to all remote Nodes.
 
