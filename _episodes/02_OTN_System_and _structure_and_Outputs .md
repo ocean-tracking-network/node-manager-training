@@ -1,5 +1,5 @@
 ---
-title: "OTN system and structure and outputs"
+title: "OTN System, Structure and Outputs"
 teaching: 25
 exercises: 0
 questions:
