@@ -13,18 +13,19 @@ Attendees should be detail oriented, in-tune with their local telemetry communit
 
 > ## Prerequisites
 >
-> A computer on which you have Administrative Privileges to install programs. 
-> A second monitor to use in addition to your regular computer screen.
-> A notebook or note-taking software.
-> A device with Zoom installed, to attend the training. 
+> For the hands on portion of the workshop, the following will be required:
+> - A computer on which you have Administrative Privileges to install programs. 
+> - A second monitor to use in addition to your regular computer screen.
+> - A notebook or note-taking software.
+> - A device with Zoom installed, to attend the training. 
 {: .prereq}
 
 > ## Things You Need To Know
 >
-> 0.  This will be a lot of information - don't worry if you need more time!
+> 1.  This will be a lot of information - don't worry if you need more time!
 > 1.  OTN is always available to assist you as a Data Manager - you're not doing this alone.
-> 2.  If there is a tool that isn't working for you, please let us know so we can improve.
-> 3.  Happy to hear all feedback!
+> 1.  If there is a tool that isn't working for you, please let us know so we can improve.
+> 1.  Happy to hear all feedback!
 {: .checklist}
 
 {% include links.md %}
