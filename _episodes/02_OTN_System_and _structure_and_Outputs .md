@@ -80,6 +80,11 @@ In order to create meaningful Detection Extracts, OTN and affiliated Nodes only 
 - Cross-node matching is done; where detections are matched to their relevant tag, across all Nodes. 
 - Once cross-node matching is done, [Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are created, containing all the new detections matches for each project. Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate). 
 - Summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
+- Summary schema records can be used to create maps and other record overviews such as 
+ 
+ TODO![Summary Map](../fig/active_receivers.JPG)
+
+
 
 # Backing Up Your Data
 
