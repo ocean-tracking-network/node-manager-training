@@ -127,6 +127,8 @@ The notebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
+![Tag 1](../fig/tag1_summary.JPG)
+
 ### Connection to Database
 
 You will have to edit **two** sections: 

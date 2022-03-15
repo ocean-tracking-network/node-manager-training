@@ -143,8 +143,8 @@ You will have to edit one section: `engine = get_engine()`
 
 This cell is where you input the information contained in the Project Metadata `.txt` file. There are two ways to do this:
 
-1. You can paste in the filepath to the saved `.txt`. You should ensure the formatting is correct before doing so.
-1. You can paste the entire contents of the file, from `===FORM START=== to ===FORM END===` inclusive, into the provided quotation marks.
+1. You can paste in the filepath to the saved `.txt`. You should ensure the formatting follows this example: `project_template_path = '/path/to/project_metadata.txt'`
+1. You can paste the entire contents of the file, from `===FORM START=== to ===FORM END===` inclusive, into the provided triple quotation marks.
 
 Once either option is selected, you can run the cell to complete the quality control checks.
 
@@ -213,13 +213,20 @@ If this information is satisfactory, you can proceed.
 
 The cell titled `Verify the new project details before writing to the DB` is the final step for verification before the values are written to the database. At this stage a map will appear, with the proposed Bounding Box for the project.
 
-Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
+Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. 
+
+
+![Proj 1](../fig/proj_meta_bounds.JPG)
+
+
+Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
 
 ```markdown
 --- Midpoint ---
 Latitude:
 Longitude: 
 ```
+
 
 ### Create New Institution
 

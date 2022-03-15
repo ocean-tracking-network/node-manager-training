@@ -281,7 +281,7 @@ Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ```
 
- ### Verify table format
+### Verify table format
 
 You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
 
@@ -397,6 +397,8 @@ If duplicates are found you will see:
     * have already been loaded
     * are new, and will be loaded this time
 - you may want to investigate if the results are not what you expected.
+
+![Detections 2](../fig/dets_2_duplicates.JPG)
 
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
