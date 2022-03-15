@@ -24,7 +24,7 @@ If there is a feature that you'd like to see, you can bring this to OTN's attent
 
 Here is the "new_feature" template, for your information:
 
-
+```markdown
             Note that this template is **ONLY** used for tracking new features. Bugs should be filed separately using the Bug template.
 
             The new feature should be proposed, scoped, and approved **before** you fill out this template.
@@ -46,7 +46,7 @@ Here is the "new_feature" template, for your information:
 
             ## Timeline
             **Give a brief, ballpark estimate on when you would want this done.**
-
+```
 
 ## Bug-fixes
 
@@ -58,7 +58,7 @@ To identify a bug, here are the steps to take:
 
 Here is the "bug" template, for your information:
 
-
+```markdown
             Note that this template is **ONLY** used for reporting bugs. New features must be vetted and filed separately using the New Feature template.
 
             As such, before you continue, ask yourself:
@@ -79,7 +79,7 @@ Here is the "bug" template, for your information:
 
             ## Priority
             **On a scale from 1 to 5, approximate the severity of the issue. Be honest.**
-
+```
 
 ## Testing Features/Fixes
 

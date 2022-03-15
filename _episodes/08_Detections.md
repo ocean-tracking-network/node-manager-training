@@ -608,7 +608,7 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**`
 
- ### Creating detection views and loading to otn_detections
+### Creating detection views and loading to otn_detections
 
 Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data. 
 
