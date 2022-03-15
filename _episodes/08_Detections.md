@@ -22,21 +22,21 @@ Immediately, upon receipt of the data files, a new GitLab Issue should be create
 
 Here is the Issue checklist, for reference:
 
-```
+```markdown
 Detections
-- [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Batch Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **(put detection years that were loaded here)**
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) 
+- [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
 - [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook)
 - [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
 - [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
-- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**
-------
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab issue number here**)
+-----
 - [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME load sentinel records (`detections-3` notebook)
@@ -46,7 +46,7 @@ Detections
 - [ ] - NAME verify download records (`events-3` notebook)
 - [ ] - NAME process receiver configuration (`events-4` notebook)
 - [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final steps
+- [ ] - NAME pass issue to OTN analyst for final steps
 - [ ] - NAME check for double reporting (`detections verification script`)
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME do sensor tag processing (only done by OTN as it requires vendor specifications)
@@ -108,7 +108,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -139,7 +139,7 @@ Next, the notebook will review and verify the detection file(s) format, and repo
 
 The notebook will indicate the success of the table-creation with a message such as this:
 
-```
+```markdown
 Reading fathom files...
 Loading Files...
 7/7
@@ -202,7 +202,7 @@ Before attempting to load the event files to a raw table the notebook will verif
 
 The notebook will indicate the success of the file verification with a message such as this:
 
-```
+```markdown
 Reading file 'events.csv' as CSV.
 Verifying the file.
 Format: VUE 2.6+
@@ -222,7 +222,7 @@ You will have to edit one section: `engine = get_engine()`
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -235,7 +235,7 @@ The second last cell loads the events file into a raw table. It depends on succe
 
 The notebook will indicate the success of the table-creation with the following message:
 
-```
+```markdown
 File loaded with XXXXX records.
 100%
 ```
@@ -274,7 +274,7 @@ You will have to edit one section: `engine = get_engine()`
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -287,7 +287,7 @@ You will then verify that the c_events events table you put in exists and then v
 
 The notebook will indicate the success of the table verification with a message such as this:
 
-```
+```markdown
 Checking table name format... OK
 Checking if schema collectioncode exists... OK!
 Checking collectioncode schema for c_events_YYYY_mm table... OK!
@@ -301,7 +301,7 @@ Pending nothing comes up in the verification cells, you run the `loading` cell.
 
 The notebook will indicate the success of the processing with a message such as this:
 
-```
+```markdown
 Checking for the collectioncode.events table... OK!
 Loading events... OK!
 Loaded XX rows into collectioncode.events table.
@@ -328,7 +328,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -346,7 +346,7 @@ To load the to the detections_yyyy tables the notebook will require information 
 
 The notebook will indicate success with the following message:
 
-```
+```markdown
 Checking table name format... OK
 Checking if schema collectioncode exists... OK!
 Checking collectioncode schema for c_detections_yyyy_mm table... OK!
@@ -359,7 +359,7 @@ Detections tables are only created on an as-needed basis. These cells will detec
 
 First the notebook with gather and print the missing tables. If there are none missing, the notebook will report that as well.
 
-```
+```markdown
 vemco: Match
 You are missing the following tables:
 [collectioncode.detections_YYYY, v2lbeiar.otn_detections_YYYY, v2lbeiar.sensor_match_YYYY]
@@ -368,7 +368,7 @@ Create these tables by passing the missing_tables variable into the create_detec
 
 If you proceed in the notebook, there is a `creation` cell which will add these tables to the project schema in the database. Success will be indicated with the following message:
 
-```
+```markdown
 Creating table collectioncode.detections_YYYY... OK
 Creating table collectioncode.otn_detections_YYYY... OK
 Creating table collectioncode.sensor_match_YYYY... OK
@@ -378,7 +378,7 @@ Creating table collectioncode.sensor_match_YYYY... OK
 
 Before loading detections, a detection sequence is created. The sequence is used to populate the `det_key` column. The `det_key` value is an unique ID for that detection to help ensure there are no duplicates. If a sequence is required, you will see this output:
 
-```
+```markdown
 creating sequence v2lbeiar.detections_seq... OK
 ```
 
@@ -400,7 +400,7 @@ If duplicates are found you will see:
 
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
-```
+```markdown
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2018... OK
 Added XXXXX rows.
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2019... OK
@@ -413,11 +413,15 @@ Added XXXXX rows.
 
 **You must note which years have been loaded!** In the example above, this would be 2018, 2019, 2020, and 2021.
 
+
 #### Task list checkpoint
 
 In GitLab, these tasks can be completed at this stage:
 
-`- [ ] - NAME load to detections_yyyy ("detections-2" notebook) **(put detection years that were loaded here)**`
+```markdown
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) 
+- [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
+```
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box.
 
@@ -443,6 +447,7 @@ The notebook will indicate the sheet had passed quality control by adding a ✔�
 
 If there are any errors contact OTN for next steps.
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -455,7 +460,7 @@ For the last part of this notebook you will need to load the to the `sensor_matc
 
 Output will appear like this:
 
-```
+```markdown
 Inserting records from collectioncode.detections_2019 INTO sensor_match_2019... OK
 Added XXX rows.
 Inserting records from collectioncode.detections_2021 INTO sensor_match_2021... OK
@@ -464,11 +469,12 @@ Added XXX rows.
 
 **You must note which years have been loaded!** In the example above, this would be 2019 and 2021.
 
+
 #### Task list checkpoint
 
 In GitLab, these tasks can be completed at this stage:
 
-```
+```markdown
 - [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
 - [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
 ```
@@ -490,7 +496,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -510,7 +516,7 @@ The next step is to run `check_time_drifts` which gives a display of the time dr
 
 If everything looks good, you may proceed to the next cell which adds new time drift factors to the time_drift_factors table from the events file. A success message will appear:
 
-```
+```markdown
 Adding XXX records to collectioncode.time_drift_factors table from collectioncode.events... OK!
 ```
 
@@ -523,11 +529,13 @@ Finally,  we are ready to update the times in both the `detections_yyyy` and `se
 First, you will need to ensure you run this cell on **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
 The format will look like this: 
-```
+
+```markdown
 year = 2021 # Year as int
 ```
 
 Once the timedirft calculation is done (indicated by ✔️**green checkmarks**) you then have to **re-run** the cell again, for each affected year.
+
 
 #### Task list checkpoint
 
@@ -547,6 +555,7 @@ The output will have useful information:
 The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors contact OTN for next steps.
+
 
 #### Task list checkpoint
 
@@ -571,7 +580,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -590,6 +599,7 @@ Before moving on from this you will need to confirm 2 things:
 
 If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -601,7 +611,8 @@ In GitLab, this task can be completed at this stage:
 Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data. 
 
 Output will look like:
-```
+
+```markdown
 Creating view collectioncode.vw_detections_2020... OK
 Creating view collectioncode.vw_sentinel_2020... OK
 Creating view collectioncode.vw_detections_2021... OK
@@ -611,13 +622,14 @@ These are then used to run the function in the next cell `load_into_otn_detectio
 
 You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps. Then click the `Load Detections` button to being loading. There will be a status bar indicating your progress.
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
 
- ###  OPTIONAL: Syncing Corrected Times
+###  OPTIONAL: Syncing Corrected Times
 
 The next two cells are used **only** if you have loaded detections through to the `otn_detections_yyyy` tables **without** first running the `detections - 2b - timedrift` calculations. You will need to provide the date of the current push and the link of the issue you are loading. You will then be able to correct the times and if  a node's detection times are updated the node's `obis.detection_extract` list will also be updated.
 
@@ -638,11 +650,12 @@ The notebook will indicate the sheet had passed quality control by adding a ✔�
 
 If there are any errors contact OTN for next steps.
 
+
 #### Task list checkpoint
 
 In GitLab, these tasks can be completed at this stage:
 
-```
+```markdown
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME load sentinel records (`detections-3` notebook)
 ```
@@ -664,7 +677,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -682,7 +695,7 @@ Information regarding the tables we want to check against is required.
 
 Once you have edited these values, you can run the cell. You should see the following success message:
 
-```
+```markdown
 All tables exist!
 ```
 
@@ -703,7 +716,7 @@ There will be a visualization of the missing metadata for each instance where th
 
 Any instance with missing detections (greater than the threshold) should be identified, and the results pasted into a **new GitLab Issue**. The format will look like:
 
-```
+```markdown
 VR2W-123456
 	missing XX detections (0 transceiver tags, XX animal tags, 0 test tags) (before deployments) (YYYY-MM-DD HH:MM:SS to YYYY-MM-DD HH:MM:SS)
 
@@ -712,6 +725,7 @@ VR2W-567891
 ```
 
 There are also two cells at the end that allow you create reports for researchers in CSV or HTML format.
+
 
 #### Task list checkpoint
 
@@ -735,7 +749,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -753,7 +767,7 @@ There are also optional fields:
 
 Once you have edited the values, you can run the cell. You should see the following success message:
 
-```
+```markdown
 Checking if collectioncode schema exists...
 OK
 ```
@@ -763,7 +777,7 @@ OK
 The next cell will begin scanning the project's schema to identify if there are any missing data files. 
 If there are no missing files, you will see this output:
 
-```
+```markdown
 Checking if all deployment periods have events...
 X/X
 Checking if deployment periods missing events have detections...
@@ -771,7 +785,8 @@ Checking if deployment periods missing events have detections...
 ```
 
 If the notebook has detection missing file, you will see this output:
-```
+
+```markdown
 Checking if all deployment periods have events...
 XXX/XXX
 Checking if deployment periods missing events have detections...
@@ -809,6 +824,7 @@ First, you must select which types of records you'd like to export from this lis
 
 Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination.
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -830,7 +846,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -849,7 +865,7 @@ The next cell will scan the `events` table looking for data download events, and
 
 You should see output like this:
 
-```
+```markdown
 Found XXX download records to add to the moorings table
 ```
 
@@ -866,9 +882,11 @@ Before moving on from this you will need to confirm 2 things:
 If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
 If everything is OK, you can run the cell. The notebook will indicate success with a message like:
-```
+
+```markdown
 Added XXX records to the moorings table
 ```
+
 
 #### Task list checkpoint
 
@@ -886,6 +904,7 @@ This cell will have useful information:
 The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**. 
 
 If there are any errors, contact OTN for next steps.
+
 
 #### Task list checkpoint
 
@@ -908,7 +927,7 @@ The second cell will set your database connection. You will have to edit one sec
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown 
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -931,7 +950,7 @@ The following cell will extrapolate further to populate all the required columns
 
 Finally, the notebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
 
-```
+```markdown
 The following XX receiver configurations are new and have been inserted:
 ```
 
