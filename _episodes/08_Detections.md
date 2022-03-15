@@ -49,7 +49,7 @@ Detections
 - [ ] - NAME pass issue to OTN analyst for final steps
 - [ ] - NAME check for double reporting (`detections verification script`)
 - [ ] - NAME match tags to animals (`detections-4` notebook)
-- [ ] - NAME do sensor tag processing (only done by OTN as it requires vendor specifications)
+- [ ] - NAME do sensor tag processing (only done if vendor specifications are available)
 - [ ] - NAME update detection extract table
 
 **detections files/path:**
