@@ -40,9 +40,16 @@ In addition to the project-specific `schemas`, there are some important common s
 
 The amount of information shared through the discovery tables can be adjusted based on sharing and reporting requirements for each Node.
 
+![OTN Database - path of data through the system](../fig/Path_of_data.png)
+
+
 # The Path of Data
 
 The OTN data system takes 4 types of data/metadata: **project**, **tag**, **instrument deployments**, and **detections**. Most data has a similar flow through the OTN system even though each type has different notebooks and processes for loading. The exception to this is `project` metadata which has a more unique journey because it is completely user-defined, and must be used to initially define and create a project's `schema`.
+
+
+![OTN Database - structural ER diagram](../fig/db_diagram.png)
+
 
 ### Project Data
 
