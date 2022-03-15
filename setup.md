@@ -50,9 +50,11 @@ The `ipython-utilities` project contains the collection of Nodebooks used to loa
 **To open and use the OTN Nodebooks:**
 - **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
 - **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
+- **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities
 
+![OTN Nodebooks - home page](/fig/home_page.JPG)
 
 # Database Console Viewer
 
