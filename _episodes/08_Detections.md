@@ -398,7 +398,7 @@ If duplicates are found you will see:
     * are new, and will be loaded this time
 - you may want to investigate if the results are not what you expected.
 
-![Detections 2](../fig/dets_2_duplicates.JPG)
+![Detections 2](../fig/dets_2_duplicates.png)
 
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
