@@ -40,7 +40,7 @@ In addition to the project-specific `schemas`, there are some important common s
 
 The amount of information shared through the discovery tables can be adjusted based on sharing and reporting requirements for each Node.
 
-![OTN Database - path of data through the system](../fig/Path of data.png)
+![OTN Database - path of data through the system](../fig/Path_of_data.png)
 
 
 # The Path of Data
