@@ -11,7 +11,7 @@ This OTN-hosted training will provide OTN-style Node Managers with an overview o
 Attendees should be detail oriented, in-tune with their local telemetry communities, and not afraid to ask questions!
 
 
-> ## Prerequisite
+> ## Prerequisites
 >
 > For the hands on portion of the workshop, the following will be required:
 > - A computer on which you have Administrative Privileges to install programs. 
