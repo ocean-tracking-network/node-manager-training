@@ -162,7 +162,7 @@ The output will have useful information:
 - Are the serial numbers formatted correctly?
 - Are the models formatted correctly?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors, contact OTN for next steps.
 
@@ -439,7 +439,7 @@ The output will have useful information:
 - Are there duplicate detections?
 - What sensors will need to be loaded?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors contact OTN for next steps.
 
@@ -527,7 +527,7 @@ The format will look like this:
 year = 2021 # Year as int
 ```
 
-Once the timedirft calculation is done (indicated by **green checkmarks**) you then have to **re-run** the cell again, for each affected year.
+Once the timedirft calculation is done (indicated by ✔️**green checkmarks**) you then have to **re-run** the cell again, for each affected year.
 
 #### Task list checkpoint
 
@@ -544,7 +544,7 @@ The output will have useful information:
 - Did the time correction cause detections to need moving to another `yyyy` table? If so, select the "move detections" button.
 - Are the receiver models formatted correctly?
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors contact OTN for next steps.
 
@@ -634,7 +634,7 @@ The output will have useful information:
 - Are there detections without receivers? If so, we will get more details in the `detections-3b` notebook
 - Are there receivers without detections? If so, we will get more details in the `detections-3c` notebook
 
-The notebook will indicate the sheet had passed quality control by adding a **green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors contact OTN for next steps.
 
@@ -883,7 +883,7 @@ This cell will have useful information:
 - Are receiver serial numbers formatting correctly?
 - Are there any other outstanding download records which haven't been loaded?
 
-The notebook will indicate the table has passed verification by the presence of **green checkmarks**. 
+The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**. 
 
 If there are any errors, contact OTN for next steps.
 
