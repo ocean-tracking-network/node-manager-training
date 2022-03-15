@@ -161,6 +161,8 @@ If it appears there are tag release locations which are on land, you may want to
 
 If the bounding box needs to be expanded to include the tags, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all tags are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
 
+![Tag 1 - bounds](../fig/tag1_bounds.JPG)
+
 ### Verification of File Contents - against database
 
 This cell will now complete the second round of Quality Control checks.
