@@ -10,6 +10,7 @@ objectives:
 - "Understand the data-loading workflow"
 - "Understand how to create and use GitLab Issues"
 - "Understand how to access and query your database tables"
+- "Understand how to use the `AUTH - Create and Update` notebook to maintain your database credentials file"
 keypoints:
 - "Node-members cannot access the database, you are the liason"
 - "Data submissions and QC processes should be trackable and archived"
@@ -45,7 +46,7 @@ Generally, each Node Manager has an email address for communicating with their n
 
 It is not recommended to use a personal email account for this, since all the files and history of the project's data submissions will be lost if that Manager ever moves away from the role. If the account is hosted at an institution, it may be advisable to submit requests to raise institutional limits on things like email storage in advance.
 
-## Documenting data submission
+# Documenting data submission
 
 Using one of the suggested means above, a user has submitted data and metadata to the Node Manager. Now what?
 
@@ -117,9 +118,85 @@ To run a query, you ensure your cursor is on the line you want to run, then you 
 
 OTN is here to support you as you begin to experiment with SQL queries, and the OTN database structure, and can help you build a library of helpful custom queries that you may want or need.
 
-## Database Practice
+# Database Practice
 
 Let's take a moment to explore some of the tables in the Node Training database, and write some example SQL queries.
 
+# Connecting to your Database from the Nodebooks
+
+Now that we have explored and set up some of the tools needed to work as a Node Manager, we can begin prepare our Nodebook connection files. To enhance security, OTN has begun using password-protected `.kdbx` files to store login credentials for your database. To create these, we have developed an interactive `AUTH - Create and Update` Nodebook.
+
+1. Open the OTN Nodebooks
+	* **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
+	* **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
+2. Your Nodebook's should open in a new browser window, showing the `Home` page.
+3. Open the `AUTH - Create and Update` notebook
+
+### Imports cell
+
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+
+### Path to file
+
+This cell needs to be edited. Between the quotes you will type the filepath to the `.kdbx` file you would like to create, or one which already exists that you would like to edit. The format should look like:
+
+```markdown
+file_location = 'C:/Users/path/to/node_auth.kdbx'
+```
+
+Run this cell to save the input.
+
+### Create Password
+
+You will be prompted to create a password for the file (if it is a new file) or to enter the existing password if you are accessing an existing file. Ensure that you remember this password, as you will be using it every time you connect to the database through the Nodebooks.
+
+### Create or Update Main Connections
+
+This section will have an editable form. If it is a new file, all fields will be blank. If it is an existing file, the previously-entered information will display. You may now edit the information, pressing the blue button when you are finished to save your results.
+
+- Conn Name: this is customizable - what is the name of this connection?
+- Host: this will be something like `matos.asascience.com` for your DB, but is likely just an IP address for our Node Training DB.
+- Port: this is specified in your `.auth` file and will be four digits.
+- DB Name: this will be your database name, something like `ucd_db`. For training, it will be `node_training`.
+- User/Password: your personal username and password, as found on your `.auth` file.
+
+### Create or Update DBLink Connections
+
+In order to match detections across databases, you will need to establish `DBLink` connections to other OTN Nodes. This information can be stored in your `.kdbx` file, and will only give you access to information required to match detections and create detection extracts.
+
+This section will have an editable form. If it is a new file, all fields will be blank, and you can choose `Add Connection`. If it is an existing file, the previously-entered information will display, for each DBLink Connection you've specified. You may now edit the information, pressing the update or save button when you are finished to save your results.
+
+Please contact OTN if you need any of the following information:
+
+- Conn Name: this is customizable - what is the name of this connection? Something like `fact-link-to-migramar` is informative.
+- Host: this will be something like `matos.asascience.com` for the DB you are trying to connect to (i.e. not your own Node db host).
+- Port: this will be the port required to connect to the remote DB (not your Node db).
+- DB Name: this will be the name of the database you are trying to connect to (not your Node db), something like `ucd_db`. 
+- User/Password: the username and password of the DBLink user for your database. Not your own node admin's connection information.
+
+Once you have saved your new DBLink connection, you can create another. Continue until you have established connections to all remote Nodes.
+
+### Test Connections
+
+The next two cells will test the connection information you entered. Success messages will look like:
+
+```markdown
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Node: Node
+```
+
+and also like:
+
+```markdown
+Testing dblink connections:
+	fact-link-to-Node1: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE1
+	fact-link-to-Node2: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE2
+	fact-link-to-Node3: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE3
+	fact-link-to-Node4: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE4
+```
+
+You are now able to use the filepath to your `.kdbx` file to run all the Nodebooks.
 
 {% include links.md %}

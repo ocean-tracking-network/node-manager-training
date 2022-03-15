@@ -96,7 +96,7 @@ In this cell, you need to paste a filepath to the relevant Deployment Metadata f
 
 Correct formatting looks something like this:
 
-```
+```markdown
 # Shortfrom metadata path (xls, csv)
 filepath = r'C:/Users/path/to/deployment_metadata.xlsx'
 ```
@@ -105,7 +105,7 @@ You also must select the format of the Deployment metadata. Currently, only the 
 
 Correct formatting looks something like this:
 
-```
+```markdown
 excel_fmt = 'otn' # Deployment metadata format 'otn' or 'fact'
 ```
 
@@ -129,7 +129,7 @@ You will have to edit **three** sections:
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+```markdown
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -166,11 +166,13 @@ You have already named the table above, so there are no edits needed in this cel
 
 The notebook will indicate the success of the table-creation with the following message:
 
-```
+```markdown
 Reading file 'deployment_metadata.xlsx' as otn formatted Excel.
 Table Loading Complete: 
  Loaded XXX records into table schema.c_shortform_YYYY_mm
 ```
+
+
 #### Task list checkpoint
 
 In GitLab, these tasks can be completed at this stage:
@@ -196,7 +198,7 @@ The output will have useful information:
 - Is the `recovered` column completed correctly, based on the `comments` and the `recovery_date` columns?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 
-The notebook will indicate the sheet had passed quality control by adding a :heavy_check_mark:**green checkmark** beside each section.
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run.
 
@@ -222,11 +224,12 @@ If new stations are identified:
 
 The success message will look like:
 
-```
+```markdown
 TODO ---- whats the success message?
 ```
 
 If the `stations` and `moorings` tables are not in-sync, the difference between the two will need to be compared and possibly updated.
+
 
 #### Task list checkpoint
 
@@ -249,6 +252,7 @@ The output will have useful information:
 The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run. If there are problems with records that have already been promoted to the `stations` or `moorings` table, you will need to contact an OTN database staff member to resolve these.
+
 
 #### Task list checkpoint
 
@@ -273,9 +277,11 @@ If deployment updates are identified:
 
 Each instance will give a success message such as:
 
-```
+```markdown
 XX deployments load to rcvr_locations
 ```
+
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -299,6 +305,7 @@ The notebook will indicate the table has passed quality control by adding a ✔�
 
 If there are any errors contact OTN, or contact the researcher, to resolve. 
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -317,6 +324,7 @@ If transmitter updates are identified:
 - Use the check boxes to select only the appropriate changes
 - Once you are sure the changes are correct, you can then select `Update Transmitters`.
 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -332,6 +340,7 @@ The cell will identify any new deployments to add, and any previously-loaded dep
 Please review all new deployments and deployment update for accuracy, then press the associated buttons to make the changes. At this stage, the updates are not editable: any updated chosen from the `rcvr_locations` section will be processed here.
 
 You may be asked to select an `instrumenttype` for certain receivers. Use the drop-down menu to select before adding the deployment.
+
 
 #### Task list checkpoint
 
@@ -356,6 +365,7 @@ The output will have useful information:
 The notebook will indicate the table has passed quality control by adding a ✔️ **green checkmark** beside each section. 
 
 If there are any errors contact OTN to resolve. 
+
 
 #### Task list checkpoint
 
