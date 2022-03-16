@@ -25,7 +25,7 @@ Immediately, upon receipt of the metadata, a new Gitlab Issue should be created.
 
 Here is the Issue checklist, for reference:
 
-```markdown
+~~~
 Tag Meta Data
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw tag metadata (`tag-1` notebook) **put_table_name_in_ticket**
@@ -40,7 +40,8 @@ Tag Meta Data
 - [ ] - NAME label issue with *'Verify'*
 - [ ] - NAME pass issue to analyst for final verification
 - [ ] - NAME check for double reporting (verification_scripts/`tag_3_otn_verification`.sql)
-```
+~~~
+{: .language-plaintext .example}
 
 ### Visual Inspection
 
@@ -48,7 +49,7 @@ Once the completed file is received from a researcher, the Data Manager should f
 
 In general, Tagging Metadata has 3 sections:
 1. information about the tag
-1. information about the animal 
+1. information about the animal
 1. information about the tag deployment
 
 Information about the `tag` is obtained from Tag Specifications and is mandatory. Information about the `animal` is limited to the sampling conducted. The minimum requirement here is simply the common/scientific names. All other columns for biological parameters are optional. Information about the `tag deployment` includes location and dates and is mandatory to complete.
@@ -91,7 +92,7 @@ Each step in the Issue checklist will be discussed here, along with other import
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 There are **no** values here which need to be edited.
 
@@ -101,10 +102,11 @@ In this cell, you need to paste a filepath to the relevant Tagging Metadata file
 
 Correct formatting looks something like this:
 
-```markdown
+~~~
 # Path to your tagging metadata file - Formats Accepted: (csv, xls or xlsx)
 filepath = r"C:/Users/path/to/tag_metadata.xlsx"
-```
+~~~
+{: .language-plaintext .example}
 
 Once you have added your filepath, you can run the cell.
 
@@ -131,23 +133,24 @@ If there is information which is not passing quality control, you should fix the
 
 ### Connection to Database
 
-You will have to edit **two** sections: 
+You will have to edit **two** sections:
 
 1. `schema = 'collectioncode'`
 	* please edit to include the relevant project code, in lowercase, between the quotes.
-1. `engine = get_engine()` 
+1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
-```
+~~~
+{: .language-plaintext .example}
 
 ### Bounding Box Check
 
@@ -175,8 +178,8 @@ The output will have useful information:
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
 1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species. 
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model. 
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
@@ -191,18 +194,21 @@ If there is information which is not passing quality control, you should fix the
 
 In this cell, you will have to edit one section in order to name the raw table. Between the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently tagged animal in the metadata sheet.
 
-```markdown
+~~~
 table_suffix = "YYYY_mm"
-```
+~~~
+{: .language-plaintext .example}
+
 The notebook will indicate the success of the table-creation with the following message:
 
-```markdown
+~~~
 Reading file: otn_metadata_tagging.xlsx.
 Tag Metadata sheet found, reading file... OK
 Loading 'otn_metadata_tagging.xlsx' file into collectioncode.c_tag_meta_YYYY_mm... OK
 Loaded 37 records into table collectioncode.c_tag_meta_YYYY_mm
 True
-```
+~~~
+{: .language-plaintext .example}
 
 
 #### Task list checkpoint
@@ -219,19 +225,19 @@ Once the raw table is successfully loaded, the next step is to ensure any previo
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 There are **no** values here which need to be edited.
 
 ### Table Name and Database Connection
 
 
-You will have to edit **three** sections: 
+You will have to edit **three** sections:
 
-1. `engine = get_engine()` 
+1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
 1. `schema = 'collectioncode'`
 	* please edit to include the relevant project code, in lowercase, between the quotes.
 1. `table_name = 'c_tag_meta_YYYY_mm'`
@@ -239,12 +245,13 @@ You will have to edit **three** sections:
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
-```
+~~~
+{: .language-plaintext .example}
 
 ### Checking for Duplicates
 This cell, once run, may print out that there are `No Duplicates Found`. If so, you can move on.
@@ -253,11 +260,13 @@ If there is output identifying duplicates, some review is necessary.
 
 Immediately, the notebook will create a new table, named `schema.c_tag_meta_YYYY_mm_no_dup` which is an exact copy of your raw table. There will be a print-out saying the following (under a table):
 
-```markdown
+~~~
 Building schema.c_tag_meta_YYYY_mm_no_dup table:
 The following SQL queries will display the differences/similarities between the raw table (schema.c_tag_meta_YYYY_mm_no_dup) record and the otn_animals or otn_transmitters table record.
-```
-Then, there will be **two** interactive tables provided, which can be used to identify and delete any duplicate records from the `no_dup` table. 
+~~~
+{: .language-plaintext .example}
+
+Then, there will be **two** interactive tables provided, which can be used to identify and delete any duplicate records from the `no_dup` table.
 
 1. Comparison to otn_animals
 2. Comparison to otn_transmitters
@@ -266,7 +275,7 @@ All text should be `black`, and you should scroll through the entire table, row-
 
 If there are **no** highlighted/flashing red cells in a row, you can delete the record from the `no_dup` table by using the `delete` button on the left-side of the table. You can also use the `Select All` button if appropriate.
 
-If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without previous review since they are not exact duplicates, and could indicate an update to the database records is needed. 
+If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without previous review since they are not exact duplicates, and could indicate an update to the database records is needed.
 
 Ex: `life_stage` from the raw table might = `SMOLT` while `lifestage` from otn_animals might = `ADULT`. This will cause the column `lifestage_equal?` to read `FALSE` and the cells to flash red. In this example, it could indicate that the researcher was correcting an error in the previously-submitted record (this animal was actually a smolt, not adult) and therefore we need to update the record in our database. In this case, you would need to email the researcher to confirm, pause processing this Issue, and create a new `DB_fix` Issue with the information which needs updating.
 
@@ -278,10 +287,11 @@ Once you have selected a row to be deleted, the text will turn `red` to help you
 
 Once you have identified all the true duplicate records, this next cell will remove them from the `no_dup` table. Success will be indicated with this message, and a table:
 
-```markdown
+~~~
 Compiling list of deletions to the schema.c_tag_meta_YYYY_mm_no_dup table.
 Delete the following XXX records from schema.c_tag_meta_YYYY_mm_no_dup?
-```
+~~~
+{: .language-plaintext .example}
 You will be able to press the button to confirm, and the notebook will remove all the records.
 
 
@@ -299,30 +309,31 @@ Now that the raw table is free from duplicates, we can begin to move the records
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 There are **no** values here which need to be edited.
 
 ### Database Connection
 
-You will have to edit **one** section: 
+You will have to edit **one** section:
 
-1. `engine = get_engine()` 
+1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
-```
+~~~
+{: .language-plaintext .example}
 ### Table Name
 
-You will have to edit **two** sections: 
+You will have to edit **two** sections:
 
 1. `table_name = 'c_tag_meta_YYYY_mm'`
 	* Within the quotes, please add the name of the raw table. Might be the `no_dup` table if relevant.
@@ -342,8 +353,8 @@ The output will have useful information:
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
 1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species. 
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model. 
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
@@ -363,20 +374,23 @@ In Gitlab, this task can be completed at this stage:
 
 The first cell will create the cache tables, with the following success messaging:
 
-```markdown
+~~~
 Creating table schema.tagcache_YYYY_mm
 Creating table schema.animalcache_YYYY_mm
 Table creation finished.
-```
+~~~
+{: .language-plaintext .example}
 
 The next step will populate the `tag_cache` and `animal_cache` tables, but splitting apart the information about the `tag` and the information about the `animal`, joining the records by a unique `catalognumber` based on the `tag deployment` information.
 
 Running this cell will provide the following success message:
 
-```markdown
+~~~
 Added XX records to the schema.animalcache_YYYY_mm table
 Added XX records to the schema.tagcache_YYYY_mm table
-```
+~~~
+{: .language-plaintext .example}
+
 
 You need to pay special attention to the number of records loaded to the animal and tag caches. If this number doesn't match you may need to investigate why there are more tags than animals or vice versa. Possible reasons the values may not match:
 
@@ -426,10 +440,12 @@ In Gitlab, this task can be completed at this stage:
 
 This cell will populate the `otn_animals` and `otn_transmitters` master-tables, with the following success messaging:
 
-```markdown
+~~~
 Added XX records to schema.otn_animals table from animalcache_YYYY_mm
 Added XX records to schema.otn_transmitters table from tagcache_YYYY_mm
-```
+~~~
+{: .language-plaintext .example}
+
 The number of records added should match the number from the `cache` table loading step.
 
 
@@ -466,10 +482,12 @@ If there are any errors, go into the database and fix the `otn` tables themselve
 
 In Gitlab, these tasks can be completed at this stage:
 
-```markdown
+~~~
 - [ ] - NAME verify otn tables ("tag-2" notebook)
 - [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
-```
+~~~
+{: .language-plaintext .example}
+
 # Final Steps
 
 The remaining steps in the Gitlab Checklist are completed outside the notebooks.

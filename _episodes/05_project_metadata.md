@@ -244,9 +244,10 @@ To run the cell, you will need to complete:
 
 Once all values are completed, run the cell and confirm the following output:
 
-```markdown
+~~~
 Institution record 'DAL' created.
-```
+~~~
+{: .language-plaintext .example}
 
 You can re-run this cell as many times as you need, to add each missing institution.
 
@@ -390,19 +391,21 @@ The output should look like this to confirm success:
 >
 > Now, when you run the cell, you should get following output:
 >
-> ```markdown
+> ~~~
 > Auth Loaded:
 > ------------------------------------------------------------------------------
 > base_url: https://members.oceantrack.org/
 > user_name: cbate
 > verify ssl: False
-> ```
+> ~~~
+> {: .language-plaintext .example}
 >
 > Finally, the third cell in this section will allow you to login. You should see this message:
 >
-> ```markdown
+> ~~~
 > Login Successful!
-> ```
+> ~~~
+> {: .language-plaintext .example}
 >
 > ### Access Project Info
 >
@@ -450,10 +453,11 @@ The output should look like this to confirm success:
 >
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 >
-> ```markdown
+> ~~~
 > Creating collection folder 'collectioncode'. Done!
 > https://members.oceantrack.org/data/repository/node_name/collectioncode
-> ```
+> ~~~
+> {: .language-plaintext .example}
 >
 >
 > #### Task list checkpoint
@@ -475,10 +479,11 @@ The output should look like this to confirm success:
 >
 > Review for the following success message:
 >
-> ```markdown
+> ~~~
 > Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
 > 	Contributor=True Reviewer=True Editor=True Reader=True
-> ```
+> ~~~
+> {: .language-plaintext .example}
 >
 > Then you may choose `Add another user` and begin again.
 >

@@ -22,13 +22,13 @@ Immediately, upon receipt of the data files, a new GitLab Issue should be create
 
 Here is the Issue checklist, for reference:
 
-```markdown
+~~~
 Detections
 - [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Batch Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook) 
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook)
 - [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
 - [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
 - [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook)
@@ -53,7 +53,9 @@ Detections
 - [ ] - NAME update detection extract table
 
 **detections files/path:**
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Visual Inspection
 
@@ -101,19 +103,21 @@ Detections 1 loads CSV detections files into a new database table. If detections
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Input
 
@@ -139,11 +143,13 @@ Next, the notebook will review and verify the detection file(s) format, and repo
 
 The notebook will indicate the success of the table-creation with a message such as this:
 
-```markdown
+~~~
 Reading fathom files...
 Loading Files...
 7/7
-```
+~~~
+{: .language-plaintext .example}
+
 
 #### Task list checkpoint
 
@@ -180,7 +186,7 @@ Events 1 is responsible for loading receiver events files into raw tables. This 
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-### User Inputs 
+### User Inputs
 
 Cell two requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
 
@@ -202,7 +208,7 @@ Before attempting to load the event files to a raw table the notebook will verif
 
 The notebook will indicate the success of the file verification with a message such as this:
 
-```markdown
+~~~
 Reading file 'events.csv' as CSV.
 Verifying the file.
 Format: VUE 2.6+
@@ -211,23 +217,27 @@ date_and_time datetime:OK
 Initialization(s): XX
 Data Upload(s): XX
 Reset(s): XX
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Database Connection
 
-You will have to edit one section: `engine = get_engine()` 
+You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Load the events file into the c_events_yyyy table
 
@@ -235,10 +245,12 @@ The second last cell loads the events file into a raw table. It depends on succe
 
 The notebook will indicate the success of the table-creation with the following message:
 
-```markdown
+~~~
 File loaded with XXXXX records.
 100%
-```
+~~~
+{: .language-plaintext .example}
+
 
 #### Task list checkpoint
 
@@ -261,25 +273,27 @@ As in all notebooks run the import cell to get the packages and functions needed
 This cell requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
 
 1. `c_events_table = 'c_events_YYYY_mm'`
-	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`. 
+	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`.
 1. `schema = 'collectioncode'`
 	  * please edit to include the relevant project code, in lowercase, between the quotes.
 
 ### Database Connection
 
-You will have to edit one section: `engine = get_engine()` 
+You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Verify table format
 
@@ -287,12 +301,14 @@ You will then verify that the c_events events table you put in exists and then v
 
 The notebook will indicate the success of the table verification with a message such as this:
 
-```markdown
+~~~
 Checking table name format... OK
 Checking if schema collectioncode exists... OK!
 Checking collectioncode schema for c_events_YYYY_mm table... OK!
 collectioncode.c_events_YYYY_mm table found.
-```
+~~~
+{: .language-plaintext .example}
+
 If there are any errors in this section, please contact OTN.
 
 ### Load to Events table
@@ -301,11 +317,13 @@ Pending nothing comes up in the verification cells, you run the `loading` cell.
 
 The notebook will indicate the success of the processing with a message such as this:
 
-```markdown
+~~~
 Checking for the collectioncode.events table... OK!
 Loading events... OK!
 Loaded XX rows into collectioncode.events table.
-```
+~~~
+{: .language-plaintext .example}
+
 
 #### Task list checkpoint
 
@@ -321,21 +339,23 @@ This notebook takes the `raw` detection data from detections-1 and moves it into
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
 
-### User Inputs 
+
+### User Inputs
 
 To load the to the detections_yyyy tables the notebook will require information about the schema you are working in and the raw table that you created in `detections-1`.
 
@@ -346,47 +366,55 @@ To load the to the detections_yyyy tables the notebook will require information 
 
 The notebook will indicate success with the following message:
 
-```markdown
+~~~
 Checking table name format... OK
 Checking if schema collectioncode exists... OK!
 Checking collectioncode schema for c_detections_yyyy_mm table... OK!
 collectioncode.c_detections_yyyy_mm table found.
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Create Missing Tables
 
-Detections tables are only created on an as-needed basis. These cells will detect any tables you are missing and create them as needed, based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`. 
+Detections tables are only created on an as-needed basis. These cells will detect any tables you are missing and create them as needed, based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`.
 
 First the notebook with gather and print the missing tables. If there are none missing, the notebook will report that as well.
 
-```markdown
+~~~
 vemco: Match
 You are missing the following tables:
 [collectioncode.detections_YYYY, v2lbeiar.otn_detections_YYYY, v2lbeiar.sensor_match_YYYY]
 Create these tables by passing the missing_tables variable into the create_detection_tables function.
-```
+~~~
+{: .language-plaintext .example}
+
 
 If you proceed in the notebook, there is a `creation` cell which will add these tables to the project schema in the database. Success will be indicated with the following message:
 
-```markdown
+~~~
 Creating table collectioncode.detections_YYYY... OK
 Creating table collectioncode.otn_detections_YYYY... OK
 Creating table collectioncode.sensor_match_YYYY... OK
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Create Detection Sequence
 
 Before loading detections, a detection sequence is created. The sequence is used to populate the `det_key` column. The `det_key` value is an unique ID for that detection to help ensure there are no duplicates. If a sequence is required, you will see this output:
 
-```markdown
+~~~
 creating sequence v2lbeiar.detections_seq... OK
-```
+~~~
+{: .language-plaintext .example}
+
 
 No further action is needed.
 
 ### Load to Detections_YYYY
 
-Duplicate detections are then checked for and will not be inserted into the detections_yyyy tables. 
+Duplicate detections are then checked for and will not be inserted into the detections_yyyy tables.
 
 If no duplicates are found you will see:
 
@@ -402,7 +430,7 @@ If duplicates are found you will see:
 
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
-```markdown
+~~~
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2018... OK
 Added XXXXX rows.
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2019... OK
@@ -411,7 +439,9 @@ Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.d
 Added XXXXX rows.
 Inserting records from collectioncode.c_detections_YYYY_mm into collectioncode.detections_2021... OK
 Added XXXXX rows.
-```
+~~~
+{: .language-plaintext .example}
+
 
 **You must note which years have been loaded!** In the example above, this would be 2018, 2019, 2020, and 2021.
 
@@ -420,10 +450,12 @@ Added XXXXX rows.
 
 In GitLab, these tasks can be completed at this stage:
 
-```markdown
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook) 
+~~~
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook)
 - [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
-```
+~~~
+{: .language-plaintext .example}
+
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box.
 
@@ -458,16 +490,18 @@ In GitLab, this task can be completed at this stage:
 
 ###  Load sensors_match Tables by Year
 
-For the last part of this notebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor information into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values. 
+For the last part of this notebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor information into a project's sensor_match_yyyy tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values.
 
 Output will appear like this:
 
-```markdown
+~~~
 Inserting records from collectioncode.detections_2019 INTO sensor_match_2019... OK
 Added XXX rows.
 Inserting records from collectioncode.detections_2021 INTO sensor_match_2021... OK
 Added XXX rows.
-```
+~~~
+{: .language-plaintext .example}
+
 
 **You must note which years have been loaded!** In the example above, this would be 2019 and 2021.
 
@@ -476,10 +510,12 @@ Added XXX rows.
 
 In GitLab, these tasks can be completed at this stage:
 
-```markdown
+~~~
 - [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
 - [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
-```
+~~~
+{: .language-plaintext .example}
+
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box. Then, comment these years into the Issue as well.
 
@@ -491,19 +527,21 @@ This notebook calculates time drift factors and applies the corrections to the `
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
@@ -518,23 +556,27 @@ The next step is to run `check_time_drifts` which gives a display of the time dr
 
 If everything looks good, you may proceed to the next cell which adds new time drift factors to the time_drift_factors table from the events file. A success message will appear:
 
-```markdown
+~~~
 Adding XXX records to collectioncode.time_drift_factors table from collectioncode.events... OK!
-```
+~~~
+{: .language-plaintext .example}
+
 
 You will then see a cell to create missing views which creates the time drift `views` which the database will use to calculate drift values for both the `detections_yyyy` and `sensor_match_yyyy` tables.
 
 ### Correcting Time Drift
 
-Finally,  we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view. 
+Finally,  we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view.
 
 First, you will need to ensure you run this cell on **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
-The format will look like this: 
+The format will look like this:
 
-```markdown
+~~~
 year = 2021 # Year as int
-```
+~~~
+{: .language-plaintext .example}
+
 
 Once the timedirft calculation is done (indicated by ✔️**green checkmarks**) you then have to **re-run** the cell again, for each affected year.
 
@@ -547,7 +589,7 @@ In GitLab, this task can be completed at this stage:
 
 ### Verify Detections After Time Drift Calculations
 
-After running the above cells you will then verify the time drift corrections on the `detections_yyyy` and `sensor_match_yyyy` tables. 
+After running the above cells you will then verify the time drift corrections on the `detections_yyyy` and `sensor_match_yyyy` tables.
 
 The output will have useful information:
 - Are there any erroneous timedrift values?
@@ -575,19 +617,21 @@ The `detections - 3` notebook moves the detections from `detections_yyyy` and `s
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
@@ -595,7 +639,7 @@ To load the to the detections_yyyy tables the notebook will require information 
 
 Before moving on from this you will need to confirm 2 things:
 
-1) Confirm that **NO Push** is currently ongoing 
+1) Confirm that **NO Push** is currently ongoing
 
 2) confirm `rcvr_locations` for this schema have been verified.
 
@@ -610,15 +654,17 @@ In GitLab, this task can be completed at this stage:
 
 ### Creating detection views and loading to otn_detections
 
-Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data. 
+Once you are clear to continue loading you can run `create_detection_views`. This function as its name implies will create database views for detection data.
 
 Output will look like:
 
-```markdown
+~~~
 Creating view collectioncode.vw_detections_2020... OK
 Creating view collectioncode.vw_sentinel_2020... OK
 Creating view collectioncode.vw_detections_2021... OK
-```
+~~~
+{: .language-plaintext .example}
+
 
 These are then used to run the function in the next cell `load_into_otn_detections_new`, which loads the detections from those views into otn_detections. You will be asked to select all relevant tables here, with a dropdown menu and checkboxes.
 
@@ -637,7 +683,7 @@ The next two cells are used **only** if you have loaded detections through to th
 
 ### Verify OTN Detections
 
-After running your needed cells you will then verify `otn_detections_yyyy` detections. 
+After running your needed cells you will then verify `otn_detections_yyyy` detections.
 
 The output will have useful information:
 - Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button.
@@ -657,14 +703,16 @@ If there are any errors contact OTN for next steps.
 
 In GitLab, these tasks can be completed at this stage:
 
-```markdown
+~~~
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME load sentinel records (`detections-3` notebook)
-```
+~~~
+{: .language-plaintext .example}
+
 
 # detections - 3b - missing_metadata_check
 
-This notebook is for checking for detections that have not been inserted into `otn_detections_yyyy`, which will indicate missing receiver metadata. 
+This notebook is for checking for detections that have not been inserted into `otn_detections_yyyy`, which will indicate missing receiver metadata.
 
 The user will be able to set a threshold for the minimum number of detections to look at (default is 100). It will also separate animal detections from transceiver detections in a graph.At the end, it will show a SQL command to run so that the missing metadata can be seen in table format.
 
@@ -672,38 +720,42 @@ The user will be able to set a threshold for the minimum number of detections to
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
 Information regarding the tables we want to check against is required.
 
-1. `schema = 'collectioncode'` 
+1. `schema = 'collectioncode'`
     * edit to include the relevant project code, in lowercase, between the quotes.
 1. `years = []`
     * A comma-separated list of detection table years for detections_yyyy, should be in form `[yyyy]` or a list such as `[yyyy,yyyy,'early']`
 
 Once you have edited these values, you can run the cell. You should see the following success message:
 
-```markdown
+~~~
 All tables exist!
-```
+~~~
+{: .language-plaintext .example}
+
 
 ###  Check for Missing Metadata in Detections_yyyy
 
-This step will perform the check for missing metadata in `detections_yyyy` and display results for each record where the number of excluded detections is greater than the specified threshold. 
+This step will perform the check for missing metadata in `detections_yyyy` and display results for each record where the number of excluded detections is greater than the specified threshold.
 
 First: enter your threshold. Formatted like: `threshold = 100`. Then you may run the cell.
 
@@ -714,17 +766,19 @@ The output will include useful information:
 - What are the date-ranges of these missing detections? These dates can be used to determine the period for which we are missing metadata.
 - Other notes: is this date range before known deployments? After know deployments? Between known deployments?
 
-There will be a visualization of the missing metadata for each instance where the number of missing detections is over the threshold. 
+There will be a visualization of the missing metadata for each instance where the number of missing detections is over the threshold.
 
 Any instance with missing detections (greater than the threshold) should be identified, and the results pasted into a **new GitLab Issue**. The format will look like:
 
-```markdown
+~~~
 VR2W-123456
 	missing XX detections (0 transceiver tags, XX animal tags, 0 test tags) (before deployments) (YYYY-MM-DD HH:MM:SS to YYYY-MM-DD HH:MM:SS)
 
 VR2W-567891
 	missing XX detections (0 transceiver tags, XX animal tags, 0 test tags) (before deployments) (YYYY-MM-DD HH:MM:SS to YYYY-MM-DD HH:MM:SS)
-```
+~~~
+{: .language-plaintext .example}
+
 
 There are also two cells at the end that allow you create reports for researchers in CSV or HTML format.
 
@@ -738,25 +792,27 @@ In GitLab, this task can be completed at this stage:
 
 # detections - 3c - missing_vrl_check
 
-This notebook will check for missing data files in the database by comparing the `rcvr_locations` and `events` tables. For any receiver deployments that are missing events, it will check if there are `detections` during that time period for that receiver. 
+This notebook will check for missing data files in the database by comparing the `rcvr_locations` and `events` tables. For any receiver deployments that are missing events, it will check if there are `detections` during that time period for that receiver.
 
 ### Import cells and Database connections
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
@@ -769,31 +825,37 @@ There are also optional fields:
 
 Once you have edited the values, you can run the cell. You should see the following success message:
 
-```markdown
+~~~
 Checking if collectioncode schema exists...
 OK
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Checking For Missing Data Files
 
-The next cell will begin scanning the project's schema to identify if there are any missing data files. 
+The next cell will begin scanning the project's schema to identify if there are any missing data files.
 If there are no missing files, you will see this output:
 
-```markdown
+~~~
 Checking if all deployment periods have events...
 X/X
 Checking if deployment periods missing events have detections...
 ⭐ All deployment periods had events! Skipping detection check. ⭐
-```
+~~~
+{: .language-plaintext .example}
+
 
 If the notebook has detection missing file, you will see this output:
 
-```markdown
+~~~
 Checking if all deployment periods have events...
 XXX/XXX
 Checking if deployment periods missing events have detections...
 XX/XX
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### Displaying Missing  Data Files
 
@@ -810,7 +872,7 @@ The plot will have useful information:
 - the state of the data for that date-range
     * all detections and events present
     * missing events, detections present
-    * missing some events 
+    * missing some events
     * missing ALL events
 - hovering over a deployment period with give details regarding the date range
 
@@ -841,25 +903,27 @@ This notebook will promote the events records from the intermediate `events` tab
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
 Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
 
-Once you have edited the value, you can run the cell. 
+Once you have edited the value, you can run the cell.
 
 ### Detecting Download Records
 
@@ -867,9 +931,11 @@ The next cell will scan the `events` table looking for data download events, and
 
 You should see output like this:
 
-```markdown
+~~~
 Found XXX download records to add to the moorings table
-```
+~~~
+{: .language-plaintext .example}
+
 
 The next cell will print out all the identified download records, in a dataframe for you to view.
 
@@ -877,7 +943,7 @@ The next cell will print out all the identified download records, in a dataframe
 
 Before moving on from this you will need to confirm 2 things:
 
-1) Confirm that **NO Push** is currently ongoing 
+1) Confirm that **NO Push** is currently ongoing
 
 2) confirm `rcvr_locations` for this schema have been verified.
 
@@ -885,9 +951,11 @@ If a Push is ongoing, or if verification has not yet occurred, you **must** wait
 
 If everything is OK, you can run the cell. The notebook will indicate success with a message like:
 
-```markdown
+~~~
 Added XXX records to the moorings table
-```
+~~~
+{: .language-plaintext .example}
+
 
 
 #### Task list checkpoint
@@ -903,7 +971,7 @@ This cell will have useful information:
 - Are receiver serial numbers formatting correctly?
 - Are there any other outstanding download records which haven't been loaded?
 
-The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**. 
+The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**.
 
 If there are any errors, contact OTN for next steps.
 
@@ -922,25 +990,27 @@ This notebook will process the receiver configurations (such as MAP code) from t
 
 As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
-The second cell will set your database connection. You will have to edit one section: `engine = get_engine()` 
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-```markdown 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
-```
+~~~
+{: .language-plaintext .example}
+
 
 ### User Inputs
 
 Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
 
-Once you have edited the value, you can run the cell. 
+Once you have edited the value, you can run the cell.
 
 ### Get Receiver Configuration
 
@@ -952,9 +1022,11 @@ The following cell will extrapolate further to populate all the required columns
 
 Finally, the notebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
 
-```markdown
+~~~
 The following XX receiver configurations are new and have been inserted:
-```
+~~~
+{: .language-plaintext .example}
+
 
 #### Task list checkpoint
 
@@ -969,4 +1041,3 @@ The remaining steps in the GitLab Checklist are completed outside the notebooks.
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
-

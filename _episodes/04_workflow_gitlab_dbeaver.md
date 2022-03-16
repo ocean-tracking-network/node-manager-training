@@ -42,7 +42,7 @@ Its common for groups of researchers to use DropBox, Google Drive, or something 
 
 ### Email-only submission
 
-Generally, each Node Manager has an email address for communicating with their network's data submitters (ex: Data @ TheFACTNetwork . org). This is a great way to ensure all Node-related emails are contained in the same account in the case of multiple Node Managers or the succession of a new Node Manager. With proper email management, this can be a very successful way to ask Node-users to submit their data/metadata to your Node. 
+Generally, each Node Manager has an email address for communicating with their network's data submitters (ex: Data @ TheFACTNetwork . org). This is a great way to ensure all Node-related emails are contained in the same account in the case of multiple Node Managers or the succession of a new Node Manager. With proper email management, this can be a very successful way to ask Node-users to submit their data/metadata to your Node.
 
 It is not recommended to use a personal email account for this, since all the files and history of the project's data submissions will be lost if that Manager ever moves away from the role. If the account is hosted at an institution, it may be advisable to submit requests to raise institutional limits on things like email storage in advance.
 
@@ -65,13 +65,13 @@ By choosing the **New Issue** button in the top-right of your screen, you will b
 - Title: Write the project name/code, the type of data submitted, and the submission date, this makes the ticket searchable in the future (eg: `HFX tag metadata 2022-02`)
 - Type: No need to edit this field, should be type `Issue`.
 - Description: **1)** There are pre-made *Templates* to choose from here, using the drop down menu. Ensure you choose the relevant checklist for the type of data
- that was submitted (eg: `Tag_metadata`). This will populate the large description field! **2)** Ensure you include the link to the submitted data file 
+ that was submitted (eg: `Tag_metadata`). This will populate the large description field! **2)** Ensure you include the link to the submitted data file
 OR use the `Attach a file` option to attach a copy of the submitted data file to the issue.
 - Assignee: Assign to yourself if this is a task for you, or to anyone else who you would like to delegate to
 - Milestone: These are the upcoming Data Push dates. You should choose the nearest future PUSH date as the milestone for this issue.
 - Labels: This is for your reference - choose a label that will help you remember what stage of processing this issue is in. Some common examples include `Needs QC`, `Waiting for Metadata`, `Waiting for VRLs`, `Request PI Clarification` etc. You can create new labels at any time to help sort your tickets.
 
-Now, with all information completed, you can select **Create Issue**. 
+Now, with all information completed, you can select **Create Issue**.
 
 ### Using GitLab to track progress
 
@@ -91,7 +91,7 @@ At this time we will take a moment to practice making GitLab Issues, and explore
 
 ## Database access
 
-As part of the OTN workflow, once we have used the OTN Nodebooks, it may be prudent to use a database client like DBeaver to view the contents of your database Node directly, and be sure the data was indeed loaded as expected. 
+As part of the OTN workflow, once we have used the OTN Nodebooks, it may be prudent to use a database client like DBeaver to view the contents of your database Node directly, and be sure the data was indeed loaded as expected.
 
 DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for quick query-writing, and data exploration. We will assume that workshop attendees are novices in using this application.
 
@@ -112,7 +112,7 @@ On the left-side you should now see a `Database Navigator` tab, and a list of al
 
 If you wish to write an SQL query to see a specific portion of your already-loaded data, you should first open a new SQL console. Choose `SQL Editor` from the top menu, then `New SQL Script`. A blank form should appear.
 
-While writing SQL is out of the scope of this course, there are many great SQL resources available online. The general premise involves creating conditional `select` statements to specify the data you're interested in. ex: `select * from hfx.rcvr_locations where rcv_serial_no = '12345';` will select all records from the HFX schema's rcvr_locations table, where the serial number is 12345. 
+While writing SQL is out of the scope of this course, there are many great SQL resources available online. The general premise involves creating conditional `select` statements to specify the data you're interested in. ex: `select * from hfx.rcvr_locations where rcv_serial_no = '12345';` will select all records from the HFX schema's rcvr_locations table, where the serial number is 12345.
 
 To run a query, you ensure your cursor is on the line you want to run, then you can either 1) right-click, and choose Execute, or 2) press CTRL-ENTER (CMD-ENTER for Mac). The results of your query will be displayed in the window below the SQL console.
 
@@ -134,15 +134,16 @@ Now that we have explored and set up some of the tools needed to work as a Node 
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 ### Path to file
 
 This cell needs to be edited. Between the quotes you will type the filepath to the `.kdbx` file you would like to create, or one which already exists that you would like to edit. The format should look like:
 
-```markdown
+~~~
 file_location = 'C:/Users/path/to/node_auth.kdbx'
-```
+~~~
+{: .language-plaintext .example}
 
 Run this cell to save the input.
 
@@ -171,7 +172,7 @@ Please contact OTN if you need any of the following information:
 - Conn Name: this is customizable - what is the name of this connection? Something like `fact-link-to-migramar` is informative.
 - Host: this will be something like `matos.asascience.com` for the DB you are trying to connect to (i.e. not your own Node db host).
 - Port: this will be the port required to connect to the remote DB (not your Node db).
-- DB Name: this will be the name of the database you are trying to connect to (not your Node db), something like `ucd_db`. 
+- DB Name: this will be the name of the database you are trying to connect to (not your Node db), something like `ucd_db`.
 - User/Password: the username and password of the DBLink user for your database. Not your own node admin's connection information.
 
 Once you have saved your new DBLink connection, you can create another. Continue until you have established connections to all remote Nodes.
@@ -180,22 +181,24 @@ Once you have saved your new DBLink connection, you can create another. Continue
 
 The next two cells will test the connection information you entered. Success messages will look like:
 
-```markdown
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Node: Node
-```
+~~~
+{: .language-plaintext .example}
 
 and also like:
 
-```markdown
+~~~
 Testing dblink connections:
 	fact-link-to-Node1: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE1
 	fact-link-to-Node2: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE2
 	fact-link-to-Node3: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE3
 	fact-link-to-Node4: DBLink established on user@db.load.oceantrack.org:5432 - Node: NODE4
-```
+~~~
+{: .language-plaintext .example}
 
 You are now able to use the filepath to your `.kdbx` file to run all the Nodebooks.
 
