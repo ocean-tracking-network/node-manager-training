@@ -68,10 +68,12 @@ div.language-basic::before    { content: "Basic"; }
 div.language-bash::before     { content: "Bash"; }
 div.language-c::before        { content: "C"; }
 div.language-chapel::before   { content: "Chapel"; }
+div.language-checklist::before { content: "Checklist"; } ////Added by BD, 2022-03-16
 div.language-cmake::before    { content: "CMake"; }
 div.language-cpp::before      { content: "C++"; }
 div.language-cuda::before     { content: "Cuda"; }
 div.language-d::before        { content: "D"; }
+div.language-example::before  { content: "Example"; } //Added by BD, 2022-03-16
 div.language-fortran::before  { content: "Fortran"; }
 div.language-go::before       { content: "Go"; }
 div.language-html::before     { content: "HTML"; }
@@ -80,6 +82,7 @@ div.language-julia::before    { content: "Julia"; }
 div.language-kotlin::before   { content: "Kotlin"; }
 div.language-lua::before      { content: "Lua"; }
 div.language-make::before     { content: "Make"; }
+div.language-markdown::before { content: "Markdown"; } //Added by BD, 2022-03-16
 div.language-matlab::before   { content: "MATLAB"; }
 div.language-opencl::before   { content: "OpenCL"; }
 div.language-perl::before     { content: "Perl"; }
