@@ -22,7 +22,7 @@ A Data Push is when the OTN data system is re-verified and any new relevant info
 
 ## What is the Push Schedule?
 
-Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this. 
+Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this.
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
@@ -35,19 +35,19 @@ Push schedule through 2023:
 
 ## Node Manager Roles During a Push
 
-Node Managers have two main jobs during a Push: 
-1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to attempt to prevent a backlog near the Push date. 
+Node Managers have two main jobs during a Push:
+1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to attempt to prevent a backlog near the Push date.
 1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` notebook.
 
-Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required. 
+Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required.
 
 Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again.
 
 ## Detection Extracts
 
-[Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are the main output of the Push. They contain all the new detection matches for each project. There are multiple types of detection extracts OTN creates: 
-- 'qualified' which contain detections collected by an array but matched to animals of other projects 
-- 'unqualified' which contain the unmatched or mystery detections collected by an array 
+[Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are the main output of the Push. They contain all the new detection matches for each project. There are multiple types of detection extracts OTN creates:
+- 'qualified' which contain detections collected by an array but matched to animals of other projects
+- 'unqualified' which contain the unmatched or mystery detections collected by an array
 - 'sentinel' which contain the detections matched to test or transceiver tags collected by an array
 - 'tracker' which contains detections that have been mapped to animals tagged by a project that can originate from any receiver in the entire Network
 
@@ -66,22 +66,22 @@ Using these fields, the `detections-create detection extracts` notebook can dete
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 There are **no** values here which need to be edited.
 
 ### User Inputs Database Connection
 
 1. `outputdir = 'C:/Users/path/to/detection extracts/folder/'`
-	* Within the quotes, please paste a filepath to the folder in which you'd like to save all the Detection Extracts. 
-1. `engine = get_engine()` 
+	* Within the quotes, please paste a filepath to the folder in which you'd like to save all the Detection Extracts.
+1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
+	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
-``` 
+~~~
 Auth password:········
 Connection Notes: None
 Database connection established
@@ -92,7 +92,8 @@ Testing dblink connections:
 	nep-on-otn: DBLink established on user@db.load.oceantrack.org :1234 - Node: OTN
 	nep-on-saf: DBLink established on user@db.load.oceantrack.org:1234 - Node: SAF
 	nep-on-act: DBLink established on user@matos.asascience.com:1234 - Node: ACT
-```
+~~~
+{: .language-bash}
 
 You may note that there are multiple `DB links` required here: this is so that you will be able to include detection matches from all the Nodes. If your `kdbx` file doesn't include any of your DB link account, reach out to OTN to help set it up for you.
 
@@ -114,33 +115,35 @@ This cell will begin creating the identified detection extracts, one by one. You
 **The following section is for Nodes who use Plone as their document management system only**
 
 > ### Uploading Extracts to Plone
-> 
+>
 > First the notebook will print a list of all the extracts that need to be uploaded. It should match the list of those just created.
-> 
+>
 > Next, you will need to connect to Plone using a `.auth` file. The format will be like this: `plone_auth_path = r'C:/path/to/Plone.auth'`. Success will be indicated with this message:
-> 
-> ```
+>
+> ~~~
 > Plone authorization was successful.
 > Connected to 'https://members.oceantrack.org' as 'USER'
-> ```
-> 
-> Now the notebook will upload all the Detection Extracts into their relevant folders on Plone. 
-> 
+> ~~~
+> {: .language-plaintext .example}
+>
+> Now the notebook will upload all the Detection Extracts into their relevant folders on Plone.
+>
 > Please wait for them all to complete - indicated by a **green checkmark** and a summary of the time it took to complete the extract.
 >
 > ### Emailing Researchers - Plone
 > Using the Plone users system, its possible to identify which researchers require an email notification.
 > First you need to supply a `.auth` file for an email account. The format will be like this: `email_auth_path = r'C:/path/to/email.auth'`. Success will be indicated with this message:
-> ```
+> ~~~
 > Email auth is set:
 >  user= otndc@dal.ca
 >  host= smtp.office365.com
 >  cc= otndc@dal.ca
 >  port= XXX
-> ```
+> ~~~
+> {: .language-plaintext .example}
 > Upon successful login, you will be able to print out your current email template. If it is not adequate, you can edit the template by changing the `det_extracts_emailSpecial.j2` template in the `templates` subfolder of `ipython-utilities, and changing the filepath to be `email_template = 'templates/det_extracts_emailSpecial.j2'`, the re-running.
 > Finally, this stage will send the emails. First: set `send_mail = False.`
-> Run the cell, select the projects of interest and `Simulate Sending Emails`. 
+> Run the cell, select the projects of interest and `Simulate Sending Emails`.
 > If you are pleased with the output, you can then set `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
 
 ### Emailing Researchers - Manual

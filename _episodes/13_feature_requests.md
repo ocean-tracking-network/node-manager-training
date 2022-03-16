@@ -24,7 +24,7 @@ If there is a feature that you'd like to see, you can bring this to OTN's attent
 
 Here is the "new_feature" template, for your information:
 
-```markdown
+~~~
             Note that this template is **ONLY** used for tracking new features. Bugs should be filed separately using the Bug template.
 
             The new feature should be proposed, scoped, and approved **before** you fill out this template.
@@ -46,7 +46,8 @@ Here is the "new_feature" template, for your information:
 
             ## Timeline
             **Give a brief, ballpark estimate on when you would want this done.**
-```
+~~~
+{: .language-plaintext .example}
 
 ## Bug-fixes
 
@@ -58,7 +59,7 @@ To identify a bug, here are the steps to take:
 
 Here is the "bug" template, for your information:
 
-```markdown
+~~~
             Note that this template is **ONLY** used for reporting bugs. New features must be vetted and filed separately using the New Feature template.
 
             As such, before you continue, ask yourself:
@@ -79,7 +80,8 @@ Here is the "bug" template, for your information:
 
             ## Priority
             **On a scale from 1 to 5, approximate the severity of the issue. Be honest.**
-```
+~~~
+{: .language-plaintext .example}
 
 ## Testing Features/Fixes
 
@@ -93,25 +95,29 @@ Open git bash or terminal.
 
 From your git bash window, type:
 
-```
+~~~
 cd "/path/to/your/ipython-utilities"
-```
-This will put your terminal or git bash terminal in the folder where this codebase lives on your computer. Now we're going to 
-* reset any changes you have made locally (save anything you might want to keep with `git stash`), 
+~~~
+{: .language-bash}
+
+This will put your terminal or git bash terminal in the folder where this codebase lives on your computer. Now we're going to
+* reset any changes you have made locally (save anything you might want to keep with `git stash`),
 * switch to the new branch
 * update that branch with any new code
 
-```
+~~~
 git reset --hard
 git checkout <branch you are moving to ie:integration>
 git pull
-```
+~~~
+{: .language-bash}
 
 Resolve python libraries by using the mamba command:
 
-```
+~~~
 mamba env update -n root -f environment.yml
-```
+~~~
+{: .language-bash}
 
 You will then be able to test the new code. When you are finished, follow the same steps to switch back to the `master` branch to continue your work. The `master` branch contains all the production-quality tools.
 
