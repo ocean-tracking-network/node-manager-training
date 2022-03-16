@@ -22,7 +22,7 @@ Immediately, upon receipt of the metadata, a new Gitlab Issue should be created.
 
 Here is the Issue checklist, for reference:
 
-```markdown
+~~~
 Project Metadata
 - [ ] - NAME add label *'loading records'*
 - [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**
@@ -33,7 +33,7 @@ Project Metadata
 - [ ] - NAME create new project repository users (`Create Plone Folders and Add Users` notebook)
 - [ ] - NAME create project repository folder (`Create Plone Folders and Add Users` notebook)
 - [ ] - NAME add project repository users to folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME access project repository double-check project repository creation and user access 
+- [ ] - NAME access project repository double-check project repository creation and user access
 - [ ] - NAME add project metadata file to project folder (OTN members.oceantrack.org, FACT RW etc)
 - [ ] - NAME send onboarding email to PIs
 - [ ] - NAME label issue with *'Verify'*
@@ -44,7 +44,8 @@ Project Metadata
 - [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
 
 **project metadata txt file**
-```
+~~~
+{: .language-example}
 
 ### Visual Inspection
 
@@ -74,21 +75,21 @@ format:  < 70 words in 'paper title' form
 
 OTN NS Blue Shark Tracking
 
-2. Brief abstract of the project? 
+2. Brief abstract of the project?
 format: < 500 words in 'abstract' form
 
 In the Northwest Atlantic, the Ocean Tracking Network (OTN), in collaboration with Dalhousie University, is using an acoustic telemetry infrastructure to monitor the habitat use, movements, and survival of juvenile blue sharks (Prionace glauca). This infrastructure includes state-of-the-art acoustic receivers and oceanographic monitoring equipment, and autonomous marine vehicles carrying oceanographic sensors and mobile acoustic receivers. Long-life acoustic tags (n=40) implanted in the experimental animals will provide long-term spatial resolution of shark movements and distribution, trans-boundary migrations, site fidelity, and the species’ response to a changing ocean. This study will facilitate interspecific comparisons, documentation of intra- and interspecific interactions, and permit long-term monitoring of this understudied predator in the Northwest Atlantic. The study will also provide basic and necessary information to better inform fisheries managers and policy makers. This is pertinent given the recent formulation of the Canadian Plan of Action for Shark Conservation.
 
-3. Names, affiliations, email addresses, and ORCID (if available) of researchers involved in the project and their role. 
+3. Names, affiliations, email addresses, and ORCID (if available) of researchers involved in the project and their role.
 
 The accepted Project Roles are defined as:
 Principal Investigator: PI or Co-PI. The person(s) responsible for the overall planning, direction and management of the project.
 Technician: Person(s) responsible for preparation, operation and/or maintenance of shipboard, laboratory or deployed scientific instrumentation, but has no invested interest in the data returned by that instrumentation.
-Researcher: Person(s) who may use/analyse the data to answer research questions, but is not the project lead. Can be a student if their involvement spans past the completion of an academic degree. 
-Student: Person(s) researching as part of a project as part of their work towards an academic degree. 
+Researcher: Person(s) who may use/analyse the data to answer research questions, but is not the project lead. Can be a student if their involvement spans past the completion of an academic degree.
+Student: Person(s) researching as part of a project as part of their work towards an academic degree.
 Collaborator: A provider of input/support to a project without formal involvement in the project.
 
-Please add 'Point of Contact' to the contact(s) who will be responsible for communicating with OTN. 
+Please add 'Point of Contact' to the contact(s) who will be responsible for communicating with OTN.
 
 format: Firstname Lastname, Employer OR Affiliation, Project Role (choose from above list), email.address@url.com, point of contact (if relevant), ORCID
 
@@ -98,7 +99,7 @@ Caitlin Bate, Dal, researcher, caitlin.bate@dal.ca, point of contact
 
 
 4. Project URL - can be left blank
-format: http[s]://yoursite.com 
+format: http[s]://yoursite.com
 
 https://members.oceantrack.org/
 
@@ -108,13 +109,13 @@ format: Common name (scientific name)
 Blue shark (Prionace glauca)
 Sunfish (Mola mola)
 
-6. Location of the project? 
+6. Location of the project?
 format: (city, state/province OR nearby landmark OR lat/long points in decimal degree), one per line
 
 Halifax, NS
-44.19939/-63.24085 
+44.19939/-63.24085
 
-7. Start and end dates of the project, if known? 
+7. Start and end dates of the project, if known?
 format: YYYY-MM-DD to YYYY-MM-DD ('ongoing' is an acceptable end date)
 
 2013-08-21 to ongoing
@@ -132,12 +133,12 @@ Each step in the Issue checklist will be discussed here, along with other import
 
 ### Imports cell
 
-This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
-You will have to edit one section: `engine = get_engine()` 
+You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`. 
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
 
 ### Project Metadata Parser
 
@@ -167,7 +168,7 @@ There are some fields which need to be setup by the Data Manager, and not set by
 You will run this cell, and a fillable form will appear.
 
 1. Node: select your node
-1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)? 
+1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
 1. Ocean: choose the most appropriate ocean region based on the abstract.
 1. Shortname: use the Title provided by the researcher, or something else, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
 1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
@@ -213,7 +214,7 @@ If this information is satisfactory, you can proceed.
 
 The cell titled `Verify the new project details before writing to the DB` is the final step for verification before the values are written to the database. At this stage a map will appear, with the proposed Bounding Box for the project.
 
-Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. 
+Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it.
 
 
 ![Proj 1](../fig/proj_meta_bounds.JPG)
@@ -224,7 +225,7 @@ Once you are happy, you can run the *following* cell in order to save your bound
 ```markdown
 --- Midpoint ---
 Latitude:
-Longitude: 
+Longitude:
 ```
 
 
@@ -253,7 +254,7 @@ You can re-run this cell as many times as you need, to add each missing institut
 
 Finally, it is time to write the project records to the database and create the new project!
 
-First, you should run this cell with `printSQL = True`. If there are no errors, you can edit and change to `printSQL = False` and run again. This will register the project! 
+First, you should run this cell with `printSQL = True`. If there are no errors, you can edit and change to `printSQL = False` and run again. This will register the project!
 
 You will see some output - confirm each line is accompanied by a green `OK`.
 
@@ -335,13 +336,13 @@ This section is to be used when you have a project which is either `Tracker` or 
 
 You can use this notebook to create the missing tables for the schema. Ex: the above example would need `stations`, `rcvr_locations`, and `moorings` tables created.
 
-#### Schema updating 
+#### Schema updating
 
 This section is to be used to change the values contained in `obis.otn_resources`. The first cell will open an editable form with the existing database values. You can change the required fields (ex: abstract).
 
 To save and parse your inputted values **DO NOT** re-run the cell - this will clear all your input. Instead, the next cell is the one which needs to be run to parse the information.
 
-Review the output and check for typos. 
+Review the output and check for typos.
 
 The next cell will show the changes that will be made to the project data. You can copy this output and paste it into the relevant Gitlab Issue for tracking.
 
@@ -357,32 +358,32 @@ The output should look like this to confirm success:
 
 
 > # Quality Control - Create Plone Users and Access
-> 
+>
 > If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
-> 
+>
 > ### Imports cell
-> 
-> This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time. 
-> 
-> You will have to edit one section: `engine = get_engine()` 
+>
+> This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
+>
+> You will have to edit one section: `engine = get_engine()`
 > - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 > - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-> - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`. 
-> 
+> - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
+>
 > ### Plone Login
-> 
+>
 > The first cell is another import step.
-> 
-> The second cell requires input: 
-> 
+>
+> The second cell requires input:
+>
 > - Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
-> - In order to do this, click on the `Jupyter` icon in the top left corner of the page. 
-> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. 
+> - In order to do this, click on the `Jupyter` icon in the top left corner of the page.
+> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password.
 > - Ensure that "verify" is set to false.
 > - You can now successfully log into Plone.
-> 
+>
 > Now, when you run the cell, you should get following output:
-> 
+>
 > ```markdown
 > Auth Loaded:
 > ------------------------------------------------------------------------------
@@ -390,111 +391,111 @@ The output should look like this to confirm success:
 > user_name: cbate
 > verify ssl: False
 > ```
-> 
+>
 > Finally, the third cell in this section will allow you to login. You should see this message:
-> 
+>
 > ```markdown
 > Login Successful!
 > ```
-> 
+>
 > ### Access Project Info
-> 
+>
 > Some information is needed in order to create the project Plone folders.
-> 
+>
 > There are three ways to enter this information:
-> 
+>
 > 1. Access Project Information from Database
 > 1. Manual Project Information Form - Parse Contacts
 > 1. Manual Project Information Form - Insert Contacts into Textfields
-> 
+>
 > The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
-> 
-> 
+>
+>
 > ### Create Missing Users
-> 
+>
 > This section will use the registered project contacts and compare against existing Plone users. It will compare by 1) email, 2) fullname, 3) lastname.
-> 
+>
 > If a user is found: you will **not** need to create a new account for them.
-> 
+>
 > If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
-> 
+>
 > The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
-> 
+>
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
-> 
+>
 >
 > #### Task list checkpoint
-> 
+>
 > In Gitlab, this task can be completed at this stage:
-> 
+>
 > `- [ ] - NAME create new project repository users ("Create Plone Folders and Add Users" notebook)`
-> 
+>
 > ### Create Project Repository
-> 
+>
 > To create the project folder you must first enter the relevant Node:
 > - otnunit: `node = None`
 > - other Nodes:`node = "node"` - lowercase with quotation marks.
-> 
+>
 > Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
-> 
+>
 > The expected format:
-> 
+>
 > `https://members.oceantrack.org/data/repository/node_name/collectioncode`
-> 
+>
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
-> 
+>
 > ```markdown
 > Creating collection folder 'collectioncode'. Done!
 > https://members.oceantrack.org/data/repository/node_name/collectioncode
 > ```
-> 
+>
 >
 > #### Task list checkpoint
-> 
+>
 > In Gitlab, this task can be completed at this stage:
-> 
+>
 > `- [ ] - NAME create project repository folder ("Create Plone Folders and Add Users" notebook)`
-> 
+>
 > ### Add Users to Repository
-> 
+>
 > Now that the users AND folder have been created, the users must be given access to the new folder.
-> 
+>
 > Using the final cell in the `Plone repository folder creation` section, you will be provided with an editable search-bar.
-> 
-> Type in the Plone username of each contact (new and existing). Search results will appear: 
+>
+> Type in the Plone username of each contact (new and existing). Search results will appear:
 > 1. select the User who you would like to add
 > 1. choose their permissions
 > 1. click "Change repo permissions" to add them to the folder.
-> 
+>
 > Review for the following success message:
 >
 > ```markdown
 > Changed https://members.oceantrack.org/data/repository/node_name/collectioncode sharing for username:
 > 	Contributor=True Reviewer=True Editor=True Reader=True
 > ```
-> 
+>
 > Then you may choose `Add another user` and begin again.
-> 
+>
 > The acceptable folder permissions may vary depending on the project role of the contact. Here are some guidelines:
 > - Principal Investigator: all permissions
 > - Researcher: all permissions except `Reviewer`
 > - Student: all permissions except `Reviewer`
 > - Technician: only `Contributor` and `Reader`
 > - Collaborator: only `Contributor` and `Reader`
-> 
+>
 > This is very fluid and can be edited at any time. These are guidelines only!
-> 
+>
 >
 > #### Task list checkpoint
-> 
+>
 > In Gitlab, this task can be completed at this stage:
-> 
+>
 > `- [ ] - NAME add project repository users to folder ("Create Plone Folders and Add Users" notebook)`
-> 
+>
 > ### OPTIONAL: Add Project Loan Information
-> 
+>
 > The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
-> 
+>
 
 # Final Steps
 
