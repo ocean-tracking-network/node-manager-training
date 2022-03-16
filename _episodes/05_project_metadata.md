@@ -45,7 +45,7 @@ Project Metadata
 
 **project metadata txt file**
 ~~~
-{: .language-example}
+{: .language-plaintext .example}
 
 ### Visual Inspection
 
@@ -63,7 +63,7 @@ In general, most commonly formatting errors occur in the `Contacts` section. Pay
 
 Below is an example of a properly completed metadata form, for your reference.
 
-```markdown
+~~~
 ===FORM START===
 0. Intended/preferred project code, if known? (May be altered by OTNDC)
 format: XXXX (3-6 uppercase letters that do not already have a representation in the OTN DB. Will be assigned if left blank)
@@ -125,7 +125,8 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 
 
 ===FORM END===
-```
+~~~
+{: .language-example}
 
 # Quality Control - Create and Update Projects
 
@@ -222,11 +223,12 @@ Based on the abstract, you can use the `Square Draw Tool` to re-draw the boundin
 
 Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
 
-```markdown
+~~~
 --- Midpoint ---
 Latitude:
 Longitude:
-```
+~~~
+{: .lanaguage-example}
 
 
 ### Create New Institution
@@ -275,9 +277,10 @@ First, you should run this cell with `printSQL = True`. If there are no errors, 
 
 There should be output similar to this:
 
-```markdown
+~~~
 Valid contact:  Fred Whoriskey OTN principalInvestigator fwhoriskey@dal.ca
-```
+~~~
+{: .language-example}
 
 
 #### Task list checkpoint
@@ -352,15 +355,16 @@ The final cell will make the desired changes in the database. Ensure `printSQL =
 
 The output should look like this to confirm success:
 
-```markdown
+~~~
 'Resource record for HFX has been updated.'
-```
+~~~
+{: .language-example}
 
 **The following, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
 
 > ### Quality Control - Create Plone Users and Access
-> 
+>
 > If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
 >
 > ### Imports cell
@@ -420,9 +424,9 @@ The output should look like this to confirm success:
 > If a user is found: you will **not** need to create a new account for them.
 >
 > If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
-> 
+>
 > The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. An email will be sent to the new user, prompting them to set a password. Then you can repeat by selecting the next contact, etc.
-> 
+>
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
 >
 >
@@ -437,7 +441,7 @@ The output should look like this to confirm success:
 > To create the project folder you must first enter the relevant Node:
 > - otnunit: `node = None`
 > - other Nodes:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
-> 
+>
 > Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
 >
 > The expected format:
