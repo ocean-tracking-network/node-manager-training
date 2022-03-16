@@ -93,13 +93,13 @@ At this time we will take a moment to practice making GitLab Issues, and explore
 
 As part of the OTN workflow, once we have used the OTN Nodebooks, it may be prudent to use a database client like DBeaver to view the contents of your database Node directly, and be sure the data was indeed loaded as expected. 
 
-DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for quick query-writing, and data exploration.
+DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for quick query-writing, and data exploration. We will assume that workshop attendees are novices in using this application.
 
 ### Connecting to your database
 
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
 
-- Host: this will be something like `matos.asascience.com` for your DB, but is likely just an IP address for our Node Training DB.
+- Host: this will be something like `matos.asascience.com` for your DB, but we will use an IP address for our Node Training DB.
 - Database: this will be your database name, something like `ucd_db`. For training, it will be `node_training`.
 - Port: this is specified in your `.auth` file and will be four digits.
 - Username/Password: your personal username and password, as found on your `.auth` file.
@@ -124,12 +124,12 @@ Let's take a moment to explore some of the tables in the Node Training database,
 
 # Connecting to your Database from the Nodebooks
 
-Now that we have explored and set up some of the tools needed to work as a Node Manager, we can begin prepare our Nodebook connection files. To enhance security, OTN has begun using password-protected `.kdbx` files to store login credentials for your database. To create these, we have developed an interactive `AUTH - Create and Update` Nodebook.
+Now that we have explored and set up some of the tools needed to work as a Node Manager, we can begin prepare our Nodebook connection files. To enhance security, OTN uses encrypted, password-protected `.kdbx` files to store login credentials for your database. To create these, we have developed an interactive `AUTH - Create and Update` Nodebook.
 
 1. Open the OTN Nodebooks
 	* **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
 	* **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
-2. Your Nodebook's should open in a new browser window, showing the `Home` page.
+2. Your Nodebooks should open in a new browser window, showing the `Home` page.
 3. Open the `AUTH - Create and Update` notebook
 
 ### Imports cell
@@ -162,7 +162,7 @@ This section will have an editable form. If it is a new file, all fields will be
 
 ### Create or Update DBLink Connections
 
-In order to match detections across databases, you will need to establish `DBLink` connections to other OTN Nodes. This information can be stored in your `.kdbx` file, and will only give you access to information required to match detections and create detection extracts.
+In order to match detections across databases, you will need to establish `DBLink` connections to other OTN Nodes. This information can be stored in your `.kdbx` file, and will give you limited access to information required to match detections and create detection extracts.
 
 This section will have an editable form. If it is a new file, all fields will be blank, and you can choose `Add Connection`. If it is an existing file, the previously-entered information will display, for each DBLink Connection you've specified. You may now edit the information, pressing the update or save button when you are finished to save your results.
 

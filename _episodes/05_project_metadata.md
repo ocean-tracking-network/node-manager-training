@@ -310,7 +310,9 @@ In Gitlab, this task can be completed at this stage:
 
 >### OPTIONAL: Add Project Loan Information
 >
->The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, >because it requires a login-file for the `otnunit` database.
+
+>The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+
 
 ### Skip to Verification
 
