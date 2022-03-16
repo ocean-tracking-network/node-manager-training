@@ -308,9 +308,9 @@ In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME add scientificnames ("Creating and Updating project metadata" notebook)`
 
-### OPTIONAL: Add Project Loan Information
-
-The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+>### OPTIONAL: Add Project Loan Information
+>
+>The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, >because it requires a login-file for the `otnunit` database.
 
 ### Skip to Verification
 
@@ -356,7 +356,7 @@ The output should look like this to confirm success:
 **The following, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
 
-> # Quality Control - Create Plone Users and Access
+> ### Quality Control - Create Plone Users and Access
 > 
 > If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
 > 
