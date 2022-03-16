@@ -143,8 +143,8 @@ You will have to edit one section: `engine = get_engine()`
 
 This cell is where you input the information contained in the Project Metadata `.txt` file. There are two ways to do this:
 
-1. You can paste in the filepath to the saved `.txt`. You should ensure the formatting is correct before doing so.
-1. You can paste the entire contents of the file, from `===FORM START=== to ===FORM END===` inclusive, into the provided quotation marks.
+1. You can paste in the filepath to the saved `.txt`. You should ensure the formatting follows this example: `project_template_path = '/path/to/project_metadata.txt'`
+1. You can paste the entire contents of the file, from `===FORM START=== to ===FORM END===` inclusive, into the provided triple quotation marks.
 
 Once either option is selected, you can run the cell to complete the quality control checks.
 
@@ -174,8 +174,8 @@ You will run this cell, and a fillable form will appear.
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
-1. State: based upon the abstract. Multiple countries can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
-1. Local Area: based upon the abstract. Finer-scale of location. ex: `Halifax`
+1. State: based upon the abstract. Multiple states can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
+1. Local Area: based upon the abstract. Location information. ex: `Halifax`
 1. Locality: based upon the abstract. Finest-scale of location. ex: `Shubenacadie River`
 1. Status: is the project completed, ongoing or something else?
 
@@ -213,13 +213,20 @@ If this information is satisfactory, you can proceed.
 
 The cell titled `Verify the new project details before writing to the DB` is the final step for verification before the values are written to the database. At this stage a map will appear, with the proposed Bounding Box for the project.
 
-Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
+Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. 
+
+
+![Proj 1](../fig/proj_meta_bounds.JPG)
+
+
+Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
 
 ```markdown
 --- Midpoint ---
 Latitude:
 Longitude: 
 ```
+
 
 ### Create New Institution
 
@@ -303,7 +310,9 @@ In Gitlab, this task can be completed at this stage:
 
 >### OPTIONAL: Add Project Loan Information
 >
+
 >The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+
 
 ### Skip to Verification
 
@@ -326,7 +335,7 @@ There are more features in the `Create and Update Projects` notebook than those 
 
 This section is to be used when you have a project which is either `Tracker` or `Deployment` and is expanding to become a `Data` project. Ex: a project which was only tagging has begun deploying receivers.
 
-You can use this notebook to create the missing tables for the schema. Ex: the above example would need `stations`, `rcvr_locations`, and `moorings` tables created.
+You can use this notebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
 
 #### Schema updating 
 
@@ -349,7 +358,7 @@ The output should look like this to confirm success:
 **The following, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
 
-> # Quality Control - Create Plone Users and Access
+> ### Quality Control - Create Plone Users and Access
 > 
 > If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
 > 
@@ -411,7 +420,7 @@ The output should look like this to confirm success:
 > 
 > If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
 > 
-> The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
+> The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. An email will be sent to the new user, prompting them to set a password. Then you can repeat by selecting the next contact, etc.
 > 
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
 > 
@@ -426,7 +435,7 @@ The output should look like this to confirm success:
 > 
 > To create the project folder you must first enter the relevant Node:
 > - otnunit: `node = None`
-> - other Nodes:`node = "node"` - lowercase with quotation marks.
+> - other Nodes:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
 > 
 > Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
 > 

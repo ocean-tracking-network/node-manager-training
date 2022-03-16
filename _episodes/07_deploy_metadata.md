@@ -158,6 +158,8 @@ Using the map, please confirm the following:
 
 If there is information which is not passing quality control, you should fix the source-file (potentially after speaking to the researcher) and try again.
 
+![Deploy 1](../fig/deploy1_summary.JPG)
+
 ### Loading the Raw Table
 
 **ONLY** once the source file has successfully passed ALL quality control checks can you load the raw table to the database.

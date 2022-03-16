@@ -19,9 +19,9 @@ keypoints:
 
 Data Managers receive data from a researcher and then begin a several-step process of QA/QC and matching of data.
 
-1) Records are received, and immediately a GitLab Issue is created.
-2) Data are QA/QC'd using the OTN Nodebook tools (covered in detail later in the curriculum), and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
-3) The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
+1. Records are received, and immediately a GitLab Issue is created.
+1. Data are QA/QC'd using the OTN Nodebook tools (covered in detail later in the curriculum), and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
+1. The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
 
 
 ## Researcher data submission

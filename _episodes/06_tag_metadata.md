@@ -127,6 +127,8 @@ The notebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
+![Tag 1](../fig/tag1_summary.JPG)
+
 ### Connection to Database
 
 You will have to edit **two** sections: 
@@ -158,6 +160,8 @@ If it appears the tag release locations have incorrect signs, you can fix it in 
 If it appears there are tag release locations which are on land, you may want to reach out to the researcher for corrected coordinates.
 
 If the bounding box needs to be expanded to include the tags, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all tags are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
+
+![Tag 1 - bounds](../fig/tag1_bounds.JPG)
 
 ### Verification of File Contents - against database
 
