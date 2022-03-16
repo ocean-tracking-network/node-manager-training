@@ -175,8 +175,8 @@ You will run this cell, and a fillable form will appear.
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
-1. State: based upon the abstract. Multiple countries can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
-1. Local Area: based upon the abstract. Finer-scale of location. ex: `Halifax`
+1. State: based upon the abstract. Multiple states can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
+1. Local Area: based upon the abstract. Location information. ex: `Halifax`
 1. Locality: based upon the abstract. Finest-scale of location. ex: `Shubenacadie River`
 1. Status: is the project completed, ongoing or something else?
 
@@ -334,7 +334,7 @@ There are more features in the `Create and Update Projects` notebook than those 
 
 This section is to be used when you have a project which is either `Tracker` or `Deployment` and is expanding to become a `Data` project. Ex: a project which was only tagging has begun deploying receivers.
 
-You can use this notebook to create the missing tables for the schema. Ex: the above example would need `stations`, `rcvr_locations`, and `moorings` tables created.
+You can use this notebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
 
 #### Schema updating
 
@@ -418,9 +418,9 @@ The output should look like this to confirm success:
 > If a user is found: you will **not** need to create a new account for them.
 >
 > If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
->
-> The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. Then you can repeat by selecting the next contact, etc.
->
+> 
+> The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. An email will be sent to the new user, prompting them to set a password. Then you can repeat by selecting the next contact, etc.
+> 
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
 >
 >
@@ -434,8 +434,8 @@ The output should look like this to confirm success:
 >
 > To create the project folder you must first enter the relevant Node:
 > - otnunit: `node = None`
-> - other Nodes:`node = "node"` - lowercase with quotation marks.
->
+> - other Nodes:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
+> 
 > Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
 >
 > The expected format:
