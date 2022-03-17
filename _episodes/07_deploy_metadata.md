@@ -239,7 +239,9 @@ If new stations are identified:
 The success message will look like:
 
 ~~~
-TODO ---- whats the success message?
+Adding station records to the stations table.
+Creating new stations...
+Added XXX new stations to schema.moorings
 ~~~
 {: .language-plaintext .example}
 
@@ -294,7 +296,8 @@ If deployment updates are identified:
 Each instance will give a success message such as:
 
 ~~~
-XX deployments load to rcvr_locations
+Loading deployments into the rcvr_locations_table
+Loaded XX records into the schema.rcvr_locations table.
 ~~~
 {: .language-plaintext .example}
 
