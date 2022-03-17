@@ -34,6 +34,12 @@ There is a smaller version of `Anaconda` with fewer, more essential packages whi
 # Nodebooks - iPython Utilities 
 The `ipython-utilities` project contains the collection of Nodebooks used to load data into the OTN data system.
 
+** Create an Account**
+
+First, you will need a GitLab account. Please fill out this signup form for an account on GitLab https://gitlab.oceantrack.org/users/sign_up.
+
+Then, OTN staff will give you access to the relevant Projects containing the code we will use.
+
 **Install iPython Utilities** 
 
 1. Determine the folder in which you wish to keep the iPython Utilities Nodebooks.
@@ -90,7 +96,7 @@ In order to work efficiently as a Node Manager, the following programs are neces
 
 # Node Training Datasets
 
-We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: ***TODO***
+We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: https://members.oceantrack.org/data/repository/fntp/nmt-files/
 
 
 Please find the folder with your name and download. Save these somewhere on your computer, and **UNZIP** all files.
