@@ -227,7 +227,9 @@ If new stations are identified:
 The success message will look like:
 
 ```markdown
-TODO ---- whats the success message?
+Adding station records to the stations table.
+Creating new stations...
+Added XXX new stations to schema.moorings
 ```
 
 If the `stations` and `moorings` tables are not in-sync, the difference between the two will need to be compared and possibly updated.
@@ -280,7 +282,8 @@ If deployment updates are identified:
 Each instance will give a success message such as:
 
 ```markdown
-XX deployments load to rcvr_locations
+Loading deployments into the rcvr_locations_table
+Loaded XXX records into the schema.rcvr_locations table
 ```
 
 
