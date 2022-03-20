@@ -99,9 +99,9 @@ DBeaver is an open-source application for interacting directly with databases. T
 
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
 
-- Host: this will be something like `matos.asascience.com` for your DB, but we will use an IP address for our Node Training DB.
+- Host: this will be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
 - Database: this will be your database name, something like `ucd_db`. For training, it will be `node_training`.
-- Port: this is specified in your `.auth` file and will be four digits.
+- Port: this is specified in your `.auth` file and will be four digits. For training, this port will be set to `5432`.
 - Username/Password: your personal username and password, as found on your `.auth` file.
 
 Next you choose `Test Connection` and see if it passes the tests. If so, you can choose `Finish` and you're now connected to your database!
@@ -156,8 +156,8 @@ You will be prompted to create a password for the file (if it is a new file) or 
 This section will have an editable form. If it is a new file, all fields will be blank. If it is an existing file, the previously-entered information will display. You may now edit the information, pressing the blue button when you are finished to save your results.
 
 - Conn Name: this is customizable - what is the name of this connection?
-- Host: this will be something like `matos.asascience.com` for your DB, but is likely just an IP address for our Node Training DB.
-- Port: this is specified in your `.auth` file and will be four digits.
+- Host: this will be something like `matos.asascience.com` for your DB, but is likely just an IP address for our Node Training DB `129.173.48.161`
+- Port: this is specified in your `.auth` file and will be four digits. Use `5432`
 - DB Name: this will be your database name, something like `ucd_db`. For training, it will be `node_training`.
 - User/Password: your personal username and password, as found on your `.auth` file.
 
