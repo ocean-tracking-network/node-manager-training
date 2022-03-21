@@ -16,7 +16,7 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 There is a smaller version of `Anaconda` with fewer, more essential packages which we recommend installing to save computer memory, called `miniconda`.
 
- **Install Miniconda** - https://docs.conda.io/en/latest/miniconda.html
+ **Install Miniconda** - [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
   - Select the option to `add to PATH environment variable` (during install steps)!
 
 
@@ -26,9 +26,9 @@ There is a smaller version of `Anaconda` with fewer, more essential packages whi
 
 **Install Git** 
 
-- **Windows**- https://git-scm.com/download/win
+- **Windows**- [https://git-scm.com/download/win](https://git-scm.com/download/win)
 
-- **Mac**- https://git-scm.com/download
+- **Mac**- [https://git-scm.com/download](https://git-scm.com/download)
 
 
 # Nodebooks - iPython Utilities 
@@ -36,7 +36,7 @@ The `ipython-utilities` project contains the collection of Nodebooks used to loa
 
 **Create an Account**
 
-First, you will need a GitLab account. Please fill out this signup form for an account on GitLab https://gitlab.oceantrack.org/users/sign_up.
+First, you will need a GitLab account. Please fill out this [signup form for an account on GitLab](https://gitlab.oceantrack.org/users/sign_up).
 
 Then, OTN staff will give you access to the relevant Projects containing the code we will use.
 
@@ -58,7 +58,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
 - **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
-More operating system-specific instructions and troubleshooting tips can be found at: https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities
+More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
 
 ![OTN Nodebooks - home page](/fig/home_page.JPG)
 
@@ -66,8 +66,8 @@ More operating system-specific instructions and troubleshooting tips can be foun
 
 There are database administration applications to assist with interacting directly with your database. There are many options available but `DBeaver` and `DataGrip` are the most popular options at OTN. 
 
-* https://dbeaver.io/ (free and open access - **recommended**)
-* https://www.jetbrains.com/datagrip (free institutional/student access options - another option)
+* [https://dbeaver.io/](https://dbeaver.io/) (free and open access - **recommended**)
+* [https://www.jetbrains.com/datagrip](https://www.jetbrains.com/datagrip) (free institutional/student access options - another option)
 
 In the next lesson we will practice using our database console viewer and connecting to our `node_training` database.
 
@@ -78,25 +78,25 @@ In order to work efficiently as a Node Manager, the following programs are neces
 ## For WINDOWS users
 
 **Path Copy Copy** - For copying path links from your file browser.
-* https://pathcopycopy.github.io/
+* [https://pathcopycopy.github.io/](https://pathcopycopy.github.io/)
 
 **Notepad ++** - For reading and editing code, csv files etc. without altering the formatting.
-* https://notepad-plus-plus.org/downloads/
+* [https://notepad-plus-plus.org/downloads/](https://notepad-plus-plus.org/downloads/)
 
 **Tortoise Git** - For managing git, avoiding command line.
-* https://tortoisegit.org/download/
+* [https://tortoisegit.org/download/](https://tortoisegit.org/download/)
 
 ## For MAC users
 
 **VS Code** - For reading and editing code, csv files etc. without altering the formatting.
-* https://code.visualstudio.com/
+* [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 **Source Tree** - For managing git, avoiding command line.
-* https://www.sourcetreeapp.com
+* [https://www.sourcetreeapp.com](https://www.sourcetreeapp.com)
 
 # Node Training Datasets
 
-We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: https://members.oceantrack.org/data/repository/fntp/nmt-files/
+We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: [https://members.oceantrack.org/data/repository/fntp/nmt-files/](https://members.oceantrack.org/data/repository/fntp/nmt-files/)
 
 
 Please find the folder with your name and download. Save these somewhere on your computer, and **UNZIP** all files.
