@@ -69,8 +69,6 @@ There are database administration applications to assist with interacting direct
 * [https://dbeaver.io/](https://dbeaver.io/) (free and open access - **recommended**)
 * [https://www.jetbrains.com/datagrip](https://www.jetbrains.com/datagrip) (free institutional/student access options - another option)
 
-In the next lesson we will practice using our database console viewer and connecting to our `node_training` database.
-
 # More Useful Programs
 
 In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
