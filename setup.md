@@ -34,7 +34,7 @@ There is a smaller version of `Anaconda` with fewer, more essential packages whi
 # Nodebooks - iPython Utilities 
 The `ipython-utilities` project contains the collection of Nodebooks used to load data into the OTN data system.
 
-** Create an Account**
+**Create an Account**
 
 First, you will need a GitLab account. Please fill out this signup form for an account on GitLab https://gitlab.oceantrack.org/users/sign_up.
 
