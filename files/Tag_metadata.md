@@ -1,0 +1,14 @@
+Tag Meta Data
+- [ ] - NAME add label *'loading records'*
+- [ ] - NAME load raw tag metadata (`tag-1` notebook) **:fish: put_table_name_in_ticket**
+- [ ] - NAME confirm no duplicates in raw table, review and remove (`tag-1b` notebook)
+- [ ] - NAME verify raw table (`tag-2` notebook)
+- [ ] - NAME post updated metadata to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
+- [ ] - NAME build cache tables (`tag-2` notebook)
+- [ ] - NAME verify cache tables (`tag-2` notebook)
+- [ ] - NAME load otn tables (`tag-2` notebook)
+- [ ] - NAME verify otn tables (`tag-2` notebook)
+- [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
+- [ ] - NAME label issue with *'Verify'*
+- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME check for double reporting (verification_scripts/`tag_3_otn_verification`.sql)

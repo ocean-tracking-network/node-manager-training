@@ -1,0 +1,17 @@
+Wave Gliders/Telemetry Task List
+- [ ] - NAME add label *'loading records'*
+- [ ] - NAME load raw telemetry file (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load raw detection (`Telemetry Processing for Wave Gliders and Animals` notebook) **(:fish: put raw_det table and raw_events table names here)**
+- [ ] - NAME upload raw files to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
+- [ ] - NAME load to detections_yyyy_wg_m## (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME delete self detections (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load to formatted telemetry table (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load glider_mission##_telemetry_wg_yyyy table (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load glider_as_receiver table (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load into vw_detections_m##_yyyy_wg (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load to otn_detections_yyyy (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME load to moorings (`Telemetry Processing for Wave Gliders and Animals` notebook)
+- [ ] - NAME label issue with *'Verify'*
+- [ ] - NAME pass issue to analyst for final steps
+- [ ] - NAME match tags to animals (`detections - 4 ` notebook)
+- [ ] - NAME update detection extract list table (`detections - 4` notebook)

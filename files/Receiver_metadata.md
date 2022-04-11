@@ -1,0 +1,17 @@
+Receiver Metadata
+- [ ] - NAME add label *'loading records'*
+- [ ] - NAME load raw receiver metadata (`deploy` notebook) **:fish: put_table_name_in_ticket**
+- [ ] - NAME [OTN only] check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating, tag OTN daq personnel
+- [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
+- [ ] - NAME verify raw table (`deploy` notebook)
+- [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc)
+- [ ] - NAME load station records (`deploy` notebook)
+- [ ] - NAME verify stations (`deploy` notebook)
+- [ ] - NAME load to rcvr_locations (`deploy` notebook)
+- [ ] - NAME verify rcvr_locations (`deploy` notebook)
+- [ ] - NAME add transmitter records receivers with integral pingers (`deploy` notebook)
+- [ ] - NAME load to moorings (`deploy` notebook)
+- [ ] - NAME verify moorings (`deploy` notebook)
+- [ ] - NAME label issue with *'Verify'*
+- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME check for double reporting (`deploy-4 verification script`)

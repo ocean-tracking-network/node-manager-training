@@ -1,0 +1,9 @@
+- [ ] Signed authorization form is obtained from researcher
+- [ ] Send auth form to vendor
+- [ ] Auth is posted to project folder **add folder link here**
+- [ ] Find contacts (`Create Contacts Authorization` notebook)
+- [ ] Auth form entry added to contact_auths table for each contact (`Create Contacts Authorization` notebook - include plone link in Repo Link field)
+-------
+- [ ] Specs received from vendor, posted to project folder **add folder link here**
+- [ ] Specs loaded to database (`insert_vendor_sheet_nepunit_otnunit` notebook)
+- [ ] Look for relevant open tickets for missing specificatons **gitlab issue link here**, comment in them that 'specs are now available'
