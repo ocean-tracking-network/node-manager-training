@@ -79,4 +79,4 @@ there will be error about connection time out with BRZ node.
   1. Copy all warnings and errors (excluding the above known issues) to the comments of the Gitlab ticket.
   2. Message or assign the ticket to the data team for support. 
 
-- If no issues found check off two checkboxes Gitlab ticket. Close or assign the ticket to DAQ team as in the ticket's checklist. 
+- If no issues found check-off two checkboxes Gitlab ticket. Close or assign the ticket to DAQ team as in the ticket's checklist. 
