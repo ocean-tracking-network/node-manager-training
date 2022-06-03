@@ -13,7 +13,7 @@ keypoints:
 ---
 
 After a new project is created the Gitlab ticket will be assigned to a **different** person for verification.
-There are two steps (as shown below) in the ticket to be completed.
+Below is an example of the last steps in the ticket to be completed.
 ~~~
 Project Metadata
 
@@ -46,7 +46,7 @@ folder in ipython-utilities project.
 
 #### Imports cell
 This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
-
+zz
 #### Enter engine connection cell
 You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.

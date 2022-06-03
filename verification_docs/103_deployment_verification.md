@@ -1,36 +1,35 @@
 ---
-title: "Tag Verification"
+title: "Deployment Verification"
 teaching: 15
 exercises: 0
 questions:
-- "How to verify tag metadata in the Database?"
+- "How to verify deployment metadata in the Database?"
 objectives:
-- "Understand the Tag Verification workflow"
-- "Learn how to use the `verification_notebooks\Tag Verification` notebook"
+- "Understand the Deployment Verification workflow"
+- "Learn how to use the `verification_notebooks\Deployment Verification` notebook"
 - "Learn some known issues and troubleshooting tips "
 keypoints:
-- "Review the Gitlab ticket and run the Tag Verification notebook"
+- "Review the Gitlab ticket and run the Deployment Verification notebook"
 ---
 
-After tag metadata is loaded the Gitlab ticket will be assigned to a **different** person for verification.
+After deployment metadata is loaded the Gitlab ticket will be assigned to a **different** person for verification.
 Below is an example of the last step in the ticket to be completed.
-- Note: `verification_notebooks\Tag Verification` notebook automates verification_scripts/`tag_3_otn_verification`.sql 
+- Note: `verification_notebooks\Deployment Verification` notebook automates verification_scripts/`deploy-4 verification script` 
 which is still available in case of programing error or notebook/browser becomes unresponsive. 
-
 
 ~~~
 Tag Metadata
 
 ...
-- [ ] - NAME check for double reporting (verification_scripts/`tag_3_otn_verification`.sql)
+- [ ] - NAME check for double reporting (`deploy-4 verification script`)
 
 **tag metadata txt file**
 ~~~
 {: .language-plaintext .example}
 
 
-# The Tag Verification Workflow 
-When a tag verification ticket is assigned to you follow below steps to complete the tasks.  
+# The Deployment Verification Workflow 
+When a Deployment (often with Detections) verification ticket is assigned to you follow below steps to complete the tasks.  
 
 ### Assess the Ticket
 
@@ -58,12 +57,12 @@ You will have to edit one section: `engine = get_engine()`
 #### Specify schema cell
 - Replace the placeholder string: `'schema'` with the lowercase project code (can be found in the title or project metadata form).
 
-#### Re-run otn_animals and otn_transmitters verification from IPython cell
-- This cell runs the same checks as in `Tag-1`, `Tag-1b` and `Tag-2` notebooks.
+#### Re-run moorings verification from IPython cell
+- This cell runs the same checks as in the `deploy` notebook.
 - Review any unfolded warning or error messages.
 
 #### Run double reporting checks cell
-- This step ensures no duplicates of the tag metadata (in terms of serial number, location and date time) within and across all OTN and partner nodes.
+- This step ensures no duplicates of the receiver metadata (in terms of serial number, location and date time) within and across all OTN and partner nodes.
 - The know issue for this and all other cross-node checks is: Brazil node is offline thus 
 there will be error about connection time out with BRZ node.   
 
@@ -71,10 +70,11 @@ there will be error about connection time out with BRZ node.
 - Copy all warnings and errors (excluding the above known issues) to the comments of the Gitlab ticket.
 - Try to resolve/fix issues as listed below:
 
-| Issue                                         | Cause / Explaination                                          | Solution/Fix                                               |
-|-----------------------------------------------|---------------------------------------------------------------|------------------------------------------------------------|
-| Missing vendor spec for tags and transmitters | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
-| Missing vendor.c_thelma_tags table            | The table is created as needed | Manually create the table in target node                   |
+| Issue                                            | Cause / Explaination                                          | Solution/Fix                                        |
+|--------------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------|
+| Missing vendor specs for the following receivers | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
+| Missing tag vendor specs for the following TRANSMITTERs |The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
+
 
 - For other issues message or assign the ticket to the data team for support. 
 
