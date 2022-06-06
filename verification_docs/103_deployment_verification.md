@@ -18,12 +18,11 @@ Below is an example of the last step in the ticket to be completed.
 which is still available in case of programing error or notebook/browser becomes unresponsive. 
 
 ~~~
-Tag Metadata
+Receiver  Metadata
 
 ...
 - [ ] - NAME check for double reporting (`deploy-4 verification script`)
 
-**tag metadata txt file**
 ~~~
 {: .language-plaintext .example}
 
@@ -40,9 +39,9 @@ Things to check:
 1. Take note of the project code and the OTN or partner node.   
 
 
-### Run the Tag Verification Notebook
+### Run the Deployment Verification Notebook
 
-The `Tag Verification` notebook can be found under `verification_notebooks`
+The `Deployment Verification` notebook can be found under `verification_notebooks`
 folder in ipython-utilities project.
 
 #### Imports cell
