@@ -71,10 +71,11 @@ there will be error about connection time out with BRZ node.
 - Copy all warnings and errors (excluding the above known issues) to the comments of the Gitlab ticket.
 - Try to resolve/fix issues as listed below:
 
-| Issue                                         | Cause / Explaination                                            | Solution/Fix                                                                           |
-|-----------------------------------------------|-----------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| Missing vendor spec for tags and transmitters | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later                             |
-| Missing vendor.c_thelma_tags table            | The table is created as needed                                  | Manually create the table in target node                                               |
+| Issue                                         | Cause / Explaination                                            | Solution/Fix                                                                      |
+|-----------------------------------------------|-----------------------------------------------------------------|-----------------------------------------------------------------------------------|
+| Missing vendor spec for tags and transmitters | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later                        |
+| Missing vendor.c_thelma_tags table            | The table is created as needed                                  | Manually create the table in target node                                          |
+|different est_tag_life than what is reported in the vendor specification table| The tag may be reused thus est_tag_life is shorter | Confirm by checking the tag overylap/reuse output. No action required|
 | Overlapping tags with other project           | The tag maybe reused.                                           | Check the deployment time for both project. It's ok if no overlap in deploy time. |
 
 - For other issues message or assign the ticket to the data team for support. 
