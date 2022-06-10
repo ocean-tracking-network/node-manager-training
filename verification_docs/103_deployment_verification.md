@@ -69,10 +69,19 @@ there will be error about connection time out with BRZ node.
 - Copy all warnings and errors (excluding the above known issues) to the comments of the Gitlab ticket.
 - Try to resolve/fix issues as listed below:
 
-| Issue                                            | Cause / Explaination                                          | Solution/Fix                                        |
-|--------------------------------------------------|---------------------------------------------------------------|-----------------------------------------------------|
-| Missing vendor specs for the following receivers | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
-| Missing tag vendor specs for the following TRANSMITTERs |The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
+| Issue                                                   | Cause / Explaination                                            | Solution/Fix                                               |
+|---------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------|
+| Missing vendor specs for the following receivers        | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
+| Missing tag vendor specs for the following TRANSMITTERs | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
+| Receivers in moorings table have instrumenttype=NULL    | Not sure about cause. Often found in MATOS node                 | Apply fix_null_instrumenttype SQL                          |
+
+* fix_null_instrumenttype SQL
+~~~
+UPDATE <schema>.moorings
+SET instrumenttype = im."usage"
+FROM obis.instrument_models im
+WHERE basisofrecord = 'RECEIVER' and instrumenttype is null and instrumentmodel = im.model
+~~~
 
 
 - For other issues message or assign the ticket to the data team for support. 
