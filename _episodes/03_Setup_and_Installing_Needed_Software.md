@@ -62,7 +62,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
-1. To help manage all the python package requirements quickly we use a package called `mamba`. Install mamba by running the command: `conda install -c conda-forge mamba`
+1. To help manage all the python package requirements quickly we use a package called `mamba`. Install mamba by running the command: `conda install mamba -n base -c conda-forge`
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
 1. Now to install all required python packages by running the following: `mamba env update -n root -f environment.yml`
 
