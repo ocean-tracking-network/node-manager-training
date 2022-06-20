@@ -69,11 +69,12 @@ there will be error about connection time out with BRZ node.
 - Copy all warnings and errors (excluding the above known issues) to the comments of the Gitlab ticket.
 - Try to resolve/fix issues as listed below:
 
-| Issue                                                   | Cause / Explaination                                            | Solution/Fix                                               |
-|---------------------------------------------------------|-----------------------------------------------------------------|------------------------------------------------------------|
-| Missing vendor specs for the following receivers        | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
-| Missing tag vendor specs for the following TRANSMITTERs | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later |
-| Receivers in moorings table have instrumenttype=NULL    | Not sure about cause. Often found in MATOS node                 | Apply fix_null_instrumenttype SQL                          |
+| Issue                                                   | Cause / Explaination                                            | Solution/Fix                                                                                                                                             |
+|---------------------------------------------------------|-----------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Missing vendor specs for the following receivers        | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later                                                                                               |
+| Missing tag vendor specs for the following TRANSMITTERs | The product specification has not been loaded into OTN database | Remind DAQ team to require and load the missing spec later                                                                                               |
+| Receivers in moorings table have instrumenttype=NULL    | Not sure about cause. Often found in MATOS node                 | Apply fix_null_instrumenttype SQL                                                                                                                        |
+| Found overlapping TRANSCEIVERS                          | transceivers are generally in schema.moorings with basisofrecord = ‘TRANSMITTER’ and relationshiptype = ‘STATION’ (and inherited to obis.moorings)  | Consult the raw tables to see if the receivers had overlap or typo in the transmitters, ask DAQ then PI for clarification. Create a new issue if needed. |
 
 * fix_null_instrumenttype SQL
 ~~~
