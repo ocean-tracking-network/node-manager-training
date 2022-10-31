@@ -568,17 +568,10 @@ You will then see a cell to create missing views which creates the time drift `v
 
 Finally,  we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view.
 
-First, you will need to ensure you run this cell on **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
-
-The format will look like this:
-
-~~~
-year = 2021 # Year as int
-~~~
-{: .language-plaintext .example}
+The notebook should identify **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
 
-Once the timedirft calculation is done (indicated by ✔️**green checkmarks**) you then have to **re-run** the cell again, for each affected year.
+Once the timedirft calculation is done (indicated by ✔️**green checkmarks**).
 
 
 #### Task list checkpoint
@@ -676,10 +669,6 @@ You must select **all** years that were impacted by `detections_yyyy` or `sensor
 In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
-
-###  OPTIONAL: Syncing Corrected Times
-
-The next two cells are used **only** if you have loaded detections through to the `otn_detections_yyyy` tables **without** first running the `detections - 2b - timedrift` calculations. You will need to provide the date of the current push and the link of the issue you are loading. You will then be able to correct the times and if  a node's detection times are updated the node's `obis.detection_extract` list will also be updated.
 
 ### Verify OTN Detections
 

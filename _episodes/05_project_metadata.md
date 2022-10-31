@@ -274,12 +274,13 @@ At this stage, the next step is to add contact information for all identified co
 
 This cell will gather and print out all contacts and their information. Review for errors. If none exist, move to the next cell.
 
-First, you should run this cell with `printSQL = True`. If there are no errors, you can edit and change to `printSQL = False` and run again. This will add each contact to the database, into the `obis.contacts` and `obis.contacts_projects` tables.
+The next cell writes to the database: **STOP** - confirm there is no Push currently ongoing. This cell will add each contact to the database, into the `obis.contacts` and `obis.contacts_projects` tables, as needed.
 
 There should be output similar to this:
 
 ~~~
 Valid contact:  Fred Whoriskey OTN principalInvestigator fwhoriskey@dal.ca
+Created contact Fred Whoriskey
 ~~~
 {: .language-example}
 
@@ -383,10 +384,9 @@ The output should look like this to confirm success:
 >
 > The second cell requires input:
 >
-> - Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file.
+> - Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file. 
 > - In order to do this, click on the `Jupyter` icon in the top left corner of the page.
-> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password.
-> - Ensure that "verify" is set to false.
+> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. **Hint:** ensure the base_url in your json file ends in a slash, like `https://members.oceantrack.org/`!
 > - You can now successfully log into Plone.
 >
 > Now, when you run the cell, you should get following output:
@@ -443,7 +443,8 @@ The output should look like this to confirm success:
 >
 > To create the project folder you must first enter the relevant Node:
 > - otnunit: `node = None`
-> - other Nodes:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
+> - safnode, migramar, nepunit:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
+> - all other nodes (not hosted by OTN): `node = None`
 >
 > Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
 >
