@@ -37,11 +37,12 @@ Receiver Metadata
 - [ ] - NAME load to moorings (`deploy` notebook)
 - [ ] - NAME verify moorings (`deploy` notebook)
 - [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to OTN daq for reassignment to analyst
+- [ ] - NAME pass issue to OTN DAQ for reassignment to analyst
 - [ ] - NAME check if project is OTN loan, if yes, check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating.
 - [ ] - NAME pass issue to OTN analyst for final verification
-- [ ] - NAME check for double reporting (`deploy-4 verification script`)
+- [ ] - NAME check for double reporting (verification_notebooks/Deployment Verification notebook)
 
+**receiver deployment files/path:**
 ~~~
 {: .language-plaintext .example}
 
@@ -71,7 +72,7 @@ Things to visually check in the metadata:
 1. Are all recoveries from previous years recorded?
 1. Do comments suggest anything was lost or damaged, where recovery indicator doesn't say "lost" or "failed"?
 
-In general, most commonly formatting errors occur in records where there are >1 instrument deployed at a station, or if the receiver was deployed and recovered from the same site.
+In general, the most common formatting errors occur in records where there are >1 instrument deployed at a station, or if the receiver was deployed and recovered from the same site.
 
 The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these definitions often. We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
@@ -80,7 +81,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 - When sentinel tags are co-deployed with receivers, their information can be added to `TRANSMITTER` and `TRANSMIT_MODEL` columns, on the same line as the receiver deployment.
 - If a sentinel tag is deployed alone then a new line for that station, with as much information as possible, is added.
 - When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
-- Every time an instrument is brought to the surface, enter "y" to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
+- Every time an instrument is brought to the surface, enter `y` to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
 # Quality Control - Deploy Notebook
 
@@ -152,11 +153,11 @@ The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Compared to the `stations` table in the database, are the station names correct? Have stations "moved" location? Are the reported bottom_depths significantly different (check for possible `ft` vs `m` vs `ftm` errors).
 - Are all recovery dates after the deployment dates?
-- Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new instrument model.
-- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer Specifications we have in in the database?
+- Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new instrument model.
+- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer Specifications we have in the database?
 - Are there any overlapping deployments (one serial number deployed at multiple locations for a period of time)?
 - Are all the deployments within the Bounding Box of the project. If the bounding box needs to be expanded to include the stations, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all stations are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
-- Are there possible gaps in the metadata, based on previously-loaded `detections` files?
+- Are there possible gaps in the metadata, based on previously-loaded `detections` files? This will be investigated in the `Detections-3b` notebook if you need more details.
 
 The notebook will indicate the sheet has passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
 
@@ -206,7 +207,7 @@ This cell will now complete the Quality Control checks of the raw table. This is
 The output will have useful information:
 - Are there any duplicate records?
 - Is there missing information in the `ar_model_no` and `ar_serial_no` columns? If so, ensure that it makes sense for receivers to be deployed without Acoustic Releases in this location (ex: diver deployed).
-- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer Specifications we have in in the database?
+- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer Specifications we have in the database?
 - Are there any non-numeric serial numbers? Do these makes sense (ex: environmental sensors)?
 - Are the deployments within the bounding box?
 - Is the `recovered` column completed correctly, based on the `comments` and the `recovery_date` columns?
@@ -257,13 +258,14 @@ In GitLab, this task can be completed at this stage:
 
 ### Verify Stations Table
 
-This cell will now complete the Quality Control checks of the stations records contained in the entire schema. We are no longer only checking against our newly-loaded records, but also each previously-loaded record in this schema/project.
+This cell will now complete the Quality Control checks of the stations records contained in the entire schema. We are no longer only checking against our newly-loaded records, but also each previously-loaded record in this schema/project. This will help catch historical errors.
 
 The output will have useful information:
 
 - Were all the stations from our `raw` table promoted to the `stations` table, and the `moorings` table?
 - Are all stations in unique locations?
 - Are all stations within the project's bounding box?
+- Does the date in the `stations` table match the first deployment date for that station?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are any of the dates in the future?
 
@@ -279,7 +281,7 @@ In GitLab, this task can be completed at this stage:
 `- [ ] - verify stations("deploy" notebook)`
 
 ### Load to rcvr_locations
-Once the `station` table is verified, the receiver deployment records can now be promoted to the `intermediate` rcvr_locations table.
+Once the `station` table is verified, the receiver deployment records can now be promoted to the "intermediate" `rcvr_locations` table.
 
 The cell will identify any new deployments to add, and any previously-loaded deployments which need updating (ex: they have been recovered).
 
@@ -312,7 +314,7 @@ In GitLab, this task can be completed at this stage:
 
 ### Verify rcvr_locations
 
-This cell will now complete the Quality Control checks of the rcvr_locations records contained in the entire schema. We are no longer only checking our newly-loaded records, but also each previously-loaded record for this schema/project.
+This cell will now complete the Quality Control checks of the rcvr_locations records contained in the entire schema. We are no longer only checking our newly-loaded records, but also each previously-loaded record for this schema/project. This will help catch historical errors.
 
 The output will have useful information:
 - Have all deployments been loaded from the raw table? Please note that instruments where a sentinel tag is deployed alone at a station will not be loaded to rcvr_locations, and so these will likely be flagged in this section for your review.
@@ -358,7 +360,7 @@ The final, highest-level table for instrument deployments is `moorings`.
 
 The cell will identify any new deployments to add, and any previously-loaded deployments which need updating (ex: they have been recovered).
 
-Please review all new deployments and deployment update for accuracy, then press the associated buttons to make the changes. At this stage, the updates are not editable: any updated chosen from the `rcvr_locations` section will be processed here.
+Please review all new deployments and deployment update for accuracy, then press the associated buttons to make the changes. At this stage, the updates are not editable: any updates chosen from the `rcvr_locations` section will be processed here.
 
 You may be asked to select an `instrumenttype` for certain receivers. Use the drop-down menu to select before adding the deployment.
 

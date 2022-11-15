@@ -24,7 +24,7 @@ Here is the Issue checklist, for reference:
 
 ~~~
 Detections
-- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Batch Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
+- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Convert - Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
@@ -47,7 +47,7 @@ Detections
 - [ ] - NAME process receiver configuration (`events-4` notebook)
 - [ ] - NAME label issue with *'Verify'*
 - [ ] - NAME pass issue to OTN analyst for final steps
-- [ ] - NAME check for double reporting (`detections verification script`)
+- [ ] - NAME check for double reporting (verification_notebooks/Project Verification notebook)
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME do sensor tag processing (only done if vendor specifications are available)
 - [ ] - NAME update detection extract table
@@ -77,9 +77,9 @@ For Innovasea
     - Import all the `VRL` files
     - Select `export detections` and choose the location you want to save the files
     - Select `export events` and choose the location you want to save the files
-- Fathom App
+- Fathom Connect App
     - choose "export data"
-    - select the relevant files and import into the Fathom Desktop application
+    - select the relevant files and import into the Fathom Connect application
     - export all data types, and choose the location you want to save the files
 - `convert - Fathom (vdat) Export - VRL to CSV` Nodebook
     - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
@@ -97,11 +97,11 @@ Other manufacturers: contact OTN staff.
 
 # detections - 1 - load csv detections
 
-Detections 1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these tools combine the detections and events data in one CSV file.
+Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
 
 ### Import cells and Database Connections
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all notebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
@@ -123,7 +123,7 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
-1. `file_or_folder_path = r'C:/Users/path/to/detections_CSVs'`
+1. `file_or_folder_path = r'C:/Users/path/to/detections_CSVs/'`
     * paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
     * this can be a path to a single CSV file, or a folder of multiple CSVs.
 1. `table_suffix = 'YYYY_mm'`
@@ -180,7 +180,7 @@ In GitLab, these tasks can be completed at this stage:
 
 # events - 1 - load events into c_events_yyyy
 
-Events 1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook.
+Events-1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook.
 
 ### Import cell
 
@@ -463,10 +463,12 @@ Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated
 
 This cell will now complete the Quality Control checks of the `detections_yyyy` tables. This is to ensure the nodebook loaded the records correctly.
 
-First, you will need to list **all** of the years that were affected by the previous loading step, so the Notebook knows which tables need to be verified.
+First, you will need to list **all** of the years that were affected by the previous loading step, so the Nodebook knows which tables need to be verified.
 The format will look like this:
 
 `years = ['YYYY','YYYY','YYYY', 'YYYY']`
+
+If left blank, the Nodebook will check all the years, which may take a long time for some projects.
 
 Run this cell, then you can verify in the next cell.
 
@@ -511,13 +513,13 @@ Added XXX rows.
 In GitLab, these tasks can be completed at this stage:
 
 ~~~
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook)
 - [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
 ~~~
 {: .language-plaintext .example}
 
 
-Ensure you paste the affected tables (ex: 2019, 2020) into the section indicated, before you check the box. Then, comment these years into the Issue as well.
+Ensure you paste the affected tables (ex: 2019, 2020) into the Issue.
 
 # detections - 2b - timedrift calculations
 
@@ -566,13 +568,11 @@ You will then see a cell to create missing views which creates the time drift `v
 
 ### Correcting Time Drift
 
-Finally,  we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view.
+Finally, we are ready to update the times in both the `detections_yyyy` and `sensor_match_yyyy` tables with corrected time values using the vw_time_drift_cor database view.
 
 The notebook should identify **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
-
 Once the timedirft calculation is done (indicated by ✔️**green checkmarks**).
-
 
 #### Task list checkpoint
 
@@ -603,8 +603,6 @@ In GitLab, this task can be completed at this stage:
 # detections - 3 - detections_yyyy into otn_detections
 
 The `detections - 3` notebook moves the detections from `detections_yyyy` and `sensor_match_yyyy` tables into the final `otn_detections_yyyy` tables. This will join the detections records to their associated deployment records, providing geographic context to each detection. If there is no metadata for a specific detection (no receiver record to match with) it will not be promoted to `otn_detections_yyyy`.
-
-### Imports and user inputs
 
 ### Import cells and Database connections
 
@@ -749,7 +747,7 @@ This step will perform the check for missing metadata in `detections_yyyy` and d
 First: enter your threshold. Formatted like: `threshold = 100`. Then you may run the cell.
 
 The output will include useful information:
-- Which receiver is missing detections from `otn_detections_yyyy?
+- Which receiver is missing detections from `otn_detections_yyyy`?
 - How many are missing?
 - What type of detections are missing? Transceiver, animal tags, or test tags.
 - What are the date-ranges of these missing detections? These dates can be used to determine the period for which we are missing metadata.
@@ -875,7 +873,7 @@ First, you must select which types of records you'd like to export from this lis
 - missing some events (**recommended**)
 - missing ALL events (**recommended**)
 
-Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination.
+Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination. Please track this information in a new GitLab ticket.
 
 
 #### Task list checkpoint
@@ -946,7 +944,6 @@ Added XXX records to the moorings table
 {: .language-plaintext .example}
 
 
-
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
@@ -973,7 +970,7 @@ In GitLab, this task can be completed at this stage:
 
 # events-4 - process receiver configuration
 
-This notebook will process the receiver configurations (such as MAP code) from the events table and load them into the database's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
+This notebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
 
 ### Import cells and Database connections
 

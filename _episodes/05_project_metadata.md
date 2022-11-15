@@ -39,11 +39,11 @@ Project Metadata
 - [ ] - NAME label issue with *'Verify'*
 - [ ] - NAME pass issue to OTN analyst for final verification
 - [ ] - NAME verify project in database
-- [ ] - NAME pass issue to OTN daq staff
+- [ ] - NAME pass issue to OTN DAQ staff
 - [ ] - NAME [OTN only] if this is a loan, update links for PMO
 - [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
 
-**project metadata txt file**
+**project metadata txt file:**
 ~~~
 {: .language-plaintext .example}
 
@@ -53,7 +53,7 @@ Once the completed file is received from a researcher, the Data Manager should c
 
 Things to check:
 
-1. Is the PI-provided collection code unique/appropriate? Do you need to create one yourself? Existing schemas/collection codes can be seen in the database
+1. Is the PI-provided collection code unique/appropriate? Do you need to create one yourself? Existing schemas/collection codes can be seen in the database.
 1. Are there typos in the title or abstract?
 1. Are the contacts formatted correctly?
 1. Are the species formatted correctly?
@@ -93,7 +93,7 @@ Please add 'Point of Contact' to the contact(s) who will be responsible for comm
 
 format: Firstname Lastname, Employer OR Affiliation, Project Role (choose from above list), email.address@url.com, point of contact (if relevant), ORCID
 
-Fred Whoriskey, OTN, principal investigator, fwhoriskey@dal.ca,  0000-0001-7024-3284
+Fred Whoriskey, OTN, principal investigator, fwhoriskey@dal.ca, 0000-0001-7024-3284
 Sara Iverson, OTN, principal investigator, sara.iverson@dal.ca
 Caitlin Bate, Dal, researcher, caitlin.bate@dal.ca, point of contact
 
@@ -139,7 +139,7 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_connection.kdbx')`.
 
 ### Project Metadata Parser
 
@@ -154,7 +154,7 @@ The output will have useful information:
 - Are there strange characters in the collectioncode, project title, or abstract?
 - Were the names and affiliations of each contact successfully parsed? Are there any affiliated institutions which are not found? Are there any contacts which were not found that you expected to be?
 - Is the project URL formatted correctly?
-- Are all the species studies found in WoRMS? Are any of them non-accepted taxonomy (look at top of each species-record for success: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with commonname can be fixed at a later stage, make a note in the Issue for your records**
+- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (the top of the species record should have this success message: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with commonname can be fixed at a later stage, make a note in the Issue for your records**
 - Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Issue for your records**
 - Are the start and end dates formatted correctly?
 
@@ -185,7 +185,7 @@ To save and parse your inputted values **DO NOT** re-run the cell - this will cl
 
 Verify the output from the parser cell, looking for several things:
 1. Are all the fields marked with a green `OK`?
-1. Is this feedback included in the institution code section: ie `Found institution record for DFO in your database:` followed by a small, embedded Table.
+1. Is the following feedback included in the institution code section: `Found institution record for XXX in your database:` followed by a small, embedded Table?
 
 If anything is wrong, please begin again from the Manual Field input cell.
 
@@ -221,7 +221,7 @@ Based on the abstract, you can use the `Square Draw Tool` to re-draw the boundin
 ![Proj 1](../fig/proj_meta_bounds.JPG)
 
 
-Once you are happy, you can run the *following* cell in order to save your bounding adjustments. The output should be formatted like this:
+Once you are happy, you can run the *next* cell in order to save your bounding adjustments. The sucess output should be formatted like this:
 
 ~~~
 --- Midpoint ---
@@ -238,11 +238,16 @@ Longitude:
 Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions if they are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
 
 To run the cell, you will need to complete:
-1. a short-code for the institution (ex: DAL)
-1. the institution's website (ex: https://www.dal.ca/)
-1. the full institution name (ex: Dalhousie University)
+1. Institution Code: a short-code for the institution (ex: DAL)
+1. Institution Name: the full institution name (ex: Dalhousie University)
+1. Institution Website: the institution's website (ex: https://www.dal.ca/). You can confirm the URL is valid with the `Check URL` button.
+1. Organization ID: Press the `Search Org ID` button. A list of potential WikiData, GRID, ROR, EDMO and NERC results for the institution will appear. Choose the best match, and paste that URL into the blank Organization ID cell.
+1. Institution Country: the country where the institution is headquartered
+1. Institution State: the state where the institution is headquartered
+1. Institution Sector: one of Unknown, Government/Other Publuc, Univserity/College/Research Hospital, Private, or Non-profit.
 
-Once all values are completed, run the cell and confirm the following output:
+
+Once all values are completed, press `Create Institution` and confirm the following output:
 
 ~~~
 Institution record 'DAL' created.
@@ -349,7 +354,7 @@ This section is to be used to change the values contained in `obis.otn_resources
 
 To save and parse your inputted values **DO NOT** re-run the cell - this will clear all your input. Instead, the next cell is the one which needs to be run to parse the information.
 
-Review the output and check for typos.
+Review the output of the parser cell and check for typos.
 
 The next cell will show the changes that will be made to the project data. You can copy this output and paste it into the relevant Gitlab Issue for tracking.
 
@@ -376,7 +381,7 @@ The output should look like this to confirm success:
 > You will have to edit one section: `engine = get_engine()`
 > - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 > - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-> - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
+> - The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_connection.kdbx’)`.
 >
 > ### Plone Login
 >
@@ -395,7 +400,7 @@ The output should look like this to confirm success:
 > Auth Loaded:
 > ------------------------------------------------------------------------------
 > base_url: https://members.oceantrack.org/
-> user_name: cbate
+> user_name: user
 > verify ssl: False
 > ~~~
 > {: .language-plaintext .example}
@@ -441,7 +446,7 @@ The output should look like this to confirm success:
 >
 > ### Create Project Repository
 >
-> To create the project folder you must first enter the relevant Node:
+> To create the project folder you must first enter the relevant Node information:
 > - otnunit: `node = None`
 > - safnode, migramar, nepunit:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
 > - all other nodes (not hosted by OTN): `node = None`
@@ -450,7 +455,7 @@ The output should look like this to confirm success:
 >
 > The expected format:
 >
-> `https://members.oceantrack.org/data/repository/node_name/collectioncode`
+> `https://members.oceantrack.org/data/repository/node_name/collectioncode` (node name is for SAF, MigraMar and NEP only)
 >
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 >
@@ -513,7 +518,7 @@ The output should look like this to confirm success:
 
 The remaining steps in the Gitlab Checklist are completed outside the notebooks.
 
-First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder.
+First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder to archive.
 
 Next, you should send an email to the project contacts letting them know their project code and other onboarding information.
 

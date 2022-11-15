@@ -39,7 +39,7 @@ Tag Meta Data
 - [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
 - [ ] - NAME label issue with *'Verify'*
 - [ ] - NAME pass issue to analyst for final verification
-- [ ] - NAME check for double reporting (verification_scripts/`tag_3_otn_verification`.sql)
+- [ ] - NAME check for double reporting (verification_notebooks/Tag Verification notebook)
 ~~~
 {: .language-plaintext .example}
 
@@ -140,7 +140,7 @@ You will have to edit **two** sections:
 1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
-	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
+	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_connection.kdbx’)`.
 
 Once you have added your information, you can run the cell. Successful login is indicated with the following output:
 
@@ -177,9 +177,9 @@ The output will have useful information:
 	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted if possible. Otherwise, use the `add_lifestage_codes` notebook
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
-1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species.
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model.
+1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, use the `scientific_name_check` notebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
@@ -331,6 +331,7 @@ Database connection established
 Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
 ~~~
 {: .language-plaintext .example}
+
 ### Table Name
 
 You will have to edit **two** sections:
@@ -353,8 +354,8 @@ The output will have useful information:
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
 1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, follow the link to the `scientific_name_check` notebook to add the new species.
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, follow the link to the `add instrument_models` notebook to add the new tag model.
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, use the `scientific_name_check` notebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
@@ -395,7 +396,7 @@ Added XX records to the schema.tagcache_YYYY_mm table
 You need to pay special attention to the number of records loaded to the animal and tag caches. If this number doesn't match you may need to investigate why there are more tags than animals or vice versa. Possible reasons the values may not match:
 
 - There are some animals with only FLOY tags, no acoustic tags (no record added to `tag_cache`).
-- There are some animals with >1 tag attached, or a tag with >1 pinger ID (multiple records added to `tag_cache`)
+- There are some animals with >1 tag attached, or a tag with >1 pinger ID (multiple records added to `tag_cache`, for each animal)
 
 If the values are acceptable, you can move on.
 
