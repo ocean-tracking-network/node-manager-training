@@ -21,15 +21,13 @@ To standardize the verification and quality control process that all contributin
 
 This lesson will give attendees a chance to install all the relevant software, under the supervision of OTN staff.
 
-# Python/Anaconda
+# Python/Mamba
 
 `Python` is a popular general-purpose programming language that can be used for a wide variety of applications. It is the main language used by OTN and our data processing pipeline.
 
-`Anaconda` is a python distribution and a package manager. When you install `Anaconda` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Anaconda allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
+`Mamba` is fast, cross-platform python distribution and a package manager. When you install `Mamba (through Miniforge)` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
 
-There is a smaller version of `Anaconda` with fewer, more essential packages which we recommend installing to save computer memory, called `miniconda`.
-
- **Install Miniconda** - [https://docs.conda.io/en/latest/miniconda.html](https://docs.conda.io/en/latest/miniconda.html)
+ **Install Miniforge3** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
   - Select the option to `add to PATH environment variable` (during install steps)!
 
 
@@ -61,13 +59,17 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
+1. Create and activate the "nodebook" python enviornment. The creation process will only need to happen once.
+   * In your terminal, run the command `conda create -n nodebook python=3.9`
+   * Activate the nodebook environment using `conda activate nodebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
-1. Now to install all required python packages by running the following: `conda env update -n root -f environment.yml`
+1. Now to install all required python packages by running the following: `mamba env update -n nodebook -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
-- **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks in a browser window.
+- **MAC/WINDOWS**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the commands: 
+   * `conda activate nodebook` to activate the nodebook python environment
+   * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
