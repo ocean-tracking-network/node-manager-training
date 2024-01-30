@@ -48,7 +48,63 @@ The amount of information shared through the discovery tables can be adjusted ba
 The OTN data system takes 4 types of data/metadata: **project**, **tag**, **instrument deployments**, and **detections**. Most data has a similar flow through the OTN system even though each type has different notebooks and processes for loading. The exception to this is `project` metadata which has a more unique journey because it is completely user-defined, and must be used to initially define and create a project's `schema`.
 
 
-![OTN Database - structural ER diagram](../fig/db_diagram.png)
+```mermaid
+flowchart BT
+
+    tag_start(( )) --> tag_sheet[[tagging metadata sheets]]
+    style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    tag_sheet --> tag_raw(c_tag_meta_suffix)
+    style tag_raw fill:#6495ED
+    tag_raw --> animcache(animalcache_suffix)
+    style animcache fill:#CF9FFF
+    tag_raw --> tagcache(tagcache_suffix)
+    style tagcache fill:#CF9FFF
+    animcache --> otnanim(otn_animals)
+    style otnanim fill:#FDDA0D
+    tagcache --> otntra(otn_transmitters)
+    style otntra fill:#FDDA0D
+    otnanim --> obisanim(otn_animals)
+    style obisanim fill:#B8B8B8
+    otntra --> obismoor(moorings)
+    style obismoor fill:#B8B8B8
+
+    rcv_start(( )) --> rcv_sheet[[deployment metadata sheets]]
+    style rcv_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    rcv_sheet --> rcv_raw(c_shortform_suffix)
+    style rcv_raw fill:#6495ED
+    rcv_raw --> stat(stations)
+    style stat fill:#CF9FFF
+    rcv_raw --> rcv(rcvr_locations)
+    style rcv fill:#CF9FFF
+    stat --> moor(moorings)
+    style moor fill:#FDDA0D
+    rcv --> moor
+    moor --> obismoor
+
+    det_start(( )) --> det_sheet[[detection instrument data]]
+    style det_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    det_sheet --> event_raw(c_events_suffix)
+    style event_raw fill:#6495ED
+    event_raw --> events(events)
+    style events fill:#CF9FFF
+    events --> moor
+    det_sheet --> det_raw(c_detections_suffix)
+    style det_raw fill:#6495ED
+    det_raw --> det(detections_yyyy)
+    style det fill:#CF9FFF
+    det --> otndet(otn_detections_yyyy)
+    style otndet fill:#FDDA0D
+    otndet --> obisdet(otn_detections_yyyy)
+    style obisdet fill:#B8B8B8
+
+    obisanim --> obis[(Parent schema)]
+    style obis fill:#B8B8B8,stroke:#000000
+    obismoor --> obis
+    obisdet --> obis
+
+    obis --> done(( ))
+    style done fill:#FF0000,stroke:#FF0000
+```
 
 
 ### Project Data
