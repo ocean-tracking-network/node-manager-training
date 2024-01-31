@@ -32,11 +32,11 @@ from researchers)
 with template)
     gitlab --> viz{Visually inspect,
 does metadata have errors?}
-    viz -- yes --> req(Request corrected data
+    viz --yes--> req(Request corrected data
 from researchers)
     req --> end1(( ))
     style end1 fill:#FF0000,stroke:#FF0000
-    viz --no --> run_checklist(Run data through checklist)
+    viz --no--> run_checklist(Run data through checklist)
     run_checklist --> otn_part(Pass to OTN for
 final verification)
     otn_part --> end2(( ))
