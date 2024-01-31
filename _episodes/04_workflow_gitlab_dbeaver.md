@@ -25,15 +25,15 @@ Data Managers receive data from a researcher and then begin a several-step proce
 
 ```mermaid
 flowchart LR
-    data_start(( )) --> get_data(Receive metadata from researchers)
+    data_start(( )) --> get_data(Receive metadata </br>from researchers)
     style data_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_data --> gitlab(Create Gitlab issue with template)
-    gitlab --> viz{Visually inspect, does metadata have errors?}
-    viz --yes--> req(Request corrected data from researchers)
+    get_data --> gitlab(Create Gitlab issue </br>with template)
+    gitlab --> viz{Visually inspect, </br>does metadata have errors?}
+    viz --yes--> req(Request corrected data </br>from researchers)
     req --> end1(( ))
     style end1 fill:#FF0000,stroke:#FF0000
     viz --no--> run_checklist(Run data through checklist)
-    run_checklist --> otn_part(Pass to OTN for final verification)
+    run_checklist --> otn_part(Pass to OTN for </br>final verification)
     otn_part --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
 ```
