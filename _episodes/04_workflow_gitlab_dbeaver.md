@@ -42,7 +42,7 @@ from researchers)
 final verification)
     otn_part --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
-	```
+```
 
 ## Researcher data submission
 
