@@ -24,22 +24,16 @@ Data Managers receive data from a researcher and then begin a several-step proce
 1. The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
 
 ```mermaid
-flowchart BT
-
-    data_start(( )) --> get_data(Receive metadata
-from researchers)
+flowchart LR
+    data_start(( )) --> get_data(Receive metadata from researchers)
     style data_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_data --> gitlab(Create Gitlab issue
-with template)
-    gitlab --> viz{Visually inspect,
-does metadata have errors?}
-    viz --yes--> req(Request corrected data
-from researchers)
+    get_data --> gitlab(Create Gitlab issue with template)
+    gitlab --> viz{Visually inspect, does metadata have errors?}
+    viz --yes--> req(Request corrected data from researchers)
     req --> end1(( ))
     style end1 fill:#FF0000,stroke:#FF0000
     viz --no--> run_checklist(Run data through checklist)
-    run_checklist --> otn_part(Pass to OTN for
-final verification)
+    run_checklist --> otn_part(Pass to OTN for final verification)
     otn_part --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
 ```
