@@ -26,12 +26,13 @@ Push events happen **three** times a year. They start on the third Thursday of t
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
-Push schedule through 2023:
-- June 23, 2022
-- October 20, 2022
-- February 16, 2023
-- June 15, 2023
-- October 19, 2023
+Push schedule through 2025:
+- February 15, 2024
+- June 20, 2024
+- October 17, 2024
+- February 20, 2025
+- June 19, 2025
+- October 16, 2025
 
 ## Node Manager Roles During a Push
 
