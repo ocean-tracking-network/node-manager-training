@@ -25,6 +25,7 @@ Data Managers receive data from a researcher and then begin a several-step proce
 
 ```mermaid
 flowchart LR
+
     data_start(( )) --> get_data(Receive metadata
 from researchers)
     style data_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
