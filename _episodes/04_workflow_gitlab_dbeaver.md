@@ -24,7 +24,7 @@ Data Managers receive data from a researcher and then begin a several-step proce
 1. The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
 
 ```mermaid
-flowchart LR
+flowchart BT
 
     data_start(( )) --> get_data(Receive metadata
 from researchers)
