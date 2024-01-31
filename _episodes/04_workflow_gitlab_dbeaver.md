@@ -23,7 +23,6 @@ Data Managers receive data from a researcher and then begin a several-step proce
 1. Data are QA/QC'd using the OTN Nodebook tools (covered in detail later in the curriculum), and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
 1. The successful processing of records can be evaluated by checking the database tables using DBeaver, and SQL queries.
 
-The process flow is as follows:
 ```mermaid
 flowchart LR
     data_start(( )) --> get_data(Receive metadata
