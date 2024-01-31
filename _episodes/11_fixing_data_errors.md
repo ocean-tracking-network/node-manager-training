@@ -43,6 +43,7 @@ __This issue title should include schema name and general fix description__
     - original value:
     - new value:
 
+## Task list
 - [ ] NAME label issue `db fix`
 - [ ] NAME tag OTNDC staff for assistance with request (@diniangela etc)
 - [ ] OTN make database change
