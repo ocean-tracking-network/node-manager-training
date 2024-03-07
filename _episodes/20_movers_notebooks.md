@@ -10,6 +10,7 @@ questions:
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
+---
 keypoints:
 - TODO: a list of technologies are supported by the Moving Platform workflow such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, short deployments (hours) down a line of traps, etc.
 - TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
