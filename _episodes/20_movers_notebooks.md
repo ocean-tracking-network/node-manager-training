@@ -71,8 +71,26 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
  * recover_date_time: e.g. `2023-12-03T12:00:00`
 
+
+
+
+
    
 2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into the `mission_table`:
  * table_suffix: e.g. `2024_03` 
  
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
+
+
+3. Check off the step and record the `mission_table` name in the Gitlab ticket.
+
+- [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
+
+# Loading Telemetry Data
+
+
+2. Run through the `movers - 2 - Load telemetry` notebook to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
+
+
