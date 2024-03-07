@@ -72,7 +72,7 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
  * recover_date_time: e.g. `2023-12-03T12:00:00`
 
    
-2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into `c_moving_platform_missions_<table_suffix>`
+2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into the `mission_table`:
  * table_suffix: e.g. `2024_03` 
  
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
