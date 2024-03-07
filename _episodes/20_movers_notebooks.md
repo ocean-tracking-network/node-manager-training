@@ -119,3 +119,19 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
 - [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**
 
+
+# Loading Raw Detections and Events
+
+
+1. Load raw detections via `detections - 1 - load csv detections` notebook: check off the steps and record the `c_detections` name in the Gitlab ticket.
+
+- [ ] - NAME load to raw detections (`detections-1` notebook) **(:fish: table name: c_detections_yyyy)**
+- [ ] - NAME verify raw detections table (`detections-1` notebook)
+
+2. Load raw events by the `events - 1 - load events into c_events_yyyy` notebook: check off the step and record the `c_events` name in the Gitlab ticket.
+
+- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**
+
+3. Run the `events - 2 - move c_events into events table` notebook to promote the raw events into to the `events` table.
+   
+- [ ] - NAME load raw events to events table (`events-2` notebook)
