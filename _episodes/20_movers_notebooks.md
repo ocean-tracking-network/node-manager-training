@@ -6,7 +6,7 @@ exercises: 0
 questions:
 - "What are considered of moving platforms. What are the use cases?"
 - "How do I load moving platform missing metadata, telemetry data, and detections into the Database?"
-  
+---
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
