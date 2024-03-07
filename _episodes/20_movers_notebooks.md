@@ -16,12 +16,7 @@ keypoints:
 - TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
 ---
 
-Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
-
-# Submitted Records
-
-Immediately, upon receipt of the data files, a new GitLab Issue should be created. Please use the `Detections` Issue checklist template.
-
+`mssion metadata`, `telemetry data` and `` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
 Here is the Issue checklist, for reference:
 
 ~~~
@@ -62,3 +57,28 @@ data: **(put data plone link here)**
 telemetry: **(put telemetry plone link here)**
 
 ~~~
+
+# Load Mission Metadata
+
+Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
+This file will contain information about the deployment of any instruments used
+
+### Visual Inspection
+
+Once the completed file is received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
+
+In general, the deployment metadata contains information on the instrument, the deployment location, and the deployment/recovery times.
+
+Things to visually check in the metadata:
+
+1. Is there any information missing from the **essential** columns? These are:
+	* otn_array
+	* station_no
+	* deploy_date
+	* deploy_lat
+	* deploy_long
+	* ins_model_no
+	* ins_serial_no
+	* recovered
+	* recover_date
+ * 
