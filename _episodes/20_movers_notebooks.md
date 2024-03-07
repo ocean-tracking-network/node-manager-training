@@ -58,25 +58,21 @@ telemetry: **(put telemetry plone link here)**
 
 ~~~
 
-# Load Mission Metadata
+# Loading Mission Metadata
 
 Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
-This file will contain information about the deployment of any instruments used
+This spreadsheet file will contain one or more missions(rows) of the moving platform: identifiers, instruments used and deployment/recovery times.
 
-### Mission Metadata Format 
-
-This 
-Once the completed file is received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
-
-In general, the deployment metadata contains information on the instrument, the deployment location, and the deployment/recovery times.
-
-Things to visually check in the metadata:
-
-1. Is there any information missing from the **essential** columns? Column names and example data are shown as below:
+1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
  * platform_id: e.g. `1234567`
- * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time string`).
+ * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
  * ins_model_no: e.g. `VMT`
  * ins_serial_no: e.g. `130000`
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
  * recover_date_time: e.g. `2023-12-03T12:00:00`
 
+   
+2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into `c_moving_platform_missions_<table_suffix>`
+ * table_suffix: e.g. `2024_03` 
+ 
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
