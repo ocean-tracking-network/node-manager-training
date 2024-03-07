@@ -73,8 +73,6 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
 
 
-
-
    
 2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into the `mission_table`:
  * table_suffix: e.g. `2024_03` 
@@ -88,9 +86,18 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
 # Loading Telemetry Data
 
+1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+ * date_time_utc: e.g. `2023-12-13T13:10:12`
+ * lat: e.g. `28.33517`
+ * lon: e.g. `-80.33734833`.
+ * mission_id: e.g. `1234567202310031456` (Note: the value should match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
+ * platform_id: e.g. `1234567` (Note: the value should match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+
 
 2. Run through the `movers - 2 - Load telemetry` notebook to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+ * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
 
+   
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
 
