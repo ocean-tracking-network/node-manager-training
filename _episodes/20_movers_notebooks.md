@@ -74,9 +74,9 @@ Things to visually check in the metadata:
 
 1. Is there any information missing from the **essential** columns? Column names and example data are shown as below:
  * platform_id: e.g. `1234567`
- * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + date_time string`).
- * ins_model_no: e.g. `39.2223`
- * ins_serial_no: e.g. `-74.109617`
+ * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time string`).
+ * ins_model_no: e.g. `VMT`
+ * ins_serial_no: e.g. `130000`
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
  * recover_date_time: e.g. `2023-12-03T12:00:00`
- * mission_id: e.g. `m123`
+
