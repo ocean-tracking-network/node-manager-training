@@ -135,3 +135,8 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 3. Run the `events - 2 - move c_events into events table` notebook to promote the raw events into to the `events` table.
    
 - [ ] - NAME load raw events to events table (`events-2` notebook)
+
+# Loading Detections for Moving Platforms
+
+1. 
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
