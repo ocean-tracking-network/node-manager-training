@@ -94,10 +94,28 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
  * platform_id: e.g. `1234567` (Note: the value should match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
 
 
-2. Run through the `movers - 2 - Load telemetry` notebook to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+2. Run the `movers - 2 - Load telemetry` notebook: `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
 
    
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
+
+3. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
+
+- [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)
+
+
+4. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
+
+5. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
+
+- [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)
+
+
+6. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
+
+7. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
+
+- [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**
 
