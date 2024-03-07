@@ -16,8 +16,8 @@ keypoints:
 - TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
 ---
 
-`mssion metadata`, `telemetry data` and `` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
-Here is the Issue checklist, for reference:
+`mssion metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
+Here is the Issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
 
 ~~~
 Moving platform
@@ -71,14 +71,10 @@ In general, the deployment metadata contains information on the instrument, the 
 
 Things to visually check in the metadata:
 
-1. Is there any information missing from the **essential** columns? These are:
-	* otn_array
-	* station_no
-	* deploy_date
-	* deploy_lat
-	* deploy_long
-	* ins_model_no
-	* ins_serial_no
-	* recovered
-	* recover_date
- * 
+1. Is there any information missing from the **essential** columns? Column names and example data are shown as below:
+ * date_time: e.g. `2023-10-03T14:56:00`
+ * lat: e.g. `39.2223`
+ * lon: e.g. `-74.109617`
+ * mission_id: e.g. `m123`
+ * platform_id: e.g. `1234567`
+ * otn_mission_id: e.g. `1234567202310031456` (Note: this column can be constructed as `platform_id + date_time string`).
