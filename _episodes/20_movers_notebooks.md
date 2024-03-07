@@ -4,13 +4,14 @@ title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
 teaching: 60
 exercises: 0
 questions:
-- "How do I load moving platform missings, telemetry data, and detections into the Database?"
+- "What are considered of moving platforms. What are the use cases?"
+- "How do I load moving platform missing metadata, telemetry data, and detections into the Database?"
   
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
 keypoints:
-- TODO "Its important to handle errors when they come up as they can have implications on detections"
+- TODO: a list of technologies are supported by the Moving Platform workflow such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, short deployments (hours) down a line of traps, etc.
 - TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
 ---
 
