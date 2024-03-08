@@ -177,11 +177,13 @@ Cell three requires input from you. This information will be used to get the raw
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
 2. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
+
 `- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**`
 
 - TODO: add troubleshooting tips here: raw detections were note promoted into detections_yyyy_movers.
   
 3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+   
 `- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
 `- [ ] - NAME verify timedrift corrections (`movers-3` notebook)`
 
@@ -210,12 +212,15 @@ Cell three requires input from you. This information will be used to get the raw
 <img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
 
 1. Run the `create_moving_platforms_full_telemetry` cell to load to formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
+   
 `- [ ] - NAME load formatted telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**`
 
 
 2. Run the `create_reduced_telemetry_tables` cell to reduced telemetry tables. Check off the step and record the affected years in the Gitlab ticket.
+   
 `- [ ] - NAME load reduced telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**`
 
 
 3. Run the `create_platform_as_receiver_tables` cell to load glider as receiver tables. Check off the step and record the affected years in the Gitlab ticket.
+   
 `- [ ] - NAME load glider as receiver tables (`movers-4` notebook) **(:fish: put affected years here)**`
