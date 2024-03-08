@@ -162,3 +162,15 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 5. Run the last cell to create and load sensor match tables for movers. Check off the step and record affected years in the Gitlab ticket.
 
 - [ ] - NAME load to sensor match (`movers-3` notebook) **(:fish: put affected years here)**
+
+# Loading OTN Detections
+
+### User Input
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `table_suffix`: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
+2. `schema`: 
+3. `years`: 
+<img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
+
+1. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
