@@ -168,9 +168,12 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
-1. `table_suffix`: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
-2. `schema`: 
-3. `years`: 
+1. `table_suffix`:` should be the same as in the `movers - 1 - Load Mission Metadata` notebook
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.  e.g. `2024_03
+1. `schema`:  'collectioncode'
+please edit to include the relevant project code, in lowercase, between the quotes.
+1. `years`: 
+
 <img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
 
 1. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
