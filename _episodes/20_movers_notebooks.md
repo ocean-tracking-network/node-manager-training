@@ -211,7 +211,8 @@ Cell three requires input from you. This information will be used to get the raw
 1. `years`:  e.g. `[2022, 2023]`
 	  * Enter the affected years from `movers - 3 - Load Detections`
 
-<img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/ca5360c7-b9fd-44a9-9c4f-84d5f194f63f)
+
 
 1. Run the `create_moving_platforms_full_telemetry` cell to load to formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
    
@@ -226,3 +227,17 @@ Cell three requires input from you. This information will be used to get the raw
 3. Run the `create_platform_as_receiver_tables` cell to load glider as receiver tables. Check off the step and record the affected years in the Gitlab ticket.
    
 `- [ ] - NAME load glider as receiver tables (movers-4 notebook) **(:fish: put affected years here)**`
+
+4. Run the `create_detections_view` and `load_view_into_otn_dets` cells to load view detections into otn_detections_yyyy tables. Check off the step and record the affected years in the Gitlab ticket.
+
+`- [ ] - NAME load into vw_detections_yyyy_movers (`movers-4` notebook) **(:fish: put affected years here)**`
+
+`- [ ] - NAME load view detections into otn_detections_yyyy (movers-4 notebook) **(:fish: put affected years here)**`
+
+5. Run the `verify_otn_detections` cell to verify the `otn_detections_yyyy` tables. Check off the step in the Gitlab ticket.
+
+`- [ ] - NAME verify otn_detections_yyyy (movers-4 notebook)`
+
+6. Run the `load_platforms_to_moorings` cell to verify the `moorings` tables. Check off the step in the Gitlab ticket.
+
+`- [ ] - NAME create mission and receiver records in moorings (movers-4 notebook)`
