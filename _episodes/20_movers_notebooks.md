@@ -138,5 +138,9 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
 # Loading Detections for Moving Platforms
 
+- With the telemetry and mission table, we can now upload the raw detections and promote them to the detections_yyyy_movers tables. 
+- This notebook has the functionalities of `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations` notebooks. The difference is it handles `_movers` tables. 
 1. 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
+
+- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**
