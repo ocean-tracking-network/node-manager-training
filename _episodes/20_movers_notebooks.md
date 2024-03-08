@@ -209,4 +209,13 @@ Cell three requires input from you. This information will be used to get the raw
 
 <img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
 
-1. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+1. Run the `create_moving_platforms_full_telemetry` cell to load to formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
+- [ ] - NAME load formatted telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
+
+
+2. Run the `create_reduced_telemetry_tables` cell to reduced telemetry tables. Check off the step and record the affected years in the Gitlab ticket.
+- [ ] - NAME load reduced telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
+
+
+3. Run the `create_platform_as_receiver_tables` cell to load glider as receiver tables. Check off the step and record the affected years in the Gitlab ticket.
+- [ ] - NAME load glider as receiver tables (`movers-4` notebook) **(:fish: put affected years here)**
