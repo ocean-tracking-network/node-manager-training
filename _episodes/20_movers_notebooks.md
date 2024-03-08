@@ -254,3 +254,11 @@ Cell three requires input from you. This information will be used to get the raw
 2. Run through the `events - 4 - process receiver configuration` notebook to process receiver configuration: check off the step in the Gitlab ticket.
    
 `- [ ] - NAME process receiver configuration (events-4 notebook)`
+
+# Final Steps
+
+The remaining steps in the GitLab Checklist are completed outside the notebooks.
+
+First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
+
+Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
