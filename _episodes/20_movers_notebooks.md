@@ -155,6 +155,10 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 - [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)
 - [ ] - NAME verify timedrift corrections (`movers-3` notebook)
 
-4. Run the nex cell to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+4. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
 - [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (`movers-3` notebook)
+
+5. Run the last cell to create and load sensor match tables for movers. Check off the step and record affected years in the Gitlab ticket.
+
+- [ ] - NAME load to sensor match (`movers-3` notebook) **(:fish: put affected years here)**
