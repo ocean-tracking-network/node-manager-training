@@ -151,4 +151,10 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
 - TODO: add troubleshooting tips here: raw detections were note promoted into detections_yyyy_movers.
   
-3. 
+3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)
+- [ ] - NAME verify timedrift corrections (`movers-3` notebook)
+
+4. Run the nex cell to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+
+- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (`movers-3` notebook)
