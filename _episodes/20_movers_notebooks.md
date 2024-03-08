@@ -241,3 +241,12 @@ Cell three requires input from you. This information will be used to get the raw
 6. Run the `load_platforms_to_moorings` cell to verify the `moorings` tables. Check off the step in the Gitlab ticket.
 
 `- [ ] - NAME create mission and receiver records in moorings (movers-4 notebook)`
+
+# Creating Download Records and Processing Receiver Configuration
+
+
+`- [ ] - NAME load download records (events-3 notebook)`
+
+`- [ ] - NAME verify download records (events-3 notebook)`
+
+`- [ ] - NAME process receiver configuration (events-4 notebook)`
