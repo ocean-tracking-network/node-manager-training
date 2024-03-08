@@ -94,7 +94,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 3. Check off the step and record the `mission_table` name in the Gitlab ticket.
 
-`- [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**`
+`- [ ] - NAME load raw metadata file (movers-1 notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**`
 
 # Loading Telemetry Data
 
@@ -126,21 +126,21 @@ Cell three requires input from you. This information will be used to get the raw
 
 3. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
-`- [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
+`- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
 
 4. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
 
 5. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
-`- [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
+`- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
 
 6. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
 
 7. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
-`- [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
+`- [ ] - NAME combine mission metadata with telemetry (movers-2 notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
 
 
 # Loading Raw Detections and Events
@@ -150,7 +150,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 `- [ ] - NAME load to raw detections (detections-1 notebook) **(:fish: table name: c_detections_yyyy)**`
 
-`- [ ] - NAME verify raw detections table (`detections-1` notebook)`
+`- [ ] - NAME verify raw detections table (detections-1 notebook)`
 
 2. Load raw events by the `events - 1 - load events into c_events_yyyy` notebook: check off the step and record the `c_events` name in the Gitlab ticket.
 
@@ -158,7 +158,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 3. Run the `events - 2 - move c_events into events table` notebook to promote the raw events into to the `events` table.
    
-`- [ ] - NAME load raw events to events table (`events-2` notebook)`
+`- [ ] - NAME load raw events to events table (events-2 notebook)`
 
 # Loading Detections for Moving Platforms
 
