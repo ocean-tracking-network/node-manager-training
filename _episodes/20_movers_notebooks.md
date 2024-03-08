@@ -88,7 +88,6 @@ Cell three requires input from you. This information will be used to get the raw
 1. `mission_file`: '/path/to/mission_file'
     * paste a filepath to the relevant XLSX file. The filepath will be added between the provided quotation marks.
 
-![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de) 
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
 
@@ -165,8 +164,15 @@ Cell three requires input from you. This information will be used to get the raw
 - With the telemetry and mission table, we can now upload the raw detections and promote them to the detections_yyyy_movers tables. 
 - This notebook has the functionalities of `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations` notebooks. The difference is it handles `_movers` tables. 
 1. Run `movers - 3 - Load Detections` notebook till `Load raw dets into detections_yyyy_movers` cell to populate `detections_yyyy_movers` tables and load raw detections into them.
-   
- * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
+
+### User Input
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+     
+1. `schema`:  'collectioncode'
+    * please edit to include the relevant project code, in lowercase, between the quotes.
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
