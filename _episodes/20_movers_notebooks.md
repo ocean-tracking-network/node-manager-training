@@ -244,9 +244,13 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Creating Download Records and Processing Receiver Configuration
 
+1. Create and verify download records via `events - 3 - create download records` notebook: check off the steps in the Gitlab ticket.
+
 
 `- [ ] - NAME load download records (events-3 notebook)`
 
 `- [ ] - NAME verify download records (events-3 notebook)`
 
+2. Run through the `events - 4 - process receiver configuration` notebook to process receiver configuration: check off the step in the Gitlab ticket.
+   
 `- [ ] - NAME process receiver configuration (events-4 notebook)`
