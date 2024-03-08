@@ -94,7 +94,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 3. Check off the step and record the `mission_table` name in the Gitlab ticket.
 
-- [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
+`- [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**`
 
 # Loading Telemetry Data
 
@@ -126,21 +126,21 @@ Cell three requires input from you. This information will be used to get the raw
 
 3. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
-- [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)
+`- [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
 
 4. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
 
 5. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
-- [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)
+`- [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
 
 6. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
 
 7. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
-- [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**
+`- [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
 
 
 # Loading Raw Detections and Events
@@ -148,16 +148,16 @@ Cell three requires input from you. This information will be used to get the raw
 
 1. Load raw detections via `detections - 1 - load csv detections` notebook: check off the steps and record the `c_detections` name in the Gitlab ticket.
 
-- [ ] - NAME load to raw detections (`detections-1` notebook) **(:fish: table name: c_detections_yyyy)**
-- [ ] - NAME verify raw detections table (`detections-1` notebook)
+`- [ ] - NAME load to raw detections (`detections-1` notebook) **(:fish: table name: c_detections_yyyy)**`
+`- [ ] - NAME verify raw detections table (`detections-1` notebook)`
 
 2. Load raw events by the `events - 1 - load events into c_events_yyyy` notebook: check off the step and record the `c_events` name in the Gitlab ticket.
 
-- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**
+`- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**`
 
 3. Run the `events - 2 - move c_events into events table` notebook to promote the raw events into to the `events` table.
    
-- [ ] - NAME load raw events to events table (`events-2` notebook)
+`- [ ] - NAME load raw events to events table (`events-2` notebook)`
 
 # Loading Detections for Moving Platforms
 
@@ -177,21 +177,21 @@ Cell three requires input from you. This information will be used to get the raw
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
 2. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
-- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**
+`- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**`
 
 - TODO: add troubleshooting tips here: raw detections were note promoted into detections_yyyy_movers.
   
 3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
-- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)
-- [ ] - NAME verify timedrift corrections (`movers-3` notebook)
+`- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
+`- [ ] - NAME verify timedrift corrections (`movers-3` notebook)`
 
 4. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
-- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (`movers-3` notebook)
+`- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (`movers-3` notebook)`
 
 5. Run the last cell to create and load sensor match tables for movers. Check off the step and record affected years in the Gitlab ticket.
 
-- [ ] - NAME load to sensor match (`movers-3` notebook) **(:fish: put affected years here)**
+`- [ ] - NAME load to sensor match (`movers-3` notebook) **(:fish: put affected years here)**`
 
 # Loading OTN Detections
 
@@ -210,12 +210,12 @@ Cell three requires input from you. This information will be used to get the raw
 <img width="788" alt="image" src="https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/2820fee9-e389-4ddc-9dca-5082d5d81b3c">
 
 1. Run the `create_moving_platforms_full_telemetry` cell to load to formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
-- [ ] - NAME load formatted telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
+`- [ ] - NAME load formatted telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**`
 
 
 2. Run the `create_reduced_telemetry_tables` cell to reduced telemetry tables. Check off the step and record the affected years in the Gitlab ticket.
-- [ ] - NAME load reduced telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
+`- [ ] - NAME load reduced telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**`
 
 
 3. Run the `create_platform_as_receiver_tables` cell to load glider as receiver tables. Check off the step and record the affected years in the Gitlab ticket.
-- [ ] - NAME load glider as receiver tables (`movers-4` notebook) **(:fish: put affected years here)**
+`- [ ] - NAME load glider as receiver tables (`movers-4` notebook) **(:fish: put affected years here)**`
