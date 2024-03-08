@@ -75,8 +75,21 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 
    
 2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into the `mission_table`:
- * table_suffix: e.g. `2024_03` 
- 
+
+### User Input
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `schema`:  'collectioncode'
+    * please edit to include the relevant project code, in lowercase, between the quotes.
+      
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+     
+1. `mission_file`: '/path/to/mission_file'
+    * paste a filepath to the relevant XLSX file. The filepath will be added between the provided quotation marks.
+
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de) 
+
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
 
 
@@ -97,7 +110,18 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
 2. Run the `movers - 2 - Load telemetry` notebook: `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
 
-   
+### User Input
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+     
+1. `schema`:  'collectioncode'
+    * please edit to include the relevant project code, in lowercase, between the quotes.
+
+1. `telemetry_file`: '/path/to/telem_file'
+    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
 
