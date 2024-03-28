@@ -4,8 +4,8 @@ title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
 teaching: 60
 exercises: 0
 questions:
-- "What are considered of moving platforms. What are the use cases?"
-- "How do I load moving platform missing metadata, telemetry data, and detections into the Database?"
+- "What are considered moving platforms. What are the use cases?"
+- "How do I load moving platform metadata, telemetry data, and detections into the Database?"
 ---
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
@@ -13,10 +13,10 @@ objectives:
 ---
 keypoints:
 - TODO: a list of technologies are supported by the Moving Platform workflow such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, short deployments (hours) down a line of traps, etc. https://oceantrackingnetwork.org/gliders/
-- TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
+- TODO: "OTN finishes off detection issues by running matching and sensor tag processing"
 ---
 
-`mssion metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
+`mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 Here is the Issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
 
 ~~~
@@ -61,11 +61,11 @@ telemetry: **(put telemetry plone link here)**
 # Loading Mission Metadata
 
 Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
-This spreadsheet file will contain one or more missions(rows) of the moving platform: identifiers, instruments used and deployment/recovery times.
+This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
-1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
  * platform_id: e.g. `1234567`
- * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
+ * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an internal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
  * ins_model_no: e.g. `VMT`
  * ins_serial_no: e.g. `130000`
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
@@ -98,7 +98,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Telemetry Data
 
-1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
  * date_time_utc: e.g. `2023-12-13T13:10:12`
  * lat: e.g. `28.33517`
  * lon: e.g. `-80.33734833`.
@@ -183,13 +183,13 @@ Cell three requires input from you. This information will be used to get the raw
 
 - TODO: add troubleshooting tips here: raw detections were note promoted into detections_yyyy_movers.
   
-3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+3. Run the next six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
    
 `- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
 
 `- [ ] - NAME verify timedrift corrections (movers-3 notebook)`
 
-4. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+4. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
 `- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (movers-3 notebook)`
 
