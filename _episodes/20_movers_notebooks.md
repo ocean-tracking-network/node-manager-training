@@ -148,6 +148,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Raw Detections and Events
 
+These steps are the same as https://github.com/ocean-tracking-network/node-manager-training/blob/gh-pages/_episodes/08_Detections.md `Convert to CSV` section, `detections - 1 - load csv detections` section, `events - 1 - load events into c_events_yyyy` section and `events - 2 - move c_events into events table` section.
 
 1. Load raw detections via `detections - 1 - load csv detections` notebook: check off the steps and record the `c_detections` name in the Gitlab ticket.
 
