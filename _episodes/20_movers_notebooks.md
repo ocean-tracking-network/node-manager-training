@@ -63,7 +63,7 @@ telemetry: **(put telemetry plone link here)**
 Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions(rows) of the moving platform: identifiers, instruments used and deployment/recovery times.
 
-1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns ? Column names and example data are shown as below:
  * platform_id: e.g. `1234567`
  * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
  * ins_model_no: e.g. `VMT`
@@ -71,10 +71,8 @@ This spreadsheet file will contain one or more missions(rows) of the moving plat
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
  * recover_date_time: e.g. `2023-12-03T12:00:00`
 
-
-
    
-2. Run through the `movers - 1 - Load Mission Metadata` notebook to load the spreadsheet into the `mission_table`:
+2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
@@ -98,16 +96,17 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Telemetry Data
 
-1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
- * date_time_utc: e.g. `2023-12-13T13:10:12`
+1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns? Column names and example data are shown as below:
+ * Timestamp: e.g. `2023-12-13T13:10:12`
  * lat: e.g. `28.33517`
  * lon: e.g. `-80.33734833`.
- * mission_id: e.g. `1234567202310031456` (Note: the value should match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
+ * vehicleName: e.g. `1234567202310031456` (Note: the value should match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
  * platform_id: e.g. `1234567` (Note: the value should match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
 
 
-2. Run the `movers - 2 - Load telemetry` notebook: `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+2. Run the [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb): `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
+ * mission_id
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
