@@ -249,6 +249,8 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Creating Download Records and Processing Receiver Configuration
 
+These detailed steps and explanations are the same as https://github.com/ocean-tracking-network/node-manager-training/blob/gh-pages/_episodes/08_Detections.md `events - 3 - create download records` section and `events-4 - process receiver configuration` section. Please use the above Detection Loading process as reference.
+
 1. Create and verify download records via `events - 3 - create download records` notebook: check off the steps in the Gitlab ticket.
 
 
