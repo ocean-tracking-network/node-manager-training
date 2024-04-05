@@ -104,7 +104,7 @@ Cell three requires input from you. This information will be used to get the raw
  * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 
-2. Launch the  [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
+2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
    
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
@@ -120,40 +120,30 @@ Cell three requires input from you. This information will be used to get the raw
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
+3. Run the `Prepare the telemetry file to be upload` cell to map the spreadsheet comlumns to Database columns.
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/d03c04da-194c-4d8e-9808-b7d7c7afc687)
+
+   
 4. Run the `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  
- 
-
-### User Input
-Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
-
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
-     
-1. `schema`:  'collectioncode'
-    * please edit to include the relevant project code, in lowercase, between the quotes.
-
-1. `telemetry_file`: '/path/to/telem_file'
-    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
-
-![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
 
-3. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
+
+5. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
 
-4. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
+6. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
 
-5. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
+7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
 
-6. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
+8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
 
-7. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
+9. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME combine mission metadata with telemetry (movers-2 notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
 
