@@ -127,8 +127,6 @@ Cell three requires input from you. This information will be used to get the raw
 4. Run the `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  
 
-
-
 5. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
