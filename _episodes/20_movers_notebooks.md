@@ -185,7 +185,7 @@ Cell three requires input from you. This information will be used to get the raw
 
 `- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**`
 
-- TODO: add troubleshooting tips here: raw detections were note promoted into detections_yyyy_movers.
+- Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
   
 3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
    
@@ -237,6 +237,7 @@ Cell three requires input from you. This information will be used to get the raw
 `- [ ] - NAME load into vw_detections_yyyy_movers (`movers-4` notebook) **(:fish: put affected years here)**`
 
 `- [ ] - NAME load view detections into otn_detections_yyyy (movers-4 notebook) **(:fish: put affected years here)**`
+- Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
 
 5. Run the `verify_otn_detections` cell to verify the `otn_detections_yyyy` tables. Check off the step in the Gitlab ticket.
 
