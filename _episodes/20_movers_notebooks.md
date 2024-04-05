@@ -100,13 +100,14 @@ Cell three requires input from you. This information will be used to get the raw
  * Timestamp: e.g. `2023-12-13T13:10:12`
  * lat: e.g. `28.33517`
  * lon: e.g. `-80.33734833`.
- * vehicleName: e.g. `1234567202310031456` (Note: the value should match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
- * platform_id: e.g. `1234567` (Note: the value should match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+ * vehicleName: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
+ * platform_id: e.g. `1234567` (Note: this column needs to be added in a spreadsheet application. And populate the values to  match the values in the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
 
 
 2. Run the [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb): `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+ 
  * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
- * mission_id
+ 
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
