@@ -97,16 +97,31 @@ Cell three requires input from you. This information will be used to get the raw
 # Loading Telemetry Data
 
 1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns? Column names and example data are shown as below:
- * Timestamp: e.g. `2023-12-13T13:10:12`
- * lat: e.g. `28.33517`
- * lon: e.g. `-80.33734833`.
- * vehicleName: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
- * platform_id: e.g. `1234567` (Note: this column needs to be added in a spreadsheet application. And populate the values to  match the values in the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+ * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name maybe different)
+ * lat: e.g. `28.33517` (Note: the column name maybe different)
+ * lon: e.g. `-80.33734833` (Note: the column name maybe different)
+ * vehicleName: e.g. `1234567202310031456` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+ * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 
-2. Run the [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb): `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
+2. Launch the  [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
+   
+### User Input
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+
+1. `schema`:  'collectioncode'
+    * please edit to include the relevant project code, in lowercase, between the quotes.
+
+1. `telemetry_file`: '/path/to/telem_file'
+    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+
+![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
+
+4. Run the `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
  
- * table_suffix: e.g. `2024_03` (should be the same as in the `movers - 1 - Load Mission Metadata` notebook)
  
 
 ### User Input
