@@ -1,7 +1,7 @@
 
 ---
 title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
-teaching: 60
+teaching: 90
 exercises: 0
 questions:
 - "What are considered of moving platforms. What are the use cases?"
@@ -12,11 +12,11 @@ objectives:
 - "Learn how to use the `Movers` notebooks"
 ---
 keypoints:
-- TODO: a list of technologies are supported by the Moving Platform workflow such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, short deployments (hours) down a line of traps, etc. https://oceantrackingnetwork.org/gliders/
-- TODO "OTN finishes off detections Issues by running Matching and sensor tag processing"
+- Moving Platform workflow is feasible for technologies such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, and short deployments (hours) down a line of traps (reference https://oceantrackingnetwork.org/gliders/)
+
+-  `mssion metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 ---
 
-`mssion metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 Here is the Issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
 
 ~~~
