@@ -12,8 +12,8 @@ objectives:
 - "Learn how to use the `Movers` notebooks"
 ---
 keypoints:
-- Moving Platform workflow is feasible for technologies such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, and short deployments (hours) down a line of traps (reference https://oceantrackingnetwork.org/gliders/)
-- OTN finishes off detection issues by running matching and sensor tag processing.
+- OTN supports processing of slocum and wave glider detections, detections from other mobile platforms (ship-board receivers, animal-mounted receivers, etc.), and active tracking (reference https://oceantrackingnetwork.org/gliders/).
+- OTN is able to match detections collected by moving platforms as long as geolocation data is provided.
 - `mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 ---
 
@@ -50,11 +50,11 @@ Moving platform
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME update detection extract table
 
-metadata: **(put metadata plone link here)**
+metadata: **(put metadata repository link here)**
 
-data: **(put data plone link here)**
+data: **(put data repository link here)**
 
-telemetry: **(put telemetry plone link here)**
+telemetry: **(put telemetry repository link here)**
 
 ~~~
 
