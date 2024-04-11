@@ -61,9 +61,9 @@ telemetry: **(put telemetry plone link here)**
 # Loading Mission Metadata
 
 Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
-This spreadsheet file will contain one or more missions(rows) of the moving platform: identifiers, instruments used and deployment/recovery times.
+This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
-1. Visually check if any missing information, inconsistant or formatting issues in the **essential** columns ? Column names and example data are shown as below:
+1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
  * platform_id: e.g. `1234567`
  * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
  * ins_model_no: e.g. `VMT`
@@ -187,13 +187,13 @@ Cell three requires input from you. This information will be used to get the raw
 
 - Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
   
-3. Run the nex six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+3. Run the next six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
    
 `- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
 
 `- [ ] - NAME verify timedrift corrections (movers-3 notebook)`
 
-4. Run the nex two cells to detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+4. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
 `- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (movers-3 notebook)`
 
