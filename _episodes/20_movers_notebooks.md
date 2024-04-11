@@ -13,8 +13,8 @@ objectives:
 ---
 keypoints:
 - Moving Platform workflow is feasible for technologies such as Liquid Robotics Wave glider, Teledyne Webb Research Slocum glider, and short deployments (hours) down a line of traps (reference https://oceantrackingnetwork.org/gliders/)
-
--  `mssion metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
+- OTN finishes off detection issues by running matching and sensor tag processing.
+- `mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 ---
 
 Here is the Issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
