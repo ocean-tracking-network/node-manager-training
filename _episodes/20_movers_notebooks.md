@@ -75,7 +75,7 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
 2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
 
 ### User Input
-Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+Cell three requires input from you. This information will be used to get the raw mission CSV and to be able to create a new raw mission table in the database.
 
 1. `schema`:  'collectioncode'
     * please edit to include the relevant project code, in lowercase, between the quotes.
