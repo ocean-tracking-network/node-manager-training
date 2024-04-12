@@ -509,20 +509,144 @@ Cell three requires input from you. This information will be used to get the raw
 
 `- [ ] - NAME create mission and receiver records in moorings (movers-4 notebook)`
 
-# Creating Download Records and Processing Receiver Configuration
+# events - 3 - create download records
 
-These detailed steps and explanations are the same as https://github.com/ocean-tracking-network/node-manager-training/blob/gh-pages/_episodes/08_Detections.md `events - 3 - create download records` section and `events-4 - process receiver configuration` section. Please use the above Detection Loading process as reference.
+This notebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this notebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
 
-1. Create and verify download records via `events - 3 - create download records` notebook: check off the steps in the Gitlab ticket.
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+~~~
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
+~~~
+{: .language-plaintext .example}
 
 
-`- [ ] - NAME load download records (events-3 notebook)`
+### User Inputs
 
-`- [ ] - NAME verify download records (events-3 notebook)`
+Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
 
-2. Run through the `events - 4 - process receiver configuration` notebook to process receiver configuration: check off the step in the Gitlab ticket.
-   
-`- [ ] - NAME process receiver configuration (events-4 notebook)`
+Once you have edited the value, you can run the cell.
+
+### Detecting Download Records
+
+The next cell will scan the `events` table looking for data download events, and attempt to match them to their corresponding receiver deployment.
+
+You should see output like this:
+
+~~~
+Found XXX download records to add to the moorings table
+~~~
+{: .language-plaintext .example}
+
+
+The next cell will print out all the identified download records, in a dataframe for you to view.
+
+### Loading Download Records
+
+Before moving on from this you will need to confirm 2 things:
+
+1) Confirm that **NO Push** is currently ongoing
+
+2) confirm `rcvr_locations` for this schema have been verified.
+
+If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
+
+If everything is OK, you can run the cell. The notebook will indicate success with a message like:
+
+~~~
+Added XXX records to the moorings table
+~~~
+{: .language-plaintext .example}
+
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
+
+`- [ ] - NAME load download records ("events-3" notebook)`
+
+### Verify Download Records
+
+This cell will have useful information:
+- Are the instrument models formatted correctly?
+- Are receiver serial numbers formatting correctly?
+- Are there any other outstanding download records which haven't been loaded?
+
+The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**.
+
+If there are any errors, contact OTN for next steps.
+
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
+
+`- [ ] - NAME verify download records ("events-3" notebook)`
+
+# events-4 - process receiver configuration
+
+This notebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
+
+### Import cells and Database connections
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+~~~
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
+~~~
+{: .language-plaintext .example}
+
+
+### User Inputs
+
+Information regarding the tables we want to check against is required. Please complete `schema = 'collectioncode'`, edited to include the relevant project code, in lowercase, between the quotes.
+
+Once you have edited the value, you can run the cell.
+
+### Get Receiver Configuration
+
+Using the receiver deployment records, and the information found in the `events` table, this cell will identify and important configuration information for each deployment. A dataframe will be displayed.
+
+The following cell will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
+
+### Load Configuration to Database
+
+Finally, the notebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
+
+~~~
+The following XX receiver configurations are new and have been inserted:
+~~~
+{: .language-plaintext .example}
+
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
+
+`- [ ] - NAME process receiver configuration ("events-4" notebook)`
+
 
 # Final Steps
 
