@@ -107,7 +107,7 @@ Cell three requires input from you. This information will be used to get the raw
 2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
    
 ### User Input
-Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
 
 1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
