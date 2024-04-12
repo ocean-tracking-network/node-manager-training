@@ -150,19 +150,281 @@ Cell three requires input from you. This information will be used to get the tel
 
 These detailed steps and explanations are the same as https://github.com/ocean-tracking-network/node-manager-training/blob/gh-pages/_episodes/08_Detections.md `Convert to CSV` section, `detections - 1 - load csv detections` section, `events - 1 - load events into c_events_yyyy` section and `events - 2 - move c_events into events table` section. Please use the above Detection Loading process as reference.
 
-1. Load raw detections via `detections - 1 - load csv detections` notebook: check off the steps and record the `c_detections` name in the Gitlab ticket.
+- The related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
+
+Visual Inspection
+
+Once the files are received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
+
+Things to visually check:
+
+- Do the files appear edited? Look for `_edited` in file name.
+- Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
+- Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
+
+# Convert to CSV
+
+Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
+
+For Innovasea
+- VUE
+    - Open a new `database`
+    - Import all the `VRL` files
+    - Select `export detections` and choose the location you want to save the files
+    - Select `export events` and choose the location you want to save the files
+- Fathom Connect App
+    - choose "export data"
+    - select the relevant files and import into the Fathom Connect application
+    - export all data types, and choose the location you want to save the files
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook
+    - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
+    - select the folder containing the relevant files and the location you'd like the CSVs saved
+    - run the cells to `convert`
+
+For Thelma Biotel
+- use the `ComPort` software to open the `.tbdb` file and export as CSV
+
+For Lotek
+- exporting to CSV is more complicated, please reach out to OTN for specific steps
+
+Other manufacturers: contact OTN staff.
+
+
+# detections - 1 - load csv detections
+
+Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
+### Import cells and Database Connections
+
+As in all notebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+~~~
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
+~~~
+{: .language-plaintext .example}
+
+
+### User Input
+
+Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
+
+1. `file_or_folder_path = r'C:/Users/path/to/detections_CSVs/'`
+    * paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
+    * this can be a path to a single CSV file, or a folder of multiple CSVs.
+1. `table_suffix = 'YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+There are also some optional inputs:
+- `load_detections`: a true or false value using the table suffix you supplied
+- `stacked`: this is for Fathom exports only and is a way to know how to parse them
+
+Once you have added your information, you can run the cell.
+
+### Verify Detection File and Load to Raw Table
+
+Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
+
+The notebook will indicate the success of the table-creation with a message such as this:
+
+~~~
+Reading fathom files...
+Loading Files...
+7/7
+~~~
+{: .language-plaintext .example}
+
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to raw detections (detections-1 notebook) **(:fish: table name: c_detections_yyyy)**`
 
+Ensure you paste the table name (ex: c_detections_YYYY_mm) into the section indicated, before you check the box.
+
+### Verify Raw Detection Table
+
+This cell will now complete the Quality Control checks of the raw table. This is to ensure the Nodebook loaded the records correctly from the CSVs.
+
+The output will have useful information:
+- Are there any duplicates?
+- Are the serial numbers formatted correctly?
+- Are the models formatted correctly?
+
+The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+
+If there are any errors, contact OTN for next steps.
+
+#### Task list checkpoint
+
+In GitLab, these tasks can be completed at this stage:
+
 `- [ ] - NAME verify raw detections table (detections-1 notebook)`
 
-2. Load raw events by the `events - 1 - load events into c_events_yyyy` notebook: check off the step and record the `c_events` name in the Gitlab ticket.
+# events - 1 - load events into c_events_yyyy
+
+Events-1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook.
+
+### Import cell
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+### User Inputs
+
+Cell two requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
+
+1. `filepath = r'C:/Users/path/to/events.csv'`
+    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+1. `table_name = 'c_events_YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+There are also some optional inputs:
+- `file_encoding`: The file_encoding: ISO-8859-1 in the event export. The  default encoding used in VUE's event export
+
+Once you have added your information, you can run the cell.
+
+### Verifying the events file
+
+Before attempting to load the event files to a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors, you will be able to continue.
+
+The notebook will indicate the success of the file verification with a message such as this:
+
+~~~
+Reading file 'events.csv' as CSV.
+Verifying the file.
+Format: VUE 2.6+
+Mandatory Columns: OK
+date_and_time datetime:OK
+Initialization(s): XX
+Data Upload(s): XX
+Reset(s): XX
+~~~
+{: .language-plaintext .example}
+
+
+### Database Connection
+
+You will have to edit one section: `engine = get_engine()`
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+~~~
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
+~~~
+{: .language-plaintext .example}
+
+
+### Load the events file into the c_events_yyyy table
+
+The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading and can dispose of the engine then move on to the next notebook.
+
+The notebook will indicate the success of the table-creation with the following message:
+
+~~~
+File loaded with XXXXX records.
+100%
+~~~
+{: .language-plaintext .example}
+
+
+#### Task list checkpoint
+
+In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**`
 
-3. Run the `events - 2 - move c_events into events table` notebook to promote the raw events into to the `events` table.
+Ensure you paste the table name (ex: c_events_YYYY_mm) into the section indicated, before you check the box.
+
+# events - 2 - move c_events into events table
+
+This notebook will move the `raw` events records in the `intermediate` events table.
+
+### Import cell
+
+As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+
+### User input
+
+This cell requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
+
+1. `c_events_table = 'c_events_YYYY_mm'`
+	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`.
+1. `schema = 'collectioncode'`
+	  * please edit to include the relevant project code, in lowercase, between the quotes.
+
+### Database Connection
+
+You will have to edit one section: `engine = get_engine()`
+- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
+- The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_conn_string.kdbx')`.
+
+Once you have added your information, you can run the cell. Successful login is indicated with the following output:
+
+~~~
+Auth password:········
+Connection Notes: None
+Database connection established
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
+~~~
+{: .language-plaintext .example}
+
+
+### Verify table format
+
+You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
+
+The notebook will indicate the success of the table verification with a message such as this:
+
+~~~
+Checking table name format... OK
+Checking if schema collectioncode exists... OK!
+Checking collectioncode schema for c_events_YYYY_mm table... OK!
+collectioncode.c_events_YYYY_mm table found.
+~~~
+{: .language-plaintext .example}
+
+If there are any errors in this section, please contact OTN.
+
+### Load to Events table
+
+Pending nothing comes up in the verification cells, you run the `loading` cell.
+
+The notebook will indicate the success of the processing with a message such as this:
+
+~~~
+Checking for the collectioncode.events table... OK!
+Loading events... OK!
+Loaded XX rows into collectioncode.events table.
+~~~
+{: .language-plaintext .example}
+
+
+#### Task list checkpoint
+
+In GitLab, these tasks can be completed at this stage:
    
 `- [ ] - NAME load raw events to events table (events-2 notebook)`
+
 
 # Loading Detections for Moving Platforms
 
