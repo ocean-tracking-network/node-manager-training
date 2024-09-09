@@ -63,7 +63,3 @@ Located in the `vis` subfolder. This creates a map to show receivers from Nodes.
 ##  Receiver Operator Report
 
 Located in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
-
-## DB-Fix Notebooks
-
-These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please contact OTN for assistance.
