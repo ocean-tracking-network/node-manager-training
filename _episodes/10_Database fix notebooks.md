@@ -77,21 +77,52 @@ The required columns will be shown in the description. If there are missing requ
 
 The spreadsheet should be created and added to the created Gitlab issue, either in the description or in a comment.
 
-### Next Steps
+### Examples
 Once you know which notebook to use and have created the spreadsheet (if needed), you can open the notebook which will consist of a single cell to run.
 
-The notebooks have similar formats so three examples will be demonstrated below.
+The notebooks have similar formats so four examples will be demonstrated below.
 
-### Example 1: Change receiver serial
-Let's say for the first example, a researcher has emailed saying that they made a typo in the receiver metadata.
+### Example 1: Changing a receiver serial
+Let's say for the first example, a researcher has emailed saying that they made a typo in the receiver metadata and that serial 87654321 should actually be 12345678 for receivers 'CODE-87654321-2020-03-10' and 'CODE-87654321-2024-09-09' in project CODE.
 
-### Example 2: Change tag end date
+The first step is to create a Gitlab issue with the relevant information titled 'CODE Change receiver serial'.
+
+The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
+![alt text](image.png)
+
+You can then click the link to go to the `Change receiver serials` notebook. In this notebook, there is a description telling you that the spreadsheet should have the columns 'receiver_catalognumber' and 'correct_serial' so you create the following spreadsheet:
+
+receiver_catalognumber | correct_serial
+-|-
+CODE-87654321-2020-03-10 | 12345678
+CODE-87654321-2024-09-09 | 12345678
+
+Once this spreadsheet has been created, you can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
+
+![alt text](image-1.png)
+
+which will open your file explorer to select the file containing your authorization. 
+
+Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
+![alt text](image-2.png)
+
+After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping receivers occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+
+If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
+
+**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+
+Once 'Update' is pressed, the notebook will display a success message describing the successful change.
+
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message
+
+### Example 2: Changing tag end date
 Let's say for the second example, a researcher has emailed saying that they were missing a harvest date, which should be used instead of the estimated tag life.
 
-#### Example 3: Fix the_geom
+#### Example 3: Fixing the_geom
 Let's say for the third example, you are verifying tag metadata and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' database fix notebooks.
 
-#### Example 4: Fix duplicate downloads
+#### Example 4: Fixing duplicate downloads
 Let's say for the fourth example, you are verifying event data and an error pops up from ipython-utilites saying that there are duplicate downloads and the instructions direct you to the 'fix duplicate downloads' database fix notebooks.
 
 The first step would be to create an issue with the collection code and linking the detections Gitlab issue that you were working on when this error popped up.
