@@ -10,11 +10,11 @@ keypoints:
 - "database-fix-notebooks has many useful notebooks for Node Managers to help them make changes to the database"
 ---
 
-### General Description
+## General Description
 
 When a researcher conveys that database values are incorrect, we can use the [Database fix notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks) to correct these values. These notebooks are also used to fix errors that come up from the verifications. The instructions to use them will be shown in the verification instructions. This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used.
 
-### Installation
+## Installation
 The installation steps for the database fix notebooks are similar to the installation steps for ipython-utilities:
 1. Determine the folder in which you wish to keep the Database Fix Notebooks.
 1. Open your `terminal` or `command prompt` app. 
@@ -37,12 +37,12 @@ The installation steps for the database fix notebooks are similar to the install
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
 
-### Gitlab KDBX integration
+## Gitlab Kdbx integration
 One interesting part of the Database Fix Notebooks is that if you add a Gitlab token to your kdbx file, it will automatically add the results from the notebook to the created Gitlab issue. Otherwise, you will have to copy and paste the displayed results manualyl into the comments (as directed by the notebook).
 
 To integrate the Gitlab token into your kdbx file, please use the instructions in the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
 
-### Issue Creation
+## Issue Creation
 
 The **first** step when a researcher tell you about an incorrect database value is to create a new Gitlab Issue with the `DB Fix` Issue checklist template.
 
@@ -69,7 +69,7 @@ There are a few helpful explanation notebooks inside this suite of notebook.
 - [0. Home](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Home.ipynb): This notebook will provide a brief explanation of what each notebook does, as well as helpful hints to show what is needed to run the notebook.
 - [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which database fix notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on this selection, it will display a result of which notebook to use.
 
-### Spreadsheet Creation
+## Spreadsheet Creation
 
 Some of the database fix notebooks require a spreadsheet of the changes. These will be evident by the notebook top description or the description on `0. Home.ipynb`. 
 
@@ -77,7 +77,7 @@ The required columns will be shown in the description. If there are missing requ
 
 The spreadsheet should be created and added to the created Gitlab issue, either in the description or in a comment.
 
-### Examples
+## Examples
 Once you know which notebook to use and have created the spreadsheet (if needed), you can open the notebook which will consist of a single cell to run.
 
 The notebooks have similar formats so four examples will be demonstrated below.
@@ -114,19 +114,123 @@ If the verifications pass, the notebook will display the updates it will be doin
 
 Once 'Update' is pressed, the notebook will display a success message describing the successful change.
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 ### Example 2: Changing tag end date
-Let's say for the second example, a researcher has emailed saying that they were missing a harvest date, which should be used instead of the estimated tag life.
+Let's say for the second example, a researcher has emailed saying that they had forgotten to add the harvest date '2024-09-09 10:00:00' to tag 'A69-1303-12345' on animal 'CODE-Jane', which was released on '2024-01-01 13:00:00', which should be used instead of the estimated tag life '365 days'.
+
+The first step is to create a Gitlab issue with the relevant information titled 'CODE Change tag end date with harvest date' or something with relevant information.
+
+The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
+![alt text](image-3.png)
+
+You can then click the link to go to the `Change tag dates` notebook. In this notebook, there is a description telling you that the spreadsheet should have the columns 'tag_catalognumber', 'correct_start_date', and 'correct_end_date' so you create the following spreadsheet:
+
+tag_catalognumber | correct_start_date | correct_end_date
+-|-|-
+A69-1303-12345 | 2024-01-01 13:00:00 | 2024-09-09 10:00:00
+
+Once this spreadsheet has been created, you can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
+
+![alt text](image-4.png)
+
+which will open your file explorer to select the file containing your authorization. 
+
+Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
+
+![alt text](image-5.png)
+
+After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping tags occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+
+If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
+
+**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+
+Once 'Update' is pressed, the notebook will display a success message describing the successful change.
+
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 #### Example 3: Fixing the_geom
-Let's say for the third example, you are verifying tag metadata and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' database fix notebooks.
+Let's say for the third example, you are verifying tag metadata for project 'NSBS' and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' database fix notebooks.
+
+The first step is to create a Gitlab issue with the relevant information titled 'NSBS fix the_geom'.
+
+You can then open the `Fix the_geom` notebook as the ipython-utilities nodebook will direct you. In this notebook, there is a description that does not have a spreadsheet so no spreadsheet is needed.
+
+You can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
+
+![alt text](image-6.png)
+
+which will open your file explorer to select the file containing your authorization. 
+
+Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
+
+![alt text](image-7.png)
+
+After pressing 'Next' after filling in the relevant information, more user input will be shown for you to pick the relevant table. Since this was for nsbs.otn_transmitters, you can choose 'otn_transmitters' from the drop-down:
+
+![alt text](image-8.png)
+
+After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure no errors will result from the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+
+If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
+
+**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+
+Once 'Update' is pressed, the notebook will display a success message describing the successful change.
+
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 #### Example 4: Fixing duplicate downloads
 Let's say for the fourth example, you are verifying event data and an error pops up from ipython-utilites saying that there are duplicate downloads and the instructions direct you to the 'fix duplicate downloads' database fix notebooks.
 
-The first step would be to create an issue with the collection code and linking the detections Gitlab issue that you were working on when this error popped up.
+The first step would be to create a Gitlab issue with the collection code and linking the detections Gitlab issue that you were working on when this error popped up.
 
 After this, you would open up the 'Fix duplicate downloads' notebook in database-fix-notebooks, notice there's no spreadsheet needed, and run the single cell.
 
-This prompts you for your engine with a 'Browse File' button. Once you click this, your file explorer opens up and you can search for your KDBX (with the Gitlab token). Once you have selected this, the dialog box closes and a 'Next' button appears.
+This prompts you for your engine with a 'Select File' button:
+![alt text](image-9.png) 
+
+Once you click this, your file explorer opens up and you can search for your kdbx (with the Gitlab token). Once you have selected this, the dialog box closes and a 'Next' button appears. Pressing next will make text fields appear for you to fill in with the relevant information. After pressing Next after filling in the relevant information, you will be shown information about the duplicate downloads, some guidelines, and the option to select which download(s) to delete.
+
+This will appear in two formats: a selectable table and a drop-down.
+
+The selectable table will appear when there are less than ten duplicate download groups:
+![alt text](image-10.png)
+
+The drop-down will appear if there are ten or more duplicate download groups:
+![alt text](image-11.png)
+
+The logic of both options will work the same but differ in the way to select the download(s) to delete. For the selectable table, you can click or Control-click on the rows on the actual table. For the drop-down, you can click or Control-clik on the catalognumber(s) in the drop-down. **IMPORTANT** Make sure the catalognumber(s) in the drop-down you select matches the catalognumber(s) in the table.
+
+For each duplicate download group, you can check which download(s) are incorrect and should be deleted. You can do this using the guidance in the instructions in the notebook. If the downloads are matched to different receivers, the correct download matching is the one with the closest download date to its receiver's end date and the other rows should be deleted. If they are matched to the same receiver, the correct download is the one with the most accurate catalognumber. This could be of the format `{receiver_catalognumber}-{download_date}`. The other rows should be deleted. In the table, there is a '***' in the 'recommended' column which shows which rows the notebook recommends to delete but sometimes it can be inaccurate so we recommend human eyes on it to double check that it is the one(s) you intend to delete.
+
+For example, if the download table shows:
+
+download_catalognumber | download_date | receiver_catalognumber | receiver_startdate | receiver_enddate | recommended
+-|-|-|-|-|-
+CODE-VR2W-123456-2019_06_13T16:2020-06-13 13:10:00 | 2020-06-13 13:10:00 | CODE-VR2W-123456-2019_06_13T16 | 2019-06-13 16:30:00 | 2020-06-12 13:15:00 | 
+CODE-VR2W-123456-2020_06_12T13:2020-06-13 13:10:00 | 2020-06-13 13:10:00 | CODE-VR2W-123456-2020_06_12T13 | 2020-06-12 13:20:00 | 2021-07-21 15:20:00 | ***
+
+The correct download to delete would be the second row, because in the first one, the download date (2020-06-13 13:10:00) is closer to the receiver end date (2020-06-12 13:15:00) than the receiver end date in the second row (2021-07-21 15:20:00). Therefore, the download catalognumber `CODE-VR2W-123456-2020_06_12T13:2020-06-13 13:10:00` should be selected as the one to delete.
+
+If the download table shows:
+
+download_catalognumber | download_date | receiver_catalognumber | receiver_startdate | receiver_enddate | recommended
+-|-|-|-|-|-
+Station-123456-download | 2024-09-09 10:10:00 | CODE-VR2W-123456-2019_06_13T16 | 2019-06-13 16:30:00 | 2020-06-12 13:15:00 | ***
+CODE-VR2W-123456-2019_06_13T16:2024-09-09 10:10:00 | 2024-09-09 10:10:00 | CODE-VR2W-123456-2019_06_13T16 | 2019-06-13 16:30:00 | 2020-06-12 13:15:00 | 
+
+The first row should be deleted since the downloads are matched to the same receiver but the download catalognumber is not in the expected format `{receiver_catalognumber}-{download_date}`.
+
+Once the proper downloads to delete are selected by the user, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
+
+**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+
+![alt text](image-12.png)
+
+Once 'Update' is pressed, the notebook will display a success message describing the successful change.
+
+![alt text](image-13.png)
+
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
