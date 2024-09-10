@@ -12,7 +12,18 @@ keypoints:
 
 ## General Description
 
-When a researcher conveys that database values are incorrect, we can use the [Database fix notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks) to correct these values. These notebooks are also used to fix errors that come up from the verifications. The instructions to use them will be shown in the verification instructions. This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used.
+During the process of loading data it is possible to uncover errors with previously-loaded datasets. OTN is constantly improving our QA/QC tools, which means we are identifying and correcting more and more historical errors.
+
+Generally, there a few ways Node Managers will identify errors:
+- By using the Verification cells in the Nodebooks
+- When new QA/QC updates are released for the Nodebooks
+- When a researcher identifies an error explicitly
+- When a researcher submits data that does not match previously-loaded records
+In the latter case, full comparison between the records is required, followed by a discussion with the researcher to identify if the previously-loaded records or the new records are correct. Often, the outcome is that the data in the DB needs correction.
+
+These corrections can be done using the [Database fix notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks). These are the tools we can use to correct the identified errors, if the tool to do so already exists.
+
+This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used.
 
 ## Installation
 The installation steps for the database fix notebooks are similar to the installation steps for ipython-utilities:
