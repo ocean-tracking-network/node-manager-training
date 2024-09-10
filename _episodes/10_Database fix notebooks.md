@@ -88,7 +88,8 @@ Let's say for the first example, a researcher has emailed saying that they made 
 The first step is to create a Gitlab issue with the relevant information titled 'CODE Change receiver serial'.
 
 The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
-![alt text](image.png)
+
+![Example 1 Which notebook](../fig/nmt_dbfix_ex1_fig1.png)
 
 You can then click the link to go to the `Change receiver serials` notebook. In this notebook, there is a description telling you that the spreadsheet should have the columns 'receiver_catalognumber' and 'correct_serial' so you create the following spreadsheet:
 
@@ -99,12 +100,13 @@ CODE-87654321-2024-09-09 | 12345678
 
 Once this spreadsheet has been created, you can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
 
-![alt text](image-1.png)
+![Example 1 Select File](../fig/nmt_dbfix_ex1_fig2.png)
 
 which will open your file explorer to select the file containing your authorization. 
 
 Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
-![alt text](image-2.png)
+
+![Example 1 User Input](../fig/nmt_dbfix_ex1_fig3.png)
 
 After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping receivers occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
@@ -122,7 +124,8 @@ Let's say for the second example, a researcher has emailed saying that they had 
 The first step is to create a Gitlab issue with the relevant information titled 'CODE Change tag end date with harvest date' or something with relevant information.
 
 The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
-![alt text](image-3.png)
+
+![Example 2 Which notebook](../fig/nmt_dbfix_ex2_fig1.png)
 
 You can then click the link to go to the `Change tag dates` notebook. In this notebook, there is a description telling you that the spreadsheet should have the columns 'tag_catalognumber', 'correct_start_date', and 'correct_end_date' so you create the following spreadsheet:
 
@@ -132,13 +135,13 @@ A69-1303-12345 | 2024-01-01 13:00:00 | 2024-09-09 10:00:00
 
 Once this spreadsheet has been created, you can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
 
-![alt text](image-4.png)
+![Example 2 Select File](../fig/nmt_dbfix_ex2_fig2.png)
 
 which will open your file explorer to select the file containing your authorization. 
 
 Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
 
-![alt text](image-5.png)
+![Example 2 User Input](../fig/nmt_dbfix_ex2_fig3.png)
 
 After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping tags occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
@@ -159,17 +162,17 @@ You can then open the `Fix the_geom` notebook as the ipython-utilities nodebook 
 
 You can run the single cell in the notebook, which will prompt you for your authorization with a 'Select File' button:
 
-![alt text](image-6.png)
+![Example 3 Select File](../fig/nmt_dbfix_ex3_fig1.png)
 
 which will open your file explorer to select the file containing your authorization. 
 
 Once you press the 'Next' button after selecting the authorization file and enter your password for kdbx, text fields will appear for you to fill in with relevant information:
 
-![alt text](image-7.png)
+![Example 2 User Input](../fig/nmt_dbfix_ex3_fig2.png)
 
 After pressing 'Next' after filling in the relevant information, more user input will be shown for you to pick the relevant table. Since this was for nsbs.otn_transmitters, you can choose 'otn_transmitters' from the drop-down:
 
-![alt text](image-8.png)
+![Example 3 More User Input](../fig/nmt_dbfix_ex3_fig3.png)
 
 After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure no errors will result from the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
@@ -189,17 +192,20 @@ The first step would be to create a Gitlab issue with the collection code and li
 After this, you would open up the 'Fix duplicate downloads' notebook in database-fix-notebooks, notice there's no spreadsheet needed, and run the single cell.
 
 This prompts you for your engine with a 'Select File' button:
-![alt text](image-9.png) 
+
+![Example 4 Select File](../fig/nmt_dbfix_ex4_fig1.png)
 
 Once you click this, your file explorer opens up and you can search for your kdbx (with the Gitlab token). Once you have selected this, the dialog box closes and a 'Next' button appears. Pressing next will make text fields appear for you to fill in with the relevant information. After pressing Next after filling in the relevant information, you will be shown information about the duplicate downloads, some guidelines, and the option to select which download(s) to delete.
 
 This will appear in two formats: a selectable table and a drop-down.
 
 The selectable table will appear when there are less than ten duplicate download groups:
-![alt text](image-10.png)
+
+![Example 4 Selectable Table](../fig/nmt_dbfix_ex4_fig2.png)
 
 The drop-down will appear if there are ten or more duplicate download groups:
-![alt text](image-11.png)
+
+![Example 4 Dropdown](../fig/nmt_dbfix_ex4_fig3.png)
 
 The logic of both options will work the same but differ in the way to select the download(s) to delete. For the selectable table, you can click or Control-click on the rows on the actual table. For the drop-down, you can click or Control-clik on the catalognumber(s) in the drop-down. **IMPORTANT** Make sure the catalognumber(s) in the drop-down you select matches the catalognumber(s) in the table.
 
@@ -227,10 +233,10 @@ Once the proper downloads to delete are selected by the user, the notebook will 
 
 **IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
 
-![alt text](image-12.png)
+![Example 4 Update Steps](../fig/nmt_dbfix_ex4_fig4.png)
 
 Once 'Update' is pressed, the notebook will display a success message describing the successful change.
 
-![alt text](image-13.png)
+![Example 4 Success Message](../fig/nmt_dbfix_ex4_fig5.png)
 
 If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
