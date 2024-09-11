@@ -12,11 +12,27 @@ keypoints:
 - "Loading receiver metadata requires judgement from the Data Manager"
 - "Communication with the researcher is essential when errors are found"
 ---
+
+## Process workflow
+The process workflow for deployment metadata is as follows:
+```mermaid
+flowchart LR
+    tag_start(( )) --> get_meta(Receive \ndeployment metadata \nfrom researchers)
+    style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    get_meta --> gitlab(Create \nGitlab \nissue)
+    gitlab --> inspect(Visually \ninspect)
+    inspect --> nodebook(Process and verify \nwith nodebooks)
+    nodebook --> plone(Add metadata \nto repository folder)
+    plone --> otn(Pass to \nOTN)
+    otn --> end2(( ))
+    style end2 fill:#FF0000,stroke:#FF0000
+```
+
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
 
 Remembering our previous lessons, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
 
-# Submitted Metadata
+## Submitted Metadata
 
 Immediately, upon receipt of the metadata, a new GitLab Issue should be created. Please use the `Receiver_metadata` Issue checklist template.
 
@@ -83,7 +99,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 - When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter `y` to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
-# Quality Control - Deploy Notebook
+## Quality Control - Deploy Notebook
 
 Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
 
