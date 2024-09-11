@@ -19,11 +19,12 @@ Generally, there a few ways Node Managers will identify errors:
 - When new QA/QC updates are released for the Nodebooks
 - When a researcher identifies an error explicitly
 - When a researcher submits data that does not match previously-loaded records
+
 In the latter case, full comparison between the records is required, followed by a discussion with the researcher to identify if the previously-loaded records or the new records are correct. Often, the outcome is that the data in the DB needs correction.
 
 These corrections can be done using the [Database fix notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks). These are the tools we can use to correct the identified errors, if the tool to do so already exists.
 
-This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used.
+This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used and, depending on the type of fix, researcher permission may need to be obtained.
 
 ## Installation
 The installation steps for the database fix notebooks are similar to the installation steps for ipython-utilities:
@@ -51,7 +52,7 @@ More operating system-specific instructions and troubleshooting tips can be foun
 ## Gitlab Kdbx integration
 One interesting part of the Database Fix Notebooks is that if you add a Gitlab token to your kdbx file, it will automatically add the results from the notebook to the created Gitlab issue. Otherwise, you will have to copy and paste the displayed results manualyl into the comments (as directed by the notebook).
 
-To integrate the Gitlab token into your kdbx file, please use the instructions in the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
+To integrate the Gitlab token into your kdbx file, please use the instructions found at the bottom of the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
 
 ## Issue Creation
 
@@ -78,7 +79,7 @@ Here is the Issue checklist, for reference:
 
 There are a few helpful explanation notebooks inside this suite of notebook.
 - [0. Home](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Home.ipynb): This notebook will provide a brief explanation of what each notebook does, as well as helpful hints to show what is needed to run the notebook.
-- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which database fix notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on this selection, it will display a result of which notebook to use.
+- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which database fix notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on the raw metadata column selection, it will display a result of which notebook to use.
 
 ## Spreadsheet Creation
 
@@ -89,7 +90,7 @@ The required columns will be shown in the description. If there are missing requ
 The spreadsheet should be created and added to the created Gitlab issue, either in the description or in a comment.
 
 ## Examples
-Once you know which notebook to use and have created the spreadsheet (if needed), you can open the notebook which will consist of a single cell to run.
+Once you know which notebook to use and have created the spreadsheet (if needed), you can open the correct db fix notebook. This notebook will consist of a single cell to run.
 
 The notebooks have similar formats so four examples will be demonstrated below.
 
