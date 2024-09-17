@@ -22,41 +22,41 @@ Generally, there a few ways Node Managers will identify errors:
 
 In the latter case, full comparison between the records is required, followed by a discussion with the researcher to identify if the previously-loaded records or the new records are correct. Often, the outcome is that the data in the DB needs correction.
 
-These corrections can be done using the [Database fix notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks). These are the tools we can use to correct the identified errors, if the tool to do so already exists.
+These corrections can be done using the [Database Fix Notebooks](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks). These are the tools we have built so far to correct commonly identified errors.
 
-This suite of notebooks, however, should be used as a last option. If an error comes up from the verification notebooks, human eyes and critical thinking should be used to check if the database fix notebooks should be used and, depending on the type of fix, researcher permission may need to be obtained.
+This suite of notebooks, however, should only be used as a last option. If an error is identified by verification checks, human eyes and critical thinking must be used to check if the Database Fix Notebooks are required and, depending on the type of fix, researcher permission often needs to be obtained.
 
 ## Installation
-The installation steps for the database fix notebooks are similar to the installation steps for ipython-utilities:
+The installation steps for the Database Fix Notebooks are similar to the installation steps for ipython-utilities:
 1. Determine the folder in which you wish to keep the Database Fix Notebooks.
 1. Open your `terminal` or `command prompt` app. 
    * Type `cd` then `space`. 
    * You then need to get the filepath to the folder in which you wish to keep the Database Fix Notebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
-1. Create and activate the "nodebook" python enviornment. The creation process will only need to happen once.
-   * In your terminal, run the command `conda create -n nodebook python=3.9`
-   * Activate the nodebook environment using `conda activate nodebook`
+1. Create and activate the "dbfixnotebook" python enviornment. The creation process will only need to happen once.
+   * In your terminal, run the command `conda create -n dbfixnotebook python=3.9`
+   * Activate the dbfixnotebook environment using `conda activate dbfixnotebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks.git`. This will get the latest version Database Fix Notebooks from our GitLab
 1. Navigate to the database-fix-notebooks subdirectory that was created by running `cd database-fix-notebooks`.
-1. Now to install all required python packages by running the following: `mamba env update -n nodebook -f environment.yml`
+1. Now to install all required python packages by running the following: `mamba env update -n dbfixnotebook -f environment.yml`
 
 **To open and use the Database Fix Notebooks:**
 - **MAC/WINDOWS**: Open your terminal, and navigate to your database-fix-notebooks directory, using `cd /paht/to/database-fix-notebooks`. Then, run the commands: 
-   * `conda activate nodebook` to activate the nodebook python environment
+   * `conda activate dbfixnotebook` to activate the dbfixnotebook python environment
    * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
 
-## Gitlab Kdbx integration
-One interesting part of the Database Fix Notebooks is that if you add a Gitlab token to your kdbx file, it will automatically add the results from the notebook to the created Gitlab issue. Otherwise, you will have to copy and paste the displayed results manualyl into the comments (as directed by the notebook).
+## Gitlab KDBX integration
+An exciting feature of the Database Fix Notebooks is that if you add a Gitlab token to your kdbx file, the notebook will automatically comment the output from the notebook directly into the specified Gitlab issue. Otherwise, you will have to copy and paste the displayed results manualyl into the comments (as directed by the notebook).
 
 To integrate the Gitlab token into your kdbx file, please use the instructions found at the bottom of the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
 
 ## Issue Creation
 
-The **first** step when a researcher tell you about an incorrect database value is to create a new Gitlab Issue with the `DB Fix` Issue checklist template.
+The **first** step when you have confirmed an incorrect dataqbase value is to create a new Gitlab Issue with the `DB Fix` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
@@ -77,20 +77,20 @@ Here is the Issue checklist, for reference:
 ~~~
 {: .language-plaintext .example}
 
-There are a few helpful explanation notebooks inside this suite of notebook.
+There are a few helpful explanation notebooks inside this suite of Database Fix tools. You should always start by accessing both of these in order to identify next steps.
 - [0. Home](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Home.ipynb): This notebook will provide a brief explanation of what each notebook does, as well as helpful hints to show what is needed to run the notebook.
-- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which database fix notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on the raw metadata column selection, it will display a result of which notebook to use.
+- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which Database Fix Notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on the raw metadata column selection, it will display a result of which notebook to use.
 
 ## Spreadsheet Creation
 
-Some of the database fix notebooks require a spreadsheet of the changes. These will be evident by the notebook top description or the description on `0. Home.ipynb`. 
+Some of the Database Fix Notebooks require the user to provide a spreadsheet of the changes as input. This requirement will be specified in the top description of each notebook, or the description on `0. Home.ipynb`. 
 
-The required columns will be shown in the description. If there are missing required columns, the notebook will display an error with which columns are missing. 
+The required columns will be shown in the description as well. Once input, if there are missing required columns, the notebook will display an error identifiying which columns are missing. 
 
 The spreadsheet should be created and added to the created Gitlab issue, either in the description or in a comment.
 
 ## Examples
-Once you know which notebook to use and have created the spreadsheet (if needed), you can open the correct db fix notebook. This notebook will consist of a single cell to run.
+Once you know which notebook to use and have created the spreadsheet (if needed), you can open the correct Database Fix Notebook. This notebook will consist of a single cell to run.
 
 The notebooks have similar formats so four examples will be demonstrated below.
 
@@ -120,15 +120,15 @@ Once you press the 'Next' button after selecting the authorization file and ente
 
 ![Example 1 User Input](../fig/nmt_dbfix_ex1_fig3.png)
 
-After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping receivers occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+Once you press 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping receivers occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
 If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
 
-**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+⭐ **IMPORTANT** ⭐ Please double check the update steps to ensure the notebook is performing accurately.
 
 Once 'Update' is pressed, the notebook will display a success message describing the successful change.
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 ### Example 2: Changing tag end date
 Let's say for the second example, a researcher has emailed saying that they had forgotten to add the harvest date '2024-09-09 10:00:00' to tag 'A69-1303-12345' on animal 'CODE-Jane', which was released on '2024-01-01 13:00:00', which should be used instead of the estimated tag life '365 days'.
@@ -155,18 +155,18 @@ Once you press the 'Next' button after selecting the authorization file and ente
 
 ![Example 2 User Input](../fig/nmt_dbfix_ex2_fig3.png)
 
-After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping tags occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+Once you press 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure, e.g. that no resulting overlapping tags occur after the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
 If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
 
-**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+⭐ **IMPORTANT** ⭐ Please double check the update steps to ensure the notebook is performing accurately.
 
 Once 'Update' is pressed, the notebook will display a success message describing the successful change.
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 #### Example 3: Fixing the_geom
-Let's say for the third example, you are verifying tag metadata for project 'NSBS' and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' database fix notebooks.
+Let's say for the third example, you are verifying tag metadata for project 'NSBS' and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' Database Fix Notebook.
 
 The first step is to create a Gitlab issue with the relevant information titled 'NSBS fix the_geom'.
 
@@ -182,22 +182,22 @@ Once you press the 'Next' button after selecting the authorization file and ente
 
 ![Example 2 User Input](../fig/nmt_dbfix_ex3_fig2.png)
 
-After pressing 'Next' after filling in the relevant information, more user input will be shown for you to pick the relevant table. Since this was for nsbs.otn_transmitters, you can choose 'otn_transmitters' from the drop-down:
+Once you press 'Next' after filling in the relevant information, more user input will be shown for you to pick the relevant table. Since this was for nsbs.otn_transmitters, you can choose 'otn_transmitters' from the drop-down:
 
 ![Example 3 More User Input](../fig/nmt_dbfix_ex3_fig3.png)
 
-After pressing 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure no errors will result from the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
+Once you press 'Next' after filling in the relevant information, the backend code will perform verifications on the changes to make sure no errors will result from the change. If this is the case, the change will not occur and an error message will be displayed showing why the change was not made. 
 
 If the verifications pass, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
 
-**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+⭐ **IMPORTANT** ⭐ Please double check the update steps to ensure the notebook is performing accurately.
 
 Once 'Update' is pressed, the notebook will display a success message describing the successful change.
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 #### Example 4: Fixing duplicate downloads
-Let's say for the fourth example, you are verifying event data and an error pops up from ipython-utilites saying that there are duplicate downloads and the instructions direct you to the 'fix duplicate downloads' database fix notebooks.
+Let's say for the fourth example, you are verifying event data and an error pops up from ipython-utilites saying that there are duplicate downloads and the instructions direct you to the 'fix duplicate downloads' Database Fix Notebook.
 
 The first step would be to create a Gitlab issue with the collection code and linking the detections Gitlab issue that you were working on when this error popped up.
 
@@ -207,7 +207,7 @@ This prompts you for your engine with a 'Select File' button:
 
 ![Example 4 Select File](../fig/nmt_dbfix_ex4_fig1.png)
 
-Once you click this, your file explorer opens up and you can search for your kdbx (with the Gitlab token). Once you have selected this, the dialog box closes and a 'Next' button appears. Pressing next will make text fields appear for you to fill in with the relevant information. After pressing Next after filling in the relevant information, you will be shown information about the duplicate downloads, some guidelines, and the option to select which download(s) to delete.
+Once you click this, your file explorer opens up and you can search for your kdbx (with the Gitlab token). Once you have selected this, the dialog box closes and a 'Next' button appears. Pressing next will make text fields appear for you to fill in with the relevant information. Once you press 'Next' after filling in the relevant information, you will be shown information about the duplicate downloads, some guidelines, and the option to select which download(s) to delete.
 
 This will appear in two formats: a selectable table and a drop-down.
 
@@ -219,9 +219,15 @@ The drop-down will appear if there are ten or more duplicate download groups:
 
 ![Example 4 Dropdown](../fig/nmt_dbfix_ex4_fig3.png)
 
-The logic of both options will work the same but differ in the way to select the download(s) to delete. For the selectable table, you can click or Control-click on the rows on the actual table. For the drop-down, you can click or Control-clik on the catalognumber(s) in the drop-down. **IMPORTANT** Make sure the catalognumber(s) in the drop-down you select matches the catalognumber(s) in the table.
+The logic of both options will work the same but differ in the way to select the download(s) to delete. For the selectable table, you can click or Control-click on the rows on the actual table. For the drop-down, you can click or Control-click on the catalognumber(s) in the drop-down. 
 
-For each duplicate download group, you can check which download(s) are incorrect and should be deleted. You can do this using the guidance in the instructions in the notebook. If the downloads are matched to different receivers, the correct download matching is the one with the closest download date to its receiver's end date and the other rows should be deleted. If they are matched to the same receiver, the correct download is the one with the most accurate catalognumber. This could be of the format `{receiver_catalognumber}-{download_date}`. The other rows should be deleted. In the table, there is a '***' in the 'recommended' column which shows which rows the notebook recommends to delete but sometimes it can be inaccurate so we recommend human eyes on it to double check that it is the one(s) you intend to delete.
+⭐ **IMPORTANT** ⭐ Make sure the catalognumber(s) in the drop-down you select matches the catalognumber(s) in the table.
+
+For each duplicate download group, you can check which download(s) are incorrect and should be deleted. You can do this using the guidance in the instructions in the notebook. 
+- If the downloads are matched to different receivers, the correct download matching is the one with the closest download date to its receiver's end date and the other rows should be deleted. 
+- If they are matched to the same receiver, the correct download is the one with the most accurate catalognumber. This could be of the format `{receiver_catalognumber}-{download_date}`. The other rows should be deleted. 
+
+In the displayed table, there is a '***' in the 'recommended' column which shows which rows the notebook recommends to delete but sometimes it can be inaccurate so we recommend human eyes on it to double check that it is the one(s) you intend to delete.
 
 For example, if the download table shows:
 
@@ -239,11 +245,11 @@ download_catalognumber | download_date | receiver_catalognumber | receiver_start
 Station-123456-download | 2024-09-09 10:10:00 | CODE-VR2W-123456-2019_06_13T16 | 2019-06-13 16:30:00 | 2020-06-12 13:15:00 | ***
 CODE-VR2W-123456-2019_06_13T16:2024-09-09 10:10:00 | 2024-09-09 10:10:00 | CODE-VR2W-123456-2019_06_13T16 | 2019-06-13 16:30:00 | 2020-06-12 13:15:00 | 
 
-The first row should be deleted since the downloads are matched to the same receiver but the download catalognumber is not in the expected format `{receiver_catalognumber}-{download_date}`.
+The first row should be deleted since the downloads are matched to the same receiver deployment but the download catalognumber is not in the expected format (`{receiver_catalognumber}-{download_date}`).
 
 Once the proper downloads to delete are selected by the user, the notebook will display the updates it will be doing and display an 'Update' button for you to press once you have verified that the notebook is making the correct changes.
 
-**IMPORTANT** Please double check the update steps to ensure the notebook is performing accurately.
+⭐ **IMPORTANT** ⭐ Please double check the update steps to ensure the notebook is performing accurately.
 
 ![Example 4 Update Steps](../fig/nmt_dbfix_ex4_fig4.png)
 
@@ -251,4 +257,4 @@ Once 'Update' is pressed, the notebook will display a success message describing
 
 ![Example 4 Success Message](../fig/nmt_dbfix_ex4_fig5.png)
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically add the updates and success message in a comment to the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
+If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
