@@ -27,11 +27,24 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 `Anaconda` is a python distribution and a package manager. When you install `Anaconda` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Anaconda allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
 
-There is a smaller version of `Anaconda` with fewer, more essential packages which we recommend installing to save computer memory, called `miniconda`.
+There is a smaller version of `Anaconda` with fewer, more essential packages which we recommend installing to save computer storage, called `miniforge`. Miniforge also includes the binaries needed to run mamba out of the box.
 
- **Install Miniconda** - https://docs.conda.io/en/latest/miniconda.html
-  - Select the option to `add to PATH environment variable` (during install steps)!
+ **Install Miniforge Windows** - https://conda-forge.org/miniforge/ 
+  - Select the option install for Just Me (recommended).
+  - Check the option to Add Miniforge3 to my PATH environment variable.
 
+ **Miniforge Mac** - 
+   - Setup homebrew by running the command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` - **Note:** this operation requires elevated privileges (sudo)
+   - Use the commands outputted by brew to add brew to your system path
+   - Use brew to install miniforge: `brew install miniforge`
+   - Add miniforge to your zsh environment by typing conda init zsh. Restart the terminal
+
+**Miniforge Linux (Debian)**
+   - download Shell script (.sh) file from https://conda-forge.org/miniforge/
+      - Recommended: Choose Python 64-bit Linux Installer
+   - Change the run permissions for the miniforge installer script. ie `chmod +x Miniforge3-[version]-Linux-x86_64.sh`
+   - run the installer from the linux terminal. `./Miniforge3-[version]-Linux-x86_64.sh`
+   - Add this conda installation to your terminal environment by running `conda init`. Restart the terminal to see the changes reflected.
 
 # Git
 
@@ -42,6 +55,8 @@ There is a smaller version of `Anaconda` with fewer, more essential packages whi
 - **Windows**- https://git-scm.com/download/win
 
 - **Mac**- https://git-scm.com/download
+
+- **Linux (Debian)** - run the command: `sudo apt install git`
 
 
 # Nodebooks - iPython Utilities 
@@ -62,13 +77,14 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
-1. To help manage all the python package requirements quickly we use a package called `mamba`. Install mamba by running the command: `conda install mamba -n base -c conda-forge`
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
-1. Now to install all required python packages by running the following: `mamba env update -n root -f environment.yml`
+1. Create a new conda environment by running the command: `conda create -n nodebook python=3.9`. This will create the environment named **nodebook** using the python version 3.9.XX.
+1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
-- **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
+- **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. 
+- Activate your nodebook environment using `conda activate nodebook`.
+Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities
@@ -87,6 +103,10 @@ In the next lesson we will practice using our database console viewer and connec
 # More Useful Programs
 
 In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
+## Cross-Platform 
+
+**Visual Studio Code** - An advanced code editing integrated development environment (IDE).
+* https://code.visualstudio.com/
 
 ## For WINDOWS users
 
