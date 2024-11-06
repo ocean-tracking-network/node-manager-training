@@ -1,4 +1,3 @@
-
 ---
 title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
 teaching: 90
