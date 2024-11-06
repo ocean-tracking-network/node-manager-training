@@ -10,14 +10,14 @@ Attendees should be detail oriented, in-tune with their local telemetry communit
 The website rendering is available here https://ocean-tracking-network.github.io/node-manager-training/index.html
 
 ## General Node Manager Training Agenda
-The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the Steele Ocean Sciences Building (OTN Headquarters)
+The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the Steele Ocean Sciences Building (OTN Headquarters). Invitees from new and existing nodes will explore the OTN Node curriculum with the [OTNDC team](https://oceantrackingnetwork.org/staff/). A draft agenda (subject to update or amendment) for the week's proceedings:
 
 ### Day 1
 *Welcome*
 
 
-* **Presentation:** Introduction to Nodes
-    * OTN and the Database Node concept
+* **Presentation:** Introduction to Nodes (virtual connections available)
+    * The Ocean Tracking Network's Data Centre, the Care of Animal Tracking Data, and the Database Node concept - Jon Pye
 
 *AM Break*
 
@@ -76,10 +76,17 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 
 * Moving Platforms
     * Loading Detections and Mobile Receiver Deployments
+
+*AM Break*
+* Moving Platforms cont.
     * Gliders
+
+*Lunch*
+* Moving Platforms cont.
     * Satellite-tagged animals
     * Manual Sampling
 
+*PM Break*
 * Visualization Notebooks
     * Node summaries of counting statistics
     * Project-by-project reporting
@@ -97,9 +104,13 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
     * Contacts updates
     * DB-Fix Notebooks
 
+*Lunch*
+
 * The Data Push
     * Rationale, Process, Schedule
     * Creating detection extracts for researchers
+
+*PM Break*
 * Fixing Data errors
 * OTN All-Hands meeting
 
@@ -109,4 +120,4 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 * Nodebook Development and Improvements
 * Tandem real data loading w/ OTNDC *or* DB-Fix notebooks
 *Lunch*
-* Cont. Tandem real data loading w/ OTNDC *or* DB-Fix notebooks
+* Tandem real data loading w/ OTNDC *or* DB-Fix notebooks cont.
