@@ -22,7 +22,7 @@ A Data Push is when the OTN data system is re-verified and any new relevant info
 
 ## What is the Push Schedule?
 
-Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this.
+Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this. Please aim to have all tickets ready for verification **1 week** before this date.
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
@@ -50,6 +50,7 @@ Please refrain from interacting with the Node Database until OTN staff have anno
 - 'unqualified' which contain the unmatched or mystery detections collected by an array
 - 'sentinel' which contain the detections matched to test or transceiver tags collected by an array
 - 'tracker' which contains detections that have been mapped to animals tagged by a project that can originate from any receiver in the entire Network
+- 'external partners' which is a report with suggested matches to the mystery-tag layers provided by non-Node partner networks. Summary detection information, including a count of the number of potential matches per project is provided. These matches are meant as a starting point for gaining information from non-Node telemetry networks. Researchers will have to contact those networks directly for more detailed information, and to register.
 
 Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate).  
 
@@ -87,15 +88,17 @@ Connection Notes: None
 Database connection established
 Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Node: Node
 Testing dblink connections:
-	nep-on-fact: DBLink established on user@fact.secoora.org:1234 - Node: FACT
-	nep-on-migramar: DBLink established on user@db.load.oceantrack.org:1234 - Node: MIGRAMAR
-	nep-on-otn: DBLink established on user@db.load.oceantrack.org :1234 - Node: OTN
-	nep-on-saf: DBLink established on user@db.load.oceantrack.org:1234 - Node: SAF
-	nep-on-act: DBLink established on user@matos.asascience.com:1234 - Node: ACT
+	saf-on-fact: DBLink established on user@fact.secoora.org:5002 - Node: FACT
+	saf-on-migramar: DBLink established on user@db.load.oceantrack.org:5432 - Node: MIGRAMAR
+	saf-on-nep: DBLink established on user@db.load.oceantrack.org:5432 - Node: NEP
+	saf-on-otn: DBLink established on user@db.load.oceantrack.org:5432 - Node: OTN
+	saf-on-act: DBLink established on user@matos.asascience.com:5432 - Node: ACT
+	saf-on-pirat: DBLink established on user@161.35.98.36:5432 - Node: PIRAT
+	saf-on-path: DBLink established on user@fishdb.wfcb.ucdavis.edu:5432 - Node: PATH
 ~~~
 {: .language-bash}
 
-You may note that there are multiple `DB links` required here: this is so that you will be able to include detection matches from all the Nodes. If your `kdbx` file doesn't include any of your DB link account, reach out to OTN to help set it up for you.
+You may note that there are multiple `DB links` required here: this is so that you will be able to include detection matches from all the Nodes. If your `kdbx` file doesn't include any of your DB link accounts, reach out to OTN to help set it up for you. 
 
 ### Detection Extract Selection
 
@@ -141,10 +144,11 @@ This cell will begin creating the identified detection extracts, one by one. You
 >  port= XXX
 > ~~~
 > {: .language-plaintext .example}
-> Upon successful login, you will be able to print out your current email template. If it is not adequate, you can edit the template by changing the `det_extracts_emailSpecial.j2` template in the `templates` subfolder of `ipython-utilities, and changing the filepath to be `email_template = 'templates/det_extracts_emailSpecial.j2'`, the re-running.
-> Finally, this stage will send the emails. First: set `send_mail = False.`
-> Run the cell, select the projects of interest and `Simulate Sending Emails`.
-> If you are pleased with the output, you can then set `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
+> Upon successful login, you will be able to print out your current email template. If it is not adequate, you can edit the template by changing the `det_extracts_emailSpecial.j2` template in the `templates` subfolder of `ipython-utilities`, and changing the filepath to be `email_template = 'templates/det_extracts_emailSpecial.j2'`, then re-running.
+>
+> Finally, this stage will send the emails. Ensure that `date = 'YYYY-MM-DD'` for the date you **uploaded** the extracts to Plone. This is how the notebook will determine which links to include in the email template.
+> First: set `send_mail = False`. Run the cell, select the projects of interest and `Simulate Sending Emails`.
+> If you are pleased with the output, you can then change `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
 
 ### Emailing Researchers - Manual
 
@@ -166,7 +170,7 @@ If the email preview is acceptable, you may run the final cell in this section w
 
 Once all extracts are made, uploaded to your file management system and emails have been sent to researchers, the final step is to ensure we mark in the `obis.detection_extracts_list` table that we have completed these tasks.
 
-Please enter `current_push_date = 'yyyy-mm-dd` : the date of the Push when these extracts have been made.
+Please enter `current_push_date = 'yyyy-mm-dd'` : the date of the Push when these extracts have been made.
 
 Then, an interactive dataframe will appear. This dataframe will allow you to check-off the extracts as `completed` based on those you were able to successfully create.
 

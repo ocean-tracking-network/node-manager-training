@@ -14,7 +14,7 @@ OTN maintains several additional Nodebooks that fall outside the core `tag`, `de
 
 ## Check Environment 
 
-This notebook checks your system Python environment against our `environment.yml`. This is to see if the Python packages and libraries you have installed are inline with what is required to run the ipython. This will assist you with updating your packages if they become out-of-date, or if OTN develops and publishes new tools which rely on new packages.
+This notebook checks your system Python environment against our `environment.yml`. This is to see if the Python packages and libraries you have installed are in line with what is required to run the ipython Notebooks. This will assist you with updating your packages if they become out-of-date, or if OTN develops and publishes new tools which rely on new packages.
  
 ## scientific_name_check
 
@@ -50,7 +50,7 @@ This notebook will process and load detection data collected by a `WaveGlider` m
 
 ## create and update contacts' notebook
 
-This notebook can be used to add new contacts to a project and update existing contacts in the database.
+This notebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
 
 ## Active Tags and IUCN Status
 
