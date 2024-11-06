@@ -5,15 +5,13 @@ exercises: 0
 questions:
 - "What are considered moving platforms. What are the use cases?"
 - "How do I load moving platform metadata, telemetry data, and detections into the Database?"
----
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
----
 keypoints:
-- OTN supports processing of slocum and wave glider detections, detections from other mobile platforms (ship-board receivers, animal-mounted receivers, etc.), and active tracking (reference https://oceantrackingnetwork.org/gliders/).
-- OTN is able to match detections collected by moving platforms as long as geolocation data is provided.
-- `mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
+- "OTN supports processing of slocum and wave glider detections, detections from other mobile platforms (ship-board receivers, animal-mounted receivers, etc.), and active tracking (reference https://oceantrackingnetwork.org/gliders/)."
+- "OTN is able to match detections collected by moving platforms as long as geolocation data is provided."
+- "`mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process."
 ---
 
 Here is the issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
