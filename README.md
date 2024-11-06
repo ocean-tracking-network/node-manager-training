@@ -19,7 +19,7 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 * **Presentation:** Introduction to Nodes (virtual connections available)
     * The Ocean Tracking Network's Data Centre, the Care of Animal Tracking Data, and the Database Node concept - Jon Pye
 * **Lightning Introductions** for attendees:
-    **Two (2)** slides describing each Node Manager's background, the community the Node serves, and how you're hosted/funded.
+    Maximum of **Three (3)** slides describing each Node Manager's background, the community the Node serves, and how you're hosted/funded.
     
     * FACT - Danielle Morley (Florida FWC)
     * ACT - Kim Richie & Beth Bowers (Smithsonian)
