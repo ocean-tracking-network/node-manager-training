@@ -132,5 +132,6 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 * Upholding the Data Policy
 * Nodebook Development and Improvements
 * Tandem real data loading w/ OTNDC *or* DB-Fix notebooks
+
 *Lunch*
 * Tandem real data loading w/ OTNDC *or* DB-Fix notebooks cont.
