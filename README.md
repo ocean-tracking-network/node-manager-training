@@ -18,9 +18,22 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 
 * **Presentation:** Introduction to Nodes (virtual connections available)
     * The Ocean Tracking Network's Data Centre, the Care of Animal Tracking Data, and the Database Node concept - Jon Pye
+* **Lightning Introductions** for attendees:
+    **Two (2)** slides describing each Node Manager's background, the community the Node serves, and how you're hosted/funded.
+    
+    * FACT - Danielle Morley (Florida FWC)
+    * ACT - Kim Richie & Beth Bowers (Smithsonian)
+    * PIRAT - Tom TinHan (UH)
+    * PATH - Jon Walter (UC Davis)
+    * MigraMar - Marta Cambra (U Costa Rica)
+    * iTag - Claudia Friess & Hannah Gottesman (UFl + TAMU)
+    * NPACT - Ryan Freedman & Ryan Logan (NOAA)
+    * RAFT - Matt Walker (USGS
+    * ETN - Claudia Meneses (VLIZ)
+    * ATN - Megan McKinzie (MBARI)
 
 *AM Break*
-
+* **Lightning Introductions cont?**
 * **OTN System, Structure, and Outputs**
     * Schema structure and data workflows
 
