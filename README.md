@@ -28,7 +28,7 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
     * MigraMar - Marta Cambra (U Costa Rica)
     * iTag - Claudia Friess & Hannah Gottesman (UFl + TAMU)
     * NPACT - Ryan Freedman & Ryan Logan (NOAA)
-    * RAFT - Matt Walker (USGS
+    * RAFT - Matt Walker (USGS)
     * ETN - Claudia Meneses (VLIZ)
     * ATN - Megan McKinzie (MBARI)
 
