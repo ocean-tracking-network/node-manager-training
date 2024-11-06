@@ -16,7 +16,7 @@ keypoints:
 - `mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process. 
 ---
 
-Here is the Issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
+Here is the issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
 
 ~~~
 Moving platform
