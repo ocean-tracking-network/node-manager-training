@@ -83,7 +83,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 - When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter `y` to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
-# Quality Control - Deploy Notebook
+# Quality Control - Deploy Nodebook
 
 Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
 
@@ -153,13 +153,13 @@ The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Compared to the `stations` table in the database, are the station names correct? Have stations "moved" location? Are the reported bottom_depths significantly different (check for possible `ft` vs `m` vs `ftm` errors).
 - Are all recovery dates after the deployment dates?
-- Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new instrument model.
+- Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new instrument model.
 - Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer Specifications we have in the database?
 - Are there any overlapping deployments (one serial number deployed at multiple locations for a period of time)?
 - Are all the deployments within the Bounding Box of the project. If the bounding box needs to be expanded to include the stations, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all stations are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
-- Are there possible gaps in the metadata, based on previously-loaded `detections` files? This will be investigated in the `Detections-3b` notebook if you need more details.
+- Are there possible gaps in the metadata, based on previously-loaded `detections` files? This will be investigated in the `Detections-3b` Nodebook if you need more details.
 
-The notebook will indicate the sheet has passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
+The Nodebook will indicate the sheet has passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the instruments deployed over time for you to explore, and a map of the deployments.
 
 Using the map, please confirm the following:
 1. the instrument deployment locations are in the part of the world expected based on the project abstract. Ex: lat/long have correct +/- signs
@@ -175,7 +175,7 @@ If there is information which is not passing quality control, you should fix the
 
 You have already named the table above, so there are no edits needed in this cell.
 
-The notebook will indicate the success of the table-creation with the following message:
+The Nodebook will indicate the success of the table-creation with the following message:
 
 ~~~
 Reading file 'deployment_metadata.xlsx' as otn formatted Excel.
@@ -213,7 +213,7 @@ The output will have useful information:
 - Is the `recovered` column completed correctly, based on the `comments` and the `recovery_date` columns?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run.
 
@@ -269,7 +269,7 @@ The output will have useful information:
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are any of the dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the `raw` table directly, or contact the researcher, and re-run. If there are problems with records that have already been promoted to the `stations` or `moorings` table, you will need to contact an OTN database staff member to resolve these.
 
@@ -324,7 +324,7 @@ The output will have useful information:
 - Are there any overlapping deployments?
 - Is the geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the table has passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors contact OTN, or contact the researcher, to resolve.
 
@@ -385,7 +385,7 @@ The output will have useful information:
 - Are there duplicate download records?
 - Is the lat/long, geom, serial number and catalognumber formatted correctly?
 
-The notebook will indicate the table has passed quality control by adding a ✔️ **green checkmark** beside each section.
+The Nodebook will indicate the table has passed quality control by adding a ✔️ **green checkmark** beside each section.
 
 If there are any errors contact OTN to resolve.
 
@@ -398,7 +398,7 @@ In GitLab, this task can be completed at this stage:
 
 # Final Steps
 
-The remaining steps in the GitLab Checklist are completed outside the notebooks.
+The remaining steps in the GitLab Checklist are completed outside the Nodebooks.
 
 First: you should access the Repository folder in your browser and add the cleaned Deployment Metadata `.xlsx` file into the "Data and Metadata" folder.
 
