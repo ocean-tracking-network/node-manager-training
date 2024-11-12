@@ -100,7 +100,7 @@ Cell three requires input from you. This information will be used to get the raw
     * paste a filepath to the relevant XLSX file. The filepath will be added between the provided quotation marks.
 
 
-![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
+![image](https://github.com/user-attachments/assets/6cd37388-f012-4a7c-9bb6-7976af5cc1f1)
 
 
 3. Check off the step and record the `mission_table` name in the Gitlab ticket.
