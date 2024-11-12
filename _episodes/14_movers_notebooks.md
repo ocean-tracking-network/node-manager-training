@@ -158,7 +158,7 @@ Cell three requires input from you. This information will be used to get the tel
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
  
-8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table` `create_joined_table`, and `verify_telemetry_table` cells to create the moving_platform_mission_telemetry table:
+8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_telemetry_table` cells to create the moving_platform_mission_telemetry table:
 9. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME combine mission metadata with telemetry (movers-2 notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
