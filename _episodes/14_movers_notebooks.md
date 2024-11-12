@@ -58,12 +58,12 @@ telemetry: **(put telemetry repository link here)**
 
 # Loading Mission Metadata
 
-Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
+Moving platform missing metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
 1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
- * platform_id: e.g. `1234567`
- * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
+ * platform_id: e.g. `OTN-GL-1`
+ * otn_mission_id: e.g. `OTN-GL-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`).
  * ins_model_no: e.g. `VMT`
  * ins_serial_no: e.g. `130000`
  * deploy_date_time: e.g. `2023-10-03T14:56:00`
