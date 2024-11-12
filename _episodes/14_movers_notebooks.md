@@ -61,7 +61,7 @@ telemetry: **(put telemetry repository link here)**
 Moving platform missing metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
-1. Quality control `MOVING PLATFORMS METADATA`
+1. Quality control the `MOVING PLATFORMS METADATA` spreadsheet. If any modification save revised version as `_QCed.xlsx`
    
 1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns (in dark-green backgroup color)? Column names and example data are shown as below:
  * PLATFORM_ID: e.g. `OTN-GL-1` (recommand in uppercase alphanumerics).
@@ -84,6 +84,9 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
 
    
 2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
+
+![image](https://github.com/user-attachments/assets/9a5cf4e8-b7c4-4897-9bf7-1f18cf7493b0)
+
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw mission CSV and to be able to create a new raw mission table in the database.
