@@ -61,13 +61,24 @@ telemetry: **(put telemetry repository link here)**
 Moving platform missing metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
-1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
- * platform_id: e.g. `OTN-GL-1`
- * otn_mission_id: e.g. `OTN-GL-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`).
- * ins_model_no: e.g. `VMT`
- * ins_serial_no: e.g. `130000`
- * deploy_date_time: e.g. `2023-10-03T14:56:00`
- * recover_date_time: e.g. `2023-12-03T12:00:00`
+1. Quality control `MOVING PLATFORMS METADATA`
+   
+1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+ * PLATFORM_ID: e.g. `OTN-GL-1` (recommand in uppercase alphanumerics).
+ * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`).
+ * INS_MODEL_NO: e.g. `VMT`
+ * INS_SERIAL_NO: e.g. `130000`
+ * DEPLOY_DATE_TIME: e.g. `2023-10-03T14:56:00`
+ * DEPLOY_LAT: e.g. `16.7428`
+ * DEPLOY_LONG: e.g. `-24.7889`
+ * RECOVER_DATE_TIME: e.g. `2023-12-03T12:00:00`
+ * RECOVERED: (y/n/l)
+ * RECOVER_LAT:  e.g. `16.9251`
+ * RECOVER_LONG: e.g. `-25.4713`
+ * DATA_DOWNLOADED: (y/n)
+ * DOWNLOAD_DATE_TIME: e.g. `2024-06-11T00:00:00`
+ * FILENAME: e.g. `VMT_130000_20240616_133100.vrl` (Note: prefer original downloads).
+
 
    
 2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
