@@ -85,7 +85,6 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
    
 2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
 
-![image](https://github.com/user-attachments/assets/9a5cf4e8-b7c4-4897-9bf7-1f18cf7493b0)
 
 
 ### User Input
