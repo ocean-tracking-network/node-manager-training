@@ -676,7 +676,9 @@ Finally, the Issue can be passed off to an OTN-analyst for final verification in
 
 # Troubleshoot Tips and Resources
 
-1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry`
+1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry` http://localhost:8888/notebooks/movers%20-%202b%20-%20Compare%20detections%20to%20telemetry.ipynb
+  - `Gantt Chart of Detections vs Telemetry`
+  - `Missing Telemetry Graph`
 
 
 
