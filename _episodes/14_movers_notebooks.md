@@ -461,19 +461,21 @@ Cell three requires input from you. This information will be used to get the raw
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
-2. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
+2. Run the `Load raw dets into detections_yyyy_movers` cell and take note the output.
+
+3. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
 
 `- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**`
 
-- Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
+- Note: if no detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
   
-3. Run the next six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+4. Run the next six cells to load timedrift factors, adjustment detection datetime to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
    
 `- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
 
 `- [ ] - NAME verify timedrift corrections (movers-3 notebook)`
 
-4. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+5. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
 `- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (movers-3 notebook)`
 
