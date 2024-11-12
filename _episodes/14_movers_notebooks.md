@@ -682,5 +682,8 @@ Finally, the Issue can be passed off to an OTN-analyst for final verification in
   - `Gantt Chart of Detections vs Telemetry`
   - `Missing Telemetry Graph`
 
+# Limitations
 
+1. `events - 3 - create download records` does not support moving platform as of Nov-2024.
+2.  
 
