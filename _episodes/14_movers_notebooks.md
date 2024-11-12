@@ -130,10 +130,16 @@ Cell three requires input from you. This information will be used to get the tel
 1. `schema`:  'collectioncode'
     * please edit to include the relevant project code, in lowercase, between the quotes.
 
+
 1. `telemetry_file`: '/path/to/telem_file'
     * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
+
+* Note: if multiple telemetry files are submitted use the `Optional: Combine telemetry files from multiple missions/platforms` section to combine them. 
+
+![image](https://github.com/user-attachments/assets/1adbdc8a-0ee7-4206-8b7a-eec72b654963)
+
 
 3. Run the `Prepare the telemetry file to be upload` cell to map the spreadsheet comlumns to Database columns.
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/d03c04da-194c-4d8e-9808-b7d7c7afc687)
