@@ -114,8 +114,8 @@ Cell three requires input from you. This information will be used to get the raw
  * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name maybe different)
  * lat: e.g. `28.33517` (Note: the column name maybe different)
  * lon: e.g. `-80.33734833` (Note: the column name maybe different)
- * vehicleName: e.g. `1234567202310031456` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
- * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
+ * PLATFORM_ID: e.g. `OTN-GL-1` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+ * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 
 
