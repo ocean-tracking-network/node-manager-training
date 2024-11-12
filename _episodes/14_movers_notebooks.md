@@ -63,7 +63,7 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
 
 1. Quality control `MOVING PLATFORMS METADATA`
    
-1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
+1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns (in dark-green backgroup color)? Column names and example data are shown as below:
  * PLATFORM_ID: e.g. `OTN-GL-1` (recommand in uppercase alphanumerics).
  * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`).
  * INS_MODEL_NO: e.g. `VMT`
@@ -79,6 +79,8 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
  * DOWNLOAD_DATE_TIME: e.g. `2024-06-11T00:00:00`
  * FILENAME: e.g. `VMT_130000_20240616_133100.vrl` (Note: prefer original downloads).
 
+1.2 Optional but nice to have columns:  
+* TRANSMITTER and TRANSMIT_MODEL to reduce self-detections.
 
    
 2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
