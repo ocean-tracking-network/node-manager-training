@@ -8,6 +8,7 @@ questions:
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
+- "Known issues and shooting tips"
 keypoints:
 - "OTN supports processing of slocum and wave glider detections, detections from other mobile platforms (ship-board receivers, animal-mounted receivers, etc.), and active tracking (reference https://oceantrackingnetwork.org/gliders/)."
 - "OTN is able to match detections collected by moving platforms as long as geolocation data is provided."
