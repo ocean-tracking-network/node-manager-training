@@ -109,7 +109,8 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Telemetry Data
 
-1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns? Column names and example data are shown as below:
+
+1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns in each submitted telemetry file? Column names and example data are shown as below:
  * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name maybe different)
  * lat: e.g. `28.33517` (Note: the column name maybe different)
  * lon: e.g. `-80.33734833` (Note: the column name maybe different)
@@ -117,7 +118,8 @@ Cell three requires input from you. This information will be used to get the raw
  * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 
-2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
+
+2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb)
    
 ### User Input
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
