@@ -27,9 +27,9 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 `Mamba` is fast, cross-platform python distribution and a package manager. When you install `Mamba (through Miniforge)` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
 
- **Miniforge Windows** - https://conda-forge.org/miniforge/ 
+ **Miniforge Windows** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
   - Select the option install for Just Me (recommended).
-  - Check the option to Add Miniforge3 to my PATH environment variable.
+  - Check the option to **Add Miniforge3 to my PATH environment** variable.
 
  **Miniforge Mac** - 
    - Setup homebrew by running the command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` - **Note:** this operation requires elevated privileges (sudo)
@@ -38,7 +38,7 @@ This lesson will give attendees a chance to install all the relevant software, u
    - Add miniforge to your zsh environment by typing conda init zsh. Restart the terminal
 
 **Miniforge Linux (Debian)**
-   - download Shell script (.sh) file from https://conda-forge.org/miniforge/
+   - download Shell script (.sh) file from [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
       - Recommended: Choose Python 64-bit Linux Installer
    - Change the run permissions for the miniforge installer script. ie `chmod +x Miniforge3-[version]-Linux-x86_64.sh`
    - run the installer from the linux terminal. `./Miniforge3-[version]-Linux-x86_64.sh`
@@ -83,7 +83,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
 1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the commands: 
+- **MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /path/to/ipython-utilities`. Then, run the commands: 
    * `conda activate nodebook` to activate the nodebook python environment
    * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
@@ -107,7 +107,7 @@ In order to work efficiently as a Node Manager, the following programs are neces
 ## Cross-Platform 
 
 **Visual Studio Code** - An advanced code editing integrated development environment (IDE).
-* https://code.visualstudio.com/
+* [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 ## For WINDOWS users
 
@@ -121,9 +121,6 @@ In order to work efficiently as a Node Manager, the following programs are neces
 * [https://tortoisegit.org/download/](https://tortoisegit.org/download/)
 
 ## For MAC users
-
-**VS Code** - For reading and editing code, csv files etc. without altering the formatting.
-* [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 **Source Tree** - For managing git, avoiding command line.
 * [https://www.sourcetreeapp.com](https://www.sourcetreeapp.com)
