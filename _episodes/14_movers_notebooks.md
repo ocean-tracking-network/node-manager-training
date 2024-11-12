@@ -1,6 +1,6 @@
 ---
 title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
-teaching: 90
+teaching: 150
 exercises: 0
 questions:
 - "What are considered moving platforms. What are the use cases?"
