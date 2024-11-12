@@ -145,23 +145,20 @@ Cell three requires input from you. This information will be used to get the tel
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/d03c04da-194c-4d8e-9808-b7d7c7afc687)
 
    
-4. Run the `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
- 
+4. Run the `verify_telemetry_file` and `Upload the telemetry file to raw table` cells to load the telemetry data (.xlsx or .csv) file into the `raw_telemetry` table.
 
 5. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
 
-6. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
-
-7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
+ 6. Run the `Create the telemtry table for joining to missions` and `verify_telemetry_table` cell to create and load `telemetry` table (e.g. moving_platform_telemetry_2024_03).
+ 7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
-
-8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
-
+ 
+8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table` `create_joined_table`, and `verify_telemetry_table` cells to create the moving_platform_mission_telemetry table:
 9. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME combine mission metadata with telemetry (movers-2 notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**`
