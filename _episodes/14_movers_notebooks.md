@@ -673,3 +673,10 @@ The remaining steps in the GitLab Checklist are completed outside the notebooks.
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+
+# Troubleshoot Tips and Resources
+
+1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry`
+
+
+
