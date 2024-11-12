@@ -122,7 +122,7 @@ Cell three requires input from you. This information will be used to get the raw
 ### User Input
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
 
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+1. `table_suffix`: e.g. `2024_03` 
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
 
 1. `schema`:  'collectioncode'
