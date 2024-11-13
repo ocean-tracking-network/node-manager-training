@@ -69,7 +69,7 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
  * recover_date_time: e.g. `2023-12-03T12:00:00`
 
    
-2. Run through the [`movers - 1 - Load Mission Metadata` notebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
+2. Run through the [`movers - 1 - Load Mission Metadata` Nodebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw mission CSV and to be able to create a new raw mission table in the database.
@@ -77,7 +77,7 @@ Cell three requires input from you. This information will be used to get the raw
 1. `schema`:  'collectioncode'
     * please edit to include the relevant project code, in lowercase, between the quotes.
       
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
      
 1. `mission_file`: '/path/to/mission_file'
@@ -101,12 +101,12 @@ Cell three requires input from you. This information will be used to get the raw
  * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 
-2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
+2. Launch [`movers - 2 - Load telemetry` Nodebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
    
 ### User Input
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
 
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
 
 1. `schema`:  'collectioncode'
@@ -129,14 +129,14 @@ Cell three requires input from you. This information will be used to get the tel
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
 
-6. Run the `movers - 2 - Load telemetry` notebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
+6. Run the `movers - 2 - Load telemetry` Nodebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
 
 7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
 
-8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
+8. Run the `movers - 2 - Load telemetry` Nodebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
 
 9. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
@@ -192,7 +192,7 @@ Other manufacturers: contact OTN staff.
 Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
 ### Import cells and Database Connections
 
-As in all notebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
@@ -230,9 +230,9 @@ Once you have added your information, you can run the cell.
 
 ### Verify Detection File and Load to Raw Table
 
-Next, the notebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
+Next, the Nodebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
 
-The notebook will indicate the success of the table-creation with a message such as this:
+The Nodebook will indicate the success of the table-creation with a message such as this:
 
 ~~~
 Reading fathom files...
@@ -259,7 +259,7 @@ The output will have useful information:
 - Are the serial numbers formatted correctly?
 - Are the models formatted correctly?
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors, contact OTN for next steps.
 
@@ -271,11 +271,11 @@ In GitLab, these tasks can be completed at this stage:
 
 # events - 1 - load events into c_events_yyyy
 
-Events-1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook.
+Events-1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` Nodebook.
 
 ### Import cell
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 ### User Inputs
 
@@ -295,9 +295,9 @@ Once you have added your information, you can run the cell.
 
 ### Verifying the events file
 
-Before attempting to load the event files to a raw table the notebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors, you will be able to continue.
+Before attempting to load the event files to a raw table the Nodebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors, you will be able to continue.
 
-The notebook will indicate the success of the file verification with a message such as this:
+The Nodebook will indicate the success of the file verification with a message such as this:
 
 ~~~
 Reading file 'events.csv' as CSV.
@@ -353,11 +353,11 @@ Ensure you paste the table name (ex: c_events_YYYY_mm) into the section indicate
 
 # events - 2 - move c_events into events table
 
-This notebook will move the `raw` events records in the `intermediate` events table.
+This Nodebook will move the `raw` events records in the `intermediate` events table.
 
 ### Import cell
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 ### User input
 
@@ -390,7 +390,7 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
 
-The notebook will indicate the success of the table verification with a message such as this:
+The Nodebook will indicate the success of the table verification with a message such as this:
 
 ~~~
 Checking table name format... OK
@@ -406,7 +406,7 @@ If there are any errors in this section, please contact OTN.
 
 Pending nothing comes up in the verification cells, you run the `loading` cell.
 
-The notebook will indicate the success of the processing with a message such as this:
+The Nodebook will indicate the success of the processing with a message such as this:
 
 ~~~
 Checking for the collectioncode.events table... OK!
@@ -426,13 +426,13 @@ In GitLab, these tasks can be completed at this stage:
 # Loading Detections for Moving Platforms
 
 - With the telemetry and mission table, we can now upload the raw detections and promote them to the detections_yyyy_movers tables. 
-- This notebook has the functionalities of `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations` notebooks. The difference is it handles `_movers` tables. 
-1. Run `movers - 3 - Load Detections` notebook till `Load raw dets into detections_yyyy_movers` cell to populate `detections_yyyy_movers` tables and load raw detections into them.
+- This Nodebook has the functionalities of `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations` Nodebooks. The difference is it handles `_movers` tables. 
+1. Run `movers - 3 - Load Detections` Nodebook till `Load raw dets into detections_yyyy_movers` cell to populate `detections_yyyy_movers` tables and load raw detections into them.
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
+1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
      
 1. `schema`:  'collectioncode'
@@ -508,11 +508,11 @@ Cell three requires input from you. This information will be used to get the raw
 
 # events - 3 - create download records
 
-This notebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this notebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
+This Nodebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this Nodebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
 
 ### Import cells and Database connections
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
@@ -560,7 +560,7 @@ Before moving on from this you will need to confirm 2 things:
 
 If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
-If everything is OK, you can run the cell. The notebook will indicate success with a message like:
+If everything is OK, you can run the cell. The Nodebook will indicate success with a message like:
 
 ~~~
 Added XXX records to the moorings table
@@ -581,7 +581,7 @@ This cell will have useful information:
 - Are receiver serial numbers formatting correctly?
 - Are there any other outstanding download records which haven't been loaded?
 
-The notebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**.
+The Nodebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**.
 
 If there are any errors, contact OTN for next steps.
 
@@ -594,11 +594,11 @@ In GitLab, this task can be completed at this stage:
 
 # events-4 - process receiver configuration
 
-This notebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
+This Nodebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
 
 ### Import cells and Database connections
 
-As in all notebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 The second cell will set your database connection. You will have to edit one section: `engine = get_engine()`
 - Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
@@ -630,7 +630,7 @@ The following cell will extrapolate further to populate all the required columns
 
 ### Load Configuration to Database
 
-Finally, the notebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
+Finally, the Nodebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
 
 ~~~
 The following XX receiver configurations are new and have been inserted:
@@ -647,7 +647,7 @@ In GitLab, this task can be completed at this stage:
 
 # Final Steps
 
-The remaining steps in the GitLab Checklist are completed outside the notebooks.
+The remaining steps in the GitLab Checklist are completed outside the Nodebooks.
 
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 

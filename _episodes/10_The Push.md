@@ -37,7 +37,7 @@ Push schedule through 2023:
 
 Node Managers have two main jobs during a Push:
 1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to attempt to prevent a backlog near the Push date.
-1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` notebook.
+1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` Nodebook.
 
 Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required.
 
@@ -55,7 +55,7 @@ Please refrain from interacting with the Node Database until OTN staff have anno
 Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate).  
 
 
-# Detections - Create Detection Extracts Notebook
+# Detections - Create Detection Extracts Nodebook
 
 During the Push process, any new detection matches that are made are noted in the `obis.detection_extracts_list` table of your Node. These entries will have several pieces of useful information:
 - `detection_extract`: this contains the project code, year, and type of extract that needs to be created.
@@ -63,7 +63,7 @@ During the Push process, any new detection matches that are made are noted in th
 - `git_issue_link`: the issue in which these detection matches were impacted
 - `push_date`: the date of the Push when this extract will have to be made
 
-Using these fields, the `detections-create detection extracts` notebook can determine which extracts need to be created for each push.
+Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
 
 ### Imports cell
 
@@ -119,7 +119,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 
 > ### Uploading Extracts to Plone
 >
-> First the notebook will print a list of all the extracts that need to be uploaded. It should match the list of those just created.
+> First the Nodebook will print a list of all the extracts that need to be uploaded. It should match the list of those just created.
 >
 > Next, you will need to connect to Plone using a `.auth` file. The format will be like this: `plone_auth_path = r'C:/path/to/Plone.auth'`. Success will be indicated with this message:
 >
@@ -129,7 +129,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 > ~~~
 > {: .language-plaintext .example}
 >
-> Now the notebook will upload all the Detection Extracts into their relevant folders on Plone.
+> Now the Nodebook will upload all the Detection Extracts into their relevant folders on Plone.
 >
 > Please wait for them all to complete - indicated by a **green checkmark** and a summary of the time it took to complete the extract.
 >
@@ -146,7 +146,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 > {: .language-plaintext .example}
 > Upon successful login, you will be able to print out your current email template. If it is not adequate, you can edit the template by changing the `det_extracts_emailSpecial.j2` template in the `templates` subfolder of `ipython-utilities`, and changing the filepath to be `email_template = 'templates/det_extracts_emailSpecial.j2'`, then re-running.
 >
-> Finally, this stage will send the emails. Ensure that `date = 'YYYY-MM-DD'` for the date you **uploaded** the extracts to Plone. This is how the notebook will determine which links to include in the email template.
+> Finally, this stage will send the emails. Ensure that `date = 'YYYY-MM-DD'` for the date you **uploaded** the extracts to Plone. This is how the Nodebook will determine which links to include in the email template.
 > First: set `send_mail = False`. Run the cell, select the projects of interest and `Simulate Sending Emails`.
 > If you are pleased with the output, you can then change `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
 

@@ -43,7 +43,7 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 
 # Nodebooks - iPython Utilities 
-The `ipython-utilities` project contains the collection of Nodebooks used to load data into the OTN data system.
+The `ipython-utilities` project contains the collection of Jupyter notebooks used to load data into the OTN data system.
 
 **Create an Account**
 

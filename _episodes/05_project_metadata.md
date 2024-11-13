@@ -198,7 +198,7 @@ In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**`
 
-Please edit to include the selected project type, in harmony with the selected field in the notebook.
+Please edit to include the selected project type, in harmony with the selected field in the Nodebook.
 
 ### Verifying Correct Info
 
@@ -340,13 +340,13 @@ In Gitlab, this task can be completed at this stage:
 
 ### Other Features of this Notebook
 
-There are more features in the `Create and Update Projects` notebook than those covered above.
+There are more features in the `Create and Update Projects` Nodebook than those covered above.
 
 #### Schema extension
 
 This section is to be used when you have a project which is either `Tracker` or `Deployment` and is expanding to become a `Data` project. Ex: a project which was only tagging has begun deploying receivers.
 
-You can use this notebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
+You can use this Nodebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
 
 #### Schema updating
 
@@ -422,7 +422,7 @@ The output should look like this to confirm success:
 > 1. Manual Project Information Form - Parse Contacts
 > 1. Manual Project Information Form - Insert Contacts into Textfields
 >
-> The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
+> The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` Nodebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the Nodebook to the next section.
 >
 >
 > ### Create Missing Users
@@ -516,7 +516,7 @@ The output should look like this to confirm success:
 
 # Final Steps
 
-The remaining steps in the Gitlab Checklist are completed outside the notebooks.
+The remaining steps in the Gitlab Checklist are completed outside the Nodebooks.
 
 First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder to archive.
 
