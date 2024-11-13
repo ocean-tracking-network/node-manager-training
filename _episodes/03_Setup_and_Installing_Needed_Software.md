@@ -91,21 +91,21 @@ In order to work efficiently as a Node Manager, the following programs are neces
 
 ## For WINDOWS users
 
-**Path Copy Copy** - For copying path links from your file browser.
+**Path Copy Copy** - For copying path links from your file browser. Since many of the notebooks require you to provide the path to the file you wish to load, being able to copy and paste the entire path at once can save a lot of time. 
 * [https://pathcopycopy.github.io/](https://pathcopycopy.github.io/)
 
-**Notepad ++** - For reading and editing code, csv files etc. without altering the formatting.
+**Notepad++** - For reading and editing code, csv files etc. without altering the formatting. Opening CSV files in Excel can change the formatting of the data in the file (this is a common problem with dates). Notepad++ will allow you to edit CSV files (and code, if necessary) without imposing additional formatting on data.
 * [https://notepad-plus-plus.org/downloads/](https://notepad-plus-plus.org/downloads/)
 
-**Tortoise Git** - For managing git, avoiding command line.
+**Tortoise Git** - For managing git, avoiding command line. Depending on what changes have been made to the code, you may be required to use a different branch of the notebook repository than the main one. Although using git through the command line is supported, you may prefer to have a graphical user interface (GUI) instead. Tortoise Git can provide that. 
 * [https://tortoisegit.org/download/](https://tortoisegit.org/download/)
 
 ## For MAC users
 
-**VS Code** - For reading and editing code, csv files etc. without altering the formatting.
+**VSCode** - For reading and editing code, csv files etc. without altering the formatting. Opening CSV files in Excel can change the formatting of the data in the file (this is a common problem with dates). VSCode will allow you to edit CSV files (and code, if necessary) without imposing additional formatting on data.
 * [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
-**Source Tree** - For managing git, avoiding command line.
+**SourceTree** - For managing git, avoiding command line. Depending on what changes have been made to the code, you may be required to use a different branch of the notebook repository than the main one. Although using git through the command line is supported, you may prefer to have a graphical user interface (GUI) instead. SourceTree can provide that. 
 * [https://www.sourcetreeapp.com](https://www.sourcetreeapp.com)
 
 # Node Training Datasets
