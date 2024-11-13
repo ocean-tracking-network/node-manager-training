@@ -28,7 +28,7 @@ This Nodebook is used to add an instrument model to the `obis.instrument_models`
  
 Used to load manufacturer specifications for tags or receivers into the `vendor` tables.  
  
-## convert - Fathom (vdat) Export - VRL to CSV
+## [convert - Fathom (vdat) Export - VRL to CSV](http://localhost:8888/notebooks/convert%20-%20Fathom%20(vdat)%20Export%20-%20VRL%20to%20CSV.ipynb)
  
 Convert VRLs or VDATs into CSV files using command-line Fathom software. Can also be done using the Fathom app.  
  
@@ -36,18 +36,10 @@ Convert VRLs or VDATs into CSV files using command-line Fathom software. Can als
  
 Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. 
 
-## Slocum Telemetry Nodebook 
-
-This Nodebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
- 
 ## Load Health Report 
 
 This Nodebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
   
-## Telemetry Processing for Wave Gliders and Animals 
-
-This Nodebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
-
 ## Create and Update Contacts Nodebook
 
 This Nodebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
