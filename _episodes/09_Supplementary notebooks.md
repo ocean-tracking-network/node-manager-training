@@ -28,7 +28,7 @@ This Nodebook is used to add an instrument model to the `obis.instrument_models`
  
 Used to load manufacturer specifications for tags or receivers into the `vendor` tables.  
  
-## [convert - Fathom (vdat) Export - VRL to CSV](http://localhost:8888/notebooks/convert%20-%20Fathom%20(vdat)%20Export%20-%20VRL%20to%20CSV.ipynb)
+## [convert - Fathom (vdat) Export - VRL to CSV](https://ocean-tracking-network.github.io/node-manager-training/08_Detections/index.html#convertToCSV)
  
 Convert VRLs or VDATs into CSV files using command-line Fathom software. Can also be done using the Fathom app.  
  

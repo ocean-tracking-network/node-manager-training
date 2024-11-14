@@ -24,8 +24,6 @@ A Data Push is when the OTN data system is re-verified and any new relevant info
 
 Push events happen **three** times a year. They start on the **third Thursday of the "push month" which are February, June, and October**. This date is the cut-off date for all data-loading: no records can be loaded after this. Please aim to have all tickets ready for verification **1 week** before this date.
 
-With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
-
 ## Node Manager Roles During a Push
 
 Node Managers have two main jobs during a Push:

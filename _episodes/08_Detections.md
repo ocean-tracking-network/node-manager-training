@@ -67,7 +67,7 @@ Things to visually check:
 - Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
 - Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
-# Convert to CSV
+# <a name="convertToCSV"></a>Convert to CSV 
 
 Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
 
