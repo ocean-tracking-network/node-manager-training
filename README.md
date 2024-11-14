@@ -124,14 +124,15 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
     * Creating detection extracts for researchers
 
 *PM Break*
-* Fixing Data errors
+* Upholding the Data Policy
+    * What your user agreement or data policy says you can and can't do w/ the data in your Node
+    * The common rules that allow Nodes to interoperate
 * OTN All-Hands meeting
 
 ### Day 5
 
-* Upholding the Data Policy
+* Fixing Data Errors
 * Nodebook Development and Improvements
-* Tandem real data loading w/ OTNDC *or* DB-Fix notebooks
 
 *Lunch*
-* Tandem real data loading w/ OTNDC *or* DB-Fix notebooks cont.
+* Tandem real data loading w/ OTNDC *or* DB-Fix notebooks
