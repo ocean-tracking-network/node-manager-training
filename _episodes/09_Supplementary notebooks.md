@@ -52,17 +52,6 @@ This notebook will process and load detection data collected by a `WaveGlider` m
 
 This notebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
 
-## Active Tags and IUCN Status
-
-Located in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements and data policy.
-
-## Generate Receiver Map
-
-Located in the `vis` subfolder. This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
-
-##  Receiver Operator Report
-
-Located in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
 
 ## DB-Fix Notebooks
 

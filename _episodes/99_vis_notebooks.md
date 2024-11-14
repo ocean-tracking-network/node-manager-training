@@ -26,8 +26,24 @@ keypoints:
 ## The `geoserver` schema
 
 # The `visuals-and-reporting` notebooks
-## Project summaries
-## Tag summaries
-## Database, and Network-wide reports
-   
+
+## Database and Network-wide reports
+
+### Example: Active Tags and IUCN Status
+
+Located in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements to CFI.
+
+### Generate Receiver Map
+
+Located in the `vis` subfolder. This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
+
+## Project-level summaries
+###  Receiver Operator Report
+
+Located in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
+
+## Tag-oriented summaries
+### `otndo`   
+
+
 # Adding new notebooks to `visuals-and-reporting`
