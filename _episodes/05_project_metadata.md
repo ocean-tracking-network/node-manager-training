@@ -173,7 +173,7 @@ You will run this cell, and a fillable form will appear.
 1. Node: select your node
 1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
 1. Ocean: choose the most appropriate ocean region based on the abstract.
-1. Shortname: usually the project code, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
+1. Shortname: usually a summarised version of the project title, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
 1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
