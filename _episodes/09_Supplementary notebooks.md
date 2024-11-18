@@ -32,21 +32,11 @@ Used to load manufacturer specifications for tags or receivers into the `vendor`
  
 Convert VRLs or VDATs into CSV files using command-line Fathom software. Can also be done using the Fathom app.  
  
-## Active Tracking
- 
-Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. 
-
-## Slocum Telemetry Notebook 
-
-This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
  
 ## Load Health Report 
 
 This notebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
-  
-## Telemetry Processing for Wave Gliders and Animals 
 
-This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`.
 
 ## create and update contacts' notebook
 
@@ -56,3 +46,17 @@ This notebook can be used to add new contacts to a project and update existing c
 ## DB-Fix Notebooks
 
 These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please contact OTN for assistance.
+
+# Outdated / old workflows:
+
+## Active Tracking
+ 
+Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. **(Superceded by Movers workflow)**
+
+## Slocum Telemetry Notebook 
+
+This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**  
+
+## Telemetry Processing for Wave Gliders and Animals 
+
+This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**
