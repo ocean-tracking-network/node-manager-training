@@ -67,7 +67,7 @@ Things to visually check:
 - Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
 - Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
-# Convert to CSV
+# Convert to CSV 
 
 Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
 
@@ -81,7 +81,7 @@ For Innovasea
     - choose "export data"
     - select the relevant files and import into the Fathom Connect application
     - export all data types, and choose the location you want to save the files
-- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
     - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
     - select the folder containing the relevant files and the location you'd like the CSVs saved
     - run the cells to `convert`
