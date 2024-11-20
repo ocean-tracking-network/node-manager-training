@@ -31,27 +31,29 @@ Used to load manufacturer specifications for tags or receivers into the `vendor`
 ## [convert - Fathom (vdat) Export - VRL to CSV](https://ocean-tracking-network.github.io/node-manager-training/08_Detections/index.html#convertToCSV)
  
 Convert VRLs or VDATs into CSV files using command-line Fathom software. Can also be done using the Fathom app.  
- 
-## Active Tracking
- 
-Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. 
 
 ## Load Health Report 
 
-This Nodebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
-  
+This notebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
+
 ## Create and Update Contacts Nodebook
 
 This Nodebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
 
-## Active Tags and IUCN Status
+## DB-Fix Notebooks
 
-Located in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements and data policy.
+These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please contact OTN for assistance.
 
-## Generate Receiver Map
+# Outdated / old workflows:
 
-Located in the `vis` subfolder. This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
+## Active Tracking
+ 
+Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. **(Superceded by Movers workflow)**
 
-##  Receiver Operator Report
+## Slocum Telemetry Notebook 
 
-Located in the `vis` subfolder. This Nodebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
+This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**  
+
+## Telemetry Processing for Wave Gliders and Animals 
+
+This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**
