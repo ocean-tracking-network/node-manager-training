@@ -18,7 +18,7 @@ The **first** step when you are contacted by a researcher who wants to register 
 
 # Completed Metadata
 
-Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue checklist template.
+Immediately upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
@@ -106,8 +106,8 @@ https://members.oceantrack.org/
 5. Species being studied?  
 format: Common name (scientific name)
 
-Blue shark (Prionace glauca)
-Sunfish (Mola mola)
+blue shark (Prionace glauca)
+sunfish (Mola mola)
 
 6. Location of the project?
 format: (city, state/province OR nearby landmark OR lat/long points in decimal degree), one per line
@@ -132,7 +132,7 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 
 Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebooks.
 
-### Imports cell
+### Imports Cell
 
 This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
@@ -151,10 +151,10 @@ This cell is where you input the information contained in the Project Metadata `
 Once either option is selected, you can run the cell to complete the quality control checks.
 
 The output will have useful information:
-- Are there strange characters in the collectioncode, project title, or abstract?
+- Are there strange characters in the collection code, project title, or abstract?
 - Were the names and affiliations of each contact successfully parsed? Are there any affiliated institutions which are not found? Are there any contacts which were not found that you expected to be?
 - Is the project URL formatted correctly?
-- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (the top of the species record should have this success message: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with commonname can be fixed at a later stage, make a note in the Issue for your records**
+- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (the top of the species record should have this success message: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with common name can be fixed at a later stage, make a note in the Issue for your records**
 - Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Issue for your records**
 - Are the start and end dates formatted correctly?
 
@@ -172,7 +172,7 @@ You will run this cell, and a fillable form will appear.
 1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
 1. Ocean: choose the most appropriate ocean region based on the abstract.
 1. Shortname: use the Title provided by the researcher, or something else, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
-1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
+1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of blue sharks through Nova Scotia waters, using acoustic telemetry.`
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
@@ -185,22 +185,22 @@ To save and parse your inputted values **DO NOT** re-run the cell - this will cl
 
 Verify the output from the parser cell, looking for several things:
 1. Are all the fields marked with a green `OK`?
-1. Is the following feedback included in the institution code section: `Found institution record for XXX in your database:` followed by a small, embedded Table?
+1. Is the following feedback included in the institution code section: `Found institution record for XXX in your database:` followed by a small, embedded table?
 
 If anything is wrong, please begin again from the Manual Field input cell.
 
 If the institution code **IS NOT** found - compare to values found in the database `obis.institution_codes` and `obis.otn_resources`. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 
 
-#### Task list checkpoint
+#### Task List Checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**`
 
-Please edit to include the selected project type, in harmony with the selected field in the notebook.
+Please edit to include the selected project type, in harmony with the selected field in the Nodebook.
 
-### Verifying Correct Info
+### Verifying Correct Information
 
 At this stage, we have all the information parsed that we need in order to register the project in the database. There is now a cell that will print out every saved value for your review.
 
@@ -213,7 +213,7 @@ If this information is satisfactory, you can proceed.
 
 #### Adjust Bounding Box
 
-The cell titled `Verify the new project details before writing to the DB` is the final step for verification before the values are written to the database. At this stage a map will appear, with the proposed Bounding Box for the project.
+The cell titled `Verify the new project details before writing to the DB` is the final step for verification before the values are written to the database. At this stage, a map will appear with the proposed Bounding Box for the project.
 
 Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it.
 
@@ -221,7 +221,7 @@ Based on the abstract, you can use the `Square Draw Tool` to re-draw the boundin
 ![Proj 1](../fig/proj_meta_bounds.JPG)
 
 
-Once you are happy, you can run the *next* cell in order to save your bounding adjustments. The sucess output should be formatted like this:
+Once you are happy, you can run the *next* cell in order to save your bounding adjustments. The success output should be formatted like this:
 
 ~~~
 --- Midpoint ---
@@ -235,7 +235,7 @@ Longitude:
 
 **STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point.
 
-Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions if they are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
+Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions that are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
 
 To run the cell, you will need to complete:
 1. Institution Code: a short-code for the institution (ex: DAL)
@@ -244,7 +244,7 @@ To run the cell, you will need to complete:
 1. Organization ID: Press the `Search Org ID` button. A list of potential WikiData, GRID, ROR, EDMO and NERC results for the institution will appear. Choose the best match, and paste that URL into the blank Organization ID cell.
 1. Institution Country: the country where the institution is headquartered
 1. Institution State: the state where the institution is headquartered
-1. Institution Sector: one of Unknown, Government/Other Publuc, Univserity/College/Research Hospital, Private, or Non-profit.
+1. Institution Sector: one of Unknown, Government/Other Public, University/College/Research Hospital, Private, or Non-profit.
 
 
 Once all values are completed, press `Create Institution` and confirm the following output:
@@ -267,7 +267,7 @@ First, you should run this cell with `printSQL = True`. If there are no errors, 
 You will see some output - confirm each line is accompanied by a green `OK`.
 
 
-#### Task list checkpoint
+#### Task List Checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
@@ -290,7 +290,7 @@ Created contact Fred Whoriskey
 {: .language-example}
 
 
-#### Task list checkpoint
+#### Task List Checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
@@ -305,7 +305,7 @@ The first cell imports the required function.
 The second cell, when run, will create an editable input form for each animal.
 
 You should review to confirm the following:
-1. the scientific name is matching to an accepted WoRMS taxon. There should be a URL provided, and no error messages.
+1. the scientific name is matching to an accepted WoRMS taxon. There should be a URL provided and no error messages.
 1. the common name is acceptable. If it is not, you can choose a value from the dropdown menu (taken directly from WoRMS' `vernacular` list) **OR** you can enter a custom value to match the common name provided by the researcher.
 
 Once you are sure that both the scientific and common names are correct, based on the information provided by both the project and the notebook, you may click the `Add to project` button for each animal record you'd like to insert.
@@ -313,7 +313,7 @@ Once you are sure that both the scientific and common names are correct, based o
 There will be a confirmation display in the notebook to demonstrate if the insertion was successful.
 
 
-#### Task list checkpoint
+#### Task List Checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
@@ -332,7 +332,7 @@ Once you scroll past the `Project Loan Information` section, you will see a yell
 This is a chance to visually review all the fields you just entered. You should enter run these cells and review all output to ensure the database values align with the intended insertions.
 
 
-#### Task list checkpoint
+#### Task List Checkpoint
 
 In Gitlab, this task can be completed at this stage:
 
@@ -340,15 +340,15 @@ In Gitlab, this task can be completed at this stage:
 
 ### Other Features of this Notebook
 
-There are more features in the `Create and Update Projects` notebook than those covered above.
+There are more features in the `Create and Update Projects` Nodebook than those covered above.
 
-#### Schema extension
+#### Schema Extension
 
 This section is to be used when you have a project which is either `Tracker` or `Deployment` and is expanding to become a `Data` project. Ex: a project which was only tagging has begun deploying receivers.
 
-You can use this notebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
+You can use this Nodebook to create the missing tables for the schema. Ex: if a tagging project begins deploying receivers, the schema would now need `stations`, `rcvr_locations`, and `moorings` tables created.
 
-#### Schema updating
+#### Schema Updating
 
 This section is to be used to change the values contained in `obis.otn_resources`. The first cell will open an editable form with the existing database values. You can change the required fields (ex: abstract).
 
@@ -374,7 +374,7 @@ The output should look like this to confirm success:
 >
 > If you are part of a Node that uses Plone as your document repository, then the following will be relevant for you.
 >
-> ### Imports cell
+> ### Imports Cell
 >
 > This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 >
@@ -412,17 +412,17 @@ The output should look like this to confirm success:
 > ~~~
 > {: .language-plaintext .example}
 >
-> ### Access Project Info
+> ### Access Project Information
 >
 > Some information is needed in order to create the project Plone folders.
 >
 > There are three ways to enter this information:
 >
 > 1. Access Project Information from Database
-> 1. Manual Project Information Form - Parse Contacts
-> 1. Manual Project Information Form - Insert Contacts into Textfields
+> 2. Manual Project Information Form - Parse Contacts
+> 3. Manual Project Information Form - Insert Contacts into Textfields
 >
-> The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` notebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the notebook to the next section.
+> The first option is generally the easiest, if the project has already been successfully written to the database using the `Create and Update Projects` Nodebook. To do this, you enter the `collectioncode` of your project, and run the cell. If there are no errors, you can click the `SKIP` button which will take you down the Nodebook to the next section.
 >
 >
 > ### Create Missing Users
@@ -438,7 +438,7 @@ The output should look like this to confirm success:
 > Once all contacts have Plone accounts (new or otherwise) you are finished.
 >
 >
-> #### Task list checkpoint
+> #### Task List Checkpoint
 >
 > In Gitlab, this task can be completed at this stage:
 >
@@ -451,11 +451,11 @@ The output should look like this to confirm success:
 > - safnode, migramar, nepunit:`node = "node"` - lowercase with quotation marks, fill in the value based on the path in Plone.
 > - all other nodes (not hosted by OTN): `node = None`
 >
-> Running this cell will print out an example of the URL, for your confirmation. Ensure the collectioncode and Node are correct.
+> Running this cell will print out an example of the URL, for your confirmation. Ensure the `collectioncode` and `Node` are correct.
 >
 > The expected format:
 >
-> `https://members.oceantrack.org/data/repository/node_name/collectioncode` (node name is for SAF, MigraMar and NEP only)
+> `https://members.oceantrack.org/data/repository/node_name/collectioncode` (node name is for SAF, MigraMar, and NEP only)
 >
 > If you are confident the folder path is correct, you can run the next cell and confirm the following success message:
 >
@@ -466,7 +466,7 @@ The output should look like this to confirm success:
 > {: .language-plaintext .example}
 >
 >
-> #### Task list checkpoint
+> #### Task List Checkpoint
 >
 > In Gitlab, this task can be completed at this stage:
 >
@@ -503,7 +503,7 @@ The output should look like this to confirm success:
 > This is very fluid and can be edited at any time. These are guidelines only!
 >
 >
-> #### Task list checkpoint
+> #### Task List Checkpoint
 >
 > In Gitlab, this task can be completed at this stage:
 >
@@ -516,12 +516,12 @@ The output should look like this to confirm success:
 
 # Final Steps
 
-The remaining steps in the Gitlab Checklist are completed outside the notebooks.
+The remaining steps in the Gitlab Checklist are completed outside the Nodebooks.
 
 First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder to archive.
 
 Next, you should send an email to the project contacts letting them know their project code and other onboarding information.
 
-Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+Finally, the Issue can be passed off to an OTN analyst for final verification in the database.
 
 {% include links.md %}
