@@ -14,34 +14,31 @@ OTN maintains several additional Nodebooks that fall outside the core `tag`, `de
 
 ## Check Environment 
 
-This notebook checks your system Python environment against our `environment.yml`. This is to see if the Python packages and libraries you have installed are in line with what is required to run the ipython Notebooks. This will assist you with updating your packages if they become out-of-date, or if OTN develops and publishes new tools which rely on new packages.
+This Nodebook checks your system Python environment against our `environment.yml`. This is to see if the Python packages and libraries you have installed are in line with what is required to run the Nodebooks. This will assist you with updating your packages if they become out-of-date, or if OTN develops and publishes new tools which rely on new packages.
  
 ## scientific_name_check
 
-This notebook uses [WoRMS](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this notebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` notebook
+This Nodebook uses [WoRMS](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this Nodebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` Nodebook
  
 ## Add Instrument Models to Database  
 
-This notebook is used to add an instrument model to the `obis.instrument_models` table.
+This Nodebook is used to add an instrument model to the `obis.instrument_models` table.
 
 ## insert_vendor_sheet
  
 Used to load manufacturer specifications for tags or receivers into the `vendor` tables.  
  
-## convert - Fathom (vdat) Export - VRL to CSV
+## [convert - Fathom (vdat) Export - VRL to CSV](https://ocean-tracking-network.github.io/node-manager-training/08_Detections/index.html#convertToCSV)
  
 Convert VRLs or VDATs into CSV files using command-line Fathom software. Can also be done using the Fathom app.  
- 
- 
+
 ## Load Health Report 
 
 This notebook will load "health reports" collected by `LiquidRobotics WaveGliders` while remotely offloading `VR4` receivers.
 
+## Create and Update Contacts Nodebook
 
-## create and update contacts' notebook
-
-This notebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
-
+This Nodebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
 
 ## DB-Fix Notebooks
 

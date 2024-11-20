@@ -130,7 +130,7 @@ Now that we have explored and set up some of the tools needed to work as a Node 
 	* **MAC**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the command: `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks
 	* **WINDOWS**: Double-click the `start-jupyter.bat` file in your ipython-utlities folder, which will open the Nodebooks.
 2. Your Nodebooks should open in a new browser window, showing the `Home` page.
-3. Open the `AUTH - Create and Update` notebook
+3. Open the `AUTH - Create and Update` Nodebook
 
 ### Imports cell
 
