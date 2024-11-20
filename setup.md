@@ -30,7 +30,7 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 
 # Nodebooks - iPython Utilities 
-The `ipython-utilities` project contains the collection of Nodebooks used to load data into the OTN data system.
+The `ipython-utilities` project contains the collection of Jupyter notebooks used to load data into the OTN data system.
 
 **Create an Account**
 
@@ -46,7 +46,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
-1. Create and activate the "nodebook" python enviornment. The creation process will only need to happen once.
+1. Create and activate the "nodebook" python environment. The creation process will only need to happen once.
    * In your terminal, run the command `conda create -n nodebook python=3.9`
    * Activate the nodebook environment using `conda activate nodebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
