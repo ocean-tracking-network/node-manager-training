@@ -18,6 +18,9 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 
 * **Presentation:** Introduction to Nodes (virtual connections available)
     * The Ocean Tracking Network's Data Centre, the Care of Animal Tracking Data, and the Database Node concept - Jon Pye
+    * Data Policies and User Agreements
+        * What your user agreement or data policy says you can and can't do w/ other folks' data in your Node
+        * The common rules across our Agreements that allow Nodes to interoperate
 * **Lightning Introductions** for attendees:
     Maximum of **Three (3)** slides describing each Node Manager's background, the community the Node serves, and how you're hosted/funded.
     
@@ -109,13 +112,12 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
 
 ### Day 4
 
-* Supplementary Notebooks
-    * scientific_name_check
-    * Registering new instrument models
-    * vendor tag and sales sheets
-    * Health reporting
-    * Contacts updates
-    * DB-Fix Notebooks
+* Fixing Data Errors
+    * The DB-Fix Notebooks
+
+*AM Break*
+
+* Fixing Data Errors cont.
 
 *Lunch*
 
@@ -124,14 +126,17 @@ The next scheduled training is December 2nd - 6th, 2024 in Halifax, NS, at the S
     * Creating detection extracts for researchers
 
 *PM Break*
-* Upholding the Data Policy
-    * What your user agreement or data policy says you can and can't do w/ the data in your Node
-    * The common rules that allow Nodes to interoperate
+
 * OTN All-Hands meeting
 
 ### Day 5
+* Supplementary Notebooks
+    * scientific_name_check
+    * Registering new instrument models
+    * vendor tag and sales sheets
+    * Health reporting
+    * Contacts updates
 
-* Fixing Data Errors
 * Nodebook Development and Improvements
 
 *Lunch*
