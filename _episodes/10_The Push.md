@@ -42,6 +42,7 @@ Please refrain from interacting with the Node Database until OTN staff have anno
 - 'sentinel' which contain the detections matched to test or transceiver tags collected by an array
 - 'tracker' which contains detections that have been mapped to animals tagged by a project that can originate from any receiver in the entire Network
 - 'external partners' which is a report with suggested matches to the mystery-tag layers provided by non-Node partner networks. Summary detection information, including a count of the number of potential matches per project is provided. These matches are meant as a starting point for gaining information from non-Node telemetry networks. Researchers will have to contact those networks directly for more detailed information, and to register.
+- 'sentinel-tagger' which contain the detections matched to test or transceiver tags deployed by a project, and detected by other projects
 
 Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate).  
 
@@ -55,6 +56,8 @@ During the Push process, any new detection matches that are made are noted in th
 - `push_date`: the date of the Push when this extract will have to be made
 
 Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
+
+**As of December 2024, please ensure you are on the `master` branch of ipython utilities before running this Nodebook**
 
 ### Imports cell
 

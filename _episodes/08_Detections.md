@@ -24,20 +24,19 @@ Here is the Issue checklist, for reference:
 
 ~~~
 Detections
+- [ ] - NAME add label *'loading records'*
 - [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Convert - Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook)
-- [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **(put detection years that were loaded here)**
 - [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook)
-- [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
 - [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
 - [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab issue number here**)
 -----
-- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook)
+- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **(put affected years here)**
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
 - [ ] - NAME load sentinel records (`detections-3` notebook)
 - [ ] - NAME check for missing receiver metadata (`detections-3b` notebook)
@@ -47,9 +46,10 @@ Detections
 - [ ] - NAME process receiver configuration (`events-4` notebook)
 - [ ] - NAME label issue with *'Verify'*
 - [ ] - NAME pass issue to OTN analyst for final steps
-- [ ] - NAME check for double reporting (verification_notebooks/Project Verification notebook)
+- [ ] - NAME check for double reporting (verification_notebooks/`Detection Verification` notebook)
 - [ ] - NAME match tags to animals (`detections-4` notebook)
-- [ ] - NAME do sensor tag processing (only done if vendor specifications are available)
+- [ ] - NAME overwrite sentinel tags with animal tags (`detections-4b` notebook)
+- [ ] - NAME do sensor tag processing (`detections-5` notebook) - only done if vendor specifications are available
 - [ ] - NAME update detection extract table
 
 **detections files/path:**
@@ -64,27 +64,27 @@ Once the files are received from a researcher, the Data Manager should first com
 Things to visually check:
 
 - Do the files appear edited? Look for `_edited` in file name.
-- Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
+- Is the file format the same as expected for that manufacturer? Ex. `.vrl` or `.vdat` for Innovasea - not `.csv` or `rld` formats.
 - Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
 # Convert to CSV 
 
-Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
+Once the raw files are obtained, the data must be converted to `csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
 For Innovasea
 - VUE
     - Open a new `database`
-    - Import all the `VRL` files
-    - Select `export detections` and choose the location you want to save the files
-    - Select `export events` and choose the location you want to save the files
+    - Import all the `VRL` files provided
+    - Select `export detections` and choose the location you want to save the file
+    - Select `export events` and choose the location you want to save the file
 - Fathom Connect App
     - choose "export data"
     - select the relevant files and import into the Fathom Connect application
-    - export all data types, and choose the location you want to save the files
+    - export **all data types**, and choose the location you want to save the files
 - `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
     - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
-    - select the folder containing the relevant files and the location you'd like the CSVs saved
-    - run the cells to `convert`
+    - instructions for this Nodebook are below
+
 
 For Thelma Biotel
 - use the `ComPort` software to open the `.tbdb` file and export as CSV
@@ -93,6 +93,51 @@ For Lotek
 - exporting to CSV is more complicated, please reach out to OTN for specific steps
 
 Other manufacturers: contact OTN staff.
+
+# convert - Fathom (vdat) Export - VRL to CSV Nodebook
+This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
+
+Before you begin, you will need to ensure you have access to a fathom vdat executable is required to run this notebook.
+
+- Access the vemco(Innovasea) vdat working group gitlab project: [https://gitlab.oceantrack.org/ntress/vdat-working-group](https://gitlab.oceantrack.org/ntress/vdat-working-group) - Contact OTNDC if you you need read access.
+- Under the `releases` folder, pick the latest version of `vdat` folder.
+- Choose the folder for your operating system
+- Click on the vdat file and then click the Download.
+- Save this file somewhere informative.
+- Copy the full filepath to your `vdat` file for use in the Nodebook
+- **MAC Users Only** 
+    - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
+    - enable execution by typing the following command `chmod +x vdat`
+    
+### Imports cell
+
+This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
+
+### User Input
+
+You will have to edit 3 sections
+- vdat_path: Within open quotations paste the filepath to the fathom executable (`vdat.exe`)
+- vrl_dir: Within open quotations paste the path to a folder containing the VRLs or VDATs you would like to convert
+- export_path: Within open quotations paste the path to the folder to which you would like the CSV exported.
+
+Run this cell. There is no output.
+
+### Check vdat exists
+
+The Nodebook will indicate the file had passed quality control by adding a ✔️**green checkmark** and printing the vdat version.
+
+### Get List of Files
+
+Run this cell to see a list of the VRLs or VDAT files the Notebook has idenfitied inside your vrl_dir folder.
+
+### Process Files 
+
+Run this cell to begin converting your files to CSV. They will be saved into your output_path folder. 
+
+The Nodebook will indicate each file has been converted by adding a ✔️**green checkmark** beside each section as it progresses.
+
+Once this step is complete, you may move onto the Detections - 1 Nodebook.
+
 
 
 # detections - 1 - load csv detections
@@ -668,12 +713,26 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
 
+### Check and Load Sentinel Records
+
+Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button. This will move the detections into their own tables so they do not confuse our animal detection numbers and can be used for Sentinel analysis.
+
+You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps.
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
+
+~~~
+- [ ] - NAME load sentinel records (`detections-3` notebook)
+~~~
+{: .language-plaintext .example}
+
 ### Verify OTN Detections
 
 After running your needed cells you will then verify `otn_detections_yyyy` detections.
 
 The output will have useful information:
-- Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button.
 - Are all the sensors loaded to the `sensor_match` tables? Compare the counts between `detections_yyyy` and `sensor_match_yyyy` provided.
 - Are all the detections loaded from `detections_yyyy` to `otn_detections_yyyy`? Compare the counts provided. If there is a mismatch, we will get more details in the `detections-3b` Nodebook.
 - Is the formatting for the dates correct?
@@ -688,11 +747,10 @@ If there are any errors contact OTN for next steps.
 
 #### Task list checkpoint
 
-In GitLab, these tasks can be completed at this stage:
+In GitLab, this task can be completed at this stage:
 
 ~~~
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
-- [ ] - NAME load sentinel records (`detections-3` notebook)
 ~~~
 {: .language-plaintext .example}
 
@@ -769,6 +827,13 @@ VR2W-567891
 
 There are also two cells at the end that allow you create reports for researchers in CSV or HTML format.
 
+This new GitLab ticket will require investigation to determine the cause for the missing metadata. The researcher will likely need to be contacted.
+- Are these "test" detections from on the boat or in the lab and we are not missing real metadata?
+- Is there a serial number typo in the metadata and it is not missing?
+- Are the deployment dates for the receiver wrong, and need to be fixed?
+
+You can continue with data loading and then return to your Missing Metadata ticket for investigation.
+
 
 #### Task list checkpoint
 
@@ -844,7 +909,7 @@ XX/XX
 {: .language-plaintext .example}
 
 
-### Displaying Missing  Data Files
+### Displaying Missing Data Files
 
 Now the Nodebook will begin plotting a Gantt chart, displaying the periods of deployment for which the database is missing data files. There are some optional customizations you can try:
 
@@ -873,7 +938,15 @@ First, you must select which types of records you'd like to export from this lis
 - missing some events (**recommended**)
 - missing ALL events (**recommended**)
 
-Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination. Please track this information in a new GitLab ticket.
+Then, the next cell will print the relevant dataframe, with an option below to `Save Dataframe`. Simply type the intended filename and filetype into the `File or Dataframe Name` box (ex. missing_vrls_collectioncode.csv) and press `Save Dataframe`. The file should now be available in your `ipython-utilities` folder for dissemination. Please track this information in a **new GitLab ticket**.
+
+This new GitLab ticket will require investigation to determine the cause for the missing data. The researcher will likely need to be contacted.
+- Are these "broken" receivers and data was not able to be downloaded? Check the comments for clues.
+- Is there a typo in the receiver serial number and we are expecting a VRL that doesn't exist?
+- Are the deployment dates wrong and we are expecting a VRL that doesn't exist?
+- Can the researcher send us the missing VRL?
+
+You can continue with data loading and then return to your Missing Data File ticket for investigation.
 
 
 #### Task list checkpoint
@@ -972,6 +1045,8 @@ In GitLab, this task can be completed at this stage:
 
 This Nodebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
 
+There are many cells in this Nodebook that display information but no action is needed from the Node Manager.
+
 ### Import cells and Database connections
 
 As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
@@ -1000,16 +1075,50 @@ Once you have edited the value, you can run the cell.
 
 ### Get Receiver Configuration
 
-Using the receiver deployment records, and the information found in the `events` table, this cell will identify and important configuration information for each deployment. A dataframe will be displayed.
+Using the receiver deployment records, and the information found in the `events` table, this cell will identify any important configuration information for each deployment. A dataframe will be displayed.
 
-The following cell will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
+The following cell ("Process receiver config") will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
 
-### Load Configuration to Database
+### Processed Configuration
 
-Finally, the Nodebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
+Run this to see the rows that were successfully processed from the `events` table. These will be sorted in the next step into (1) duplicates, (2) updates, and (3) new configurations. Of the latter two, you will be able to select which ones you want to load into the database.
+
+### Incomplete Configuration
+
+Run this cell to see any rows that could not be properly populated with data, i.e, a missing frequency or a missing map code. This will usually happen as a result of a map code that could not be correctly processed. These rows will not be loaded and will have to be fixed in the events table if you want the configuration to show up in the `receiver_config` table.
+
+### Sort Configuration
+
+All processed configurations are sorted into (1) duplicates, (2) updates, and (3) new configurations. Of the latter two, you will be able to select which ones you want to load into the database in future cells.
+
+### Duplicates
+
+No action needed - These rows have already been loaded, and there are no substantial updates to be made.
+
+### Updates
+
+Action needed - These rows have incoming configuration from the `events` table that represent updates to what is already in the table for a given catalognumber at a given frequency. Example: a new version of VDAT exported more events information, and we would like to ensure this new informatiuon is added to existing records in the `events` table.
+
+Select the rows using the checkboxes that you want to make updates to, then run the next cell to make the changes.
+
+You should see the following success message, followed by a dataframe:
 
 ~~~
-The following XX receiver configurations are new and have been inserted:
+XX modifications made to receiver config table.
+~~~
+{: .language-plaintext .example}
+
+
+### New Confirguration
+
+These rows are not already in the receiver configuration table. 
+
+Select the rows using the checkboxes that you want to add to the database, then run the next cell to make the changes.
+
+You should see the following success message, followed by a dataframe:
+
+~~~
+XX modifications made to receiver config table.
 ~~~
 {: .language-plaintext .example}
 
