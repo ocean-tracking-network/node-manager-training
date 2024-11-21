@@ -14,9 +14,25 @@ keypoints:
 - "OTN finishes off detections Issues by running Matching and sensor tag processing"
 ---
 
+## Process workflow
+The process workflow for detection data is as follows:
+<pre class="mermaid">
+flowchart LR
+    tag_start(( )) --> get_meta(Receive <br />detection data <br />from researchers)
+    style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> convert(Convert to <br />CSVs)
+    convert --> nodebook(Process and verify <br />with nodebooks)
+    nodebook --> plone(Add data <br />to repository folder)
+    plone --> otn(Pass to <br />OTN)
+    otn --> end2(( ))
+    style end2 fill:#FF0000,stroke:#FF0000
+</pre>
+
 Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
 
-# Submitted Records
+## Submitted Records
 
 Immediately, upon receipt of the data files, a new GitLab Issue should be created. Please use the `Detections` Issue checklist template.
 
@@ -67,7 +83,11 @@ Things to visually check:
 - Is the file format the same as expected for that manufacturer? Ex. `.vrl` or `.vdat` for Innovasea - not `.csv` or `rld` formats.
 - Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
+<<<<<<< HEAD
+## Convert to CSV
+=======
 # Convert to CSV 
+>>>>>>> gh-pages
 
 Once the raw files are obtained, the data must be converted to `csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
@@ -140,7 +160,7 @@ Once this step is complete, you may move onto the Detections - 1 Nodebook.
 
 
 
-# detections - 1 - load csv detections
+## detections - 1 - load csv detections
 
 Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` Nodebook, the `events` records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
 
@@ -223,7 +243,7 @@ In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME verify raw detections table ('detections-1' notebook)`
 
-# events - 1 - load events into c_events_yyyy
+## events - 1 - load events into c_events_yyyy
 
 Events-1 is responsible for loading receiver events files into raw tables. This is only relevant for CSVs that were **NOT** exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` Nodebook.
 
@@ -305,7 +325,7 @@ In GitLab, these tasks can be completed at this stage:
 
 Ensure you paste the table name (ex: c_events_YYYY_mm) into the section indicated, before you check the box.
 
-# events - 2 - move c_events into events table
+## events - 2 - move c_events into events table
 
 This Nodebook will move the `raw` events records in the `intermediate` events table.
 
@@ -376,7 +396,7 @@ In GitLab, these tasks can be completed at this stage:
 
 `- [ ] - NAME load raw events to events table ("events-2" notebook)`
 
-# detections - 2 - c_table into detections_yyyy
+## detections - 2 - c_table into detections_yyyy
 
 This Nodebook takes the `raw` detection data from detections-1 and moves it into the `intermediate` detections_yyyy tables (split out by year).
 
@@ -566,7 +586,7 @@ In GitLab, these tasks can be completed at this stage:
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the Issue.
 
-# detections - 2b - timedrift calculations
+## detections - 2b - timedrift calculations
 
 This Nodebook calculates time drift factors and applies the corrections to the `detections_yyyy` tables, in a field called `corrected_time`. OTN's Data Manager toolbox (the Nodebooks) corrects for timedrift between each initialization and offload of a receiver. If a receiver is offloaded several times in one data file, time correction does not occur linearly from start to end, but between each download, to ensure the most accurate correction. If there is only one download in a data file then the time correction in `VUE` software will match the time correction performed by OTN.
 
@@ -645,7 +665,7 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify timedrift corrections ("detections-2b" notebook)`
 
-# detections - 3 - detections_yyyy into otn_detections
+## detections - 3 - detections_yyyy into otn_detections
 
 The `detections - 3` Nodebook moves the detections from `detections_yyyy` and `sensor_match_yyyy` tables into the final `otn_detections_yyyy` tables. This will join the detections records to their associated deployment records, providing geographic context to each detection. If there is no metadata for a specific detection (no receiver record to match with) it will not be promoted to `otn_detections_yyyy`.
 
@@ -755,7 +775,7 @@ In GitLab, this task can be completed at this stage:
 {: .language-plaintext .example}
 
 
-# detections - 3b - missing_metadata_check
+## detections - 3b - missing_metadata_check
 
 This Nodebook is for checking for detections that have not been inserted into `otn_detections_yyyy`, which will indicate missing receiver metadata.
 
@@ -842,7 +862,7 @@ In GitLab, this task can be completed at this stage:
 `- [ ] - NAME check for missing receiver metadata ("detections-3b" notebook)`
 
 
-# detections - 3c - missing_vrl_check
+## detections - 3c - missing_vrl_check
 
 This Nodebook will check for missing data files in the database by comparing the `rcvr_locations` and `events` tables. For any receiver deployments that are missing events, it will check if there are `detections` during that time period for that receiver.
 
@@ -955,7 +975,7 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME check for missing data records ("detections-3c" notebook)`
 
-# events - 3 - create download records
+## events - 3 - create download records
 
 This Nodebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this Nodebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
 
@@ -1041,7 +1061,7 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify download records ("events-3" notebook)`
 
-# events-4 - process receiver configuration
+## events-4 - process receiver configuration
 
 This Nodebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
 

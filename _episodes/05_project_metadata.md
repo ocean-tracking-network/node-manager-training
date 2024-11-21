@@ -14,9 +14,25 @@ keypoints:
 - "Loading project metadata is the first step towards a functioning project"
 ---
 
+## Process workflow
+The process workflow for project metadata is as follows:
+<pre class="mermaid">
+flowchart LR
+    proj_start(( )) --> get_meta(Receive <br />project metadata <br />from researchers)
+    style proj_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> nodebook(QC with <br />nodebooks)
+    nodebook --> plone(Verify repository <br />folder <br />is correct)
+    plone --> email(Email project <br />contacts <br />onboarding information)
+    email --> otn(Pass to <br />OTN)
+    otn --> end2(( ))
+    style end2 fill:#FF0000,stroke:#FF0000
+</pre>
+
 The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, this is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
 
-# Completed Metadata
+## Completed Metadata
 
 Immediately upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue checklist template.
 
@@ -128,7 +144,7 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 ~~~
 {: .language-example}
 
-# Quality Control - Create and Update Projects
+## Quality Control - Create and Update Projects
 
 Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebooks.
 

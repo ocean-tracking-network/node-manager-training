@@ -12,11 +12,28 @@ keypoints:
 - "Loading receiver metadata requires judgement from the Data Manager"
 - "Communication with the researcher is essential when errors are found"
 ---
-Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors, etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
+
+## Process workflow
+The process workflow for deployment metadata is as follows:
+<pre class="mermaid">
+flowchart LR
+    tag_start(( )) --> get_meta(Receive <br />deployment metadata <br />from researchers)
+    style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> nodebook(Process and verify <br />with nodebooks)
+    nodebook --> plone(Add metadata <br />to repository folder)
+    plone --> otn(Pass to <br />OTN)
+    otn --> end2(( ))
+    style end2 fill:#FF0000,stroke:#FF0000
+</pre>
+
+Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
+
 
 Remembering our previous lessons, there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
 
-# Submitted Metadata
+## Submitted Metadata
 
 Immediately upon receipt of the metadata, a new GitLab Issue should be created. Please use the `Receiver_metadata` Issue checklist template.
 
@@ -85,7 +102,6 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 - When stations are moved to a new location, but the researcher wants to keep the same station names, we often recommend appending ‘_yyyy’ to the station name, but this change might be forgotten the next time they submit metadata. So, we need to manually compare between the database and the metadata for special cases like this. Researchers may also submit station names with special characters which have been previously corrected and  loaded to the database We need to  make sure those same changes are reflected in the new metadata
 - When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter `y` to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
-
 
 #### Task List Checkpoint
 

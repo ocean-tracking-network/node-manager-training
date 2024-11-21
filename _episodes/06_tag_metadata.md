@@ -15,11 +15,26 @@ keypoints:
 - "Communication with the researcher is essential when errors are found"
 ---
 
+## Process workflow
+The process workflow for tag metadata is as follows:
+<pre class="mermaid">
+flowchart LR
+    tag_start(( )) --> get_meta(Receive <br />tag metadata <br />from researchers)
+    style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> nodebook(Process and verify <br />with nodebooks)
+    nodebook --> plone(Add metadata <br />to repository folder)
+    plone --> otn(Pass to <br />OTN)
+    otn --> end2(( ))
+    style end2 fill:#FF0000,stroke:#FF0000
+</pre>
+
 Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to quality control and load the tagging metadata into the database. Tagging metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are recorded for future analysis.
 
 Remembering a previous lesson, there are multiple levels of data-tables in the database for tagging records: `raw tables`, `cache tables` and `otn tables`. The process for loading tagging metadata reflects this, as does the Gitlab task list.
 
-# Completed Metadata
+## Completed Metadata
 
 Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Tag Metadata` Issue checklist template.
 
