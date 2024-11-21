@@ -79,6 +79,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * Activate the nodebook environment using `conda activate nodebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
+1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`. 
 1. Create a new conda environment by running the command: `conda create -n nodebook python=3.9`. This will create the environment named **nodebook** using the python version 3.9.XX.
 1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
