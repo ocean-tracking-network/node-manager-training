@@ -18,14 +18,14 @@ keypoints:
 The process workflow for project metadata is as follows:
 ```mermaid
 flowchart LR
-    proj_start(( )) --> get_meta(Receive \nproject metadata \nfrom researchers)
+    proj_start(( )) --> get_meta(Receive <br />project metadata <br />from researchers)
     style proj_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create \nGitlab \nissue)
-    gitlab --> inspect(Visually \ninspect)
-    inspect --> nodebook(QC with \nnodebooks)
-    nodebook --> plone(Verify repository \nfolder \nis correct)
-    plone --> email(Email project \ncontacts \nonboarding information)
-    email --> otn(Pass to \nOTN)
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> nodebook(QC with <br />nodebooks)
+    nodebook --> plone(Verify repository <br />folder <br />is correct)
+    plone --> email(Email project <br />contacts <br />onboarding information)
+    email --> otn(Pass to <br />OTN)
     otn --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
 ```

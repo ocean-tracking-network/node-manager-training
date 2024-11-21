@@ -18,14 +18,14 @@ keypoints:
 The process workflow for detection data is as follows:
 ```mermaid
 flowchart LR
-    tag_start(( )) --> get_meta(Receive \ndetection data \nfrom researchers)
+    tag_start(( )) --> get_meta(Receive <br />detection data <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create \nGitlab \nissue)
-    gitlab --> inspect(Visually \ninspect)
-    inspect --> convert(Convert to \nCSVs)
-    convert --> nodebook(Process and verify \nwith nodebooks)
-    nodebook --> plone(Add data \nto repository folder)
-    plone --> otn(Pass to \nOTN)
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> convert(Convert to <br />CSVs)
+    convert --> nodebook(Process and verify <br />with nodebooks)
+    nodebook --> plone(Add data <br />to repository folder)
+    plone --> otn(Pass to <br />OTN)
     otn --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
 ```

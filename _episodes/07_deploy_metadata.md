@@ -17,13 +17,13 @@ keypoints:
 The process workflow for deployment metadata is as follows:
 ```mermaid
 flowchart LR
-    tag_start(( )) --> get_meta(Receive \ndeployment metadata \nfrom researchers)
+    tag_start(( )) --> get_meta(Receive <br />deployment metadata <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create \nGitlab \nissue)
-    gitlab --> inspect(Visually \ninspect)
-    inspect --> nodebook(Process and verify \nwith nodebooks)
-    nodebook --> plone(Add metadata \nto repository folder)
-    plone --> otn(Pass to \nOTN)
+    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    gitlab --> inspect(Visually <br />inspect)
+    inspect --> nodebook(Process and verify <br />with nodebooks)
+    nodebook --> plone(Add metadata <br />to repository folder)
+    plone --> otn(Pass to <br />OTN)
     otn --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
 ```
