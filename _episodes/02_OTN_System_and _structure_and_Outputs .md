@@ -48,7 +48,7 @@ The amount of information shared through the discovery tables can be adjusted ba
 The OTN data system takes 4 types of data/metadata: **project**, **tag**, **instrument deployments**, and **detections**. Most data has a similar flow through the OTN system even though each type has different notebooks and processes for loading. The exception to this is `project` metadata which has a more unique journey because it is completely user-defined, and must be used to initially define and create a project's `schema`.
 
 
-```mermaid
+<pre class="mermaid">
 flowchart BT
 
     tag_start(( )) --> tag_sheet[[tagging metadata sheets]]
@@ -104,7 +104,7 @@ flowchart BT
 
     obis --> done(( ))
     style done fill:#FF0000,stroke:#FF0000
-```
+</pre>
 
 
 ### Project Data
