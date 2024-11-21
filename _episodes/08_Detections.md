@@ -16,7 +16,7 @@ keypoints:
 
 ## Process workflow
 The process workflow for detection data is as follows:
-```mermaid
+<pre class="mermaid">
 flowchart LR
     tag_start(( )) --> get_meta(Receive <br />detection data <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
@@ -28,7 +28,7 @@ flowchart LR
     plone --> otn(Pass to <br />OTN)
     otn --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
-```
+</pre>
 
 Once `deployment metadata` has been processed for a project, the related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
 

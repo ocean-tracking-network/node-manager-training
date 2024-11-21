@@ -56,7 +56,7 @@ Currently, the OTN Database Team is working on a suite of notebooks for fixing c
 
 These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please create a `DB Fix Issue` ticket and pass it off to OTN.
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
     subgraph Requestor
     A(( )) --> B(Make Gitlab ticket with </br>information about database </br>fix)
@@ -94,5 +94,5 @@ flowchart LR
     M --> N(( ))
     style N fill:#FF0000,stroke:#FF0000
     end
-```
+</pre>
 {% include links.md %}
