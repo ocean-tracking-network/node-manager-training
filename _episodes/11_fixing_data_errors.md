@@ -13,15 +13,16 @@ keypoints:
 
 # Identifying Errors
 
-During the process of loading data it is possible to uncover errors with previously-loaded datasets. OTN is constantly improving our QA/QC tools, which means we are identifying and correcting more and more historical errors.
-
-Generally, there a few ways Node Managers will identify errors:
+During the process of loading data it is possible to uncover errors with previously-loaded datasets. Generally, there a few ways Node Managers will identify errors:
 - By using the `Verification` cells in the Nodebooks
 - When new QA/QC updates are released for the Nodebooks
 - When a researcher identifies an error explicitly
 - When a researcher submits data that does not match previously-loaded records
 
 In the latter case, full comparison between the records is required, followed by a discussion with the researcher to identify if the previously-loaded records or the new records are correct. Often, the outcome is that the data in the DB needs correction.
+
+In other cases, if the [DB Fix Notebooks](https://ocean-tracking-network.github.io/node-manager-training/10_Database%20fix%20notebooks/index.html) covered in the previous lesson do not cover your issue, then you will have to reach out to OTN's data center with a GitLab ticket.
+
 
 # Scoping the Required Correction
 
@@ -32,21 +33,17 @@ Here is the template for reference:
 ~~~
 # **DB Fix Issue**
 
-__This issue title should include schema name and general fix description__
-- eg "HFX receiver lat/long change"
-
 ## Related gitlab issue:
-- eg #1234, [paste link to issue]
+- **[paste link to issue]**
 
-## Information needed for each record that needs fixing (repeat for each row that needs to change):
-- [ ] unique identifier:
-    - original value:
-    - new value:
+## CSV of information needed for each record that needs fixing (look at `0. Home` notebook for column headers):
+- **[link file here]**
 
 ## Task list
-- [ ] NAME label issue `db fix`
-- [ ] NAME tag OTNDC staff for assistance with request (@diniangela etc)
-- [ ] OTN make database change
+- [ ] NAME label issue `DB Fix`
+- [ ] NAME create a CSV of changes 
+- [ ] NAME assign to @diniangela to make the change
+- [ ] Angela make database change
 ~~~
 {: .language-plaintext .example}
 
@@ -98,5 +95,4 @@ flowchart LR
     style N fill:#FF0000,stroke:#FF0000
     end
 ```
-
 {% include links.md %}

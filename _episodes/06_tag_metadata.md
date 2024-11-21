@@ -47,6 +47,7 @@ Tag Meta Data
 - [ ] - NAME confirm no duplicates in raw table, review and remove (`tag-1b` notebook)
 - [ ] - NAME verify raw table (`tag-2` notebook)
 - [ ] - NAME post updated metadata to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
+- [ ] - NAME email notification of updated metadata file to PI and individual who submitted
 - [ ] - NAME build cache tables (`tag-2` notebook)
 - [ ] - NAME verify cache tables (`tag-2` notebook)
 - [ ] - NAME load otn tables (`tag-2` notebook)
@@ -97,11 +98,13 @@ In general, most commonly formatting errors occur in the information about the `
 The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
-- Animals with ONLY a floy tag: ensure the `TAG_TYPE` column = `FLOY`. You may leave the following columns empty - `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
+- Animals with anchor tags (ie: FLOY, spagetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty - `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
 - Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty - `tag_id_code` and `tag_code_space`.
 
+**Please ensure each tag aplpied to an animal (of any type) has its own row. Anchor tags (inlcuding FLOY, spagetti, streamer, dart, t-bar tags), radio tags (inlcuing PIT, VHF), satellite tags (and more) each need their own row in the metadata sheet.**
 
-# Quality Control - Tag-1 Notebook
+
+# Quality Control - Tag-1 Nodebook
 
 Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
 
@@ -127,7 +130,7 @@ Once you have added your filepath, you can run the cell.
 
 ### Verification of File Contents - formatting
 
-First, you must choose which *sheet* you would like to quality control. Generally, it will be names `Tag Metadata` but is often customized by researchers. Once you have selected the sheet name, **do not** re-run the cell to save the output - simply ensure the correct sheet is highlighted and move onto the next cell.
+First, you must choose which *sheet* you would like to quality control. Generally, it will be named `Tag Metadata` but is often customized by researchers. Once you have selected the sheet name, **do not** re-run the cell to save the output - simply ensure the correct sheet is highlighted and move onto the next cell.
 
 This cell will now complete the first round of Quality Control checks.
 
@@ -135,12 +138,12 @@ The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Are either the `animal_id` or `tag_serial_number` columns completed?
 - Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`?
-- Are the information about the `animal` formatted according to the Data Dictionary?
+- Is the information about the `animal` formatted according to the Data Dictionary?
 - Are there any tags which are used twice in the same sheet?
 - Are there potential transcription errors in the `tag_code_space`? Ex: drag-and-drop errors from Excel
 - Are the scientific and common names used accepted by WoRMS? **If there are errors flagged here which state `Vernacular records not found for Aphia ID: 12345` please make a note, but continue on. This will be fixed at a later stage**
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the tags released over time, by species, for you to explore.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the tags released over time, by species, for you to explore.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
@@ -189,17 +192,17 @@ The output will have useful information:
 1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 1. Do we have the Tag Specifications from the manufacturer? Do the `tag_id_code`, `tag_code_space` and `est_tag_life` match the specifications for each provided serial number? Are there typos or errors that require clarification from the researcher?
 1. Is the information about the `animal` formatted according to the Data Dictionary?
-	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted if possible. Otherwise, use the `add_lifestage_codes` notebook
-	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
-	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
+	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted to match the DB records if possible. Otherwise, use the `add_lifestage_codes` Nodebook.
+	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted to match the DB records if possible. Otherwise, use the `add_lengthtype_codes` Nodebook.
+	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted to match the DB records if possible. Otherwise, use the  `add_control_units` Nodebook.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, use the `scientific_name_check` notebook to add the new species.
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new tag model.
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` (using DBeaver) and compare to the source file to confirm there are no typos. If this is indeed a new species tagged by this project, use the `scientific_name_check` Nodebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` (using DBeaver) and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
 
@@ -214,7 +217,7 @@ table_suffix = "YYYY_mm"
 ~~~
 {: .language-plaintext .example}
 
-The notebook will indicate the success of the table-creation with the following message:
+The Nodebook will indicate the success of the table-creation with the following message:
 
 ~~~
 Reading file: otn_metadata_tagging.xlsx.
@@ -234,7 +237,7 @@ In Gitlab, this task can be completed at this stage:
 
 Ensure you paste the table name (ex: c_tag_meta_YYYY_mm) into the section indicated, before you check the box.
 
-# Quality Control - Tag-1b Notebook
+# Quality Control - Tag-1b Nodebook
 
 Once the raw table is successfully loaded, the next step is to ensure any previously-loaded tags are not re-added to the database (causing duplication errors).
 
@@ -269,11 +272,11 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 {: .language-plaintext .example}
 
 ### Checking for Duplicates
-This cell, once run, may print out that there are `No Duplicates Found`. If so, you can move on.
+This cell, once run, may print out that there are `No Duplicates Found`. **If so, you can complete the task in Gitlab and move to the Tag-2 notebook**
 
-If there is output identifying duplicates, some review is necessary.
+However, if there is output identifying duplicates, some review is necessary.
 
-Immediately, the notebook will create a new table, named `schema.c_tag_meta_YYYY_mm_no_dup` which is an exact copy of your raw table. There will be a print-out saying the following (under a table):
+Immediately, the Nodebook will create a new table, named `schema.c_tag_meta_YYYY_mm_no_dup` which is an exact copy of your raw table. There will be a print-out saying the following (under a table):
 
 ~~~
 Building schema.c_tag_meta_YYYY_mm_no_dup table:
@@ -307,7 +310,7 @@ Compiling list of deletions to the schema.c_tag_meta_YYYY_mm_no_dup table.
 Delete the following XXX records from schema.c_tag_meta_YYYY_mm_no_dup?
 ~~~
 {: .language-plaintext .example}
-You will be able to press the button to confirm, and the notebook will remove all the records.
+You will be able to press the button to confirm, and the Nodebook will remove all the records.
 
 
 #### Task list checkpoint
@@ -316,9 +319,9 @@ In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME confirm no duplicates in raw table, review and remove ("tag-1b" notebook)`
 
-Ensure you paste the `no_dup` table name(ex: c_tag_meta_2021_09_no_dup), if relevant, into the Issue before you check the box. This is now the raw table that will be used for the result of the data-loading process.
+**Ensure you paste the `no_dup` table name (ex: c_tag_meta_2021_09_no_dup), if relevant, into the Issue** before you check the box. This is now the raw table that will be used for the result of the data-loading process.
 
-# Quality Control - Tag-2 Notebook
+# Quality Control - Tag-2 Nodebook
 
 Now that the raw table is free from duplicates, we can begin to move the records into the higher-level `cache` and `otn` tables, where they will be matched to detections.
 
@@ -358,24 +361,24 @@ You will have to edit **two** sections:
 
 ### Verification of File Contents - against database
 
-This cell will now complete the final round of Quality Control checks. These are **exactly** the same as the checks at the end of the `tag-1` notebook.
+This cell will now complete the final round of Quality Control checks. These are **exactly** the same as the checks at the end of the `tag-1` Nodebook.
 
 The output will have useful information:
 
 1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 1. Do we have the Tag Specifications from the manufacturer? Do the `tag_id_code`, `tag_code_space` and `est_tag_life` match the specifications for each provided serial number? Are there typos or errors that require clarification from the researcher?
 1. Is the information about the `animal` formatted according to the Data Dictionary?
-	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted if possible. Otherwise, use the `add_lifestage_codes` notebook
-	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted if possible. Otherwise, use the `add_lengthtype_codes` notebook
-	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted if possible. Otherwise, use the  `add_control_units` notebook
-1. Are there  any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` and the source file to confirm there are no typos. If this is a new species tagged by this project, use the `scientific_name_check` notebook to add the new species.
-1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` notebook to add the new tag model.
+	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted to match the DB records if possible. Otherwise, use the `add_lifestage_codes` Nodebook.
+	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted to match the DB records if possible. Otherwise, use the `add_lengthtype_codes` Nodebook.
+	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted to match the DB records if possible. Otherwise, use the  `add_control_units` Nodebook.
+1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
+1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` (using DBeaver) and compare to the source file to confirm there are no typos. If this is indeed a new species tagged by this project, use the `scientific_name_check` Nodebook to add the new species.
+1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` (using DBeaver) and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
 1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher), delete or edit the raw table, and try again.
 
@@ -408,9 +411,9 @@ Added XX records to the schema.tagcache_YYYY_mm table
 {: .language-plaintext .example}
 
 
-You need to pay special attention to the number of records loaded to the animal and tag caches. If this number doesn't match you may need to investigate why there are more tags than animals or vice versa. Possible reasons the values may not match:
+You need to pay special attention to the number of records loaded to the animal and tag caches. If these numbers **don't match** you may need to investigate why there are more tags than animals or vice versa. Possible reasons the values may not match:
 
-- There are some animals with only FLOY tags, no acoustic tags (no record added to `tag_cache`).
+- There are some animals with only anchor tags, no acoustic tags (so no record is added to `tag_cache`, just to animal cache).
 - There are some animals with >1 tag attached, or a tag with >1 pinger ID (multiple records added to `tag_cache`, for each animal)
 
 If the values are acceptable, you can move on.
@@ -439,7 +442,7 @@ The output will have useful information:
 - Confirm there are no overlapping tags remaining
 - Confirm there are Tag Specifications available, and they match the records. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
 If there are any errors go into database and fix the cache tables themselves, and re-run
 
@@ -473,7 +476,7 @@ In Gitlab, these tasks can be completed at this stage:
 
 ### Verifying OTN Tables
 
-This cell will now complete the Quality Control checks of the tag and animal records contained in the entire schema. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
+This cell will now complete the Quality Control checks of the tag and animal records contained in the *entire schema*. We are no longer checking our newly-loaded records only, but also each previously-loaded record.
 
 The output will have useful information:
 
@@ -489,9 +492,9 @@ The output will have useful information:
 - Confirm there are Tag Specifications available, and they match the records provided. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 - Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 
-The notebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there are any errors, go into the database and fix the `otn` tables themselves, or contact the researcher, and re-run.
+If there are any errors, contact the researcher to scope potential data fixes, then open a DB-Fix Ticket, and use the Database Fix Notebooks to resolve the issues.
 
 
 #### Task list checkpoint
@@ -509,6 +512,8 @@ In Gitlab, these tasks can be completed at this stage:
 The remaining steps in the Gitlab Checklist are completed outside the notebooks.
 
 First: you should access the Repository folder in your browser and add the cleaned Tag Metadata `.xlsx` file into the "Data and Metadata" folder.
+
+Then, please email a copy of this file to the researcher who submitted it, so they can use the "cleaned" version in the future.
 
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
 
