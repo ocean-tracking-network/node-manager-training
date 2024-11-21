@@ -15,7 +15,7 @@ keypoints:
 
 ## Process workflow
 The process workflow for deployment metadata is as follows:
-```mermaid
+<pre class="mermaid">
 flowchart LR
     tag_start(( )) --> get_meta(Receive <br />deployment metadata <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
@@ -26,7 +26,7 @@ flowchart LR
     plone --> otn(Pass to <br />OTN)
     otn --> end2(( ))
     style end2 fill:#FF0000,stroke:#FF0000
-```
+</pre>
 
 Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors etc. Geographic location, as well as the duration of the deployment for each instrument, is recorded. The locations of these listening stations are used to fix detections geographically.
 
