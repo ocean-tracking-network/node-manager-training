@@ -44,3 +44,5 @@ Located in the `vis` subfolder. This notebook generates a summary report for rec
 
 
 # Adding new notebooks to `visuals-and-reporting`
+
+{% include links.md %}

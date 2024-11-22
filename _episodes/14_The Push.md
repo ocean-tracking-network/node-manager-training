@@ -16,20 +16,17 @@ keypoints:
 - "Detection Extracts are the main end product of the Push"
 ---
 
-## What it a Data Push?
+## What is a Data Push?
 
-A Data Push is when the OTN data system is re-verified and any new relevant information is sent to researchers. New data being brought in is cut off so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
+A Data Push is when the OTN data system is re-verified and any new relevant information is sent to researchers. New data stops being brought in so that what's in the system can be reliably verified. This way any issues found can be fixed and the data can be in the best form based on the information available at that moment. Once verification is done, detections are matched across nodes and detection extracts are sent out to researchers. This is also the time when summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified data.
 
 ## What is the Push Schedule?
 
-Push events happen **three** times a year. They start on the third Thursday of the "push month" which are February, June, and October. This date is the cut-off date for all data-loading: no records can be loaded after this. Please aim to have all tickets ready for verification **1 week** before this date.
+Push events happen **three** times a year. They start on the third Thursday of the "push months" which are February, June, and October. This date is the cut-off date for all data-loading; no records can be loaded after this. Please aim to have all tickets ready for verification **1 week** before this date.
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
 Push schedule through 2025:
-- February 15, 2024
-- June 20, 2024
-- October 17, 2024
 - February 20, 2025
 - June 19, 2025
 - October 16, 2025
@@ -37,7 +34,7 @@ Push schedule through 2025:
 ## Node Manager Roles During a Push
 
 Node Managers have two main jobs during a Push:
-1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to attempt to prevent a backlog near the Push date.
+1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to prevent a backlog near the Push date.
 1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` Nodebook.
 
 Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required.
@@ -67,7 +64,7 @@ During the Push process, any new detection matches that are made are noted in th
 
 Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
 
-**As of December 2024, please ensure you are on the `master` branch of ipython utilities before running this Nodebook**
+**As of December 2024, please ensure you are on the `integration` branch of ipython utilities before running this Nodebook**
 
 ### Imports cell
 
@@ -102,15 +99,15 @@ Testing dblink connections:
 ~~~
 {: .language-bash}
 
-You may note that there are multiple `DB links` required here: this is so that you will be able to include detection matches from all the Nodes. If your `kdbx` file doesn't include any of your DB link accounts, reach out to OTN to help set it up for you. 
+You may note that there are multiple DB links required here: this is so that you will be able to include detection matches from all the Nodes. If your `.kdbx` file doesn't include any of your DB link accounts, reach out to OTN to help set it up for you. 
 
 ### Detection Extract Selection
 
 There are two options for selecting which Detection Extracts to create:
 
-1. There is a `manual entry` cell. Here you can paste a list of extracts in this format (one per line):
+1. The manual entry cell. Here you can paste a list of extracts in this format (one per line):
     * project code (capitals), year, type
-2. There is a cell to query the `obis.detection_extracts_list` table. This is the preferred method.
+2. The cell to query the `obis.detection_extracts_list` table. This is the preferred method.
     * enter the current Push date like `push_date = 'YYYY-MM-DD'`
 
 Once you have a list of the Detection Extracts to create, you can move on. The next cell will create a list of all the extracts that were just created, which you can use for your own records. It will save in your `ipython-utilities` folder.
@@ -138,6 +135,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 > Please wait for them all to complete - indicated by a **green checkmark** and a summary of the time it took to complete the extract.
 >
 > ### Emailing Researchers - Plone
+>
 > Using the Plone users system, its possible to identify which researchers require an email notification.
 > First you need to supply a `.auth` file for an email account. The format will be like this: `email_auth_path = r'C:/path/to/email.auth'`. Success will be indicated with this message:
 > ~~~
@@ -176,6 +174,9 @@ Once all extracts are made, uploaded to your file management system and emails h
 
 Please enter `current_push_date = 'yyyy-mm-dd'` : the date of the Push when these extracts have been made.
 
-Then, an interactive dataframe will appear. This dataframe will allow you to check-off the extracts as `completed` based on those you were able to successfully create.
+Then, an interactive dataframe will appear. This dataframe will allow you to check off the extracts as `completed` based on those you were able to successfully create.
 
 Now you're done with Detection Extracts until next Push!
+
+{% include links.md %}
+
