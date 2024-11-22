@@ -33,23 +33,42 @@ If you re-generate these tables for your Node using the [populate_geoserver](htt
 
 # The `visuals-and-reporting` notebooks
 
+Some products are built from things that nodes don't make fully public, but are useful to summarize for funders or stakeholders, or to produce simplified visualizations meant to promote your Network. The visuals-and-reporting notebooks repository is a collection of popular workflows for producing these sorts of products.
+
 ## Database and Network-wide reports
 
 ### Example: Active Tags and IUCN Status
 
-Located in the `vis` subfolder. This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements to CFI.
+This creates a summary report of Tag Life, Tags, Detections, Stations. Tailored for OTN's reporting requirements to CFI.
 
-### Generate Receiver Map
+### Example: Generate Receiver Map
 
-Located in the `vis` subfolder. This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
+This creates a map to show receivers from Nodes. Tailored for OTN's reporting requirements and data policy.
 
 ## Project-level summaries
-###  Receiver Operator Report
+### Example: Receiver Operator Report
 
-Located in the `vis` subfolder. This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
+ This notebook generates a summary report for receiver operators to describe what animals have been seen and when. Tailored for OTN's reporting requirements and data policy.
 
 ## Tag-oriented summaries
-### `otndo`   
+
+### Example: Private: Tag Summarize and Check
+
+Scenario: You want to know whether any of the detections you just downloaded are part of your Database already. Use this notebook to search tags, tag specs, and existing detections that are unmatched to find matches to a set of tag IDs that you specify. This will not do the checking that actually loading and matching the detection data would do for you, so sharing this output is not recommended, but it gives a sense of the connectivity of a detection dataset to the Database.
+
+### User-facing summaries: `otndo`
+
+Mike O'Brien's summarization and visualization function can be run by any client and uses a detection extract as a data source. Referencing the OTN GeoServer, it will produce a list of collaborators and projects that have contributed to detctions in that supplied dataset, and provide a before/after timepoint to show the end user what detections have been added by the latest Data Push.
+
+Examples at Mike's [otndo documentation page](https://otndo.obrien.page).
 
 
 # Adding new notebooks to `visuals-and-reporting`
+
+If you would like to see new features or workflows added to the visuals-and-reporting repository for all to use, you can issue a merge request against the repository, or work with OTN programmer staff to build and design data structures and workflows that fulfill your reporting needs. Use the existing `discovery` and `geoserver` data objects or you can also design new ones for your node.
+
+### Example: Cross-node Detections chord plot
+
+Using the `detection_pre_summary` Discovery table, we can see which detection events were mapped between different Nodes, and visualize these inter-Node interactions using a chord plot. Here we have created a few caveats to avoid representing false detections on the plot, only taking detection events with >1 detection, and excluding some of the more fantastic inter-ocean matches. 
+
+![Cross-node chord plots of inter-node detection matches](../fig/cross_node_detections_20241121.png)
