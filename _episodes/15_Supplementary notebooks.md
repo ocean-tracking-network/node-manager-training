@@ -18,7 +18,9 @@ This Nodebook checks your system Python environment against our `environment.yml
  
 ## scientific_name_check
 
-This Nodebook uses [WoRMS](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this Nodebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` Nodebook
+This Nodebook uses [WoRMS](https://www.marinespecies.org/index.php) to check animal common and scientific names. It is used to add new species names to `obis.scientificnames` table for use each project. The instructions for using this Nodebook are the same as the `Adding Scientific Names` section in the `Create and Update Projects` Nodebook.
+
+Occasionally, you may have to add a new species to the WoRMS data system. The specifics of doing so are laid out on the [WoRMS Contribution page](https://marinespecies.org/contribute.php) but they amount to: email info@marinespecies.org with a literature record describing the taxa that needs to be added. Traditionally WoRMS was not a register of freshwater species but in recent years they have extended their scope to account for and track marine, brackish, and fresh habitat designations for their supported taxa. So don't hesitate to reach out to them and help them add new species!
  
 ## Add Instrument Models to Database  
 
