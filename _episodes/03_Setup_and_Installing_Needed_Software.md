@@ -17,15 +17,15 @@ keypoints:
 
 ### In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
 
-To standardize the verification and quality control process that all contributing data is subjected to, OTN has built custom quality control workflows and tools for Node Managers, often referred to as the OTN Nodebooks. The underlying functions are written in `Python` and workflows that rely on them can be undertaken through the use of `Jupyter` Notebooks. In order to use these tools, and interact with your database, you will need to install a few different applications and packages. All installation instructions are also available on our GitLab [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/home). 
+To standardize the verification and quality control process that all contributing data is subjected to, OTN has built custom quality control workflows and tools for Node Managers, often referred to as the OTN Nodebooks. The underlying functions are written in Python and workflows that rely on them can be undertaken through the use of Jupyter Notebooks. In order to use these tools, and interact with your database, you will need to install a few different applications and packages. All installation instructions are also available on our GitLab [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/home). 
 
 This lesson will give attendees a chance to install all the relevant software, under the supervision of OTN staff.
 
 # Python/Mamba
 
-`Python` is a popular general-purpose programming language that can be used for a wide variety of applications. It is the main language used by OTN and our data processing pipeline.
+Python is a popular general-purpose programming language that can be used for a wide variety of applications. It is the main language used by OTN and our data processing pipeline.
 
-`Mamba` is fast, cross-platform python distribution and a package manager. When you install `Mamba (through Miniforge)` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
+Mamba is fast, cross-platform python distribution and a package manager. When you install Mamba (through Miniforge) you get a Python interpreter (which enables your computer to run Python code), and many of the core Python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
 
  **Miniforge Windows** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
   - Select the option install for Just Me (recommended).
@@ -33,20 +33,20 @@ This lesson will give attendees a chance to install all the relevant software, u
 
  **Miniforge Mac** - 
    - Setup homebrew by running the command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` - **Note:** this operation requires elevated privileges (sudo)
-   - Use the commands outputted by brew to add brew to your system path
+   - Use the commands provided by brew's installation output to add brew to your system path
    - Use brew to install miniforge: `brew install miniforge`
    - Add miniforge to your zsh environment by typing conda init zsh. Restart the terminal
 
 **Miniforge Linux (Debian)**
-   - download Shell script (.sh) file from [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
+   - Download the Shell script (.sh) file from [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
       - Recommended: Choose Python 64-bit Linux Installer
    - Change the run permissions for the miniforge installer script. ie `chmod +x Miniforge3-[version]-Linux-x86_64.sh`
-   - run the installer from the linux terminal. `./Miniforge3-[version]-Linux-x86_64.sh`
+   - Run `./Miniforge3-[version]-Linux-x86_64.sh` in the Linux terminal to activate the installer.
    - Add this conda installation to your terminal environment by running `conda init`. Restart the terminal to see the changes reflected.
 
 # Git
 
-`Git` is a version-control system, it helps people to work collaboratively and maintains a complete history of all changes made to a project. We use `Git` at OTN to track changes to the Nodebooks made by our developer team, and occasionally you will need to update your Nodebooks to include those changes.
+Git is a version-control system, it helps people to work collaboratively and maintains a complete history of all changes made to a project. We use Git at OTN to track changes to the Nodebooks made by our developer team, and occasionally you will need to update your Nodebooks to include those changes.
 
 **Install Git** 
 
@@ -69,25 +69,24 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
 **Install iPython Utilities** 
 
 1. Determine the folder in which you wish to keep the iPython Utilities Nodebooks.
-1. Open your `terminal` or `command prompt` app. 
-   * Type `cd` then `space`. 
-   * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
-   * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
-   * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
+1. Open your terminal or command prompt. 
+   * Type `cd` followed by a space. 
+   * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the terminal/command prompt OR right-click on the folder, select 'Copy as Path' from the dropdown menu, and paste the result into the terminal/command prompt.
+   * You should have a command that looks like `cd /path/to/desired/folder`.
+   * Press Enter, and your terminal/command prompt will navigate to the folder you provided. 
 1. Create and activate the "nodebook" python enviornment. The creation process will only need to happen once.
    * In your terminal, run the command `conda create -n nodebook python=3.9`
-   * Activate the nodebook environment using `conda activate nodebook`
-1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
-1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
+   * Activate the nodebook environment by running `conda activate nodebook`
+1. Next, run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab.
+1. Navigate to the newly-created ipython-utilities subdirectory by running `cd ipython-utilities`.
 1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`. 
-1. Create a new conda environment by running the command: `conda create -n nodebook python=3.9`. This will create the environment named **nodebook** using the python version 3.9.XX.
 1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /path/to/ipython-utilities`. Then, run the commands: 
+- **MAC/WINDOWS/LINUX**: Open your terminal and navigate to your ipython-utilities directory by running `cd /path/to/ipython-utilities`. Then, run the commands: 
    * `conda activate nodebook` to activate the nodebook python environment
    * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
-- **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
+- **DO NOT CLOSE** your terminal/CMD instance! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
 
