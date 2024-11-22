@@ -1,6 +1,6 @@
 ---
 title: "Moving Platform: Mission Metadata, Telemetry and Detection Loading"
-teaching: 90
+teaching: 150
 exercises: 0
 questions:
 - "What are considered moving platforms. What are the use cases?"
@@ -8,6 +8,7 @@ questions:
 objectives:
 - "Understand the workflow for moving platform workflow in the OTN system"
 - "Learn how to use the `Movers` notebooks"
+- "Known issues and shooting tips"
 keypoints:
 - "OTN supports processing of slocum and wave glider detections, detections from other mobile platforms (ship-board receivers, animal-mounted receivers, etc.), and active tracking (reference https://oceantrackingnetwork.org/gliders/)."
 - "OTN is able to match detections collected by moving platforms as long as geolocation data is provided."
@@ -57,19 +58,34 @@ telemetry: **(put telemetry repository link here)**
 
 # Loading Mission Metadata
 
-Moving platform missing metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). 
+Moving platform missing metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
-1. Visually check for any missing information and inconsistant or formatting issues in the **essential** columns? Column names and example data are shown as below:
- * platform_id: e.g. `1234567`
- * otn_mission_id: e.g. `1234567202310031456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time digits`).
- * ins_model_no: e.g. `VMT`
- * ins_serial_no: e.g. `130000`
- * deploy_date_time: e.g. `2023-10-03T14:56:00`
- * recover_date_time: e.g. `2023-12-03T12:00:00`
+1. Quality control the `MOVING PLATFORMS METADATA` spreadsheet. If any modification save revised version as `_QCed.xlsx`
+   
+1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns (in dark-green backgroup color)? Column names and example data are shown as below:
+ * PLATFORM_ID: e.g. `OTN-GL-1` (recommand in uppercase alphanumerics).
+ * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`).
+ * INS_MODEL_NO: e.g. `VMT`
+ * INS_SERIAL_NO: e.g. `130000`
+ * DEPLOY_DATE_TIME: e.g. `2023-10-03T14:56:00`
+ * DEPLOY_LAT: e.g. `16.7428`
+ * DEPLOY_LONG: e.g. `-24.7889`
+ * RECOVER_DATE_TIME: e.g. `2023-12-03T12:00:00`
+ * RECOVERED: (y/n/l)
+ * RECOVER_LAT:  e.g. `16.9251`
+ * RECOVER_LONG: e.g. `-25.4713`
+ * DATA_DOWNLOADED: (y/n)
+ * DOWNLOAD_DATE_TIME: e.g. `2024-06-11T00:00:00`
+ * FILENAME: e.g. `VMT_130000_20240616_133100.vrl` (Note: prefer original downloads).
+
+1.2 Optional but nice to have columns:  
+* TRANSMITTER and TRANSMIT_MODEL to reduce self-detections.
 
    
 2. Run through the [`movers - 1 - Load Mission Metadata` Nodebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
+
+
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw mission CSV and to be able to create a new raw mission table in the database.
@@ -84,7 +100,7 @@ Cell three requires input from you. This information will be used to get the raw
     * paste a filepath to the relevant XLSX file. The filepath will be added between the provided quotation marks.
 
 
-![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/da7c6919-e1c8-4016-bfb5-06a11840f4e7)
+![image](https://github.com/user-attachments/assets/6cd37388-f012-4a7c-9bb6-7976af5cc1f1)
 
 
 3. Check off the step and record the `mission_table` name in the Gitlab ticket.
@@ -93,50 +109,53 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Telemetry Data
 
-1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns? Column names and example data are shown as below:
+
+1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns in each submitted telemetry file? Column names and example data are shown as below:
  * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name maybe different)
  * lat: e.g. `28.33517` (Note: the column name maybe different)
  * lon: e.g. `-80.33734833` (Note: the column name maybe different)
- * vehicleName: e.g. `1234567202310031456` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
- * otn_mission_id: e.g. `1234567202310031456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
+ * PLATFORM_ID: e.g. `OTN-GL-1` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+ * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
+2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb)
 
-2. Launch [`movers - 2 - Load telemetry` Nodebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb) and fill in
-   
 ### User Input
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
 
-1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
+1. `table_suffix`: e.g. `2024_03` 
 	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
 
 1. `schema`:  'collectioncode'
     * please edit to include the relevant project code, in lowercase, between the quotes.
+
 
 1. `telemetry_file`: '/path/to/telem_file'
     * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
+* Note: if multiple telemetry files are submitted use the `Optional: Combine telemetry files from multiple missions/platforms` section to combine them. 
+
+![image](https://github.com/user-attachments/assets/1adbdc8a-0ee7-4206-8b7a-eec72b654963)
+
+
 3. Run the `Prepare the telemetry file to be upload` cell to map the spreadsheet comlumns to Database columns.
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/d03c04da-194c-4d8e-9808-b7d7c7afc687)
 
    
-4. Run the `verify_telemetry_file` and `load_csv` cells to load the telemetry data (.csv) file into the `raw_telemetry` table, `telemetry` table and joined with `mission_table` as the `moving_platform_mission_telemetry` table:
- 
+4. Run the `verify_telemetry_file` and `Upload the telemetry file to raw table` cells to load the telemetry data (.xlsx or .csv) file into the `raw_telemetry` table.
 
 5. Check off the step and record the `c_moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
-
-6. Run the `movers - 2 - Load telemetry` Nodebook: `create_telemetry_table` and `verify_telemetry_table` cells to create the telemtry table for joining to missions:
-
-7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
+ 6. Run the `Create the telemtry table for joining to missions` and `verify_telemetry_table` cell to create and load `telemetry` table (e.g. moving_platform_telemetry_2024_03).
+ 7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
 
-
-8. Run the `movers - 2 - Load telemetry` Nodebook: `verify_missions_table`, `create_joined_table`, and `verify_joined_table` cells to create the mission and telemetry joined table:
+ 
+8. Run the `movers - 2 - Load telemetry` notebook: `verify_missions_table`, `create_joined_table`, and `verify_telemetry_table` cells to create the moving_platform_mission_telemetry table:
 
 9. Check off the step and record the `moving_platform_mission_telemetry` name in the Gitlab ticket.
 
@@ -440,19 +459,21 @@ Cell three requires input from you. This information will be used to get the raw
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
-2. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
+2. Run the `Load raw dets into detections_yyyy_movers` cell and take note the output.
+
+3. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
 
 `- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**`
 
-- Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
+- Note: if no detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
   
-3. Run the next six cells to load timedrift factors (into time_drift_factors), apply time adjustment to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
+4. Run the next six cells to load timedrift factors, adjustment detection datetime to detections_yyyy_movers and verify the timedrift corrections. Check off the steps in the Gitlab ticket.
    
 `- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)`
 
 `- [ ] - NAME verify timedrift corrections (movers-3 notebook)`
 
-4. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
+5. Run the next two cells to verify the detections_yyyy_movers tables. Check off the step in the Gitlab ticket.
 
 `- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (movers-3 notebook)`
 
@@ -652,3 +673,15 @@ The remaining steps in the GitLab Checklist are completed outside the Nodebooks.
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+
+# Troubleshoot Tips and Resources
+
+1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry` http://localhost:8888/notebooks/movers%20-%202b%20-%20Compare%20detections%20to%20telemetry.ipynb
+  - `Gantt Chart of Detections vs Telemetry`
+  - `Missing Telemetry Graph`
+
+# Known issues and Limitations
+
+1. `events - 3 - create download records` does not support moving platform as of Nov-2024.
+
+
