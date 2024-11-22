@@ -332,7 +332,7 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 ### Load the events file into the c_events_yyyy table
 
-The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading and can dispose of the engine then move on to the next notebook.
+The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading, you can dispose of the engine then move on to the next notebook.
 
 The notebook will indicate the success of the table-creation with the following message:
 
