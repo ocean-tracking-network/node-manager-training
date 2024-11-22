@@ -22,9 +22,9 @@ OTN partners with regional acoustic telemetry networks around the world to enabl
 
 ### How does a Node benefit its users?
 
-OTN and affiliated networks provide automated cross-referencing of your detection data with other tags in the system to help resolve "mystery detections" and provide detection data to taggers in other regions. OTN Data Managers extensively quality-control submitted metadata to ensure the most accurate records possible are stored in the database. OTN's database and Data Portal website are well suited for archiving datasets for future use and sharing with collaborators. The OTN system includes pathways to publish datasets with OBIS, and for sharing via open data portals such as ERDDAP and GeoServer. The data-product format returned by OTN is directly ingestible by analysis packages including glatos and resonATe. OTN offers continuous support for the use of these packages and tools.
+OTN and affiliated networks provide automated cross-referencing of your detection data with other tags in the system to help resolve "mystery detections" and provide detection data to taggers in other regions. OTN Data Managers perform extensive quality control on submitted metadata to ensure the most accurate records possible are stored in the database. OTN's database and Data Portal website are well-suited for archiving datasets for future use and sharing with collaborators. The OTN system includes pathways to publish datasets with OBIS, and for sharing via open data portals such as ERDDAP and GeoServer. The data product returned by OTN is directly ingestible by analysis packages including glatos and resonATe. OTN offers continuous support for the use of these packages and tools.
 
-Below is a presentation from current Node Managers, describing the relationship between OTN and its Nodes, the benefits of the Node system as a community outgrows more organic person-to-person sharing, as well as a realistic understanding of the work involved in hosting/maintaining a Node.
+Below is a link to a presentation from current Node Managers, describing the relationship between OTN and its Nodes, the benefits of the Node system as a community outgrows more organic person-to-person sharing, as well as a realistic understanding of the work involved in hosting/maintaining a Node.
 
 [PowerPoint](../Resources/Pye - OTNDC, OTN Nodes and Data Partners.pptx)
 
@@ -58,6 +58,6 @@ Here are the general topics that will be covered:
 
 If you do not intend on learning how to load data to an OTN-style Node (and would prefer to be a spectator) please let us know, so we can identify who our hands-on learners will be.
 
-A great resource for Node Managers as they get started will be OTN's FAQ page - https://members.oceantrack.org/faq. Your local telemetry community will likely have many questions about the Node and how it works, and the FAQs can help answer some of these questions.
+A great resource for Node Managers as they get started will be [OTN's FAQ page](https://members.oceantrack.org/faq). Your local telemetry community will likely have many questions about the Node and how it works, and the FAQs can help answer some of these questions.
 
 {% include links.md %}
