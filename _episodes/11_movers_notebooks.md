@@ -18,7 +18,7 @@ keypoints:
 Here is the issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
 
 ~~~
-Moving platform
+Moving platform 
 - [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
 - [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)
 - [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)
@@ -91,10 +91,10 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
 Cell three requires input from you. This information will be used to get the raw mission CSV and to be able to create a new raw mission table in the database.
 
 1. `schema`:  'collectioncode'
-    * please edit to include the relevant project code, in lowercase, between the quotes.
+    * Please edit to include the relevant project code, in lowercase, between the quotes.
       
 1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
      
 1. `mission_file`: '/path/to/mission_file'
     * paste a filepath to the relevant XLSX file. The filepath will be added between the provided quotation marks.
@@ -109,12 +109,11 @@ Cell three requires input from you. This information will be used to get the raw
 
 # Loading Telemetry Data
 
-
-1. Visually check if any missing information, inconsistant or formatting issues in the four **essential** columns in each submitted telemetry file? Column names and example data are shown as below:
- * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name maybe different)
- * lat: e.g. `28.33517` (Note: the column name maybe different)
- * lon: e.g. `-80.33734833` (Note: the column name maybe different)
- * PLATFORM_ID: e.g. `OTN-GL-1` (Note: the column name maybe different.Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
+1. Visually check if there is any missing information or inconsistent formatting in the four **essential** columns in each submitted telemetry file. Column names and example data are shown as below:
+ * Timestamp: e.g. `2023-12-13T13:10:12` (Note: the column name may be different)
+ * lat: e.g. `28.33517` (Note: the column name may be different)
+ * lon: e.g. `-80.33734833` (Note: the column name may be different)
+ * PLATFORM_ID: e.g. `OTN-GL-1` (Note: the column name may be different. Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
  * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
 2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb)
@@ -123,14 +122,13 @@ Cell three requires input from you. This information will be used to get the raw
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
 
 1. `table_suffix`: e.g. `2024_03` 
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
 
 1. `schema`:  'collectioncode'
-    * please edit to include the relevant project code, in lowercase, between the quotes.
-
+    * Please edit to include the relevant project code, in lowercase, between the quotes.
 
 1. `telemetry_file`: '/path/to/telem_file'
-    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+    * Paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/4bd40123-23d1-4816-9c44-a64f391b93de)
 
@@ -139,7 +137,7 @@ Cell three requires input from you. This information will be used to get the tel
 ![image](https://github.com/user-attachments/assets/1adbdc8a-0ee7-4206-8b7a-eec72b654963)
 
 
-3. Run the `Prepare the telemetry file to be upload` cell to map the spreadsheet comlumns to Database columns.
+3. Run the `Prepare the telemetry file to be uploaded` cell to map the spreadsheet comlumns to Database columns.
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/d03c04da-194c-4d8e-9808-b7d7c7afc687)
 
    
@@ -150,6 +148,7 @@ Cell three requires input from you. This information will be used to get the tel
 `- [ ] - NAME load raw telemetry files (movers-2 notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)`
 
  6. Run the `Create the telemtry table for joining to missions` and `verify_telemetry_table` cell to create and load `telemetry` table (e.g. moving_platform_telemetry_2024_03).
+
  7. Check off the step and record the `moving_platform_telemetry` name in the Gitlab ticket.
 
 `- [ ] - NAME create telemetry table from raw table (movers-2 notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)`
@@ -182,33 +181,32 @@ Things to visually check:
 
 Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
 
-For Innovasea
+**For Innovasea**
 - VUE
     - Open a new `database`
-    - Import all the `VRL` files
-    - Select `export detections` and choose the location you want to save the files
-    - Select `export events` and choose the location you want to save the files
+    - Import all the `VRL` files provided
+    - Select `export detections` and choose the location you want to save the file
+    - Select `export events` and choose the location you want to save the file
 - Fathom Connect App
-    - choose "export data"
-    - select the relevant files and import into the Fathom Connect application
-    - export all data types, and choose the location you want to save the files
-- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook
-    - this will use the `vdat.exe` executable to export from VRL/VDAT to CSV
-    - select the folder containing the relevant files and the location you'd like the CSVs saved
-    - run the cells to `convert`
+    - Choose "export data"
+    - Select the relevant files and import into the Fathom Connect application
+    - Export **all data types**, and choose the location you want to save the files
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
+    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV
+    - Instructions for this Nodebook are below
 
-For Thelma Biotel
-- use the `ComPort` software to open the `.tbdb` file and export as CSV
+**For Thelma Biotel**
+- Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
-For Lotek
-- exporting to CSV is more complicated, please reach out to OTN for specific steps
+**For Lotek**
+- Exporting to CSV is more complicated, please reach out to OTN for specific steps
 
-Other manufacturers: contact OTN staff.
-
+For **all other manufacturers**, contact OTN staff.
 
 # detections - 1 - load csv detections
 
-Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the `events` records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
+Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the receiver events records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
+
 ### Import cells and Database Connections
 
 As in all Nodebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
@@ -234,16 +232,16 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
 1. `file_or_folder_path = r'C:/Users/path/to/detections_CSVs/'`
-    * paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
-    * this can be a path to a single CSV file, or a folder of multiple CSVs.
+    * Paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
+    * This can be a path to a single CSV file, or a folder of multiple CSVs.
 1. `table_suffix = 'YYYY_mm'`
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
 1. `schema = 'collectioncode'`
-	  * please edit to include the relevant project code, in lowercase, between the quotes.
+	* please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
-- `load_detections`: a true or false value using the table suffix you supplied
-- `stacked`: this is for Fathom exports only and is a way to know how to parse them
+- `load_detections`: a true or false value using the table suffix you supplied.
+- `stacked`: this is for Fathom exports only. It refers to a method of parsing them.
 
 Once you have added your information, you can run the cell.
 
@@ -267,7 +265,7 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME load to raw detections (detections-1 notebook) **(:fish: table name: c_detections_yyyy)**`
 
-Ensure you paste the table name (ex: c_detections_YYYY_mm) into the section indicated, before you check the box.
+Ensure you paste the table name (ex: c_detections_YYYY_mm) into the indicated section before you check the box.
 
 ### Verify Raw Detection Table
 
@@ -301,11 +299,11 @@ As in all Nodebooks run the import cell to get the packages and functions needed
 Cell two requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
 
 1. `filepath = r'C:/Users/path/to/events.csv'`
-    * paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
+    * Paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
 1. `table_name = 'c_events_YYYY_mm'`
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
 1. `schema = 'collectioncode'`
-	  * please edit to include the relevant project code, in lowercase, between the quotes.
+	* Please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
 - `file_encoding`: The file_encoding: ISO-8859-1 in the event export. The  default encoding used in VUE's event export
@@ -314,7 +312,7 @@ Once you have added your information, you can run the cell.
 
 ### Verifying the events file
 
-Before attempting to load the event files to a raw table the Nodebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. Barring no errors, you will be able to continue.
+Before attempting to load the event files to a raw table the Nodebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. If no errors are flagged, you will be able to continue.
 
 The Nodebook will indicate the success of the file verification with a message such as this:
 
@@ -366,9 +364,9 @@ File loaded with XXXXX records.
 
 In GitLab, these tasks can be completed at this stage:
 
-`- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**`
+`- [ ] - NAME load raw events (events-1 notebook) **(:fish: table name: c_events_yyyy )**`
 
-Ensure you paste the table name (ex: c_events_YYYY_mm) into the section indicated, before you check the box.
+Ensure you paste the table name (ex: c_events_YYYY_mm) into the indicated section before you check the box.
 
 # events - 2 - move c_events into events table
 
@@ -385,7 +383,7 @@ This cell requires input from you. This information will be used to get the raw 
 1. `c_events_table = 'c_events_YYYY_mm'`
 	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`.
 1. `schema = 'collectioncode'`
-	  * please edit to include the relevant project code, in lowercase, between the quotes.
+	  * Please edit to include the relevant project code, in lowercase, between the quotes.
 
 ### Database Connection
 
@@ -407,7 +405,7 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 ### Verify table format
 
-You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
+You will then verify that the c_events table you supplied exists and then verify that it meets the required format specifications.
 
 The Nodebook will indicate the success of the table verification with a message such as this:
 
@@ -423,7 +421,7 @@ If there are any errors in this section, please contact OTN.
 
 ### Load to Events table
 
-Pending nothing comes up in the verification cells, you run the `loading` cell.
+If no verification checks fail, you can continue to the `loading` cell.
 
 The Nodebook will indicate the success of the processing with a message such as this:
 
@@ -445,21 +443,21 @@ In GitLab, these tasks can be completed at this stage:
 # Loading Detections for Moving Platforms
 
 - With the telemetry and mission table, we can now upload the raw detections and promote them to the detections_yyyy_movers tables. 
-- This Nodebook has the functionalities of `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations` Nodebooks. The difference is it handles `_movers` tables. 
+- This Nodebook is analogous to `detections - 2 - c_table into detections_yyyy` and `detections - 2b - timedrift calculations`. The difference is it handles `_movers` tables. 
 1. Run `movers - 3 - Load Detections` Nodebook till `Load raw dets into detections_yyyy_movers` cell to populate `detections_yyyy_movers` tables and load raw detections into them.
 
 ### User Input
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
 1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` Nodebook.
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
      
 1. `schema`:  'collectioncode'
-    * please edit to include the relevant project code, in lowercase, between the quotes.
+    * Please edit to include the relevant project code, in lowercase, between the quotes.
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/9e5f8bc8-d0f6-4ab8-91fa-8d932a3ca78d)
 
-2. Run the `Load raw dets into detections_yyyy_movers` cell and take note the output.
+2. Run the `Load raw dets into detections_yyyy_movers` cell and note the output.
 
 3. Check off the step and record affected years (which detections_yyyy_movers tables were updated) in the Gitlab ticket.
 
@@ -487,28 +485,28 @@ Cell three requires input from you. This information will be used to get the raw
 Cell three requires input from you. This information will be used to get the raw detections CSV and to be able to create a new raw table in the database.
 
 1. `table_suffix`: e.g. `2024_03` - should be the same as in the `movers - 1 - Load Mission Metadata` notebook.
-	  * Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
+	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar.
      
 1. `schema`:  'collectioncode'
     * Please edit to include the relevant project code, in lowercase, between the quotes.
 
 1. `years`:  e.g. `[2022, 2023]`
-	  * Enter the affected years from `movers - 3 - Load Detections`
+	* Enter the affected years from `movers - 3 - Load Detections`
 
 ![image](https://github.com/ocean-tracking-network/node-manager-training/assets/68606079/ca5360c7-b9fd-44a9-9c4f-84d5f194f63f)
 
 
-1. Run the `create_moving_platforms_full_telemetry` cell to load to formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
+1. Run the `create_moving_platforms_full_telemetry` cell to load to the formatted telemetry table. Check off the step and record the affected years in the Gitlab ticket.
    
 `- [ ] - NAME load formatted telemetry tables (movers-4 notebook) **(:fish: put affected years here)**`
 
 
-2. Run the `create_reduced_telemetry_tables` cell to reduced telemetry tables. Check off the step and record the affected years in the Gitlab ticket.
+2. Run the `create_reduced_telemetry_tables` cell to load the reduced telemetry tables. Check off the step and record the affected years in the Gitlab ticket.
    
 `- [ ] - NAME load reduced telemetry tables (movers-4 notebook) **(:fish: put affected years here)**`
 
 
-3. Run the `create_platform_as_receiver_tables` cell to load glider as receiver tables. Check off the step and record the affected years in the Gitlab ticket.
+3. Run the `create_platform_as_receiver_tables` cell to load the "glider as receiver" tables. Check off the step and record the affected years in the Gitlab ticket.
    
 `- [ ] - NAME load glider as receiver tables (movers-4 notebook) **(:fish: put affected years here)**`
 
@@ -517,7 +515,7 @@ Cell three requires input from you. This information will be used to get the raw
 `- [ ] - NAME load into vw_detections_yyyy_movers (`movers-4` notebook) **(:fish: put affected years here)**`
 
 `- [ ] - NAME load view detections into otn_detections_yyyy (movers-4 notebook) **(:fish: put affected years here)**`
-- Note: if not detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
+- Note: if no detections were promoted into detections_yyyy_movers please assign the ticket to OTN for trouble shooting.
 
 5. Run the `verify_otn_detections` cell to verify the `otn_detections_yyyy` tables. Check off the step in the Gitlab ticket.
 
@@ -569,15 +567,14 @@ Found XXX download records to add to the moorings table
 {: .language-plaintext .example}
 
 
-The next cell will print out all the identified download records, in a dataframe for you to view.
+The next cell will print out all the identified download records in a dataframe for you to view.
 
 ### Loading Download Records
 
 Before moving on from this you will need to confirm 2 things:
 
-1) Confirm that **NO Push** is currently ongoing
-
-2) confirm `rcvr_locations` for this schema have been verified.
+1. Confirm that **NO Push** is currently ongoing
+2. confirm `rcvr_locations` for this schema have been verified.
 
 If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
@@ -684,4 +681,4 @@ Finally, the Issue can be passed off to an OTN-analyst for final verification in
 
 1. `events - 3 - create download records` does not support moving platform as of Nov-2024.
 
-
+{% include links.md %}
