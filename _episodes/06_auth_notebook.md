@@ -49,8 +49,8 @@ Run this cell. You will be prompted to create a password for the file (if it is 
 
 Run this cell. This section will have an editable form. If it is a new file, all fields will be blank. If it is an existing file, the previously-entered information will display. You may now edit the information, pressing the blue button when you are finished to save your results.
 
-- Conn Name: this is customizable - what is the name of this connection? Something like "OTN Database" to help you remember.
-- Host: this will be something like `matos.asascience.com` for your DB, but is just an IP address for our Node Training DB `129.173.48.161`
+- Conn Name: this is customizable - what is the name of this connection? We recommend choosing something like "OTN Database" to help you remember.
+- Host: this will be something like `matos.asascience.com` for your DB, but for training purposes we will use the IP of our Node Training DB: `129.173.48.161`.
 - Port: this is specified in your `.auth` file and will be four digits. Use `5432` for Node Training.
 - DB Name: this will be your database name, something like `pathnode`. For training, it will be `node_training`.
 - User/Password: your personal username and password, as found on your `.auth` file.
@@ -59,7 +59,7 @@ Run this cell. This section will have an editable form. If it is a new file, all
 
 In order to match detections across databases, you will need to establish `DBLink` connections to other OTN Nodes. This information can be stored in your `.kdbx` file, and will give you limited access to information required to match detections and create detection extracts.
 
-Run this cell. This section will have an editable form. If it is a new file, all fields will be blank, and you can choose `Add Connection`. If it is an existing file, the previously-entered information will display, for each DBLink Connection you've specified. You may now edit the information, pressing the update or save button when you are finished to save your results.
+Run this cell. This section will have an editable form. If it is a new file, all fields will be blank, and you can choose `Add Connection`. If it is an existing file, the previously-entered information will display for each DBLink Connection you've specified. You may now edit the information, pressing the update or save button when you are finished to save your results.
 
 Please contact OTN if you need any of the following information:
 
@@ -73,7 +73,7 @@ Once you have saved your new DBLink connection, you can create another. Continue
 
 ### Test Connections
 
-The next two cells will test the connection information you entered. Success messages will look like:
+The next two cells will test the connection information you entered. Success messages will look like this for your main connection:
 
 ~~~
 Auth password:········
@@ -83,7 +83,7 @@ Connection Type:postgresql Host:db.your.org Database:your_db User:node_admin Nod
 ~~~
 {: .language-plaintext .example}
 
-and also like:
+and like this for your DBLink connections:
 
 ~~~
 Testing dblink connections:
@@ -113,17 +113,17 @@ Press `Save` to change the password of your `.kdbx`. **Ensure that you remember 
 
 This will be relevant for users of the `Database Fix` suite of Nodebooks only. If you are not going to use these tools, you can skip this cell in the Nodebooks.
 
-A Gitlab Access Token will allow Nodebooks to access your GitLab account and insert comments into an Issue directly, as you are working on it. This has been developed for the Database Fix Notebooks to ensure all changes made within the notebooks are documented in GitLab properly. The automation is part of the OTNGitlabAutomation package.
+A Gitlab Access Token will allow Nodebooks to access your GitLab account and insert comments into an Issue directly, as you are working on it. This has been developed for the Database Fix Notebooks to ensure all changes made within the notebooks are documented in GitLab properly. The automation is part of the `OTNGitlabAutomation` package.
 
 Instructions to create a Personal Access Token are found on our wiki [here](https://gitlab.oceantrack.org/otn-partner-nodes/otngitlabautomation/-/wikis/How-to-create-an-personal-access-token)
 
 You can create one by following the steps below:
-1. In the top-right corner of gitlab, select your avatar.
+1. In the top-right corner of gitlab, click your avatar.
 1. Select Edit profile.
-1. On the left sidebar, select Access Tokens.Enter a name for your token and optionally set expiry date for the token.
-1. Under 'Select scopes'select 'api'.
+1. On the left sidebar, select Access Tokens. Enter a name for your token and optionally set expiry date for the token.
+1. Under 'Select scopes' select 'api'.
 1. Select Create personal access token.
-1. A new token will be created at the top of the page make sure you save it somewhere as you won't be able to access it again. Treat this token like a password as it can be used to access GitLab under your user.
+1. A new token will be created at the top of the page. Make sure you save it somewhere as you won't be able to access it again. Treat this token like a password as it can be used to access GitLab under your user.
 
 Once you have created your access token, run this cell. 
 
