@@ -45,18 +45,19 @@ Project Metadata
 - [ ] - NAME create schema and project records (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add project contact information (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add scientificnames (`Creating and Updating project metadata` notebook)
-- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to obis.loan_tracking (`Creating and Updating project metadata` notebook)
 - [ ] - NAME verify all of above (`Creating and Updating project metadata` notebook)
-- [ ] - NAME [OTN only] create new project repo users (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [OTN only] create project repo folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [OTN only] add project repo users to folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [OTN only] access project repo double-check project repository creation and user access 
-- [ ] - NAME add project metadata file to project folder (OTN members.oceantrack.org, FACT RW etc)
+- [ ] - NAME [Plone-users only] create new project repository users (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] create project repository folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] add project repository users to folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] access project repository double-check project repository creation and user access 
+- [ ] - NAME add project metadata file to relevant project folder (Plone site, Research Workspace etc)
 - [ ] - NAME email notification of updated metadata file to PI and individual who submitted
-- [ ] - NAME send onboarding email to PIs using https://gitlab.oceantrack.org/otndc/otn-data-acquisition/-/snippets/203
-- [ ] - NAME [OTN only] if this is a loan, update links for PMO
+- [ ] - NAME send onboarding email to all contacts
 - [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME pass issue to OTN DAQ staff
+- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
+- [ ] - NAME [OTN only] if this is a loan, update links for PMO
+- [ ] - NAME pass issue to OTN analyst for final verification
 - [ ] - NAME verify project in database
 
 **project metadata txt file**
@@ -538,7 +539,7 @@ The remaining steps in the Gitlab Checklist are completed outside the Nodebooks.
 
 First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder to archive.
 
-Next, you should send an email to the project contacts letting them know their project code and other onboarding information.
+Next, you should send an email to the project contacts letting them know their project code and other onboarding information. Please note that OTN has a template we use for our onboarding emails. It is recommended that you create a template for your Node which includes relevant reporting instructions.
 
 Finally, the Issue can be passed off to an OTN analyst for final verification in the database.
 
