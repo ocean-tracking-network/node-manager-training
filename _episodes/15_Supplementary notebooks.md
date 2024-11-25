@@ -54,7 +54,7 @@ Handles active tracking data - detections collected by using a VR100 hydrophone 
 
 ## Slocum Telemetry Notebook 
 
-This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superseded by Movers workflow)**  
+This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**  
 
 ## Telemetry Processing for Wave Gliders and Animals 
 
