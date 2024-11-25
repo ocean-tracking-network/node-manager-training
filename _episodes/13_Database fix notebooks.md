@@ -294,6 +294,9 @@ Once 'Update' is pressed, the notebook will display a success message describing
 
 ![Example 4 Success Message](../fig/nmt_dbfix_ex4_fig5.png)
 
+
+#### General Information - Cross-Node Executions
+
 If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
 
 For notebooks that require updates to databases of other nodes, the notebook will tell you which SQL to run on other nodes and automatically add a 'Cross-node executions' label if the gitlab token authorization is given. If the gitlab token authorization is not included, please add a 'Cross-node executions' label onto the issue to indicate that cross-node SQL needs to be run. A text box to enter a super-user authorization to automatically run the SQL on the other node will be displayed. 
