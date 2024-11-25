@@ -46,20 +46,21 @@ Project Metadata
 - [ ] - NAME add project contact information (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add scientificnames (`Creating and Updating project metadata` notebook)
 - [ ] - NAME verify all of above (`Creating and Updating project metadata` notebook)
-- [ ] - NAME create new project repository users (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME create project repository folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME add project repository users to folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME access project repository double-check project repository creation and user access
-- [ ] - NAME add project metadata file to project folder (OTN members.oceantrack.org, FACT RW etc)
-- [ ] - NAME send onboarding email to PIs
+- [ ] - NAME [Plone-users only] create new project repository users (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] create project repository folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] add project repository users to folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [Plone-users only] access project repository double-check project repository creation and user access 
+- [ ] - NAME add project metadata file to relevant project folder (Plone site, Research Workspace etc)
+- [ ] - NAME email notification of updated metadata file to PI and individual who submitted
+- [ ] - NAME send onboarding email to all contacts
 - [ ] - NAME label issue with *'Verify'*
+- [ ] - NAME pass issue to OTN DAQ staff
+- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
+- [ ] - NAME [OTN only] if this is a loan, update links for PMO
 - [ ] - NAME pass issue to OTN analyst for final verification
 - [ ] - NAME verify project in database
-- [ ] - NAME pass issue to OTN DAQ staff
-- [ ] - NAME [OTN only] if this is a loan, update links for PMO
-- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
 
-**project metadata txt file:**
+**project metadata txt file**
 ~~~
 {: .language-plaintext .example}
 
@@ -164,6 +165,8 @@ This cell is where you input the information contained in the Project Metadata `
 1. You can paste in the filepath to the saved `.txt`. You should ensure the formatting follows this example: `project_template_path = '/path/to/project_metadata.txt'`
 1. You can paste the entire contents of the file, from `===FORM START=== to ===FORM END===` inclusive, into the provided triple quotation marks.
 
+Note that each of the above options is contained in its own cell in the notebook, and **you only need to do one of the two.**
+
 Once either option is selected, you can run the cell to complete the quality control checks.
 
 The output will have useful information:
@@ -187,8 +190,8 @@ You will run this cell, and a fillable form will appear.
 1. Node: select your node
 1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
 1. Ocean: choose the most appropriate ocean region based on the abstract.
-1. Shortname: use the Title provided by the researcher, or something else, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
-1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of blue sharks through Nova Scotia waters, using acoustic telemetry.`
+1. Shortname: usually a summarised version of the project title, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
+1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
 1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
@@ -345,7 +348,7 @@ In Gitlab, this task can be completed at this stage:
 
 Once you scroll past the `Project Loan Information` section, you will see a yellow star and the words **Skip to the new project Verification**. You should click the button provided, which will help you scroll to the bottom of the notebook, where the `Verify` section is located.
 
-This is a chance to visually review all the fields you just entered. You should enter run these cells and review all output to ensure the database values align with the intended insertions.
+This is a chance to visually review all the fields you just entered. You should run these cells and review all output to ensure the database values align with the intended insertions.
 
 
 #### Task List Checkpoint
@@ -536,7 +539,7 @@ The remaining steps in the Gitlab Checklist are completed outside the Nodebooks.
 
 First: you should access the created Repository folder in your browser and confirm if the title and sharing information is correct. If so, add the project metadata `.txt` file into the "Data and Metadata" folder to archive.
 
-Next, you should send an email to the project contacts letting them know their project code and other onboarding information.
+Next, you should send an email to the project contacts letting them know their project code and other onboarding information. Please note that OTN has a template we use for our onboarding emails. It is recommended that you create a template for your Node which includes relevant reporting instructions.
 
 Finally, the Issue can be passed off to an OTN analyst for final verification in the database.
 
