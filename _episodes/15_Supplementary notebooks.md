@@ -53,7 +53,6 @@ These are a series of notebooks for fixing common issues found in the database. 
 Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. **(Superceded by Movers workflow)**
 
 ## Slocum Telemetry Notebook 
-
 This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**  
 
 ## Telemetry Processing for Wave Gliders and Animals 
