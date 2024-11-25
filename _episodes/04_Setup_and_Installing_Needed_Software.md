@@ -27,9 +27,22 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 `Mamba` is fast, cross-platform python distribution and a package manager. When you install `Mamba (through Miniforge)` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
 
- **Install Miniforge3** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
-  - Select the option to `add to PATH environment variable` (during install steps)!
+ **Miniforge Windows** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
+  - Select the option install for Just Me (recommended).
+  - Check the option to **Add Miniforge3 to my PATH environment** variable.
 
+ **Miniforge Mac** - 
+   - Setup homebrew by running the command: `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"` - **Note:** this operation requires elevated privileges (sudo)
+   - Use the commands outputted by brew to add brew to your system path
+   - Use brew to install miniforge: `brew install miniforge`
+   - Add miniforge to your zsh environment by typing conda init zsh. Restart the terminal
+
+**Miniforge Linux (Debian)**
+   - download Shell script (.sh) file from [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
+      - Recommended: Choose Python 64-bit Linux Installer
+   - Change the run permissions for the miniforge installer script. ie `chmod +x Miniforge3-[version]-Linux-x86_64.sh`
+   - run the installer from the linux terminal. `./Miniforge3-[version]-Linux-x86_64.sh`
+   - Add this conda installation to your terminal environment by running `conda init`. Restart the terminal to see the changes reflected.
 
 # Git
 
@@ -41,9 +54,11 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 - **Mac**- [https://git-scm.com/download](https://git-scm.com/download)
 
+- **Linux (Debian)** - run the command: `sudo apt install git`
+
 
 # Nodebooks - iPython Utilities 
-The `ipython-utilities` project contains the collection of Nodebooks used to load data into the OTN data system.
+The `ipython-utilities` project contains the collection of Jupyter notebooks used to load data into the OTN data system.
 
 **Create an Account**
 
@@ -64,10 +79,12 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * Activate the nodebook environment using `conda activate nodebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
-1. Now to install all required python packages by running the following: `mamba env update -n nodebook -f environment.yml`
+1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`. 
+1. Create a new conda environment by running the command: `conda create -n nodebook python=3.9`. This will create the environment named **nodebook** using the python version 3.9.XX.
+1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
-- **MAC/WINDOWS**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /paht/to/ipython-utilities`. Then, run the commands: 
+- **MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /path/to/ipython-utilities`. Then, run the commands: 
    * `conda activate nodebook` to activate the nodebook python environment
    * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
@@ -88,22 +105,23 @@ In the next lesson we will practice using our database console viewer and connec
 # More Useful Programs
 
 In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
+## Cross-Platform 
+
+**Visual Studio Code** - An advanced code editing integrated development environment (IDE).
+* [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 ## For WINDOWS users
 
-**Path Copy Copy** - For copying path links from your file browser.
+**Path Copy Copy** - For copying path links from your file browser. Since many of the notebooks require you to provide the path to the file you wish to load, being able to copy and paste the entire path at once can save a lot of time. 
 * [https://pathcopycopy.github.io/](https://pathcopycopy.github.io/)
 
-**Notepad ++** - For reading and editing code, csv files etc. without altering the formatting.
+**Notepad++** - For reading and editing code, csv files etc. without altering the formatting. Opening CSV files in Excel can change the formatting of the data in the file (this is a common problem with dates). Notepad++ will allow you to edit CSV files (and code, if necessary) without imposing additional formatting on data.
 * [https://notepad-plus-plus.org/downloads/](https://notepad-plus-plus.org/downloads/)
 
-**Tortoise Git** - For managing git, avoiding command line.
+**Tortoise Git** - For managing git, avoiding command line. Depending on what changes have been made to the code, you may be required to use a different branch of the notebook repository than the main one. Although using git through the command line is supported, you may prefer to have a graphical user interface (GUI) instead. Tortoise Git can provide that. 
 * [https://tortoisegit.org/download/](https://tortoisegit.org/download/)
 
 ## For MAC users
-
-**VS Code** - For reading and editing code, csv files etc. without altering the formatting.
-* [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 **Source Tree** - For managing git, avoiding command line.
 * [https://www.sourcetreeapp.com](https://www.sourcetreeapp.com)

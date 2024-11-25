@@ -52,7 +52,7 @@ Here are the general topics that will be covered:
 - OTN Node structure and database maintenance
 - Data loading workflow: from metadata to detection extracts, and how we track progress in GitLab
 - Practice interfacing with an OTN Node database in DBeaver, using SQL scripts
-- Practice using OTN's Nodebooks to quality control, process and verify records, using python and jupyter notebooks
+- Practice using OTN's Nodebooks to quality control, process and verify records, using python and Jupyter notebooks
 - Overview of OTN's Data Push process, and how Node Managers are involved
 - Data Policy guidelines as a Node Manager
 
