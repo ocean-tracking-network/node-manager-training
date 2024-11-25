@@ -44,6 +44,18 @@ Once the cut-off date has passed Node Managers are "off duty"! When it's time fo
 
 Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again.
 
+## Push Reports
+
+Once a push is completed, statistics are gathered about the overall push as well as metrics about each node. This process creates a snapshot of what each node looked like at the time of that push. The statistics tracked include metrics such as the number of issues in the push, the number of projects a node is managing, the total number of detections, and the size of the database.
+
+Using this data, a push report is generated for each node. These reports provide a summary of the push, including graphs and figures that illustrate how each node is growing over time. In addition to sharing these reports, we try to schedule a check-in meeting with nodes. These meetings are not only a chance for OTN to get information to the nodes but also for you to relay any information to us.
+
+We want node managers to gain as much value as possible from the check-in meetings and reports, so we welcome feedback on the format, content, or any additional details you’d like to see included. Our goal is to ensure every node has the insights they need to succeed.
+
+If you have feedback or specific requests, we’re happy to address them during your check-in. Additionally, if something comes to mind outside of these meetings, please don’t hesitate to reach out to the OTNDC team. We’re always available to discuss and scope your needs with you further.
+
+[Copy of the OTN February Push Report](../Resources/OTN_PUSH_FEBRUARY_2024_report_2024-05-02.html)
+
 ## Detection Extracts
 
 [Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are the main output of the Push. They contain all the new detection matches for each project. There are multiple types of detection extracts OTN creates:
