@@ -297,15 +297,23 @@ Once 'Update' is pressed, the notebook will display a success message describing
 
 #### General Information - Cross-Node Executions
 
-If you have a gitlab token authorization associated with your kdbx, as mentioned above, the notebook will automatically comment the updates and success message in the created Gitlab ticket. Otherwise, it will tell you to copy and paste the update list and success message.
+If your .kdbx file includes a GitLab Access Token, as mentioned above, the Nodebook will automatically comment all updates and success messages in the created Gitlab ticket. Otherwise, you must copy and paste this information into the Issue manually.
 
-For notebooks that require updates to databases of other nodes, the notebook will tell you which SQL to run on other nodes and automatically add a 'Cross-node executions' label if the gitlab token authorization is given. If the gitlab token authorization is not included, please add a 'Cross-node executions' label onto the issue to indicate that cross-node SQL needs to be run. A text box to enter a super-user authorization to automatically run the SQL on the other node will be displayed. 
+For Nodebooks that require updates to the databases of other nodes:
+1. If you have a GitLab Access Token: the Nodebook will provide the SQL needed to update other nodes and will automatically add a 'Cross-node executions' label to the Gitlab Issue.
+2. If you **do not** have a GitLab Access Token: the Nodebook will provide the SQL needed to update other nodes. Please add a 'Cross-node executions' label onto the Issue manually. 
+
+A text box to enter a super-user authorization to automatically run the SQL on the other node will be displayed:
 
 ![Example Node Authorization - Blank](../fig/nmt_dbfix_genex_nodeauth_blank_redacted.png)
 
-If you have a super-user authorization on the other node and their permission, you may enter the filepath of the super-user authorization and will receive a success message.
+If you have a super-user authorization for the other Node (ie; you are the Data Manager for multiple Nodes, or are OTN staff):
+1. You may enter the filepath of the super-user authorization in the above text box and will receive a success message, which will run the SQL on the other Node.
+2. Please remove the 'Cross-node executions' label from the Issue once completed
 
 ![Example Node Authorization - Filled](../fig/nmt_dbfix_genex_nodeauth_filled_redacted.png)
 
-If you have filled out all of the super-user authorizations and have the gitlab token authorization included, please remove the 'Cross-node executions' label from the issue to prevent confusion of needing to run SQL on nodes.           
-If you do not have the super-user authorizations, please let the node manager of the associated node know that you have SQL for them to run and send them the SQL. After they have run the SQL, please add a comment to the issue saying they have run the SQL and remove the 'Cross-node executions' label.
+If you **do not** have the super-user authorizations for the other Node :
+1. Please inform the associated Node Manager that you have SQL for them to run and send them the SQL.
+2. After they have run the SQL, please add a comment to the issue saying they have run the SQL
+3. Remove the 'Cross-node executions' label.
