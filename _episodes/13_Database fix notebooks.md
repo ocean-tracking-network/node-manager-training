@@ -26,6 +26,43 @@ These corrections can be done using the [Database Fix Notebooks](https://gitlab.
 
 This suite of notebooks, however, should only be used as a last option. If an error is identified by verification checks, human eyes and critical thinking must be used to check if the Database Fix Notebooks are required and, depending on the type of fix, researcher permission often needs to be obtained.
 
+<pre class="mermaid">
+flowchart LR
+    A(( )) --> B(Make Gitlab ticket with </br>information about database </br>fix)
+    style A fill:#00FF00,stroke:#00FF00,stroke-width:4px
+    style B fill:#0000ff,color:#ffffff
+    B --> C{Does it have all </br>information needed?}
+    style C fill:#000000,color:#ffffff
+    C -- No --> D[Update Gitlab ticket]
+    style D fill:#0000ff,color:#ffffff
+    D --> C
+
+    C -- Yes --> E[Check if nodebook </br>created for fix]
+    style E fill:#ffffff,color:#000000
+    E --> F{Does notebook exist?}
+    style F fill:#000000,color:#ffffff
+    F -- No --> G[Create feature issue for </br>notebook creation and do fix </br>manually]
+    style G fill:#ffffff,color:#000000
+    G --> H(( ))
+    style H fill:#FF0000,stroke:#FF0000
+    F -- Yes --> I(Run changes through </br>existing notebook)
+    style I fill:#ffffff,color:#000000
+
+    subgraph Nodebook
+    I --> J{Do verification </br>pass with changes?}
+    style J fill:#000000,color:#ffffff
+    J -- Yes --> K(Make changes in database)
+    style K fill:#F4C430
+    K --> L(( ))
+    style L fill:#FF0000,stroke:#FF0000
+    J -- No --> M(Return a message </br>explaining </br>verification error)
+    style M fill:#F4C430
+    M --> N(( ))
+    style N fill:#FF0000,stroke:#FF0000
+    end
+</pre>
+{% include links.md %}
+
 ## Installation
 The installation steps for the Database Fix Notebooks are similar to the installation steps for ipython-utilities:
 1. Determine the folder in which you wish to keep the Database Fix Notebooks.
