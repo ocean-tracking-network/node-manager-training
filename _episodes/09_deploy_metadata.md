@@ -28,7 +28,7 @@ flowchart LR
     style end2 fill:#FF0000,stroke:#FF0000
 </pre>
 
-Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to inspect and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors, and so on. Geographic location is recorded, as well as the duration of the deployment for each instrument. The locations of these listening stations are used to fix detections geographically.
+Once a project has been registered, the next step (for `Deployment` and `Data` project types) is to begin to quality control and load the instrument deployment metadata into the database. Deployment metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of any instruments used to detect tagged subjects or collect related data. This includes stationary test tags, range test instruments, non-acoustic environmental sensors, and so on. Geographic location is recorded, as well as the duration of the deployment for each instrument. The locations of these listening stations are used to fix detections geographically.
 
 
 Recall that there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
@@ -291,7 +291,7 @@ The output will have useful information:
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there are any errors, go into database and fix the `raw` table directly, or contact the researcher and then fix the `raw` table. If there are problems with records that have already been promoted to the `stations` or `moorings` tables, you will need to create a db fix ticket in Gitlab in order to correct the records in the database.
+If there are any errors, you could directly connect to the database and fix the `raw` table directly, or contact the researcher and then fix the `raw` table using updated input metadata. If there are problems with records that have already been promoted to the `stations` or `moorings` tables, you will need to create a db fix ticket in Gitlab in order to correct the records in the database.
 
 
 #### Task List Checkpoint
