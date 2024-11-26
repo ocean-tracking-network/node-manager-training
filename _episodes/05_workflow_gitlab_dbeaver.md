@@ -113,7 +113,7 @@ DBeaver is an open-source application for interacting directly with databases. T
 
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
 
-- Host: this will be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
+- Host: this could be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
 - Database: this will be your database name, something like `pathnode`. For training, it will be `node_training`.
 - Port: this is specified in your `.auth` file and will be four digits. For training, this port will be set to `5432`.
 - Username/Password: your personal username and password, as found on your `.auth` file.
@@ -132,7 +132,7 @@ To run a query, ensure your cursor (the vertical line that shows where you are e
 
 OTN is here to support you as you begin to experiment with SQL queries and the OTN database structure, and can help you build a library of helpful custom queries that you may want or need.
 
-# Database Practice
+# Exercise: Database Querying
 
 Let's take a moment to explore some of the tables in the Node Training database, and write some example SQL queries.
 
