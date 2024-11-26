@@ -69,3 +69,5 @@ If you would like to see new features or workflows added to the visuals-and-repo
 Using the `detection_pre_summary` Discovery table, we can see which detection events were mapped between different Nodes, and visualize these inter-Node interactions using a chord plot. Here we have created a few caveats to avoid representing false detections on the plot, only taking detection events with >1 detection, and excluding some of the more fantastic inter-ocean matches. 
 
 ![Cross-node chord plots of inter-node detection matches](../fig/cross_node_detections_20241121.png)
+
+{% include links.md %}

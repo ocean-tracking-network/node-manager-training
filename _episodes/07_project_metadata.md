@@ -10,8 +10,8 @@ objectives:
 - "Learn how to use the `Create and Update Projects` notebook"
 - "Learn how to use the `Create Plone folders and add users` notebook"
 keypoints:
-- "Loading project metadata requires judgement from the Data Manager"
-- "Loading project metadata is the first step towards a functioning project"
+- "Loading project metadata requires subjective decisions and judgement by the Data Manager"
+- "Loading project metadata is a required first step towards managing a project's data in the Node"
 ---
 
 ## Process workflow
@@ -30,11 +30,11 @@ flowchart LR
     style end2 fill:#FF0000,stroke:#FF0000
 </pre>
 
-The **first** step when you are contacted by a researcher who wants to register their project with the Database is to request Project Metadata. For most Nodes, this is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
+The **first** step when you are contacted by a researcher who wants to register their project with the database is to request Project Metadata. For most Nodes, this is in the form of a plaintext `.txt` file, using the template provided [here](https://members.oceantrack.org/data/data-collection). This file allows the researcher to provide information on the core attributes of the project, including the scientific abstract, associated investigators, geospatial details, temporal and taxonomic range.
 
 ## Completed Metadata
 
-Immediately upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Project Metadata` Issue checklist template.
+Immediately upon receipt of the metadata, you must create a new Gitlab Issue. Please use the `Project Metadata` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
@@ -66,9 +66,9 @@ Project Metadata
 
 ### Visual Inspection
 
-Once the completed file is received from a researcher, the Data Manager should complete a visual check for formatting and accuracy.
+Once the researcher provides the completed file, the Data Manager should complete a visual check for formatting and accuracy.
 
-Things to check:
+Please make sure of the following:
 
 1. Is the PI-provided collection code unique/appropriate? Do you need to create one yourself? Existing schemas/collection codes can be seen in the database.
 1. Are there typos in the title or abstract?
@@ -76,7 +76,7 @@ Things to check:
 1. Are the species formatted correctly?
 1. Does the location make sense based on the abstract, and is it formatted correctly (one per line)?
 
-In general, most commonly formatting errors occur in the `Contacts` section. Pay close attention here.
+Often, the `Contacts` section has been improperly formatted. Pay close attention here.
 
 Below is an example of a properly completed metadata form, for your reference.
 
@@ -154,7 +154,7 @@ Each step in the Issue checklist will be discussed here, along with other import
 This section will be common for most Nodebooks: it is a cell at the top of the notebook where you will import any required packages and functions to use throughout the notebook. It must be run first, every time.
 
 You will have to edit one section: `engine = get_engine()`
-- Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
+- Within the open brackets you need to paste the path to your database `.kdbx` file which contains your login credentials. Ensure that the path is enclosed in quotation marks. 
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 - The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_connection.kdbx')`.
 
@@ -173,19 +173,19 @@ The output will have useful information:
 - Are there strange characters in the collection code, project title, or abstract?
 - Were the names and affiliations of each contact successfully parsed? Are there any affiliated institutions which are not found? Are there any contacts which were not found that you expected to be?
 - Is the project URL formatted correctly?
-- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (the top of the species record should have this success message: `INFO: Halichoerus grypus is an accepted taxon, and has Aphia ID 137080.`, followed by a URL)? Which ones have common names which are **not** matching the WoRMS records (look at bottom of each species record for success: `OK: Grey seal is an acceptable vernacular name for Halichoerus grypus`)? **NOTE: any mismatches with common name can be fixed at a later stage, make a note in the Issue for your records**
+- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (entries with accepted taxonomies will have a success message of the format `INFO: Genus species is an accepted taxon, and has Aphia ID XXXXXX.`, followed by a URL)? Which ones have common names that do **not** match the WoRMS records (look at bottom of each species record for success: `OK: Animal name is an acceptable vernacular name for Genus species`)? **NOTE: any mismatches with common name can be fixed at a later stage, make a note in the Issue for your records**
 - Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Issue for your records**
 - Are the start and end dates formatted correctly?
 
 Generally, most of the error messages arise from the **Contacts** and **Species** sections.
 
-If there is information which is not parsing correctly, you should fix the source-file and re-run the cell until you are happy with the output.
+If any information does not parse correctly, you should fix it in the source file and re-run the cell until you are happy with the output.
 
 ### Manual Fields - Dropdown Menu
 
-There are some fields which need to be setup by the Data Manager, and not set by the researcher. These are in the next cell.
+There are some fields which need to be set up by the Data Manager,  rather than the researcher. These are in the next cell.
 
-You will run this cell, and a fillable form will appear.
+Run the cell to generate a fillable form with these fields:
 
 1. Node: select your node
 1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
@@ -221,7 +221,7 @@ Please edit to include the selected project type, in harmony with the selected f
 
 ### Verifying Correct Information
 
-At this stage, we have all the information parsed that we need in order to register the project in the database. There is now a cell that will print out every saved value for your review.
+At this stage, we have parsed all the information that we need in order to register the project in the database. There is now a cell that will print out every saved value for your review.
 
 You are looking for:
 - Typos
@@ -254,7 +254,7 @@ Longitude:
 
 **STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point.
 
-Remember above, where we noted whether or not an institution existed on `obis.institution_codes` or if it was a new institution? This cell is our opportunity to add any institutions that are new. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
+Remember above, where we noted whether the provided institution was new or existed on `obis.institution_codes`? This cell is our opportunity to add any new institutions. If all institutions (for each contact, plus for the project as a whole) exist, then you can skip this cell.
 
 To run the cell, you will need to complete:
 1. Institution Code: a short-code for the institution (ex: DAL)
@@ -281,7 +281,7 @@ You can re-run this cell as many times as you need, to add each missing institut
 
 Finally, it is time to write the project records to the database and create the new project!
 
-First, you should run this cell with `printSQL = True`. If there are no errors, you can edit and change to `printSQL = False` and run again. This will register the project!
+First, you should run this cell with `printSQL = True`. This will run the code, but print the SQL query instead of running it against the database. This enables you to do a dry run and make sure everything is in order before you register your project. If there are no errors, you can edit the cell to read `printSQL = False` and run again. This will register the project!
 
 You will see some output - confirm each line is accompanied by a green `OK`.
 
@@ -300,7 +300,7 @@ This cell will gather and print out all contacts and their information. Review f
 
 The next cell writes to the database: **STOP** - confirm there is no Push currently ongoing. This cell will add each contact to the database, into the `obis.contacts` and `obis.contacts_projects` tables, as needed.
 
-There should be output similar to this:
+Valid output will be of this format:
 
 ~~~
 Valid contact:  Fred Whoriskey OTN principalInvestigator fwhoriskey@dal.ca
@@ -324,7 +324,7 @@ The first cell imports the required function.
 The second cell, when run, will create an editable input form for each animal.
 
 You should review to confirm the following:
-1. the scientific name is matching to an accepted WoRMS taxon. There should be a URL provided and no error messages.
+1. the scientific name matches an accepted WoRMS taxon. There should be a URL provided and no error messages.
 1. the common name is acceptable. If it is not, you can choose a value from the dropdown menu (taken directly from WoRMS' `vernacular` list) **OR** you can enter a custom value to match the common name provided by the researcher.
 
 Once you are sure that both the scientific and common names are correct, based on the information provided by both the project and the notebook, you may click the `Add to project` button for each animal record you'd like to insert.
@@ -341,7 +341,7 @@ In Gitlab, this task can be completed at this stage:
 >### OPTIONAL: Add Project Loan Information
 >
 
->The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login-file for the `otnunit` database.
+>The following section is used by OTN staff to track projects which are recipients of OTN-equipment loans. This section is not within the scope of this Node Manager Training, because it requires a login file for the `otnunit` database.
 
 
 ### Skip to Verification
@@ -379,14 +379,14 @@ The next cell will show the changes that will be made to the project data. You c
 
 The final cell will make the desired changes in the database. Ensure `printSQL = False` if you want the cell to execute directly.
 
-The output should look like this to confirm success:
+Successful output will be of this format:
 
 ~~~
 'Resource record for HFX has been updated.'
 ~~~
 {: .language-example}
 
-**The following, highlighted section is relevant only to Nodes who use `Plone` for their document management system**
+**The following highlighted section is relevant only to Nodes who use `Plone` for their document management system**
 
 
 > ### Quality Control - Create Plone Users and Access
@@ -410,10 +410,10 @@ The output should look like this to confirm success:
 >
 > - Proper Plone log-in information must be written in the `plone_auth = get_plone_auth('./plonetools/plone_auth.json')` file. 
 > - In order to do this, click on the `Jupyter` icon in the top left corner of the page.
-> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. **Hint:** ensure the base_url in your json file ends in a slash, like `https://members.oceantrack.org/`!
+> - This will bring you to a list of folders and notebooks. Select the `plonetools` folder. From there, select the `plone_auth.json` file and input your Plone base URL, username, and password. **Please ensure** the base_url in your json file ends in a slash, like `https://members.oceantrack.org/`!
 > - You can now successfully log into Plone.
 >
-> Now, when you run the cell, you should get following output:
+> Now, when you run the cell, you should get the following output:
 >
 > ~~~
 > Auth Loaded:
@@ -446,11 +446,11 @@ The output should look like this to confirm success:
 >
 > ### Create Missing Users
 >
-> This section will use the registered project contacts and compare against existing Plone users. It will compare by 1) email, 2) fullname, 3) lastname.
+> This section will use the registered project contacts and compare against existing Plone users. It will compare by email, fullname, and lastname.
 >
-> If a user is found: you will **not** need to create a new account for them.
+> If a user is found, you will **not** need to create a new account for them.
 >
-> If a user is not found: you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
+> If a user is not found, you **will** have to create an account for them. To do this, you can use the editable form in the next cell.
 >
 > The editable cell will allow you to choose each contact that you'd like to register, and will autofill the information (including a suggested username). **The password should be left blank**. Once you are happy with the form, click `Add User`. An email will be sent to the new user, prompting them to set a password. Then you can repeat by selecting the next contact, etc.
 >
@@ -498,9 +498,9 @@ The output should look like this to confirm success:
 > Using the final cell in the `Plone repository folder creation` section, you will be provided with an editable search-bar.
 >
 > Type in the Plone username of each contact (new and existing). Search results will appear:
-> 1. select the User who you would like to add
-> 1. choose their permissions
-> 1. click "Change repo permissions" to add them to the folder.
+> 1. Select the User who you would like to add
+> 1. Choose their permissions
+> 1. Click "Change repo permissions" to add them to the folder.
 >
 > Review for the following success message:
 >
@@ -541,6 +541,6 @@ First: you should access the created Repository folder in your browser and confi
 
 Next, you should send an email to the project contacts letting them know their project code and other onboarding information. Please note that OTN has a template we use for our onboarding emails. It is recommended that you create a template for your Node which includes relevant reporting instructions.
 
-Finally, the Issue can be passed off to an OTN analyst for final verification in the database.
+Finally, the GitLab ticket can be assigned to an OTN analyst for final verification in the database.
 
 {% include links.md %}

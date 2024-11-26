@@ -13,13 +13,13 @@ keypoints:
 - "The Nodebooks are for you - OTN wants to ensure they remain useful"
 ---
 
-Once you begin using the OTN Nodebooks, you will likely discover tools that are missing, or features which have code-bugs in them. OTN developers are here to help ensure the Nodebooks meet your needs. We are constantly changing our processes and are always open to suggestions to improve! These tools are for you, and we want to ensure they are useful.
+Once you begin using the OTN Nodebooks, you will likely discover tools that are missing, or bugs that hinder your usage. OTN developers are here to help ensure the Nodebooks meet your needs. We are constantly changing our processes and are always open to suggestions to improve! These tools are for you, and we want to ensure they are useful.
 
 ## New Features
 
 If there is a feature that you'd like to see, you can bring this to OTN's attention in this way:
 
-1. Ask in our Slack channels to see if there is a tool that already exists that will fit your needs. Discuss your ideal-feature with OTN developers to help them understand what you need.
+1. Ask in our Slack channels to see if there is a tool that already exists that will fit your needs. Discuss your ideal feature with OTN developers to help them understand what you need.
 2. Once the new feature is properly scoped, create a new GitLab Issue here https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/issues, using the `new_feature` template. You should assign to one of the OTN developers, who can begin to work on the request.
 
 Here is the "new_feature" template, for your information:
@@ -49,9 +49,9 @@ Here is the "new_feature" template, for your information:
 ~~~
 {: .language-plaintext .example}
 
-## Bug-fixes
+## Bug fixes
 
-If you encounter an error in your Nodebooks, its possible there is an issue with your dataset. Sometime, however, the case is that the Nodebook is not functioning as expected! If you believe a certain Nodebook is malfunctioning, you will want to identify this bug to OTN developers as soon as possible.
+If you encounter an error in your Nodebooks, its possible there is an issue with your dataset. Sometimes, however, the Nodebook is not functioning as expected. If you believe a certain Nodebook is malfunctioning, identify this bug to OTN developers as soon as possible.
 
 To identify a bug, here are the steps to take:
 1. Ask in our Slack channels to see if the error is caused by your dataset. This can include posting an error message, or just describing the output from the Nodebook, and why it is not as expected.
@@ -85,7 +85,7 @@ Here is the "bug" template, for your information:
 
 ## Testing Features/Fixes
 
-Once OTN developers have attempted to build your new feature, or fix your bug, they will publish their code into the `integration` branch of our ipython-utilities Nodebooks. You will be asked to test these changes, to ensure the end-product is satisfactory. This branch is used for development and testing only, and should not be used for data-loading outside of testing.
+Once OTN developers have attempted to build your new feature, or fix your bug, they will publish their code into the `integration` branch of our ipython-utilities Nodebooks. You will be asked to test these changes, to ensure the end product is satisfactory. This branch is used for development and testing only, and should not be used for data-loading outside of testing.
 
 Here are instructions for changing branches:
 

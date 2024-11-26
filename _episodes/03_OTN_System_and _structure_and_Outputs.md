@@ -27,7 +27,7 @@ Affiliated acoustic telemetry partner Networks may become an OTN Node by deployi
 The basic structural decision at the centre of an OTN-style Database is that each of a Node's projects will be subdivided into their own database `schemas`. These schemas contain only the relevant tables and data to that project. The tables included in each schema are created and updated based on which types of data each project is reporting. 
 
 Projects can have the type `tracker`, `deployment`, or `data`. 
-- Tracker projects only submit data about tag-releases and animals. They get tables based on the tags, animals, and detections of those tags. 
+- Tracker projects only submit data about tag releases and animals. They get tables based on the tags, animals, and detections of those tags. 
 - Deployment projects only submit data about receivers and their collected data. These projects get tables related to receiver deployments and detections on their receivers. 
 - Data projects are projects that deploy both tags and receivers and will submit data related tags, animals, receivers, and detections and will get all the related tables.
 
@@ -110,33 +110,34 @@ flowchart BT
 ### Project Data
 
 `Project` data has a unique workflow from the other input data and metadata that flows into an OTN Node, it is generally the first bit of information received about a project, and will be used to create the new `schema` in the Database for a project. The type of project selected (`tracker`, `deployment`, or `data`) will determine the format of the tables in the newly created `schema`. The type of project will also impact the loading tools and processes that will be used later on. The general journey of project data is:
-- To register a new project a researcher will fill out a [`project metadata` template](https://members.oceantrack.org/data/data-collection) and submit it to the Node Manager. 
-- The Node Manager will visually evaluate the template to catch any obvious errors and then runs the data through the OTN Nodebook responsible for creating and updating projects (`Create and Update Projects`). 
+- To register a new project a researcher will fill out a [project metadata template](https://members.oceantrack.org/data/data-collection) and submit it to the Node Manager. 
+- The Node Manager will visually evaluate the template to catch any obvious errors and then run the data through the OTN Nodebook responsible for creating and updating projects (`Create and Update Projects`). 
 - The `Create and Update Projects` notebook will make a new schema in the Database for that project, and fill it with the required tables based on the type of project. 
 - Summary tables are populated at this time (`scientificnames`, `contacts`, `otn_resources` etc).
-- After this, OTN will verify the project one last time to make sure every necessary field is filled out and properly defined.
+- After this, OTN analysts will verify the project one last time to make sure every necessary field is filled out and properly defined.
 
 ### Tag, Deployment and Detections Data
 
 Even though `tag`, `deployment`, and `detections` data all have their own loading tools and processes, their general path through the database is the same. 
 - Their data workflows all begin with a submission of data or metadata files from a researcher. 
 - The Node Manager ensures there is a copy of the file on the Node's document management website. 
-- They will then do some quick visual QC to catch any obvious errors. 
+- The Node Manager carries out visual quality control to catch any obvious errors. 
 - The data is then processed through the relevant OTN Nodebooks. This process is outlined by the task list associated with the GitLab Issue made for this data. 
-- The data will first be loaded into the `raw` tables. This is the table that holds the raw data as submitted by the researcher (the naming convention for raw tables: they always have the prefix `c_` and will have a suffix indicating the date it was loaded, typically `YYYY_MM`). 
-- After the raw data table is verified, the data will move to the `intermediate` tables which hold partially-processed data as a "staging area". 
-- After the intermediate table is verified, data will move to the `upper` tables, where the data is finished processing and is in its "final form". This is the data that will be used for aggregation tables such as `obis` and for outputs such as `Detection Extracts`.
+- The data will first be loaded into the "raw" tables. This is the table that holds the raw data as submitted by the researcher (the naming convention for raw tables is that they always have the prefix `c_` and will have a suffix indicating the date it was loaded, typically `YYYY_MM`). 
+- After the raw data table is verified, the data will move to the "intermediate" tables which act as a staging area for partially-processed data. 
+- After the intermediate table is verified, data will move to the "upper" tables, where the data is finished processing and is in its final form. This is the data that will be used for aggregation tables such as `obis` and for outputs such as Detection Extracts.
 
 # OTN Data Products
 
 The OTN Database has specific data products available, based upon the clean processed data, for researchers to use for their scientific analysis. 
 
-In order to create meaningful Detection Extracts, OTN and affiliated Nodes only perform cross-matching events every 4 months (when a reasonable amount of new data has been processed). This event is called a synchronous `Data Push`. In a `Data Push`:
+In order to create meaningful Detection Extracts, OTN and affiliated Nodes only perform cross-matching events every 4 months (when a reasonable amount of new data has been processed). This event is called a synchronous Data Push. In a Data Push:
 - All recently-loaded data is verified and updated. 
-- Cross-node matching is done; where detections are matched to their relevant tag, across all Nodes. 
+- Detections are matched to their relevant tag across all Nodes (Cross-Node Matching). 
 - Once cross-node matching is done, [Detection Extracts](https://members.oceantrack.org/data/otn-detection-extract-documentation-matched-to-animals) are created, containing all the new detections matches for each project. Detection Extract files are formatted for direct ingestion by analysis packages such as [*glatos*](https://github.com/ocean-tracking-network/glatos) and [*resonate*](https://gitlab.oceantrack.org/otndc/resonate). 
-- Summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified and updated data.
-- Summary schema records can be used to create maps and other record overviews such as this map of active OTN receivers: 
+- Summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified data.
+
+Summary schema records can be used to create maps and other record overviews such as this map of active OTN receivers: 
 
  <img src="../fig/active_receivers.JPG" alt="Summary Map" style="width:500px;"/>
  

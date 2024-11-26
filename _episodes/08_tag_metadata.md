@@ -30,13 +30,13 @@ flowchart LR
     style end2 fill:#FF0000,stroke:#FF0000
 </pre>
 
-Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to quality control and load the tagging metadata into the database. Tagging metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are recorded for future analysis.
+Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to begin to quality control and load the project's tagging metadata into the database. Tagging metadata should be reported to your Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file holds information about the deployment of any and all tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are also able to be recorded for association with the tagging event, permitting future analyses.
 
-Remembering a previous lesson, there are multiple levels of data-tables in the database for tagging records: `raw tables`, `cache tables` and `otn tables`. The process for loading tagging metadata reflects this, as does the Gitlab task list.
+Recall that there are multiple levels of data tables in the database for tagging records: `raw tables` ("raw"), `cache tables` ("intermediate") and `otn tables` ("upper"). The process for loading tagging metadata evaluates and promotes the data through each of these levels, as reflected by the GitLab task list.
 
 ## Completed Metadata
 
-Immediately, upon receipt of the metadata, a new Gitlab Issue should be created. Please use the `Tag Metadata` Issue checklist template.
+Immediately, upon receipt of the metadata, create a new GitLab issue. Please use the `Tag Metadata` Issue checklist template.
 
 Here is the Issue checklist, for reference:
 
@@ -61,16 +61,16 @@ Tag Meta Data
 
 ### Visual Inspection
 
-Once the completed file is received from a researcher, the Data Manager should first complete a visual check for formatting and accuracy.
+Once the researcher provides the completed file, the Data Manager should complete a visual check for formatting and accuracy.
 
 In general, Tagging Metadata has 3 sections:
 1. information about the tag
 1. information about the animal
 1. information about the tag deployment
 
-Information about the `tag` is obtained from Tag Specifications and is mandatory. Information about the `animal` is limited to the sampling conducted. The minimum requirement here is simply the common/scientific names. All other columns for biological parameters are optional. Information about the `tag deployment` includes location and dates and is mandatory to complete.
+Information about the tag comes from Tag Specifications and is mandatory. Information about the animal is limited to the sampling conducted. The minimum requirement here is simply the common and scientific names. All other columns for biological parameters are optional. Information about the tag deployment includes location and dates and is mandatory to complete.
 
-Things to visually check in the metadata:
+Data Managers should check for the following in the metadata:
 
 1. Is there any information missing from the **essential** columns? These are:
 	* tag_type
@@ -93,13 +93,13 @@ Things to visually check in the metadata:
 1. Are the `tag_id_code` and `tag_code_space` values formatted correctly?
 1. Is the `UTC_release_date_time` column formatted correctly?
 
-In general, most commonly formatting errors occur in the information about the `tag` section. Pay close attention here.
+Often formatting errors occur in the information about the tag. Pay close attention here.
 
-The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
+The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations for filling in the tag metadata template on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
-- Animals with anchor tags (ie: FLOY, spagetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty - `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
-- Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty - `tag_id_code` and `tag_code_space`.
+- Animals with anchor tags (ie: FLOY, spagetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
+- Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty: `tag_id_code` and `tag_code_space`.
 
 **Please ensure each tag aplpied to an animal (of any type) has its own row. Anchor tags (inlcuding FLOY, spagetti, streamer, dart, t-bar tags), radio tags (inlcuing PIT, VHF), satellite tags (and more) each need their own row in the metadata sheet.**
 
@@ -138,14 +138,14 @@ The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Are either the `animal_id` or `tag_serial_number` columns completed?
 - Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`?
-- Is the information about the `animal` formatted according to the Data Dictionary?
+- Is the information about the animal formatted according to the Data Dictionary?
 - Are there any tags which are used twice in the same sheet?
 - Are there potential transcription errors in the `tag_code_space`? Ex: drag-and-drop errors from Excel
 - Are the scientific and common names used accepted by WoRMS? **If there are errors flagged here which state `Vernacular records not found for Aphia ID: 12345` please make a note, but continue on. This will be fixed at a later stage**
 
-The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. There should also be an interactive plot generated, summarizing the tags released over time, by species, for you to explore.
+The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. The Nodebook will also generate an interactive plot for you to explore, summarizing the tags released over time, by species.
 
-If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
+If there is information that fails these quality control checks, you should fix the source file (potentially requiring confirmation of accurate fixes from the researcher) and try again.
 
 ![Tag 1](../fig/tag1_summary.JPG)
 
@@ -154,7 +154,7 @@ If there is information which is not passing quality control, you should fix the
 You will have to edit **two** sections:
 
 1. `schema = 'collectioncode'`
-	* please edit to include the relevant project code, in lowercase, between the quotes.
+	* Please edit to include the relevant project code, in lowercase, between the quotes.
 1. `engine = get_engine()`
 	* Within the open brackets you need to open quotations and paste the path to your database `.kdbx` file which contains your login credentials.
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
@@ -172,7 +172,7 @@ Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:adm
 
 ### Bounding Box Check
 
-The following cell will map the locations of all the `tag deployments`, compared to the Bounding Box of the project. This is used to confirm the following:
+The following cell will map the locations of all the tag deployments, compared to the bounding box of the project. This is used to confirm the following:
 1. the tag release locations are in the part of the world expected based on the project abstract. Ex: lat/long have correct +/- signs
 1. the project bounding box is correct
 
@@ -186,25 +186,25 @@ If the bounding box needs to be expanded to include the tags, you can use the `S
 
 ### Verification of File Contents - against database
 
-This cell will now complete the second round of Quality Control checks.
+This cell will now complete the second round of Quality Control checks using data already held in the Database.
 
 The output will have useful information:
-1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
+1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap and that there is no double-reporting.
 1. Do we have the Tag Specifications from the manufacturer? Do the `tag_id_code`, `tag_code_space` and `est_tag_life` match the specifications for each provided serial number? Are there typos or errors that require clarification from the researcher?
-1. Is the information about the `animal` formatted according to the Data Dictionary?
+1. Is the information about the animal formatted according to the Data Dictionary?
 	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted to match the DB records if possible. Otherwise, use the `add_lifestage_codes` Nodebook.
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted to match the DB records if possible. Otherwise, use the `add_lengthtype_codes` Nodebook.
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted to match the DB records if possible. Otherwise, use the  `add_control_units` Nodebook.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata? ex: duplicates.
-1. Do the scientific and common names match the records which are previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` (using DBeaver) and compare to the source file to confirm there are no typos. If this is indeed a new species tagged by this project, use the `scientific_name_check` Nodebook to add the new species.
+1. Do the scientific and common names match the records previously added to `obis.scientificnames` for this schema? If not, please check the records in the `obis.scientificnames` (using DBeaver) and compare to the source file to confirm there are no typos. If this is indeed a new species tagged by this project, use the `scientific_name_check` Nodebook to add the new species.
 1. Are all the provided `tag_model` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` (using DBeaver) and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new tag model.
 1. Are there any tags in this sheet which have been previously reported on **this project** in the metadata, but with different deployment dates? ex: overlapping/missing harvest dates
-1. Are there any tags being flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
+1. Are there any tags flagged as overlapping tag deployments, but not as duplicate tags? There may be an error with the tag's serial number. Check if the tag's ID exists in the otn_transmitters table of the schema or in the `vendor.c_vemco_tags` table, and compare it to the tag in the tagging metadata sheet. Fix the tag in the tagging metadata sheet if any errors are found.
 1. Are there any release dates in the future?
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher) and try again.
+If there is information that fails quality control, you should fix the source file (potentially by speaking to the researcher) and try again.
 
 ### Loading the Raw Table
 
@@ -213,7 +213,7 @@ If there is information which is not passing quality control, you should fix the
 In this cell, you will have to edit one section in order to name the raw table. Between the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently tagged animal in the metadata sheet.
 
 ~~~
-table_suffix = "YYYY_mm"
+table_suffix = "YYYY_MM"
 ~~~
 {: .language-plaintext .example}
 
@@ -223,7 +223,7 @@ The Nodebook will indicate the success of the table-creation with the following 
 Reading file: otn_metadata_tagging.xlsx.
 Tag Metadata sheet found, reading file... OK
 Loading 'otn_metadata_tagging.xlsx' file into collectioncode.c_tag_meta_YYYY_mm... OK
-Loaded 37 records into table collectioncode.c_tag_meta_YYYY_mm
+Loaded XX records into table collectioncode.c_tag_meta_YYYY_mm
 True
 ~~~
 {: .language-plaintext .example}
@@ -257,7 +257,7 @@ You will have to edit **three** sections:
 	* On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 	* The path should look like `engine = get_engine(‘C:/Users/username/Desktop/Auth files/database_conn_string.kdbx’)`.
 1. `schema = 'collectioncode'`
-	* please edit to include the relevant project code, in lowercase, between the quotes.
+	* Please edit to include the relevant project code, in lowercase, between the quotes.
 1. `table_name = 'c_tag_meta_YYYY_mm'`
 	* Within the quotes, please add the name of the raw table.
 
@@ -293,7 +293,7 @@ All text should be `black`, and you should scroll through the entire table, row-
 
 If there are **no** highlighted/flashing red cells in a row, you can delete the record from the `no_dup` table by using the `delete` button on the left-side of the table. You can also use the `Select All` button if appropriate.
 
-If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without previous review since they are not exact duplicates, and could indicate an update to the database records is needed.
+If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without review since they are not exact duplicates, and could indicate an update to the database records is needed.
 
 Ex: `life_stage` from the raw table might = `SMOLT` while `lifestage` from otn_animals might = `ADULT`. This will cause the column `lifestage_equal?` to read `FALSE` and the cells to flash red. In this example, it could indicate that the researcher was correcting an error in the previously-submitted record (this animal was actually a smolt, not adult) and therefore we need to update the record in our database. In this case, you would need to email the researcher to confirm, pause processing this Issue, and create a new `DB_fix` Issue with the information which needs updating.
 
@@ -357,7 +357,7 @@ You will have to edit **two** sections:
 1. `table_name = 'c_tag_meta_YYYY_mm'`
 	* Within the quotes, please add the name of the raw table. Might be the `no_dup` table if relevant.
 1. `schema = 'collectioncode'`
-	* please edit to include the relevant project code, in lowercase, between the quotes.
+	* Please edit to include the relevant project code, in lowercase, between the quotes.
 
 ### Verification of File Contents - against database
 
@@ -367,7 +367,7 @@ The output will have useful information:
 
 1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 1. Do we have the Tag Specifications from the manufacturer? Do the `tag_id_code`, `tag_code_space` and `est_tag_life` match the specifications for each provided serial number? Are there typos or errors that require clarification from the researcher?
-1. Is the information about the `animal` formatted according to the Data Dictionary?
+1. Is the information about the animal formatted according to the Data Dictionary?
 	* Are all the life stages in the `obis.lifestage_codes` table? If not, the reported life stage should be compared to the values in the `obis.lifestage_code table`, and adjusted to match the DB records if possible. Otherwise, use the `add_lifestage_codes` Nodebook.
 	* Are all length types in the `obis.length_type_codes` table? If not, the reported length type code should be compared to the values in the `obis.length_type_codes` table, and adjusted to match the DB records if possible. Otherwise, use the `add_lengthtype_codes` Nodebook.
 	* Are all the age units in the `obis.control_units` table? If not, the reported age units should be compared to the values in the `obis.control_units` table, and adjusted to match the DB records if possible. Otherwise, use the  `add_control_units` Nodebook.
@@ -380,7 +380,7 @@ The output will have useful information:
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there is information which is not passing quality control, you should fix the source-file (potentially speaking to the researcher), delete or edit the raw table, and try again.
+If there is information which is not passing quality control, you should fix the source file (potentially speaking to the researcher), delete or edit the raw table, and try again.
 
 
 #### Task list checkpoint
@@ -400,7 +400,7 @@ Table creation finished.
 ~~~
 {: .language-plaintext .example}
 
-The next step will populate the `tag_cache` and `animal_cache` tables, but splitting apart the information about the `tag` and the information about the `animal`, joining the records by a unique `catalognumber` based on the `tag deployment` information.
+The next step will populate the `tag_cache` and `animal_cache` tables. This separates the information about the tag and the information about the animal, joining the records by a unique `catalognumber` based on the tag deployment information.
 
 Running this cell will provide the following success message:
 
@@ -438,13 +438,13 @@ The output will have useful information:
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button.
 - Is the species information and location information formatted correctly?
 - Are the sex, age, common name and instrument model records present in the `obis` table controlled vocabulary?
-- Visually confirm that the length/weight values make sense for that species/lifestage, and if not, change in the `animal_cache` table.
-- Confirm there are no overlapping tags remaining
-- Confirm there are Tag Specifications available, and they match the records. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
+- Do the length/weight values make sense for that species/lifestage? If not, change in the `animal_cache` table.
+- Are there any remaining overlapping tags?
+- Are Tag Specifications available, and do they match the records? Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.
 
-If there are any errors go into database and fix the cache tables themselves, and re-run
+If there are any errors go into database and fix the cache tables themselves, and re-run the cell.
 
 
 #### Task list checkpoint
@@ -484,12 +484,12 @@ The output will have useful information:
 - Do all animals have tag records, and all tags have animal records? Do their SNs/Datetimes match?
 - Are there overlapping tags **within** the schema?
 - Are there tags outside of the project bounding box?
-- Are the values formatted properly for `the_geom`, `lenthtype`, `length2type`, `ageunits`, `sex`
+- Are the values formatted properly for `the_geom`, `lenthtype`, `length2type`, `ageunits`, `sex`?
 - Are there blank strings that need to be set to NULL? If so, press the `Set to NULL` button in that cell.
 - Are there extra spaces that need to be clipped? If so, press the `Remove extra spaces` button.
-- Visually confirm that the length/weight values make sense for that species/lifestage, and if not, change in the `otn_animals` table, or contact researcher.
+- Do the length/weight values make sense for that species/lifestage? If not, change in the `otn_animals` table, or contact researcher.
 - Are the date-fields formatted correctly?
-- Confirm there are Tag Specifications available, and they match the records provided. Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
+- Are there Tag Specifications available, and do they match the records? Be mindful that harvested tags will have a different tag life than is stated in the Specifications.
 - Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap, and *double-reporting* is not taking place.
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section.

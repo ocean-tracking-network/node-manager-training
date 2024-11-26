@@ -3,7 +3,7 @@ title: "Supplementary notebooks"
 teaching: 15
 exercises: 0
 questions:
-- "What are other Nodebooks are there that could be usefull for me to know as a Node Manager?"
+- "What other Nodebooks are there that could be useful for me to know as a Node Manager?"
 objectives:
 - "Learn about Nodebooks that are useful for Node Managers outside the core data loading notebooks"
 keypoints:
@@ -42,19 +42,20 @@ This notebook will load "health reports" collected by `LiquidRobotics WaveGlider
 
 This Nodebook can be used to add new contacts to a project and update existing contacts in the database. Note: you cannot change someone's email address using this tool.
 
-## DB-Fix Notebooks
+## DB Fix Notebooks
 
-These are a series of notebooks for fixing common issues found in the database. These notebooks are beyond the scope of the current training but eventually Data Managers who wish to learn more will be able to take further training. In the meantime, if you see notes in the notebooks such as "Use the DB Fix notebook called XXXX to correct this error", please contact OTN for assistance.
+These are a series of notebooks for fixing common issues found in the database. More information can be found in the relevant lesson.
 
 # Outdated / old workflows:
 
 ## Active Tracking
  
-Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. **(Superceded by Movers workflow)**
+Handles active tracking data - detections collected by using a VR100 hydrophone (or similar) during "mobile" tracking activities. **(Superseded by Movers workflow)**
 
 ## Slocum Telemetry Notebook 
+
 This notebook will process and load detection data collected by a `slocum` glider mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**  
 
 ## Telemetry Processing for Wave Gliders and Animals 
 
-This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superceded by Movers workflow)**
+This notebook will process and load detection data collected by a `WaveGlider` mission. Information required includes `glider telemetry`, `glider metadata`, and `detection files`. **(Superseded by Movers workflow)**
