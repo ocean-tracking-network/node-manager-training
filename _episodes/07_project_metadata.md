@@ -10,8 +10,8 @@ objectives:
 - "Learn how to use the `Create and Update Projects` notebook"
 - "Learn how to use the `Create Plone folders and add users` notebook"
 keypoints:
-- "Loading project metadata requires judgement from the Data Manager"
-- "Loading project metadata is the first step towards a functioning project"
+- "Loading project metadata requires subjective decisions and judgement by the Data Manager"
+- "Loading project metadata is a required first step towards managing a project's data in the Node"
 ---
 
 ## Process workflow

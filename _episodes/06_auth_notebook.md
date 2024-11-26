@@ -43,7 +43,7 @@ Run this cell to save the input.
 
 ### Create Password
 
-Run this cell. You will be prompted to create a password for the file (if it is a new file) or to enter the existing password if you are accessing an existing file. **Ensure that you remember this password**, as you will be using it every time you connect to the database through the Nodebooks.
+Run this cell. You will be prompted to create a password for the file (if it is a new file) or to enter the existing password if you are accessing an existing file. **Ensure that you remember this master password**, as you will be using it every time you connect to the database through the Nodebooks.
 
 ### Create or Update Main Connections
 
