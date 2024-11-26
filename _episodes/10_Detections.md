@@ -77,7 +77,7 @@ Detections
 
 Once the researcher provides the files, the Data Manager should first complete a visual check for formatting and accuracy.
 
-Look for the following in the metadata:
+Look for the following in the detection data:
 
 - Do the files appear edited? Look for `_edited` in file name.
 - Is the file format the same as expected for that manufacturer? Ex. `.vrl` or `.vdat` for Innovasea - not `.csv` or `.rld` formats.
@@ -85,10 +85,10 @@ Look for the following in the metadata:
 
 ## Convert to CSV
 
-Once the raw files are obtained, the data must be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
+Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
 **For Innovasea**
-- VUE
+- VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`
     - Import all the `VRL` files provided
     - Select `export detections` and choose the location you want to save the file
@@ -105,21 +105,24 @@ Once the raw files are obtained, the data must be converted to `.csv` format by 
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 **For Lotek**
-- Exporting to CSV is more complicated, please reach out to OTN for specific steps
+- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
 
-For **all other manufacturers**, contact OTN staff.
+For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
 
 # convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
 
-Before you begin, you will need to ensure you have access to a fathom vdat executable.
+Before you begin, you will need to ensure you have access to a fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`, but if you don't have that, an older version can be downloaded from the VDAT working group project:
 
-- Access the vemco (Innovasea) vdat working group gitlab project: [https://gitlab.oceantrack.org/ntress/vdat-working-group](https://gitlab.oceantrack.org/ntress/vdat-working-group) - Contact OTNDC if you you need read access.
+- Access the Vemco (Innovasea) vdat working group gitlab project: [https://gitlab.oceantrack.org/ntress/vdat-working-group](https://gitlab.oceantrack.org/ntress/vdat-working-group) - Contact OTNDC if you you need read access.
 - Under the `releases` folder, pick the latest version of `vdat` folder.
 - Choose the folder for your operating system
 - Click on the vdat file and then click the Download.
 - Save this file somewhere informative.
 - Copy the full filepath to your `vdat` file for use in the Nodebook
+
+NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions > vdat-9.3.0-20240207-74ad8e-release are safe to process Open Protocol data.
+
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
     - Enable execution by running `chmod +x vdat`
