@@ -28,6 +28,31 @@ The `geoserver` schema is similar to the `discovery` schema but all data tables 
 
 If you re-generate these tables for your Node using the [populate_geoserver](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/geoserver%20-%20populate%20geoserver%20tables.ipynb) notebooks, they will then contain accurate data for your Node. Attaching a GeoServer instance to this database schema will allow you to express project, receiver deployment, and tag deployment information in many formats. [OTN's GeoServer](https://geoserver.oceantrack.org/) instance can aggregate and re-format the GeoServer data into human and machine-readable formats for creating public maps and data products. As an example: the OTN Members Portal uses GeoServer to visualize project data, and the [R package `otndo`](https://otndo.obrien.page) uses the existence of a GeoServer with station histories to produce data summaries for individual researchers about the places and times their tags were detected outside their own arrays.
 
+
+## Installation
+The installation steps for the Database Fix Notebooks are similar to the installation steps for ipython-utilities:
+1. Determine the folder in which you wish to keep the Database Fix Notebooks.
+1. Open your `terminal` or `command prompt` app. 
+   * Type `cd` then `space`. 
+   * You then need to get the filepath to the folder in which you wish to keep the Database Fix Notebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
+   * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
+   * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
+1. Create and activate the "visbooks" python enviornment. The creation process will only need to happen once.
+   * In your terminal, run the command `conda create -n visbooks python=3.9`
+   * Activate the visbooks environment using `conda activate visbooks`
+1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/visuals-and-reporting.git`. This will get the latest version Database Fix Notebooks from our GitLab
+1. Navigate to the visuals-and-reporting subdirectory that was created by running `cd visuals-and-reporting`.
+1. Now to install all required python packages by running the following: `mamba env update -n visbooks -f environment.yml`
+
+**To open and use the Database Fix Notebooks:**
+- **MAC/WINDOWS**: Open your terminal, and navigate to your visuals-and-reporting directory, using `cd /path/to/visuals-and-reporting`. Then, run the commands: 
+   * `conda activate visbooks` to activate the visbooks python environment
+   * `jupyter notebook` to open the Nodebooks in a browser window.
+- **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
+
+More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
+
+
 # The `visuals-and-reporting` notebooks
 
 Some products are built from things that nodes don't make fully public, but are useful to summarize for funders or stakeholders, or to produce simplified visualizations meant to promote your Network. The visuals-and-reporting notebooks repository is a collection of popular workflows for producing these sorts of products.
