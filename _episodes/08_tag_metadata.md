@@ -30,9 +30,9 @@ flowchart LR
     style end2 fill:#FF0000,stroke:#FF0000
 </pre>
 
-Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to undertake quality control and load the tagging metadata into the database. Tagging metadata should be reported to the Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file will contain information about the deployment of tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are recorded for future analysis.
+Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to begin to quality control and load the project's tagging metadata into the database. Tagging metadata should be reported to your Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file holds information about the deployment of any and all tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are also able to be recorded for association with the tagging event, permitting future analyses.
 
-Recall that there are multiple levels of data tables in the database for tagging records: `raw tables` ("raw"), `cache tables` ("intermediate") and `otn tables` ("upper"). The process for loading tagging metadata reflects this, as does the GitLab task list.
+Recall that there are multiple levels of data tables in the database for tagging records: `raw tables` ("raw"), `cache tables` ("intermediate") and `otn tables` ("upper"). The process for loading tagging metadata evaluates and promotes the data through each of these levels, as reflected by the GitLab task list.
 
 ## Completed Metadata
 
@@ -95,7 +95,7 @@ Data Managers should check for the following in the metadata:
 
 Often formatting errors occur in the information about the tag. Pay close attention here.
 
-The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
+The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations for filling in the tag metadata template on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
 - Animals with anchor tags (ie: FLOY, spagetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
@@ -145,7 +145,7 @@ The output will have useful information:
 
 The Nodebook will indicate the sheet had passed quality control by adding a ✔️**green checkmark** beside each section. The Nodebook will also generate an interactive plot for you to explore, summarizing the tags released over time, by species.
 
-If there is information that fails quality control, you should fix the source file (potentially speaking to the researcher) and try again.
+If there is information that fails these quality control checks, you should fix the source file (potentially requiring confirmation of accurate fixes from the researcher) and try again.
 
 ![Tag 1](../fig/tag1_summary.JPG)
 
@@ -186,7 +186,7 @@ If the bounding box needs to be expanded to include the tags, you can use the `S
 
 ### Verification of File Contents - against database
 
-This cell will now complete the second round of Quality Control checks.
+This cell will now complete the second round of Quality Control checks using data already held in the Database.
 
 The output will have useful information:
 1. Have these tags been used on **other projects** in the database? Check the dates to ensure they don't overlap and that there is no double-reporting.
@@ -293,7 +293,7 @@ All text should be `black`, and you should scroll through the entire table, row-
 
 If there are **no** highlighted/flashing red cells in a row, you can delete the record from the `no_dup` table by using the `delete` button on the left-side of the table. You can also use the `Select All` button if appropriate.
 
-If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without previous review since they are not exact duplicates, and could indicate an update to the database records is needed.
+If there **are** highlighted/flashing red cells in a row, you must compare the highlighted values. These cannot be deleted without review since they are not exact duplicates, and could indicate an update to the database records is needed.
 
 Ex: `life_stage` from the raw table might = `SMOLT` while `lifestage` from otn_animals might = `ADULT`. This will cause the column `lifestage_equal?` to read `FALSE` and the cells to flash red. In this example, it could indicate that the researcher was correcting an error in the previously-submitted record (this animal was actually a smolt, not adult) and therefore we need to update the record in our database. In this case, you would need to email the researcher to confirm, pause processing this Issue, and create a new `DB_fix` Issue with the information which needs updating.
 
