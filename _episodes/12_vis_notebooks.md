@@ -30,21 +30,21 @@ If you re-generate these tables for your Node using the [populate_geoserver](htt
 
 
 ## Installation
-The installation steps for the Database Fix Notebooks are similar to the installation steps for ipython-utilities:
-1. Determine the folder in which you wish to keep the Database Fix Notebooks.
+The installation steps for the Visuals and Reporting are similar to the installation steps for ipython-utilities:
+1. Determine the folder in which you wish to keep the Visuals and Reporting notebooks.
 1. Open your `terminal` or `command prompt` app. 
    * Type `cd` then `space`. 
-   * You then need to get the filepath to the folder in which you wish to keep the Database Fix Notebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
+   * You then need to get the filepath to the folder in which you wish to keep the Visuals and Reporting notebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
 1. Create and activate the "visbooks" python enviornment. The creation process will only need to happen once.
    * In your terminal, run the command `conda create -n visbooks python=3.9`
    * Activate the visbooks environment using `conda activate visbooks`
-1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/visuals-and-reporting.git`. This will get the latest version Database Fix Notebooks from our GitLab
+1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/visuals-and-reporting.git`. This will get the latest version of the Visuals and Reporting notebooks from our GitLab
 1. Navigate to the visuals-and-reporting subdirectory that was created by running `cd visuals-and-reporting`.
 1. Now to install all required python packages by running the following: `mamba env update -n visbooks -f environment.yml`
 
-**To open and use the Database Fix Notebooks:**
+**To open and use the Visuals and Reporting Notebooks:**
 - **MAC/WINDOWS**: Open your terminal, and navigate to your visuals-and-reporting directory, using `cd /path/to/visuals-and-reporting`. Then, run the commands: 
    * `conda activate visbooks` to activate the visbooks python environment
    * `jupyter notebook` to open the Nodebooks in a browser window.
