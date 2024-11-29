@@ -65,7 +65,7 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
    
 1.1 Visually check for any missing information and inconsistant or formatting issues in the **essential** columns (in dark-green backgroup color)? Column names and example data are shown as below:
  * PLATFORM_ID: e.g. `OTN-Gl-1`.
- * OTN_MISSION_ID: e.g. `OTN-Gl-1-20231003T1456` (Note: otn_mission_id is an iternal unique identifier which can be constructed as `platform_id + deploy_date_time`). Recommand to comply with `Dateset ID` of [IOOS US Glider ERDDAP Datasets](https://gliders.ioos.us/erddap/info/index.html?page=1&itemsPerPage=1000)
+ * OTN_MISSION_ID: e.g. `OTN-Gl-1-20231003T1456` (Note: otn_mission_id is an internal unique identifier which can be constructed as `platform_id + deploy_date_time`). Recommend this format to comply with OTN and also match the `Dataset ID` of [IOOS US Glider DAC ERDDAP Datasets](https://gliders.ioos.us/erddap/info/index.html?page=1&itemsPerPage=1000)
  * INS_MODEL_NO: e.g. `VMT`
  * INS_SERIAL_NO: e.g. `130000`
  * DEPLOY_DATE_TIME: e.g. `2023-10-03T14:56:00`

@@ -112,7 +112,7 @@ For **all other manufacturers**, contact OTN staff to get specifics on the detec
 ## convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
 
-**IMPORTANT NOTE:** newer versions of `vdat.exe` are only being supported by Windows. MAC users will not be able to use this Nodebook.
+**IMPORTANT NOTE:** newer versions of `vdat.exe` are only being supported on Windows. Mac users will not be able to use this Nodebook. For instructions on using a program like Wine to run windows programs on other operating systems, contact the OTN Data Centre.
 
 Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`
 
@@ -122,7 +122,7 @@ Before you begin, you will need to ensure you have access to a Fathom vdat execu
 - Locate your ProgramFiles on your computer. Locate the `InnovaSea` subfolder, and the `Fathom` folder within.
 - Copy the full filepath to your `vdat.exe` file for use in the Nodebook - this will look like `C:/Program Files/Innovasea/Fathom/vdat.exe`
 
-NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions newer than `vdat-9.3.0-20240207-74ad8e-release` are safe to process Open Protocol data.  **NOT RECCOMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
+NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions newer than `vdat-9.3.0-20240207-74ad8e-release` are safe to process Open Protocol data.  **NOT RECOMMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
 
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
