@@ -83,8 +83,7 @@ This spreadsheet file will contain one or more missions (rows) of the moving pla
 * TRANSMITTER and TRANSMIT_MODEL to reduce self-detections.
 
    
-2. Run through the [`movers - 1 - Load Mission Metadata` Nodebook] (http://localhost:8888/notebooks/movers%20-%201%20-%20Load%20Mission%20Metadata.ipynb) to load the spreadsheet into the `mission_table`:
-
+2. Run through the `movers - 1 - Load Mission Metadata` Nodebook to load the spreadsheet into the `mission_table`. See steps here:
 
 
 ### User Input
@@ -116,7 +115,7 @@ Cell three requires input from you. This information will be used to get the raw
  * PLATFORM_ID: e.g. `OTN-GL-1` (Note: the column name may be different. Ensure the values match the `mission_table`.`platform_id` in the **Loading Mission Metadata** step)
  * OTN_MISSION_ID: e.g. `OTN-GL-1-20231003T1456` (Note: this column needs to be added in a spreadsheet application. And populate the values to match the values in the `mission_table`.`otn_mission_id` in the **Loading Mission Metadata** step)
 
-2. Launch [`movers - 2 - Load telemetry` notebook] (http://localhost:8888/notebooks/movers%20-%202%20-%20Load%20telemetry.ipynb)
+2. Launch the `movers - 2 - Load telemetry` Nodebook
 
 ### User Input
 Cell three requires input from you. This information will be used to get the telemetry CSV and to be able to create a new raw telemetry table in the database.
@@ -163,9 +162,9 @@ Cell three requires input from you. This information will be used to get the tel
 
 # Loading Raw Detections and Events
 
-These detailed steps and explanations are the same as https://github.com/ocean-tracking-network/node-manager-training/blob/gh-pages/_episodes/08_Detections.md `Convert to CSV` section, `detections - 1 - load csv detections` section, `events - 1 - load events into c_events_yyyy` section and `events - 2 - move c_events into events table` section. Please use the above Detection Loading process as reference.
+These detailed steps and explanations are the same as [https://ocean-tracking-network.github.io/node-manager-training/10_Detections/index.html](https://ocean-tracking-network.github.io/node-manager-training/10_Detections/index.html) `Convert to CSV` section, `detections - 1 - load csv detections` section, `events - 1 - load events into c_events_yyyy` section and `events - 2 - move c_events into events table` section. Please use the above Detection Loading process as reference.
 
-- The related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. The files contain only transmitter numbers and the datetimes at which they were recorded at a specific receiver. The `tag metadata` and `deployment metadata` will provide the associated geographic and biological context to this data.
+- The related detections may now be processed. Detection data should be reported to the Node as a collection of raw, **unedited** files. These can be in the form of a zipped folder of `.VRLs`, a database from Thelma Biotel or any other raw data product from any manufacturer. 
 
 Visual Inspection
 
@@ -175,14 +174,13 @@ Things to visually check:
 
 - Do the files appear edited? Look for `_edited` in file name.
 - Is the file format the same as expected for that manufacturer? Ex. `.vrl` for Innovasea - not `.csv` or `rld` formats.
-- Is there data for each of the instrument recoveries that was reported in the `deployment metadata`?
 
 # Convert to CSV
 
-Once the raw files are obtained, the data must be converted to `csv` format. There are several ways this can be done, depending on the manufacturer.
+Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
 **For Innovasea**
-- VUE
+- VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`
     - Import all the `VRL` files provided
     - Select `export detections` and choose the location you want to save the file
@@ -193,19 +191,20 @@ Once the raw files are obtained, the data must be converted to `csv` format. The
     - Export **all data types**, and choose the location you want to save the files
 - `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
     - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV
-    - Instructions for this Nodebook are below
+    - Instructions for this Nodebook are in the `Detections` lesson.
 
 **For Thelma Biotel**
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 **For Lotek**
-- Exporting to CSV is more complicated, please reach out to OTN for specific steps
+- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
 
-For **all other manufacturers**, contact OTN staff.
+For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
+
 
 # detections - 1 - load csv detections
 
-Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` notebook, the receiver events records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
+Detections-1 loads CSV detections files into a new database table. If detections were exported using `Fathom` or the `convert - Fathom (vdat) Export - VRL to CSV` Nodebook, the receiver events records will also be loaded at this stage. This is because these applications combine the detections and events data in one CSV file.
 
 ### Import cells and Database Connections
 
@@ -235,13 +234,13 @@ Cell three requires input from you. This information will be used to get the raw
     * Paste a filepath to the relevant CSV file(s). The filepath will be added between the provided quotation marks.
     * This can be a path to a single CSV file, or a folder of multiple CSVs.
 1. `table_suffix = 'YYYY_mm'`
-	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+	  * Within the quotes, please add your custom table suffix. We recommend using the year and month (i.e, `YYYY_MM`) or similar, to indicate the most-recently downloaded instrument.
 1. `schema = 'collectioncode'`
-	* please edit to include the relevant project code, in lowercase, between the quotes.
+	  * Please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
-- `load_detections`: a true or false value using the table suffix you supplied.
-- `stacked`: this is for Fathom exports only. It refers to a method of parsing them.
+- `load_detections`: A true or false value using the table suffix you supplied.
+- `stacked`: This is for Fathom exports only and refers to how they should be parsed.
 
 Once you have added your information, you can run the cell.
 
@@ -254,7 +253,7 @@ The Nodebook will indicate the success of the table-creation with a message such
 ~~~
 Reading fathom files...
 Loading Files...
-7/7
+X/X
 ~~~
 {: .language-plaintext .example}
 
@@ -263,7 +262,7 @@ Loading Files...
 
 In GitLab, this task can be completed at this stage:
 
-`- [ ] - NAME load to raw detections (detections-1 notebook) **(:fish: table name: c_detections_yyyy)**`
+`- [ ] - NAME load to raw detections ("detections-1" notebook) **(:fish: table name: c_detections_yyyy)**`
 
 Ensure you paste the table name (ex: c_detections_YYYY_mm) into the indicated section before you check the box.
 
@@ -280,11 +279,12 @@ The Nodebook will indicate the sheet had passed quality control by adding a ✔�
 
 If there are any errors, contact OTN for next steps.
 
+
 #### Task list checkpoint
 
 In GitLab, these tasks can be completed at this stage:
 
-`- [ ] - NAME verify raw detections table (detections-1 notebook)`
+`- [ ] - NAME verify raw detections table ('detections-1' notebook)`
 
 # events - 1 - load events into c_events_yyyy
 
@@ -301,18 +301,18 @@ Cell two requires input from you. This information will be used to get the raw e
 1. `filepath = r'C:/Users/path/to/events.csv'`
     * Paste a filepath to the relevant CSV file. The filepath will be added between the provided quotation marks.
 1. `table_name = 'c_events_YYYY_mm'`
-	* Within the quotes, please add your custom table suffix. We recommend using `year_month` or similar, to indicate the most-recently downloaded instrument.
+	* Within the quotes, please add your custom table suffix. We recommend using the year and month (i.e, `YYYY_MM`) or similar, to indicate the most-recently downloaded instrument.
 1. `schema = 'collectioncode'`
 	* Please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
-- `file_encoding`: The file_encoding: ISO-8859-1 in the event export. The  default encoding used in VUE's event export
+- `file_encoding`: How the file is encoded. ISO-8859-1 in the event export. The default encoding used in VUE's event export
 
 Once you have added your information, you can run the cell.
 
 ### Verifying the events file
 
-Before attempting to load the event files to a raw table the Nodebook will verify the file to make sure there are no major issues. This will be done by running the Verify events file cell. If no errors are flagged, you will be able to continue.
+Before attempting to load the event files to a raw table the Nodebook will verify the file to make sure there are no major issues. This will be done by running the Verify Events File cell. If there are no errors, you will be able to continue.
 
 The Nodebook will indicate the success of the file verification with a message such as this:
 
@@ -349,16 +349,15 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 ### Load the events file into the c_events_yyyy table
 
-The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading, you can dispose of the engine then move on to the next notebook.
+The second last cell loads the events file into a raw table. It depends on successful verification from the last step. Upon successful loading, you can dispose of the engine then move on to the next Nodebook.
 
-The notebook will indicate the success of the table-creation with the following message:
+The Nodebook will indicate the success of the table-creation with the following message:
 
 ~~~
 File loaded with XXXXX records.
 100%
 ~~~
 {: .language-plaintext .example}
-
 
 #### Task list checkpoint
 
@@ -370,7 +369,7 @@ Ensure you paste the table name (ex: c_events_YYYY_mm) into the indicated sectio
 
 # events - 2 - move c_events into events table
 
-This Nodebook will move the `raw` events records in the `intermediate` events table.
+This Nodebook will move the raw events records into the intermediate events table.
 
 ### Import cell
 
@@ -378,7 +377,7 @@ As in all Nodebooks run the import cell to get the packages and functions needed
 
 ### User input
 
-This cell requires input from you. This information will be used to get the raw events CSV and to be able to create a new raw table in the database.
+This cell requires input from you. This information will be used to get the raw events CSV and to create a new raw table in the database.
 
 1. `c_events_table = 'c_events_YYYY_mm'`
 	  * Within the quotes, please add your custom table suffix, which you have just loaded in either `detections-1` or `events-1`.
@@ -405,7 +404,7 @@ Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_
 
 ### Verify table format
 
-You will then verify that the c_events table you supplied exists and then verify that it meets the required format specifications.
+You will then verify that the c_events events table you put in exists and then verify that it meets the required format specifications.
 
 The Nodebook will indicate the success of the table verification with a message such as this:
 
@@ -421,7 +420,7 @@ If there are any errors in this section, please contact OTN.
 
 ### Load to Events table
 
-If no verification checks fail, you can continue to the `loading` cell.
+If nothing fails verification, you can move to the loading cell. 
 
 The Nodebook will indicate the success of the processing with a message such as this:
 
@@ -437,7 +436,7 @@ Loaded XX rows into collectioncode.events table.
 
 In GitLab, these tasks can be completed at this stage:
    
-`- [ ] - NAME load raw events to events table (events-2 notebook)`
+`- [ ] - NAME load raw events to events table ("events-2" notebook)`
 
 
 # Loading Detections for Moving Platforms
@@ -529,6 +528,8 @@ Cell three requires input from you. This information will be used to get the raw
 
 This Nodebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this Nodebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
 
+**NOTE**: as of November 2024 the below Nodebooks do no support the Movers data. This will be completed shortly.
+
 ### Import cells and Database connections
 
 As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
@@ -567,14 +568,14 @@ Found XXX download records to add to the moorings table
 {: .language-plaintext .example}
 
 
-The next cell will print out all the identified download records in a dataframe for you to view.
+The next cell will print out all the identified download records, in a dataframe for you to view.
 
 ### Loading Download Records
 
 Before moving on from this you will need to confirm 2 things:
 
 1. Confirm that **NO Push** is currently ongoing
-2. confirm `rcvr_locations` for this schema have been verified.
+1. Confirm `rcvr_locations` for this schema have been verified.
 
 If a Push is ongoing, or if verification has not yet occurred, you **must** wait for it to be completed before processing beyond this point.
 
@@ -596,7 +597,7 @@ In GitLab, this task can be completed at this stage:
 
 This cell will have useful information:
 - Are the instrument models formatted correctly?
-- Are receiver serial numbers formatting correctly?
+- Are receiver serial numbers formatted correctly?
 - Are there any other outstanding download records which haven't been loaded?
 
 The Nodebook will indicate the table has passed verification by the presence of ✔️**green checkmarks**.
@@ -612,7 +613,9 @@ In GitLab, this task can be completed at this stage:
 
 # events-4 - process receiver configuration
 
-This Nodebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag-programming through time and space.
+This Nodebook will process the receiver configurations (such as MAP code) from the events table and load them into the schema's `receiver_config` table. This is a new initiative by OTN to document and store this information, to provide better feedback to researchers regarding the detectability of their tag programming through time and space.
+
+There are many cells in this Nodebook that display information but no action is needed from the Node Manager.
 
 ### Import cells and Database connections
 
@@ -642,16 +645,50 @@ Once you have edited the value, you can run the cell.
 
 ### Get Receiver Configuration
 
-Using the receiver deployment records, and the information found in the `events` table, this cell will identify and important configuration information for each deployment. A dataframe will be displayed.
+Using the receiver deployment records, and the information found in the `events` table, this cell will identify any important configuration information for each deployment. A dataframe will be displayed.
 
-The following cell will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
+The following cell ("Process receiver config") will extrapolate further to populate all the required columns from the `receiver_config` table. A dataframe will be displayed.
 
-### Load Configuration to Database
+### Processed Configuration
 
-Finally, the Nodebook will insert the identified records into the `receiver_config` table. You should see the following success message, followed by a dataframe:
+Run this to see the rows that were successfully processed from the `events` table. These will be sorted in the next step into (1) duplicates, (2) updates, and (3) new configurations. Of the latter two, you will be able to select which ones you want to load into the database.
+
+### Incomplete Configuration
+
+Run this cell to see any rows that could not be properly populated with data, i.e, a missing frequency or a missing map code. This will usually happen as a result of a map code that could not be correctly processed. These rows will not be loaded and will have to be fixed in the events table if you want the configuration to show up in the `receiver_config` table.
+
+### Sort Configuration
+
+All processed configurations are sorted into (1) duplicates, (2) updates, and (3) new configurations. Of the latter two, you will be able to select which ones you want to load into the database in future cells.
+
+### Duplicates
+
+No action needed - These rows have already been loaded, and there are no substantial updates to be made.
+
+### Updates
+
+Action needed - These rows have incoming configuration from the `events` table that represent updates to what is already in the table for a given catalognumber at a given frequency. Example: a new version of VDAT exported more events information, and we would like to ensure this new informatiuon is added to existing records in the `events` table.
+
+Select the rows using the checkboxes that you want to make updates to, then run the next cell to make the changes.
+
+You should see the following success message, followed by a dataframe:
 
 ~~~
-The following XX receiver configurations are new and have been inserted:
+XX modifications made to receiver config table.
+~~~
+{: .language-plaintext .example}
+
+
+### New Confirguration
+
+These rows are not already in the receiver configuration table. 
+
+Select the rows using the checkboxes that you want to add to the database, then run the next cell to make the changes.
+
+You should see the following success message, followed by a dataframe:
+
+~~~
+XX modifications made to receiver config table.
 ~~~
 {: .language-plaintext .example}
 
@@ -673,7 +710,7 @@ Finally, the Issue can be passed off to an OTN-analyst for final verification in
 
 # Troubleshoot Tips and Resources
 
-1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry` http://localhost:8888/notebooks/movers%20-%202b%20-%20Compare%20detections%20to%20telemetry.ipynb
+1. To visualize detections along telemetries use: `movers - 2b - Compare detections to telemetry` 
   - `Gantt Chart of Detections vs Telemetry`
   - `Missing Telemetry Graph`
 

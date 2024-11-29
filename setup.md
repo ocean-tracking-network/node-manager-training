@@ -79,7 +79,7 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
 
-![OTN Nodebooks - home page](../fig/home_page.JPG)
+![OTN Nodebooks - home page](fig/home_page.JPG)
 
 # Database Console Viewer
 
@@ -114,8 +114,8 @@ In order to work efficiently as a Node Manager, the following programs are neces
 
 # Node Training Datasets
 
-We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: [https://members.oceantrack.org/data/repository/fntp/nmt-files/](https://members.oceantrack.org/data/repository/fntp/nmt-files/)
+We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: [http://129.173.48.161/data/repository/node_training/node-training-files-1](http://129.173.48.161/data/repository/node_training/node-training-files-1)
 
 
-Please find the folder with your name and download. Save these somewhere on your computer, and **UNZIP** all files.
+Please find the folder with your name and download. Save these somewhere safe on your computer, and **UNZIP** all files.
 {% include links.md %}

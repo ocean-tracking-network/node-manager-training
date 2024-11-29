@@ -109,19 +109,20 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 
 For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
 
-# convert - Fathom (vdat) Export - VRL to CSV Nodebook
+## convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
 
-Before you begin, you will need to ensure you have access to a fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`, but if you don't have that, an older version can be downloaded from the VDAT working group project:
+**IMPORTANT NOTE:** newer versions of `vdat.exe` are only being supported by Windows. MAC users will not be able to use this Nodebook.
 
-- Access the Vemco (Innovasea) vdat working group gitlab project: [https://gitlab.oceantrack.org/ntress/vdat-working-group](https://gitlab.oceantrack.org/ntress/vdat-working-group) - Contact OTNDC if you you need read access.
-- Under the `releases` folder, pick the latest version of `vdat` folder.
-- Choose the folder for your operating system
-- Click on the vdat file and then click the Download.
-- Save this file somewhere informative.
-- Copy the full filepath to your `vdat` file for use in the Nodebook
+Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`
 
-NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions > vdat-9.3.0-20240207-74ad8e-release are safe to process Open Protocol data.
+- Access the Vemco (Innovasea) website to download `Fathom Connect` - [https://support.fishtracking.innovasea.com/s/downloads](https://support.fishtracking.innovasea.com/s/downloads)
+- Agree to the Licence 
+- The app will install on your computer, along with the newest version of `vdat.exe`
+- Locate your ProgramFiles on your computer. Locate the `InnovaSea` subfolder, and the `Fathom` folder within.
+- Copy the full filepath to your `vdat.exe` file for use in the Nodebook - this will look like `C:/Program Files/Innovasea/Fathom/vdat.exe`
+
+NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions > vdat-9.3.0-20240207-74ad8e-release are safe to process Open Protocol data.  **NOT RECCOMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
 
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
@@ -135,14 +136,17 @@ This section will be common for most Nodebooks: it is a cell at the top of the n
 
 You will have to edit 3 sections
 - vdat_path: Within quotation marks, paste the filepath to the fathom executable (`vdat.exe`)
-- vrl_dir: Within quotation marks, paste the path to a folder containing the VRLs or VDATs you would like to convert
-- export_path: Within quotation marks, paste the path to the folder to which you would like the CSV exported.
+- vrl_dir: Within quotation marks, paste the path to a folder containing the VRLs or VDATs you would like to convert. Example: `vrl_dir = r"/path/to/vrl_files/"`
+- export_path: Within quotation marks, paste the path to the folder to which you would like the CSV exported. Example: `export_path = r"/path/to/csv_export/"`
 
 Run this cell. There is no output.
 
 ### Check vdat exists
 
 The Nodebook will indicate the file had passed quality control by adding a ✔️**green checkmark** and printing the vdat version.
+
+**NOTE:** Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions > vdat-9.3.0-20240207-74ad8e-release are safe to process Open Protocol data.
+
 
 ### Get List of Files
 
@@ -509,11 +513,7 @@ Added XXXXX rows.
 
 In GitLab, these tasks can be completed at this stage:
 
-~~~
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook)
-- [ ] - NAME comment in issue what detection years were loaded (output from `detections-2`)
-~~~
-{: .language-plaintext .example}
+`- [ ] - NAME load to detections_yyyy ("detections-2" notebook) **(put detection years that were loaded here)**`
 
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the indicated section before you check the box.
@@ -575,11 +575,7 @@ Added XXX rows.
 
 In GitLab, these tasks can be completed at this stage:
 
-~~~
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook)
-- [ ] - NAME comment in issue what sensor years were loaded (output from `detections-2`)
-~~~
-{: .language-plaintext .example}
+`- [ ] - NAME load to sensor_match_yyyy ("detections-2" notebook) **(put sensor years that were loaded here)**`
 
 
 Ensure you paste the affected tables (ex: 2019, 2020) into the Issue.
@@ -728,22 +724,8 @@ You must select **all** years that were impacted by `detections_yyyy` or `sensor
 
 In GitLab, this task can be completed at this stage:
 
-`- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook)`
+`- [ ] - NAME load to otn_detections_yyyy ("detections-3" notebook) **(put affected years here)**`
 
-### Check and Load Sentinel Records
-
-Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button. This will move the detections into their own tables so they do not confuse our animal detection numbers and can be used for Sentinel analysis.
-
-You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps.
-
-#### Task list checkpoint
-
-In GitLab, this task can be completed at this stage:
-
-~~~
-- [ ] - NAME load sentinel records (`detections-3` notebook)
-~~~
-{: .language-plaintext .example}
 
 ### Verify OTN Detections
 
@@ -766,10 +748,21 @@ If there are any errors contact OTN for next steps.
 
 In GitLab, this task can be completed at this stage:
 
-~~~
-- [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
-~~~
-{: .language-plaintext .example}
+`- [ ] - NAME verify otn_detections_yyyy ("detections-3" notebook)`
+
+
+### Check and Load Sentinel Records
+
+Are there any `sentinel` detections identified? If so, select the `Load Sentinel Detections for YYYY` button. This will move the detections into their own tables so they do not confuse our animal detection numbers and can be used for Sentinel analysis.
+
+You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps.
+
+#### Task list checkpoint
+
+In GitLab, this task can be completed at this stage:
+
+`- [ ] - NAME load sentinel records ("detections-3" notebook)`
+
 
 
 ## detections - 3b - missing_metadata_check

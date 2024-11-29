@@ -9,7 +9,7 @@ questions:
 objectives:
 - "Understand how to use the `AUTH - Create and Update` notebook to maintain your database credentials file"
 keypoints:
-- "Node-members cannot access the database, you are the liason"
+- "Node-members cannot access the database, you are the liasion"
 - "Data submissions and QC processes should be trackable and archived"
 - "OTN is always here to help with any step of the process"
 ---
@@ -52,8 +52,8 @@ Run this cell. This section will have an editable form. If it is a new file, all
 - Conn Name: this is customizable - what is the name of this connection? We recommend choosing something like "OTN Database" to help you remember.
 - Host: this will be something like `matos.asascience.com` for your DB, but for training purposes we will use the IP of our Node Training DB: `129.173.48.161`.
 - Port: this is specified in your `.auth` file and will be four digits. Use `5432` for Node Training.
-- DB Name: this will be your database name, something like `pathnode`. For training, it will be `node_training`.
-- User/Password: your personal username and password, as found on your `.auth` file.
+- DB Name: this will be your database name, something like `pathnode`. For training, it will be `nodetraining`.
+- Username/Password: your personal username and password. For training, your username will be your first initial plus last name (ex: `jsmith`). Your password will be this username backwards.
 
 ### Create or Update DBLink Connections
 

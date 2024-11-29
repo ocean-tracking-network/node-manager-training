@@ -51,7 +51,7 @@ We want node managers to gain as much value as possible from the check-in meetin
 
 If you have feedback or specific requests, we’re happy to address them during your check-in. Additionally, if something comes to mind outside of these meetings, please don’t hesitate to reach out to the OTNDC team. We’re always available to discuss and scope your needs with you further.
 
-[Copy of the OTN February Push Report](../Resources/OTN_PUSH_FEBRUARY_2024_report_2024-05-02.html)
+[Copy of the OTN February 2024 Push Report](../Resources/OTN_PUSH_FEBRUARY_2024_report_2024-05-02.html)
 
 ## Detection Extracts
 
@@ -76,7 +76,9 @@ During the Push process, any new detection matches that are made are noted in th
 
 Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
 
-**As of December 2024, please ensure you are on the `integration` branch of ipython utilities before running this Nodebook**
+**As of December 2024, please ensure you are on the `master` branch of ipython utilities before running this Nodebook**
+
+To switch branches in Git, please follow the instructions on this page [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities)
 
 ### Imports cell
 
