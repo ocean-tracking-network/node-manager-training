@@ -66,7 +66,7 @@ Using one of the suggested means above, a user has submitted data and metadata t
 
 OTN uses GitLab Issues with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox.
 
-Immediately upon receipt of a data file, you are advised to login to OTN's GitLab (https://gitlab.oceantrack.org). You will have a project for your Node named <YOURNODE-DAQ>. This is where you will navigate to. You may want to bookmark this webpage!
+Immediately upon receipt of a data file, you are advised to login to [OTN's GitLab](https://gitlab.oceantrack.org). You will have a project for your Node named <YOURNODE-DAQ>. This is where you will navigate to. You may want to bookmark this webpage!
 
 Once on the GitLab project page, you should navigate to the **Issues** menu option, on the left side. Think of your GitLab issues as your running "TODO List"! You will want to create a new Issue for each piece of data that is submitted.
 
@@ -114,9 +114,9 @@ DBeaver is an open-source application for interacting directly with databases. T
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
 
 - Host: this could be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
-- Database: this will be your database name, something like `pathnode`. For training, it will be `node_training`.
+- Database: this will be your database name, something like `pathnode`. For training, it will be `nodetraining`.
 - Port: this is specified in your `.auth` file and will be four digits. For training, this port will be set to `5432`.
-- Username/Password: your personal username and password, as found on your `.auth` file.
+- Username/Password: your personal username and password. For training, your username will be your first initial plus last name (ex: `jsmith`). Your password will be this username backwards.
 
 Next, choose `Test Connection` and see if it passes the tests. If so, choose `Finish` and you're now connected to your database!
 

@@ -129,7 +129,7 @@ In order to work efficiently as a Node Manager, the following programs are neces
 
 # Node Training Datasets
 
-We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: [https://members.oceantrack.org/data/repository/fntp/nmt-files/](https://members.oceantrack.org/data/repository/fntp/nmt-files/)
+We have created test datasets to use for this workshop. Each attendee has their own files, available at this link: [http://129.173.48.161/data/repository/node_training/node-training-files-1](http://129.173.48.161/data/repository/node_training/node-training-files-1)
 
 
 Please find the folder with your name and download. Save these somewhere on your computer, and **UNZIP** all files.

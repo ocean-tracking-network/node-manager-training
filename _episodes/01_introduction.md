@@ -26,7 +26,7 @@ OTN and affiliated networks provide automated cross-referencing of your detectio
 
 Below is a link to a presentation from current Node Managers, describing the relationship between OTN and its Nodes, the benefits of the Node system as a community outgrows more organic person-to-person sharing, as well as a realistic understanding of the work involved in hosting/maintaining a Node.
 
-[PowerPoint](../Resources/Pye - OTNDC, OTN Nodes and Data Partners.pptx)
+[PowerPoint Link](https://docs.google.com/presentation/d/1ZK58KCS_Zz8qHz5IYrBGYILJ-ZQYfkeo/edit?usp=sharing&ouid=108426455008350886281&rtpof=true&sd=true)
 
 ## Node Managers
 

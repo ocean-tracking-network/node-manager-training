@@ -98,10 +98,10 @@ Often formatting errors occur in the information about the tag. Pay close attent
 The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations for filling in the tag metadata template on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
 - Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
-- Animals with anchor tags (ie: FLOY, spagetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
+- Animals with anchor tags (ie: FLOY, spaghetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
 - Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty: `tag_id_code` and `tag_code_space`.
 
-**Please ensure each tag aplpied to an animal (of any type) has its own row. Anchor tags (inlcuding FLOY, spagetti, streamer, dart, t-bar tags), radio tags (inlcuing PIT, VHF), satellite tags (and more) each need their own row in the metadata sheet.**
+**Please ensure each tag applied to an animal (of any type) has its own row. Anchor tags (inlcuding FLOY, spaghetti, streamer, dart, t-bar tags), radio tags (including PIT, VHF), satellite tags (and more) each need their own row in the metadata sheet.**
 
 
 # Quality Control - Tag-1 Nodebook
