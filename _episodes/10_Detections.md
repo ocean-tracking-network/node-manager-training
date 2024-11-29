@@ -122,7 +122,7 @@ Before you begin, you will need to ensure you have access to a Fathom vdat execu
 - Locate your ProgramFiles on your computer. Locate the `InnovaSea` subfolder, and the `Fathom` folder within.
 - Copy the full filepath to your `vdat.exe` file for use in the Nodebook - this will look like `C:/Program Files/Innovasea/Fathom/vdat.exe`
 
-NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions > vdat-9.3.0-20240207-74ad8e-release are safe to process Open Protocol data.  **NOT RECCOMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
+NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions newer than `vdat-9.3.0-20240207-74ad8e-release` are safe to process Open Protocol data.  **NOT RECCOMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
 
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
@@ -265,7 +265,7 @@ Cell two requires input from you. This information will be used to get the raw e
 	* Please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
-- `file_encoding`: How the file is encoded. ISO-8859-1 in the event export. The default encoding used in VUE's event export
+- `file_encoding`: How the file is encoded. ISO-8859-1 is the default encoding used in VUE's event export.
 
 Once you have added your information, you can run the cell.
 

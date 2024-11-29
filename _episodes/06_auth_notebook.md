@@ -9,7 +9,7 @@ questions:
 objectives:
 - "Understand how to use the `AUTH - Create and Update` notebook to maintain your database credentials file"
 keypoints:
-- "Node-members cannot access the database, you are the liasion"
+- "Node-members cannot access the database, you are the liaison"
 - "Data submissions and QC processes should be trackable and archived"
 - "OTN is always here to help with any step of the process"
 ---

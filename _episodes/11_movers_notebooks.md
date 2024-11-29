@@ -306,7 +306,7 @@ Cell two requires input from you. This information will be used to get the raw e
 	* Please edit to include the relevant project code, in lowercase, between the quotes.
 
 There are also some optional inputs:
-- `file_encoding`: How the file is encoded. ISO-8859-1 in the event export. The default encoding used in VUE's event export
+- `file_encoding`: How the file is encoded. ISO-8859-1 is the default encoding used in VUE's event export.
 
 Once you have added your information, you can run the cell.
 
