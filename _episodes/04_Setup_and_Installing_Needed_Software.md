@@ -81,7 +81,7 @@ Then, OTN staff will give you access to the OTN-Partner-Nodes group, which hosts
 1. Next, run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab.
 1. Navigate to the newly-created ipython-utilities subdirectory by running `cd ipython-utilities`.
 1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`. 
-1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
+1. Now to install all required python packages by running the following: `mamba env update -n nodebook -f environment.yml`
 
 **To open and use the OTN Nodebooks:**
 - **MAC/WINDOWS/LINUX**: Open your terminal and navigate to your ipython-utilities directory by running `cd /path/to/ipython-utilities`. Then, run the commands: 
