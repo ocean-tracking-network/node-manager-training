@@ -75,7 +75,7 @@ This creates a map to show receivers from Nodes. Tailored for OTN's reporting re
 
 ## Tag-oriented summaries
 
-### Example: Private: Tag Summarize and Check
+### Example: Private: Tag Check and Summarize
 
 Scenario: You want to know whether any of the detections you just downloaded are part of your Database already. Use this notebook to search tags, tag specs, and existing detections that are unmatched to find matches to a set of tag IDs that you specify. This will not do the checking that actually loading and matching the detection data would do for you, so sharing this output is not recommended, but it gives a sense of the connectivity of a detection dataset to the Database.
 
