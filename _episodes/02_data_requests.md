@@ -1,6 +1,6 @@
 ---
 title: "Upholding the Data Policy"
-teaching: 10
+teaching: 15
 exercises: 0
 questions:
 - "How do I handle data requests?"

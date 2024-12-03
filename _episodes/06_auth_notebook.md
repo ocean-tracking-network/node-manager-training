@@ -1,6 +1,6 @@
 ---
 title: "Connecting to the Database from the Nodebooks"
-teaching: 30
+teaching: 15
 exercises: 15
 questions:
 - "How can a Node Manager connect with their database in the Nodebooks?"
