@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/452748556.svg)](https://doi.org/10.5281/zenodo.14735773)
+
+
 Welcome to OTN's Node Manager Training Curriculum.
 
 This OTN-hosted training will provide OTN-style Node Managers with an overview of the processes and tools to use to 
