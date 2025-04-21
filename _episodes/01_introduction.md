@@ -1,6 +1,6 @@
 ---
 title: "Introduction to Nodes"
-teaching: 30
+teaching: 45
 exercises: 0
 questions:
 - "What is an OTN-style Database Node?"

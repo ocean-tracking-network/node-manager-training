@@ -1,6 +1,6 @@
 ---
 title: "Tagging Metadata"
-teaching: 20
+teaching: 90
 exercises: 0
 questions:
 - "How do I load new tags into the Database?"

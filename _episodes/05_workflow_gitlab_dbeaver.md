@@ -1,7 +1,7 @@
 ---
 title: "Data Loading Workflow"
 teaching: 30
-exercises: 15
+exercises: 45
 questions:
 - "How does a Node Manager receive data?"
 - "How does a Node Manager track their To-Do list?"

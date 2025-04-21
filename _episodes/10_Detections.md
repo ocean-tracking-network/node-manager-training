@@ -1,6 +1,6 @@
 ---
 title: "Detection Loading"
-teaching: 40
+teaching: 60
 exercises: 0
 questions:
 - "What is the workflow for loading detection data?"

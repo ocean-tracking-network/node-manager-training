@@ -1,6 +1,6 @@
 ---
 title: "Project Metadata"
-teaching: 30
+teaching: 90
 exercises: 0
 questions:
 - "How do I register a new project in the Database?"
