@@ -119,6 +119,6 @@ mamba env update -n root -f environment.yml
 ~~~
 {: .language-bash}
 
-You will then be able to test the new code. When you are finished, follow the same steps to switch back to the `master` branch to continue your work. The `master` branch contains all the production-quality tools.
+You will then be able to test the new code. When you are finished, follow the same steps to switch back to the `main` branch to continue your work. The `main` branch contains all the production-quality tools.
 
 {% include links.md %}

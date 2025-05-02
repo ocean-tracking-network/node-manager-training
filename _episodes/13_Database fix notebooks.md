@@ -89,7 +89,7 @@ Some troubleshooting tips can be found in the `ipython Nodebooks` installation i
 ## Gitlab KDBX integration
 An exciting feature of the Database Fix Notebooks is that if you add a Gitlab token to your kdbx file, the notebook will automatically comment the output from the notebook directly into the specified Gitlab issue. Otherwise, you will have to copy and paste the displayed results manualyl into the comments (as directed by the notebook).
 
-To integrate the Gitlab token into your kdbx file, please use the instructions found at the bottom of the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/master/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
+To integrate the Gitlab token into your kdbx file, please use the instructions found at the bottom of the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/main/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
 
 ## Issue Creation
 
@@ -115,8 +115,8 @@ Here is the Issue checklist, for reference:
 {: .language-plaintext .example}
 
 There are a few helpful explanation notebooks inside this suite of Database Fix tools. You should always start by accessing both of these in order to identify next steps.
-- [0. Home](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Home.ipynb): This notebook will provide a brief explanation of what each notebook does, as well as helpful hints to show what is needed to run the notebook.
-- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/master/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which Database Fix Notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on the raw metadata column selection, it will display a result of which notebook to use.
+- [0. Home](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/main/0.%20Home.ipynb): This notebook will provide a brief explanation of what each notebook does, as well as helpful hints to show what is needed to run the notebook.
+- [0. Which notebook should I use](https://gitlab.oceantrack.org/otn-partner-nodes/database-fix-notebooks/-/blob/main/0.%20Which%20notebook%20should%20I%20use.ipynb): This notebook has a form which will help node managers determine which Database Fix Notebook is appropriate for their change. It shows a list of the types of metadata we offer (project, tag, deployment, and detection) and, based on the selection, shows a list of columns from the raw metadata sheets. Based on the raw metadata column selection, it will display a result of which notebook to use.
 
 ## Spreadsheet Creation
 

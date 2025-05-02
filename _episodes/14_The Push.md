@@ -76,7 +76,7 @@ During the Push process, any new detection matches that are made are noted in th
 
 Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
 
-**As of December 2024, please ensure you are on the `master` branch of ipython utilities before running this Nodebook**
+**As of December 2024, please ensure you are on the `main` branch of ipython utilities before running this Nodebook**
 
 To switch branches in Git, please follow the instructions on this page [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities)
 
