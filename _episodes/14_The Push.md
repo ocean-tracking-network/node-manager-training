@@ -31,15 +31,27 @@ Push schedule through 2025:
 - June 19, 2025
 - October 16, 2025
 
+## Pre-Push Schedule
+
+In order to accommodate the increasing number of Nodes and meet Push deadlines, we have also prepared a shared pre-Push timeline for all nodes: 
+<img width="1722" height="272" alt="image" src="https://github.com/user-attachments/assets/559e4e43-75ff-47e9-a449-399fa8d1b12a" />
+
+The pre-Push timeline updates are as follows:
+- 20 days before the Push will be the submission deadline for data contributors and researchers
+- 7 days before the Push, there will be no more OTN helpers available for support (since we will be more focused on verification and Push organization) so please plan accordingly and reach out to the OTNDC team earlier for help with bigger messier data needs
+- On the Push date (listed above), the OTN data team will be moving any open in the nodes to the next milestone and the node will be "locked" or "hands-off" temporarily while we work on the Push (including verification, cross-matching, inheritance, and building discovery tables). After these X days, the node will be unlocked.
+
 ## Node Manager Roles During a Push
 
 Node Managers have two main jobs during a Push:
-1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to prevent a backlog near the Push date.
+1. The first job is to get the Node's data loaded in time for the cut-off date. Data will be submitted by researchers on a continuous basis, but will likely increase just before a cut-off date. We recommend loading data as it arrives, to prevent a large backlog.
 1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` Nodebook.
 
 Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required.
 
-Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again.
+Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again. 
+
+We have created an OTNDC Bot that announces updates through Slack channels and will announce node Push statuses. This created Bot also sends push status reports about Gitlab tickets during non-Push time.
 
 ## Push Reports
 
