@@ -91,7 +91,11 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 - VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`
     - Import all the `VRL` files provided
+      - Note: when prompted with setting Time Zone, set to UTC.
     - Select `export detections` and choose the location you want to save the file
+      - Note: on `Data Export` tab must select `Raw sensor values` 
+<img width="416" height="576" alt="image" src="https://github.com/user-attachments/assets/21c54173-b1e1-4a96-bf70-7d27537dda10" />
+
     - Select `export events` and choose the location you want to save the file
 - Fathom Connect App
     - Choose "export data"
