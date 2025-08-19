@@ -62,8 +62,8 @@ There are a couple of important tables:
 - obis.institution_codes: a collection of existing institutions with their information: `select * from obis.institution_codes`
 - obis.contacts: a collection of existing contacts with a unique identifier: `select * from obis.contacts`
 - obis.contacts_projects: a table of associations between contacts (with the unique identifier) and the projects they are a part of: `select * from obis.contacts_projects where collectioncode = 'XXXXX'`
-- obis.otn_animals: an aggregation of animal metadata from all schemas, this is a read-only table and should **not be updated**: `select * from obis.otn_animals`
-- obis.moorings: an aggregation of all the receiver and tag deployments information across all projects, this is a read-only table and should **not be updated**: `select * from obis.moorings`
+- obis.otn_animals: is similar to `schema.otn_animals`. It includes all animal information from `schema.otn_animals` but also contains all animals across all projects and times, this is a read-only table and should **not be updated**: `select * from obis.otn_animals`
+- obis.moorings: an aggregation of all the receiver and tag deployments information across all projects, this is a read-only table and should **not be updated**: `select * from obis.moorings` It contains all tag, transmitter, VMT, receiver, event... information. In this table, column `relationshiptype` explain the use of the tag. ` basisofrecord` is the data source where the data were collected. It extract the  all tags information across all projects from all `schema.otn_animals` tables. To distinguish the use of the tags, if they're used on animal, then you can see column relationshiptype shows ANIMAL.
 - obis.detection_extracts_list: a collection of all detection extracts for all pushes, with associated Gitlab issue: `select * from  obis.detection_extracts_list where push_date = 'YYYY-MM-DD'`
 - obis.otn_resources: a collection of projects and their information: `select * from obis.otn_resources where collectioncode= 'XXXXX'`
 - **IN OTNUNIT ONLY:** obis.loan_tracking: a collection of project loan information: `select * from obis.loan_tracking`
@@ -103,3 +103,4 @@ WHERE dps.relationshiptype = 'ANIMAL'
 GROUP BY c.affiliation;
 
 ```
+
