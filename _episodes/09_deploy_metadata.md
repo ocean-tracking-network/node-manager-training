@@ -244,6 +244,11 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify raw table ("deploy" notebook)`
 
+#### Find Raw Data Table in DB (`schema.c_shortform_YYYY_MM`)
+    - This table will includes all the OTN compulsory columns for receiver metadata as well as the ones the researcher includes. But only OTN compulsory columns are QCed.
+    - An example query: `select * from schema.c_shortform_2020_04 cs where ins_model_no ilike '%CTD%'`
+
+
 ### Loading Stations Records
 
 **STOP** - confirm there is no Push currently ongoing. If a Push is ongoing, you must wait for it to be completed before processing beyond this point
@@ -268,6 +273,7 @@ Added XX new stations to schema.moorings
 
 
 If the `stations` and `moorings` tables are not in sync, you will need to compare the two tables for differences and possibly update one or the other.
+
 
 
 #### Task List Checkpoint
@@ -299,6 +305,17 @@ If there are any errors, you could directly connect to the database and fix the 
 In GitLab, this task can be completed at this stage:
 
 `- [ ] - verify stations ("deploy" notebook)`
+
+
+#### Find Station Tables in DB(`schema.stations` & `schema.rcvr_locations`)
+    - These Station tables are intermediate tables. They grab the necessary information from the raw table.
+    - `schema.stations` contains all distinct the deployment stations information from that schema across all years. Column `date` and `intended_lon`, `intended_lat` represent the first time and coordinate (lon,lat) this station was added.
+    - Note: In `schema.stations` table, all stations have the distinct names with distinct coordinates.  The notebook will show errors, if the researcher put different coordinates for the same location or put the same coordinate for different locations. Here we can use corresponding DB fix tool to change station names.
+    - An example query: `select * from schema.stations where station_name in ('A','B')`
+
+![OTN Database - path of data through the system](../fig/unique_station_names_edit.png)
+
+
 
 ### Load to rcvr_locations
 Once the `station` table is verified, the receiver deployment records can now be promoted to the "intermediate" `rcvr_locations` table.
@@ -355,6 +372,13 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - verify rcvr_locations ("deploy" notebook)`
 
+#### Find schema.rcvr_locations tables in DB
+- These tables are also imtermediate tables which contains all  deployment information for all receivers from that schema across all years. Station is treated as an area, receivers can be deployed at the same station with different coordinates. Column `deploy_date` and `deploy_lon`, `deploy_lat` shows each receiver's deployment date and coordinates.
+    - Note: In `schema.rcvr_locations` table,  you may see the same station has different coordinates. But the notebook will show errors if the same receiver's overlapping deployments. Here we can look and this table for information we need to change and use corresponding DB fix tool.
+    - An example query:`select * from schema.rcvr_locations rl  where rl.rcv_serial_no = 'XXXXX'`
+
+![OTN Database - path of data through the system](../fig/deployment_overlapping_edit.png)
+
 ### Load Transmitter Records to Moorings
 
 The `transmitter` values associated with transceivers, co-deployed sentinel tags, or stand-alone test tags will be loaded to the `moorings` table in this section. Existing transmitter records will also be updated, if relevant.
@@ -409,6 +433,12 @@ The Nodebook will indicate the table has passed quality control by adding a âœ”ï
 
 If there are any errors with records that have already been promoted to the `moorings` table, you will need to create a db fix ticket in Gitlab to correct the records in the database. You may need to contact the researcher before resolving the error. 
 
+#### Find Mooring Tables in DB
+    - `schema.moorings` contains all receiver, transmitter, event information from this project. Note: the notebook will show errors if the same transmitter_ID has been used in different receivers.  We can check this table to check more information on transmitter_ID and may need to use the corresponding DB fix tool to change transmitter_ID.
+    - An example query: `select * from schema.moorings  where basisofrecord = 'TRANSMITTER' and relationshiptype = 'STATION'`
+
+![OTN Database - path of data through the system](../fig/ovelapping_transceivers_edit.png)
+
 
 #### Task List Checkpoint
 
@@ -425,3 +455,11 @@ First: you should access the Repository folder in your browser and add the clean
 Finally, the GitLab ticket can be reassigned to an OTN analyst for final verification in the database.
 
 {% include links.md %}
+
+
+
+
+
+   
+
+
