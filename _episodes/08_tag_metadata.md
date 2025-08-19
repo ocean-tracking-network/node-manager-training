@@ -228,6 +228,11 @@ True
 ~~~
 {: .language-plaintext .example}
 
+####  Find Raw Data Table in DB (`schema.c_tag_meta_YYYY_MM`)
+    - This table will includes all the OTN compulsory columns for tag metadata as well as the ones the researcher includes. But only OTN compulsory columns are QCed: `select * from schema.c_tag_meta_YYYY_MM where tag_serial_number ='xxxxxx'`
+- Cache Tables (`schema.animalcache_YYYY_MM  ` & `schema.tagcache_YYYY_MM`)
+    - These are the intermediate tables in the tag process
+    - These two types of tables grab the necessary information from the raw table and splits it into two intermediate tables: One is the animal cache which contains all the information related to the tagged animals in this project on YYYY_MM. Another is tagcache related to the tag information.  Both tables contain release locations, release date, project code, institution, etc.
 
 #### Task list checkpoint
 
@@ -446,6 +451,9 @@ The Nodebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there are any errors go into database and fix the cache tables themselves, and re-run the cell.
 
+#### Find Cache Tables in DB (`schema.animalcache_YYYY_MM  ` & `schema.tagcache_YYYY_MM`)
+    - These are the intermediate tables in the tag process
+    - These two types of tables grab the necessary information from the raw table and splits it into two intermediate tables: One is the animal cache which contains all the information related to the tagged animals in this project on YYYY_MM. Another is tagcache related to the tag information.  Both tables contain release locations, release date, project code, institution, etc.
 
 #### Task list checkpoint
 
@@ -496,6 +504,10 @@ The Nodebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there are any errors, contact the researcher to scope potential data fixes, then open a DB-Fix Ticket, and use the Database Fix Notebooks to resolve the issues.
 
+#### Find OTN Tables in DB (`schema.otn_animals`  & `schema.otn_transmitters`)
+   - Similar to the Cache Tables, these 2 OTN tables will contain all animal & tag in this projects across all time.
+   - An example query: `select * from schema.otn_transmitters ot where catalognumber =  'XXXXX'`
+
 
 #### Task list checkpoint
 
@@ -518,3 +530,6 @@ Then, please email a copy of this file to the researcher who submitted it, so th
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
 
 {% include links.md %}
+
+
+
