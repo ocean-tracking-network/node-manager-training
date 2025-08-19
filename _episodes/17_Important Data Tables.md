@@ -30,8 +30,8 @@ Here are some useful SQL queries:
 - vendor.c_thelma_receivers where serial_no ='XXXXX'`
 
 When we identify problems like different tag ID or tag life expectancy in tag 1 notebook, we should  check which one  is correct in vendor.c_vemco_tags.
-![OTN Database - path of data through the system](../fig/Tag ID_Code check-edit.png)
-![OTN Database - path of data through the system](../fig/Tag life check-edit.png)
+![OTN Database - path of data through the system](../fig/Tag_ID_Code_check_edit.png)
+![OTN Database - path of data through the system](../fig/Tag_life_check_edit.png)
 
 Details about `vendor.c_vemco_tags` table:
 - column `tag_fam` represents tag model type (V7, V9, V16...)
@@ -41,7 +41,7 @@ Details about `vendor.c_vemco_tags` table:
 When we identify problems like different transmitter_IDs in deployment notebook, we want to check which one is correct in vendor.c_vemco_receivers
 
 
-![OTN Database - path of data through the system](../fig/Transmitter check-edit.png.png)
+![OTN Database - path of data through the system](../fig/Transmitter_check_edit.png)
 
 Details about  `vendor.c_vemco_receivers` table:
 - `model` represents receiver models (VR2AR, VR2Tx, VR4...)
@@ -101,4 +101,5 @@ LEFT JOIN (
 ) c ON dps.collectioncode = c.collectioncode
 WHERE dps.relationshiptype = 'ANIMAL'
 GROUP BY c.affiliation;
+
 ```
