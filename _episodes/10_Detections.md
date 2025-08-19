@@ -292,6 +292,10 @@ Reset(s): XX
 {: .language-plaintext .example}
 
 
+#### Find Raw Data Table in DB (`schema.c_events_YYYY_MM` & `schema.c_detections_YYYY_MM`)
+    - The event table contains some environmental and receiver data for this project at this time, for e.g., temperature, depth, and battery.
+    - The detection table contains detection information for this project at this time. Here you can see tags detected by each receiver through different times.
+
 ### Database Connection
 
 You will have to edit one section: `engine = get_engine()`
@@ -446,6 +450,7 @@ collectioncode.c_detections_yyyy_mm table found.
 {: .language-plaintext .example}
 
 
+
 ### Create Missing Tables
 
 Detections tables are only created on an as-needed basis. These cells will detect any tables you are missing and create them based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`.
@@ -556,6 +561,8 @@ If there are any errors contact OTN for next steps.
 In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify detections_yyyy (looking for duplicates) ("detections-2" notebook)`
+
+
 
 ###  Load sensors_match Tables by Year
 
@@ -972,6 +979,37 @@ In GitLab, this task can be completed at this stage:
 ## events - 3 - create download records
 
 This Nodebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this Nodebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
+
+#### Find- Event & Detection Table (`schema.events` & `schema.detections_YYYY`)
+    - These are intermediate tables which contain all events in this project across all years and detections in certain years.
+    - For example, if a researcher want to know all spatial temperature data for a certain type of receiver in his project schema, they could use the query:
+```sql
+select 
+hl.otn_array,hl.station_name,e.datetime as date,e.receiver, e."data" ,e.description,hl.rcv_serial_no,
+hl.deploy_date,hl.recover_date,hl.recover_ind,hl.dep_lat,hl.dep_long,hl.the_geom,hl.catalognumber 
+from
+	schema.events e 
+	left join halibt.rcvr_locations hl 
+	on model.f_end(e.receiver,'-') = model.f_end(hl.rcv_serial_no) 
+	where e.receiver ilike 'VR4%' and e.description = 'Temperature' 
+```
+    - As another example, if we want to check how many distinct transmitter are detected by a receiver in a project schema during 2023-11-10 to 2024-05-29, we could use the query:
+```sql
+SELECT DISTINCT transmitter
+FROM schema.detections_2023
+WHERE receiver ILIKE '%550092%'
+  AND datetime > '2023-11-10 00:00:00'
+  AND datetime < '2024-05-29 18:30:00'
+UNION
+SELECT DISTINCT transmitter
+FROM sjrbl.detections_2024
+WHERE receiver ILIKE '%550092%'
+  AND datetime > '2023-11-10 00:00:00'
+  AND datetime < '2024-05-29 18:30:00'
+```
+
+
+
 
 ### Import cells and Database connections
 
