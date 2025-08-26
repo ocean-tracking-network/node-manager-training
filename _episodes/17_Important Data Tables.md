@@ -20,7 +20,8 @@ These are the tables:
 -  vendor.c_vemco_tags
 - vendor.c_vemco_receivers 
 - vendor.c_thelma_tags
-- vendor.c_thelma_receivers 
+- vendor.c_thelma_receivers
+- vendor.contacts_auths 
 
 Here are some useful SQL queries:
 - `select * from vendor.c_vemco_tags where serial_no ='XXXXX'`
@@ -39,6 +40,17 @@ Details about `vendor.c_vemco_tags` table:
 - `est_tag_life` represents a tag's life expectancy
 
 When we identify problems like different transmitter_IDs in deployment notebook, we want to check which one is correct in vendor.c_vemco_receivers
+
+When there's a missing spec warning shows like this, we want to check who we should request for a spec
+![OTN Database - path of data through the system](../fig/Missing_spec_edit.png)
+
+`SELECT *
+FROM obis.contacts c
+LEFT JOIN vendor.contacts_auths ca
+  ON c.contact_pk = ca.contact_pk
+LEFT JOIN obis.contacts_projects cp
+  ON c.contact_pk = cp.contact_pk
+  where collectioncode = 'XXXXX'`
 
 
 ![OTN Database - path of data through the system](../fig/Transmitter_check_edit.png)
@@ -103,4 +115,5 @@ WHERE dps.relationshiptype = 'ANIMAL'
 GROUP BY c.affiliation;
 
 ```
+
 
