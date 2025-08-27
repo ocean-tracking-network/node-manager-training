@@ -180,7 +180,9 @@ The output will have useful information:
 - Compared to the `stations` table in the database, are the station names correct? Have stations "moved" location? Are the reported bottom_depths significantly different (check for possible `ft` vs `m` vs `ftm` errors).
 - Are all recovery dates after the deployment dates?
 - Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new instrument model.
-- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer specifications we have in the database?
+- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer specifications we have in the database? **Note: For VR2AR and VR2Tx type receivers, researcher can  record  internal transmitters under the ‘transmitter’ column (example format: A69-1303-12345). We will then associate these ‘detections’ with the receiver! Though it's not a compulsory information, it does help us distinguish real and tesing detections for your project, which can reduce the risk of mismatching.**
+
+
 - Are there any overlapping deployments (one serial number deployed at multiple locations for a period of time)?
 - Are all the deployments within the Bounding Box of the project. If the bounding box needs to be expanded to include the stations, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it. Once all stations are drawn inside the bounding box, press the `Adjust Bounding Box` button to save the results.
 - Are there possible gaps in the metadata, based on previously-loaded `detections` files? This will be investigated in the `Detections-3b` Nodebook if you need more details.
