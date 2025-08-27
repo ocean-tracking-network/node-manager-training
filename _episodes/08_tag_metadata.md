@@ -97,7 +97,8 @@ Often formatting errors occur in the information about the tag. Pay close attent
 
 The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations for filling in the tag metadata template on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
-- Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
+- Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those 2 (or more) records together. Explanations: Tag `TAG_CODE_SPACE` (this is the "protocol", and is available from  tag specifications) can be formatted like "A69-1303" or "R64K" depending on the manufacturer. When a tag has sensors, it needs 1 line in the tag metadata per sensor. Each line should be nearly identical, but have different `TAG_ID_CODEs` (each associated with a sensor).Records with the same `TAG_SERIAL_NUMBER` and/or `ANIMAL_ID` will be recognized as 1 tag in our database.
+
 - Animals with anchor tags (ie: FLOY, spaghetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
 - Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty: `tag_id_code` and `tag_code_space`.
 
@@ -137,7 +138,7 @@ This cell will now complete the first round of Quality Control checks.
 The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Are either the `animal_id` or `tag_serial_number` columns completed?
-- Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`?
+- Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`? **Note:In our metadata we use the harvest_date column to indicate when the tag was removed from the fist animal before being re-used.**
 - Is the information about the animal formatted according to the Data Dictionary?
 - Are there any tags which are used twice in the same sheet?
 - Are there potential transcription errors in the `tag_code_space`? Ex: drag-and-drop errors from Excel
