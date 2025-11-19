@@ -115,7 +115,7 @@ git pull
 Resolve python libraries by using the mamba command:
 
 ~~~
-mamba env update -n root -f environment.yml
+mamba env update -n nodebook -f environment.yml
 ~~~
 {: .language-bash}
 
