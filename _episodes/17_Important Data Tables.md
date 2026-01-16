@@ -17,7 +17,7 @@ Each table is formatted to hold tag or receiver speciications for a certain manu
 These tables are used by the Nodebooks during verification processes and it is often important for Node Managers to do further investigating by searching these tables.
 
 These are the tables: 
--  vendor.c_vemco_tags
+- vendor.c_vemco_tags
 - vendor.c_vemco_receivers 
 - vendor.c_thelma_tags
 - vendor.c_thelma_receivers
@@ -25,31 +25,32 @@ These are the tables:
 
 Here are some useful SQL queries:
 - `select * from vendor.c_vemco_tags where serial_no ='XXXXX'`
--  `select * from vendor.c_vemco_tags where vue_id ='XXXXX'`
+- `select * from vendor.c_vemco_tags where vue_id ='XXXXX'`
 - `select * from vendor.c_vemco_receivers where tag_id ='XXXXX'`
 - `select * from vendor.c_vemco_receivers where serial_no ='XXXXX'`
-- vendor.c_thelma_receivers where serial_no ='XXXXX'`
+- `select * from vendor.c_thelma_receivers where serial_no ='XXXXX'`
 
-When we identify problems like different tag ID or tag life expectancy in tag 1 notebook, we should  check which one  is correct in vendor.c_vemco_tags.
+When we identify problems like different tag ID or tag life expectancy in tag-1 notebook, we should check which one is correct in vendor.c_vemco_tags.
 ![OTN Database - path of data through the system](../fig/Tag_ID_Code_check_edit.png)
 ![OTN Database - path of data through the system](../fig/Tag_life_check_edit.png)
 
 Details about `vendor.c_vemco_tags` table:
 - column `tag_fam` represents tag model type (V7, V9, V16...)
-- `vue_id` represents transmitter ID. Note some tags (the same SNs) may have several different transmitter IDs because they have different ID_codes.
-- `est_tag_life` represents a tag's life expectancy
+- column `vue_id` represents transmitter ID. Note some tags (the same serials) may have several different transmitter IDs because they have different ID_codes.
+- column `est_tag_life` represents a tag's life expectancy
 
 When we identify problems like different transmitter_IDs in deployment notebook, we want to check which one is correct in vendor.c_vemco_receivers
 
 When there's a missing INNOVASEA spec (warning shows as below), we want to first check if we have a auth file 
-`SELECT *
-FROM obis.contacts c
+```sql
+SELECT * FROM obis.contacts c
 LEFT JOIN vendor.contacts_auths ca
-  ON c.contact_pk = ca.contact_pk
+ON c.contact_pk = ca.contact_pk
 LEFT JOIN obis.contacts_projects cp
-  ON c.contact_pk = cp.contact_pk
-  where collectioncode = 'XXXXX'`
-  
+ON c.contact_pk = cp.contact_pk WHERE
+  collectioncode = 'XXXXX'
+```
+
 ![OTN Database - path of data through the system](../fig/Missing_spec_edit.png)
 
 
@@ -57,7 +58,7 @@ LEFT JOIN obis.contacts_projects cp
 
 ![OTN Database - path of data through the system](../fig/Transmitter_check_edit.png)
 
-Details about  `vendor.c_vemco_receivers` table:
+Details about `vendor.c_vemco_receivers` table:
 - `model` represents receiver models (VR2AR, VR2Tx, VR4...)
 - `tag_id` represents transmitter ID.
 
@@ -65,58 +66,39 @@ Details about  `vendor.c_vemco_receivers` table:
 **2. OBIS Schema**
 
 The OTN Node database format includes a "OBIS" schema which contains multiple tables.
-Each table is formatted to hold speiecs, instrument, animal, and project  information
+Each table is formatted to hold speiecs, instrument, animal, and project information
 
 
 There are a couple of important tables:
 - obis.scientificnames: list of projects and their associated species. `select * from obis.scientificnames where collectioncode = 'XXX'`
 - obis.lengthtype_codes: a collection of all existing length types and their entry in the standard vocabulary of NERC: `select * from obis.lengthtype_codes`
 - obis.lifestage_codes: a collection of all existing lifestage codes and their entry in the standard vocabulary of NERC: `select * from obis.lifestage_codes`
-- obis.instrument_models: a collection of all existing instrument model types:  `select * from obis.instrument_models`
+- obis.instrument_models: a collection of all existing instrument model types: `select * from obis.instrument_models`
 - obis.institution_codes: a collection of existing institutions with their information: `select * from obis.institution_codes`
 - obis.contacts: a collection of existing contacts with a unique identifier: `select * from obis.contacts`
 - obis.contacts_projects: a table of associations between contacts (with the unique identifier) and the projects they are a part of: `select * from obis.contacts_projects where collectioncode = 'XXXXX'`
-- obis.otn_animals: is similar to `schema.otn_animals`. It includes all animal information from `schema.otn_animals` but also contains all animals across all projects and times, this is a read-only table and should **not be updated**: `select * from obis.otn_animals`
-- obis.moorings: an aggregation of all the receiver and tag deployments information across all projects, this is a read-only table and should **not be updated**: `select * from obis.moorings` It contains all tag, transmitter, VMT, receiver, event... information. In this table, column `relationshiptype` explain the use of the tag. ` basisofrecord` is the data source where the data were collected. It extract the  all tags information across all projects from all `schema.otn_animals` tables. To distinguish the use of the tags, if they're used on animal, then you can see column relationshiptype shows ANIMAL.
-- obis.detection_extracts_list: a collection of all detection extracts for all pushes, with associated Gitlab issue: `select * from  obis.detection_extracts_list where push_date = 'YYYY-MM-DD'`
+- obis.otn_animals: an aggregation of all the animal information across all projects. This is a read-only table and should **not be updated**: `select * from obis.otn_animals`
+- obis.moorings: an aggregation of all the receiver and tag deployments information across all projects. This is a read-only table and should **not be updated**: `select * from obis.moorings`
+    - It contains information about all tags, transmitters, VMTs, receivers, events, downloads, etc. In this table, the columns `basisofrecord` and `relationshiptype` distinguish which type of data it is.
+- obis.detection_extracts_list: a collection of all detection extracts for all pushes, with associated Gitlab issue: `select * from obis.detection_extracts_list where push_date = 'YYYY-MM-DD'`
 - obis.otn_resources: a collection of projects and their information: `select * from obis.otn_resources where collectioncode= 'XXXXX'`
 - **IN OTNUNIT ONLY:** obis.loan_tracking: a collection of project loan information: `select * from obis.loan_tracking`
 
 
 **3. Discovery Schema**
 
-The OTN Node database format includes a "Discovery" schema which contains multiple tables.
-Each table is formatted to hold a summary of detecion  information
+The OTN Node database format includes a "discovery" schema which contains multiple tables.
+Each table is formatted to hold a summary of detecion information
 
-
-This schema holds the summarized information of the data. The tables in schema include:
-- discovery.all_animals: The animal biology information, scientific names, released locations and times: `select * from discovery.all_animals`
+This schema holds the summarized information of the data. The tables in this schema include:
+- discovery.all_animals: The animal biology information, scientific names, and release locations and times: `select * from discovery.all_animals`
 - discovery.detection_pre_summary: summarized information about detections and their matches grouped by week: `select * from discovery.detection_pre_summary`. Some noteworthy columns in this table:
     - `collectioncode` represents the receiver project code
     - `trackercode` represents the tag project code which is matched to the detection
     - `relationshiptype` represents the type of match (i.e. animal, unqualified, transmitter, and test)
     - `weekcollected` represents the week of the approximate detection time
-    - `fieldnumber` represents the transmitter id of the detection
+    - `fieldnumber` represents the transmitter ID of the detection
     - `rcvrcatnumber` represents the unique identifier of the receiver
     - `detection_count` represents how many times this fish has been detected during that week (`min_detect_date` to `max_detect_date`)
 
- 
-
-These tables have many applications, including reports from questions. For example, if the researcher wants to know "how many unique species are detected by DFO in each year? How many tags are detected by XXX project? How many projects are detected by XXX project?", they can find the answers through joins in SQL:
-```sql
-SELECT c.affiliation, COUNT(DISTINCT aa.scientificname) AS species_count
-FROM discovery.detection_pre_summary dps
-LEFT JOIN discovery.all_animals aa ON dps.relatedcatalogitem = aa.catalognumber
-LEFT JOIN (
-    SELECT DISTINCT cp.collectioncode, c.affiliation
-    FROM obis.contacts c
-    LEFT JOIN obis.contacts_projects cp ON c.contact_pk = cp.contact_pk
-    WHERE c.affiliation ILIKE '%ZZZ%'
-) c ON dps.collectioncode = c.collectioncode
-WHERE dps.relationshiptype = 'ANIMAL'
-GROUP BY c.affiliation;
-
-```
-
-
-
+These tables have many applications, including creating data reports. 
