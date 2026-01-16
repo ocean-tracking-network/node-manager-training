@@ -255,7 +255,7 @@ Events-1 is responsible for loading receiver events files into raw tables. This 
 
 ### Import cell
 
-As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 ### User Inputs
 
@@ -571,9 +571,9 @@ For the last part of this Nodebook you will need to load the to the `sensor_matc
 Output will appear like this:
 
 ~~~
-Inserting records from collectioncode.detections_2019 INTO sensor_match_2019... OK
+Inserting records from collectioncode.detections_YYYY INTO sensor_match_YYYY... OK
 Added XXX rows.
-Inserting records from collectioncode.detections_2021 INTO sensor_match_2021... OK
+Inserting records from collectioncode.detections_YYYY INTO sensor_match_YYYY... OK
 Added XXX rows.
 ~~~
 {: .language-plaintext .example}
@@ -689,7 +689,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ~~~
 {: .language-plaintext .example}
 
@@ -719,9 +719,9 @@ Once you are clear to continue loading you can run `create_detection_views`. Thi
 Output will look like:
 
 ~~~
-Creating view collectioncode.vw_detections_2020... OK
-Creating view collectioncode.vw_sentinel_2020... OK
-Creating view collectioncode.vw_detections_2021... OK
+Creating view collectioncode.vw_detections_YYYY... OK
+Creating view collectioncode.vw_sentinel_YYYY... OK
+Creating view collectioncode.vw_detections_YYYY... OK
 ~~~
 {: .language-plaintext .example}
 
@@ -984,26 +984,25 @@ This Nodebook will promote the events records from the intermediate `events` tab
     - These are intermediate tables which contain all events in this project across all years and detections in certain years.
     - For example, if a researcher want to know all spatial temperature data for a certain type of receiver in his project schema, they could use the query:
 ```sql
-select 
-hl.otn_array,hl.station_name,e.datetime as date,e.receiver, e."data" ,e.description,hl.rcv_serial_no,
-hl.deploy_date,hl.recover_date,hl.recover_ind,hl.dep_lat,hl.dep_long,hl.the_geom,hl.catalognumber 
-from
-	schema.events e 
-	left join halibt.rcvr_locations hl 
-	on model.f_end(e.receiver,'-') = model.f_end(hl.rcv_serial_no) 
-	where e.receiver ilike 'VR4%' and e.description = 'Temperature' 
+select
+  rcv.otn_array, rcv.station_name, e.datetime as date, e.receiver, e."data", e.description, rcv.rcv_serial_no,
+  rcv.deploy_date, rcv.recover_date, rcv.recover_ind, rcv.dep_lat, rcv.dep_long, rcv.the_geom, rcv.catalognumber 
+from schema.events e 
+left join schema.rcvr_locations rcv 
+on model.f_end(e.receiver,'-') = model.f_end(rcv.rcv_serial_no) where
+  strpos(e.receiver, 'VR4') = 1 and e.description = 'Temperature' 
 ```
-    - As another example, if we want to check how many distinct transmitter are detected by a receiver in a project schema during 2023-11-10 to 2024-05-29, we could use the query:
+    - As another example, if we want to check how many distinct transmitter are detected by a receiver 123456 in a project schema during 2023-11-10 to 2024-05-29, we could use the query:
 ```sql
 SELECT DISTINCT transmitter
 FROM schema.detections_2023
-WHERE receiver ILIKE '%550092%'
+WHERE receiver ILIKE '%123456%'
   AND datetime > '2023-11-10 00:00:00'
   AND datetime < '2024-05-29 18:30:00'
 UNION
 SELECT DISTINCT transmitter
 FROM sjrbl.detections_2024
-WHERE receiver ILIKE '%550092%'
+WHERE receiver ILIKE '%123456%'
   AND datetime > '2023-11-10 00:00:00'
   AND datetime < '2024-05-29 18:30:00'
 ```
