@@ -97,7 +97,8 @@ Often formatting errors occur in the information about the tag. Pay close attent
 
 The metadata template [available here](https://members.oceantrack.org/data/data-collection) has a `Sample Data Row` as an example of properly-formatted metadata, along with the `Data Dictionary` sheet which contains detailed expectations for each column. Refer back to these often.  We have also included some recommendations for filling in the tag metadata template on our [FAQ page](https://members.oceantrack.org/faq). Here are some guidelines:
 
-- Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those two (or more) records together.
+- Animals with >1 associated tag (sensors, or double-tagging): add one line PER `TRANSMITTER ID` into the Tag Metadata form. The `ANIMAL_ID` column, or the `TAG_SERIAL_NUMBER` column **must** be the same between the rows in order to link those 2 (or more) records together. Explanations: Tag `TAG_CODE_SPACE` (this is the "protocol", and is available from  tag specifications) can be formatted like "A69-1303" or "R64K" depending on the manufacturer. When a tag has sensors, it needs 1 line in the tag metadata per sensor. Each line should be nearly identical, but have different `TAG_ID_CODEs` (each associated with a sensor).Records with the same `TAG_SERIAL_NUMBER` and/or `ANIMAL_ID` will be recognized as 1 tag in our database.
+
 - Animals with anchor tags (ie: FLOY, spaghetti, streamer, dart, t-bar tags): ensure the `TAG_TYPE` column = `ANCHOR`. You may leave the following columns empty: `tag_manufacturer`, `tag_model`, `tag_id_code`, `tag_code_space` and `est_tag_life`.
 - Animals with satellite tags: ensure the `TAG_TYPE` column = `SATELLITE`. You may leave the following columns empty: `tag_id_code` and `tag_code_space`.
 
@@ -137,7 +138,7 @@ This cell will now complete the first round of Quality Control checks.
 The output will have useful information:
 - Is the sheet formatted correctly? Correct column names, datatypes in each column etc.
 - Are either the `animal_id` or `tag_serial_number` columns completed?
-- Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`?
+- Are there any `harvest_date` values in the metadata? Are they all after the `utc_release_date_time`? **Note:In our metadata we use the harvest_date column to indicate when the tag was removed from the fist animal before being re-used.**
 - Is the information about the animal formatted according to the Data Dictionary?
 - Are there any tags which are used twice in the same sheet?
 - Are there potential transcription errors in the `tag_code_space`? Ex: drag-and-drop errors from Excel
@@ -228,6 +229,11 @@ True
 ~~~
 {: .language-plaintext .example}
 
+####  Find Raw Data Table in DB (`schema.c_tag_meta_YYYY_MM`)
+    - This table will includes all the OTN compulsory columns for tag metadata as well as the ones the researcher includes. But only OTN compulsory columns are QCed: `select * from schema.c_tag_meta_YYYY_MM where tag_serial_number ='xxxxxx'`
+- Cache Tables (`schema.animalcache_YYYY_MM  ` & `schema.tagcache_YYYY_MM`)
+    - These are the intermediate tables in the tag process
+    - These two types of tables grab the necessary information from the raw table and splits it into two intermediate tables: One is the animal cache which contains all the information related to the tagged animals in this project on YYYY_MM. Another is tagcache related to the tag information.  Both tables contain release locations, release date, project code, institution, etc.
 
 #### Task list checkpoint
 
@@ -446,6 +452,9 @@ The Nodebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there are any errors go into database and fix the cache tables themselves, and re-run the cell.
 
+#### Find Cache Tables in DB (`schema.animalcache_YYYY_MM  ` & `schema.tagcache_YYYY_MM`)
+    - These are the intermediate tables in the tag process
+    - These two types of tables grab the necessary information from the raw table and splits it into two intermediate tables: One is the animal cache which contains all the information related to the tagged animals in this project on YYYY_MM. Another is tagcache related to the tag information.  Both tables contain release locations, release date, project code, institution, etc.
 
 #### Task list checkpoint
 
@@ -496,6 +505,10 @@ The Nodebook will indicate the sheet had passed quality control by adding a âœ”ï
 
 If there are any errors, contact the researcher to scope potential data fixes, then open a DB-Fix Ticket, and use the Database Fix Notebooks to resolve the issues.
 
+#### Find OTN Tables in DB (`schema.otn_animals`  & `schema.otn_transmitters`)
+   - Similar to the Cache Tables, these 2 OTN tables will contain all animal & tag in this projects across all time.
+   - An example query: `select * from schema.otn_transmitters ot where catalognumber =  'XXXXX'`
+
 
 #### Task list checkpoint
 
@@ -518,3 +531,6 @@ Then, please email a copy of this file to the researcher who submitted it, so th
 Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
 
 {% include links.md %}
+
+
+

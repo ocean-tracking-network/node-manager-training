@@ -255,7 +255,7 @@ Events-1 is responsible for loading receiver events files into raw tables. This 
 
 ### Import cell
 
-As in all Nodebooks run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
+As in all Nodebooks, run the import cell to get the packages and functions needed throughout the notebook. This cell can be run without any edits.
 
 ### User Inputs
 
@@ -291,6 +291,10 @@ Reset(s): XX
 ~~~
 {: .language-plaintext .example}
 
+
+#### Find Raw Data Table in DB (`schema.c_events_YYYY_MM` & `schema.c_detections_YYYY_MM`)
+    - The event table contains some environmental and receiver data for this project at this time, for e.g., temperature, depth, and battery.
+    - The detection table contains detection information for this project at this time. Here you can see tags detected by each receiver through different times.
 
 ### Database Connection
 
@@ -446,6 +450,7 @@ collectioncode.c_detections_yyyy_mm table found.
 {: .language-plaintext .example}
 
 
+
 ### Create Missing Tables
 
 Detections tables are only created on an as-needed basis. These cells will detect any tables you are missing and create them based on the years covered in the raw detection table (c_table). This will check all tables such as `detections_yyyy`, `sensor_match_yyyy` and `otn_detections_yyyy`.
@@ -557,6 +562,8 @@ In GitLab, this task can be completed at this stage:
 
 `- [ ] - NAME verify detections_yyyy (looking for duplicates) ("detections-2" notebook)`
 
+
+
 ###  Load sensors_match Tables by Year
 
 For the last part of this Nodebook you will need to load the to the `sensor_match_YYYY` tables. This loads detections with sensor information into a project's `sensor_match_yyyy` tables. Later, these tables will aid in matching vendor specifications to resolve sensor tag values.
@@ -564,9 +571,9 @@ For the last part of this Nodebook you will need to load the to the `sensor_matc
 Output will appear like this:
 
 ~~~
-Inserting records from collectioncode.detections_2019 INTO sensor_match_2019... OK
+Inserting records from collectioncode.detections_YYYY INTO sensor_match_YYYY... OK
 Added XXX rows.
-Inserting records from collectioncode.detections_2021 INTO sensor_match_2021... OK
+Inserting records from collectioncode.detections_YYYY INTO sensor_match_YYYY... OK
 Added XXX rows.
 ~~~
 {: .language-plaintext .example}
@@ -682,7 +689,7 @@ Once you have added your information, you can run the cell. Successful login is 
 Auth password:········
 Connection Notes: None
 Database connection established
-Connection Type:postgresql Host:db.load.oceantrack.org Database:otnunit User:admin Node:OTN
+Connection Type:postgresql Host:db.for.your.org Database:your_db_name User:your_node_admin Node:Node
 ~~~
 {: .language-plaintext .example}
 
@@ -712,9 +719,9 @@ Once you are clear to continue loading you can run `create_detection_views`. Thi
 Output will look like:
 
 ~~~
-Creating view collectioncode.vw_detections_2020... OK
-Creating view collectioncode.vw_sentinel_2020... OK
-Creating view collectioncode.vw_detections_2021... OK
+Creating view collectioncode.vw_detections_YYYY... OK
+Creating view collectioncode.vw_sentinel_YYYY... OK
+Creating view collectioncode.vw_detections_YYYY... OK
 ~~~
 {: .language-plaintext .example}
 
@@ -972,6 +979,36 @@ In GitLab, this task can be completed at this stage:
 ## events - 3 - create download records
 
 This Nodebook will promote the events records from the intermediate `events` table to the final `moorings` records. Only use this Nodebook after adding the receiver records to the moorings table as this process is dependant on receiver records.
+
+#### Find- Event & Detection Table (`schema.events` & `schema.detections_YYYY`)
+    - These are intermediate tables which contain all events in this project across all years and detections in certain years.
+    - For example, if a researcher want to know all spatial temperature data for a certain type of receiver in his project schema, they could use the query:
+```sql
+select
+  rcv.otn_array, rcv.station_name, e.datetime as date, e.receiver, e."data", e.description, rcv.rcv_serial_no,
+  rcv.deploy_date, rcv.recover_date, rcv.recover_ind, rcv.dep_lat, rcv.dep_long, rcv.the_geom, rcv.catalognumber 
+from schema.events e 
+left join schema.rcvr_locations rcv 
+on model.f_end(e.receiver,'-') = model.f_end(rcv.rcv_serial_no) where
+  strpos(e.receiver, 'VR4') = 1 and e.description = 'Temperature' 
+```
+    - As another example, if we want to check how many distinct transmitter are detected by a receiver 123456 in a project schema during 2023-11-10 to 2024-05-29, we could use the query:
+```sql
+SELECT DISTINCT transmitter
+FROM schema.detections_2023
+WHERE receiver ILIKE '%123456%'
+  AND datetime > '2023-11-10 00:00:00'
+  AND datetime < '2024-05-29 18:30:00'
+UNION
+SELECT DISTINCT transmitter
+FROM sjrbl.detections_2024
+WHERE receiver ILIKE '%123456%'
+  AND datetime > '2023-11-10 00:00:00'
+  AND datetime < '2024-05-29 18:30:00'
+```
+
+
+
 
 ### Import cells and Database connections
 
