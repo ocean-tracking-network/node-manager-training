@@ -21,7 +21,7 @@ flowchart LR
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
     get_meta --> gitlab(Create <br />Gitlab <br />issue)
     gitlab --> inspect(Visually <br />inspect)
-    inspect --> nodebook(Process and verify <br />with nodebooks)
+inspect --> nodebook(Process and verify <br />with nodebooks)
     nodebook --> plone(Add metadata <br />to repository folder)
     plone --> otn(Pass to <br />OTN)
     otn --> end2(( ))
@@ -99,7 +99,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 - When more than one instrument is deployed, downloaded, or recovered at the same station, enter each one on a separate line using the same `OTN_ARRAY` and `STATION_NO`.
 - When sentinel tags are co-deployed with receivers, their information can be added to `TRANSMITTER` and `TRANSMIT_MODEL` columns, on the same line as the receiver deployment.
 - If a sentinel tag is deployed alone then a new line for that station, with as much information as possible, is added.
-- When stations are moved to a new location, but the researcher wants to keep the same station names, we often recommend appending ‘_yyyy’ to the station name, but this change might be forgotten the next time they submit metadata. So, we need to manually compare between the database and the metadata for special cases like this. Researchers may also submit station names with special characters which have been previously corrected and  loaded to the database We need to  make sure those same changes are reflected in the new metadata.
+- When stations are moved to a new location, but the researcher wants to keep the same station names, we often recommend appending ‘_yyyy’ to the station name, but this change might be forgotten the next time they submit metadata. So, we need to manually compare between the database and the metadata for special cases like this. Researchers may also submit station names with special characters which have been previously corrected and loaded to the database We need to make sure those same changes are reflected in the new metadata.
 - When an instrument is deemed lost, a value of `l` or `lost` should be entered in the "recovered" field; if the instrument is found, this can be updated by changing the recovery field to `f` or `found` and resubmitting the metadata sheet.
 - Every time an instrument is brought to the surface, enter `y` to indicate it was successfully recovered, even if only for downloading and redeployment. A new line for the redeployment is required.
 
@@ -180,7 +180,7 @@ The output will have useful information:
 - Compared to the `stations` table in the database, are the station names correct? Have stations "moved" location? Are the reported bottom_depths significantly different (check for possible `ft` vs `m` vs `ftm` errors).
 - Are all recovery dates after the deployment dates?
 - Are all the provided `ins_model_no` values present in the `obis.instrument_models` table? If not, please check the records in the `obis.instrument_models` and the source file to confirm there are no typos. If this is a new model which has never been used before, use the `add instrument_models` Nodebook to add the new instrument model.
-- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer specifications we have in the database? **Note: For VR2AR and VR2Tx type receivers, researcher can  record  internal transmitters under the ‘transmitter’ column (example format: A69-1303-12345). We will then associate these ‘detections’ with the receiver! Though it's not a compulsory information, it does help us distinguish real and tesing detections for your project, which can reduce the risk of mismatching.**
+- Do all transceivers/test tags have their transmitters provided? Do these match any manufacturer specifications we have in the database? **Note: For VR2AR and VR2Tx type receivers, researcher can record internal transmitters under the ‘transmitter’ column (example format: A69-1303-12345). We will then associate these ‘detections’ with the receiver! Though it's not a compulsory information, it does help us distinguish real and tesing detections for your project, which can reduce the risk of mismatching.**
 
 
 - Are there any overlapping deployments (one serial number deployed at multiple locations for a period of time)?
@@ -312,7 +312,7 @@ In GitLab, this task can be completed at this stage:
 #### Find Station Tables in DB(`schema.stations` & `schema.rcvr_locations`)
     - These Station tables are intermediate tables. They grab the necessary information from the raw table.
     - `schema.stations` contains all distinct the deployment stations information from that schema across all years. Column `date` and `intended_lon`, `intended_lat` represent the first time and coordinate (lon,lat) this station was added.
-    - Note: In `schema.stations` table, all stations have the distinct names with distinct coordinates.  The notebook will show errors, if the researcher put different coordinates for the same location or put the same coordinate for different locations. Here we can use corresponding DB fix tool to change station names.
+    - Note: In `schema.stations` table, all stations have the distinct names with distinct coordinates. The notebook will show errors, if the researcher put different coordinates for the same location or put the same coordinate for different locations. Here we can use corresponding DB fix tool to change station names.
     - An example query: `select * from schema.stations where station_name in ('A','B')`
 
 ![OTN Database - path of data through the system](../fig/unique_station_names_edit.png)
@@ -375,9 +375,9 @@ In GitLab, this task can be completed at this stage:
 `- [ ] - verify rcvr_locations ("deploy" notebook)`
 
 #### Find schema.rcvr_locations tables in DB
-- These tables are also imtermediate tables which contains all  deployment information for all receivers from that schema across all years. Station is treated as an area, receivers can be deployed at the same station with different coordinates. Column `deploy_date` and `deploy_lon`, `deploy_lat` shows each receiver's deployment date and coordinates.
-    - Note: In `schema.rcvr_locations` table,  you may see the same station has different coordinates. But the notebook will show errors if the same receiver's overlapping deployments. Here we can look and this table for information we need to change and use corresponding DB fix tool.
-    - An example query:`select * from schema.rcvr_locations rl  where rl.rcv_serial_no = 'XXXXX'`
+- These tables are also imtermediate tables which contains all deployment information for all receivers from that schema across all years. Station is treated as an area, receivers can be deployed at the same station with different coordinates. Column `deploy_date` and `deploy_lon`, `deploy_lat` shows each receiver's deployment date and coordinates.
+    - Note: In `schema.rcvr_locations` table, you may see the same station has different coordinates. But the notebook will show errors if the same receiver's overlapping deployments. Here we can look and this table for information we need to change and use corresponding DB fix tool.
+    - An example query:`select * from schema.rcvr_locations rl where rl.rcv_serial_no = 'XXXXX'`
 
 ![OTN Database - path of data through the system](../fig/deployment_overlapping_edit.png)
 
@@ -436,8 +436,8 @@ The Nodebook will indicate the table has passed quality control by adding a ✔�
 If there are any errors with records that have already been promoted to the `moorings` table, you will need to create a db fix ticket in Gitlab to correct the records in the database. You may need to contact the researcher before resolving the error. 
 
 #### Find Mooring Tables in DB
-    - `schema.moorings` contains all receiver, transmitter, event information from this project. Note: the notebook will show errors if the same transmitter_ID has been used in different receivers.  We can check this table to check more information on transmitter_ID and may need to use the corresponding DB fix tool to change transmitter_ID.
-    - An example query: `select * from schema.moorings  where basisofrecord = 'TRANSMITTER' and relationshiptype = 'STATION'`
+    - `schema.moorings` contains all receiver, transmitter, event information from this project. Note: the notebook will show errors if the same transmitter_ID has been used in different receivers. We can check this table to check more information on transmitter_ID and may need to use the corresponding DB fix tool to change transmitter_ID.
+    - An example query: `select * from schema.moorings where basisofrecord = 'TRANSMITTER' and relationshiptype = 'STATION'`
 
 ![OTN Database - path of data through the system](../fig/ovelapping_transceivers_edit.png)
 
@@ -462,6 +462,6 @@ Finally, the GitLab ticket can be reassigned to an OTN analyst for final verific
 
 
 
-   
+ 
 
 
