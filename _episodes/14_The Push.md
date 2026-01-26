@@ -26,10 +26,10 @@ Push events happen **three** times a year. They start on the third Thursday of t
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
-Push schedule through 2025:
-- February 20, 2025
-- June 19, 2025
-- October 16, 2025
+Push schedule through 2026:
+- February 19, 2026
+- June 18, 2026
+- October 15, 2026
 
 ## Pre-Push Schedule
 
