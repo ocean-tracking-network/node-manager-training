@@ -39,7 +39,7 @@ In order to accommodate the increasing number of Nodes and meet Push deadlines, 
 The pre-Push timeline updates are as follows:
 - 20 days before the Push will be the submission deadline for data contributors and researchers
 - 7 days before the Push, there will be no more OTN helpers available for support (since we will be more focused on verification and Push organization) so please plan accordingly and reach out to the OTNDC team earlier for help with bigger messier data needs
-- On the Push date (listed above), the OTN data team will be moving any open in the nodes to the next milestone and the node will be "locked" or "hands-off" temporarily while we work on the Push (including verification, cross-matching, inheritance, and building discovery tables). After these X days, the node will be unlocked.
+- On the Push date (listed above), the OTN data team will be moving any still-open issues being tracked by the nodes' ticketing systems to the next milestone, and the node will be "locked" or "hands-off" temporarily while we work on the between-networks part of the Push (including verification, cross-matching, inheritance, and building discovery tables). After these X days, each node will be unlocked and data loading can resume.
 
 ## Node Manager Roles During a Push
 
@@ -51,7 +51,7 @@ Once the cut-off date has passed Node Managers are "off duty"! When it's time fo
 
 Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again. 
 
-We have created an OTNDC Bot that announces updates through Slack channels and will announce node Push statuses. This created Bot also sends push status reports about Gitlab tickets during non-Push time.
+We have created an OTNDC Bot that announces updates through OTN's node Slack channels, and will announce each node's Push status. This means all node managers will be notified when the Push begins and ends in a clear manner. This Bot also sends status reports about Gitlab tickets during non-Push time, to help Node Managers track and stay on top of their ticket queue.
 
 ## Push Reports
 
