@@ -34,6 +34,22 @@ keypoints:
 
 ArgosQC for near-real-time data is an essential automated process that uses state-space models (calling the underneath aniMotum package) to filter noisy satellite location data from vendors like SMRU and Wildlife Computers. Its effectiveness relies on configuring species-specific movement parameters and interpreting diagnostic outputs to produce reliable animal movement tracks for ecological research.
 
+## NRT data and NRT data sources
+1. Place holder for this topic
+2. ace holder for this topic
+
+## Quality Control for NRT data
+1. Place holder for this topic
+2. ace holder for this topic
+
+
+## ArgosQC workflow and features
+1. Place holder for this topic
+2. ace holder for this topic
+
+
+## Configuring ArgosQC
+
 ## ArgosQC Key Features
 https://github.com/ianjonsen/ArgosQC
 
