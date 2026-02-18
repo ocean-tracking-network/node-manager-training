@@ -4,7 +4,7 @@ teaching: 120
 exercises: 0
 questions:
 - "What are NRT data and NRT data sources/vendors?"
-- "Why NRT data needs QC?
+- "Why NRT data needs QC?"
 - "What is ArgosQC package?"
 - "ArgosQC's workflow/features"
 - "Satellite vendors: SMRU and WildlifeComputers"
@@ -12,7 +12,7 @@ questions:
 - "What are the mandatory import files for ArgosQC?"
 - "What are the output files and how to interpreate ArgosQC results and diagnoses?"
 - "What are the signs, and how do you fine-tune model parameters?"
-
+---
 
 
 #### below topics can be on a separate lesson.
@@ -32,11 +32,11 @@ keypoints:
 - "ArgosQC for near-real-time data"
 ---
 
-ArgosQC for near-real-time data is an essential automated process that uses state-space models (calling the underneath aniMotum package) to filter noisy satellite location data from vendors like SMRU and Wildlife Computers. Its effectiveness relies on configuring species-specific movement parameters and interpreting diagnostic outputs to produce reliable animal movement tracks for ecological research.
+ArgosQC for near-real-time data is an essential automated process that uses state-space models (calling the underneath aniMotum R package) to filter noisy Argos satellite location data from vendors like SMRU and Wildlife Computers. Its effectiveness relies on configuring species-specific movement parameters and interpreting diagnostic outputs to produce reliable animal movement tracks for ecological research.
 
 ## NRT data and NRT data sources
-1. Place holder for this topic
-2. ace holder for this topic
+1. Near Real-Time data are transmitted by satellite-linked electronic tags, when animals are at the ocean surface, via the Argos satellite constellation. Tag location is determined by the Argos satellite system by using the Doppler shift in tag transmission frequency as one or more polar-orbiting satellites pass overhead. This positioning technology is less precise than GPS and requires a statistical quality control process to obtain more reliable locations. At a minimum, satellite tags transmit their location, but may also include summaries of behavioural data such as dive profiles or diving and surfacing activity, and physical observations of water temperature, salinity and/or fluorimetry.
+2. Currently, the ArgosQC R package can access & download NRT data from two animal tag manufacturers - SMRU (Sea Mammal Research Unit, St Andrews, UK) and Wildlife Computers. SMRU tag data are made available on a server with a Web Application Firewall (https://www.smru.st-andrews.ac.uk/protected/technical.html), which requires a user ID and password (provided to the tag owner) to access the tag data files (stored in a `.mdb` file). Once a node manager has access to a tag owner's user ID and password, SMRU tag `.mdb` files can be download via ArgosQC. Wildlife Computers tag data are accessed via a Data Portal (https://my.wildlifecomputers.com/), which requires both a user account (with user ID and password) to access the Portal AND explicit consent by tag owner(s) to share their tag data (set up by the tag owner on the Data Portal). Details on accessing tag data via the Wildlife Computers Portal are here: https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf. Once a user account is set up by the node manager and explicit data sharing is set up by the tag owner, data can be downloaded by ArgosQC via the Wildlife Computers API.
 
 ## Quality Control for NRT data
 1. Place holder for this topic
@@ -87,3 +87,4 @@ Review Current Priorities: Before submitting, it is helpful to review the Issues
 
 Code Contributions: If you are interested in fixing a bug or adding a feature yourself, please consult the repository's Contributing guidelines (linked on the main page). The standard practice is to fork the repository, create a branch for your changes, and submit a Pull Request for review by the maintainer.
 
+{% include links.md %}
