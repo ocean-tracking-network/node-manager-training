@@ -36,20 +36,135 @@ ArgosQC for near-real-time data is an essential automated process that uses stat
 
 ## NRT data and NRT data sources
 1. Near Real-Time data are transmitted by satellite-linked electronic tags, when animals are at the ocean surface, via the Argos satellite constellation. 
-2. Currently, the ArgosQC R package can access & download NRT data from two animal tag manufacturers - SMRU (Sea Mammal Research Unit, St Andrews, UK) and Wildlife Computers. Typically, NRT data are downloaded & QC'd once every 24 hours until tag deployments have ended (e.g., due to tag battery failure, or animal recapture). SMRU tag data are made available on a server with a Web Application Firewall (https://www.smru.st-andrews.ac.uk/protected/technical.html), which requires a user ID and password (provided to the tag owner) to access the tag data files (stored in a `.mdb` file). Once a node manager has access to a tag owner's user ID and password, SMRU tag `.mdb` files can be download via ArgosQC. Wildlife Computers tag data are accessed via a Data Portal (https://my.wildlifecomputers.com/), which requires both a user account (with user ID and password) to access the Portal AND explicit consent by tag owner(s) to share their tag data (set up by the tag owner on the Data Portal). Details on accessing tag data via the Wildlife Computers Portal are here: https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf. Once a user account is set up by the node manager and explicit data sharing is set up by the tag owner, data can be downloaded by ArgosQC via the Wildlife Computers API.
+
+2. Currently, the ArgosQC R package can access & download NRT data from two animal tag manufacturers - SMRU (Sea Mammal Research Unit, St Andrews, UK) and Wildlife Computers. Typically, NRT data are downloaded & QC'd once every 24 hours until tag deployments have ended (e.g., due to tag battery failure, or animal recapture). SMRU tag data are made available on a [server with a Web Application Firewall](https://www.smru.st-andrews.ac.uk/protected/technical.html), which requires a user ID and password (provided to the tag owner) to access the tag data files (stored in a `.mdb` file). Once a node manager has access to a tag owner's user ID and password, SMRU tag `.mdb` files can be download via ArgosQC. Wildlife Computers tag data are accessed via a [Data Portal](https://my.wildlifecomputers.com/), which requires both a user account (with user ID and password) to access the Portal AND explicit consent by tag owner(s) to share their tag data (set up by the tag owner on the Data Portal). Details on accessing tag data via the Wildlife Computers Portal are [here](https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf). Once a user account is set up by the node manager and explicit data sharing is set up by the tag owner, data can be downloaded by ArgosQC via the Wildlife Computers API.
 
 ## Quality Control for NRT data
 1. With the Argos satellite system, tag location is measured by tag transmissions received by polar-orbiting Argos-Kinéis satellites as they pass overhead, and relayed to a base in France. The Doppler shift in tag transmission frequency is used to triangulate position of the tag. These calculations are conducted in real-time by the French organization Collecte Localisation Satellites (CLS). This positioning technology is less precise than GPS and requires a statistical quality control process (provided by the ArgosQC R package) to obtain more reliable locations and estimates of their uncertainty. 
+
 2. At a minimum, satellite tags transmit their location but, depending on their programming and on-board sensor capabilities, may also transmit summaries of behavioural data such as dive profiles or diving and surfacing activity summaries, and physical observations of water temperature, salinity and/or fluorimetry at depth (CTD/FTD profiles) as animal dive through the water column. Tag owners can obtain records of their tag(s) locations through time from CLS, but CLS also provides the location data and all tag transmission messages to the tag manufacturers in near real-time. The tag manufacturers decompress and organize these messages (typically) into distinct tag data files (e.g., one file per sensor data stream or behavioural activity) and make them available to the tag owners.
-3. Typically, the behavioural and physical observations data files either have crudely interpolated locations or no locations associated with each record. The ArgosQC R package uses a statistically robust interpolation to append a location and its uncertainty to each record in these data files. This both provides more accurate locations for each observation and eliminates the need for subsequent users of the data to geolocate tag-observed events or physical observations.
+
+3. Typically, the behavioural and physical observations data files either have crudely interpolated locations or no locations associated with each record. The ArgosQC R package uses a statistically robust interpolation to append a location and its uncertainty to each record, based on their observation datetime, in these data files. This provides more accurate locations for each tag-transmitted observation and eliminates the need for subsequent users of the data to geolocate every tag-transmitted observation.
 
 
 ## ArgosQC workflow and features
-1. Place holder for this topic
-2. ace holder for this topic
+1. ArgosQC workflows are intended to be run automatically via a scheduler and require minimal supervision. Separate workflows are provided for SMRU and Wildlife Computers tags. Both require the node manager to set up a JSON configuration file that specifies all required project information and QC parameters. In general, both workflows do the following:
+- Downloads specified tag data from the tag Manufacturer
+- Acquires any available deployment metadata from the tag Manufacturer & builds an operational deployment metadata file, or ingests a specified metadata file (CSV).
+- Prepares tag location data for state-space model (SSM) fitting
+- Fits the SSM in 2 passes to each tag location dataset. SSM fitting to multiple tag datasets is conducted in parallel across n available processors.
+- Reroutes any SSM-estimated locations that occur on land back into the ocean.
+- Interpolates & appends SSM locations to each record in each tag data file.
+- Generates diagnostic plots of the SSM fits to tag location data & a map of the SSM estimated tracks.
+- Combines all QC-annotated tag data files across individual tags & writes these aggregated files, plus SSM summary output & annotated deployment metadata, to CSV files as the final QC output.
+
+More specific details on the workflows are provided in the ArgosQC vignettes: [SMRU](https://ianjonsen.github.io/ArgosQC/articles/SMRU_workflow.html) and [Wildlife Computers](https://ianjonsen.github.io/ArgosQC/articles/WC_workflow.html). 
 
 
 ## Configuring ArgosQC
+A JSON configuration file provides all required information to fully specify an ArgosQC workflow. The config files are slightly different for SMRU vs Wildlife Computers tags, but both have the same 4-block structure, within which different QC parameters are specified:
+
+- `setup`
+- `harvest`
+- `model`
+- `meta`
+
+The `setup` block specifies the National Observing Program (e.g., `atn`, `otn`, `imos`) overseeing data assembly & the directory paths for downloading or accessing tag data files, accessing metadata & output directories. The `harvest` block specifies data harvesting parameters such as user access to the tag manufacturer's data portal. The `model` block specifies model- and data-specific parameters required for SSM fitting. The `meta` block specifies species and deployment location information, but is only required when no metadata CSV file is specified in the `setup` block. The ArgosQC vignettes provide details on the block parameters specific to [SMRU](https://ianjonsen.github.io/ArgosQC/articles/SMRU_config_file.html) and [Wildlife Computers](https://ianjonsen.github.io/ArgosQC/articles/WC_config_file.html) config files.
+
+Setting up a `config` file is a straightforward process. The following is an example for Wildlife Computers (WC) tags. The JSON file looks like this:
+
+```
+[{"setup": 
+	{
+	"program":"otn",
+	"data.dir":"data_grey_seal_lidgard",
+	"meta.file":null,
+	"maps.dir":"output/maps/grey_seal_lidgard",
+	"diag.dir":"output/diag/grey_seal_lidgard",
+	"output.dir":"output/irap/grey_seal_lidgard",
+	"return.R":false
+	},
+"harvest": 
+	{
+	"download":true,
+	"owner.id":"558abcaea86a234b286bdc3e",
+	"wc.akey":"...",
+	"wc.skey":"...",
+	"tag.list":"grey_seal_lidgard_tags.csv",
+	"dropIDs":null
+	},
+"model": 
+	{
+	"model":"rw",
+	"vmax":3,
+	"time.step":3,
+	"proj":null,
+	"reroute":true,
+	"dist":20,
+	"barrier":null,
+	"buffer":0.25,
+	"centroids":true,
+	"cut":false,
+	"min.gap":72,
+	"QCmode":"nrt",
+	"pred.int":6
+	},
+"meta":
+	{
+	"common_name":"grey seal",
+	"species":"Halichoerus grypus",
+	"release_site":"unknown",
+	"state_country":"Canada"
+	}
+}]
+```
+
+In the `setup` block the parameters are: 
+
+- `program` - The National Observing Program overseeing the data QC (here it's `otn`)
+- `data.dir` - writing downloaded data (or accessing previously downloaded data)
+- `meta.file` - gives path & deployment metadata CSV filename (if exists, otherwise `null`)
+- `maps.dir` - gives the path to write the map of QC'd tracks
+- `diag.dir` - gives the path to write the QC diagnostic plots (fits of SSM-estimated longitudes and latitudes overlaid on the raw Argos data)
+- `output.dir` - gives the path to write QC output CSV files
+- `return.R` - a logical indicating whether the intermediate results of the QC should be written to the R console as a list of R objects. This is only useful for troubleshooting or Delayed-Mode QC's and should always be set to `false` for NRT QC workflows.
+
+In the `harvest` block the parameters are:
+
+- `download` - a logical indicating whether the tag data files are to be downloaded from the WC Portal. If false, then the workflow looks for existing tag data in the `data.dir`.
+- `owner.id` - an alphanumeric ID identifying the tag owner in the WC Data Portal. ArgosQC has a function called `wc_get_collab_ids` that lists the `owner.id`'s for tag owners who have setup data sharing, via the WC Data Portal, with the node manager.
+- `wc.akey` - an alphanumeric access key set up by the node manager for accessing the WC Data Portal API. **details to be provided via WC Portal screenshots??**
+- `wc.skey` - an alphanumeric secret key set up by the node manager for accessing the WC Data Portal API. **details to be provided via WC Portal screenshots??**
+- `tag.list` - a CSV file listing the WC tags to be included in the QC workflow. The file has a single column with name `uuid`, where the `uuid` values are the UUID's assigned by WC to each tag dataset:
+  
+  ![](../fig/wc_tag.list.png){width=200}
+- `dropIDs` - is redundant and can be left set to `null` for all workflows.
+
+In the `model` block the parameters are:
+
+- `model` - the state-space model to be used to QC the location data. Can be either `rw` (a random walk model) or `crw` (a correlated random walk model). The `rw` model is the safest choice for most animal tracking data.
+- `vmax` - the maximum expected travel rate (in m/s) of the animals. For seals and penguins this is typically 3 m/s, for sea turtles it is usually 2 m/s, for flying sea birds it should set to between about 10 and 15 m/s depending on their maximum plausible travel rate.
+- `time.step` - the regular time interval (in decimal hours) that the SSM estimates locations. Typically, this should fall in the range of 3 - 6 hours, but depends on the frequency of Argos locations. Shorter time.steps will generally increase processing time, longer will result in QC'd tracks that are too coarse to capture essential movement details (this can be assessed on a test QC run by viewing the QC-generated maps & diagnostic plots).
+- `proj` - An optional proj4string (with units in km) giving the projection that should be used for the Argos data when fitting the SSM - the QC'd data will also have this projection. If left `null` then ArgosQC guesses at the most appropriate projection based on where the majority of the Argos locations occur. Typically, a projection only needs to be specified when the Argos locations in a polar region, e.g., beyond +/- 50$^\circ$ latitude.
+- `reroute` - A logical indicating whether locations on land are to be rerouted off of land.
+- `dist` - the distance (in km) to buffer around SSM locations when rerouting off of land. Larger buffer distances include more coastline, which can improve rerouting in some circumstances but will increase processing time considerably. This shouldn't usually need to be changed from 20 km.
+- `barrier` - an optional ESRI shapefile for the land barrier used in rerouting. In rare cases where animal movements are highly localised and constrained to nearshore regions, a higher resolution land polygon dataset for the specific region may be more suitable than the default global land polygon dataset.
+- `buffer` - the distance (in km) to move rerouted locations away from the closest land. 
+- `centroids` - a logical indicating whether Delaunay triangle centroids are to be included in the rerouting algorithm. Including can result in more plausible rerouting solutions but can also increase processing time.
+- `cut` - A logical indicating whether SSM-estimated tracks should be cut in regions where there are long periods with no Argos data. Sufficiently long data gaps will result in long straight-line interpolations by the SSM `rw` model and unrealistic loopeding artefacts by the SSM `crw` model. Typically, this is not used in NRT QC workflows.
+- `min.gap` - the minimum length of data gap (in hours) to consider for cutting out SSM-estimated locations. Ignored if `cut` is set to `false`.
+- `QCmode` - set to `nrt` for NRT QC workflows.
+- `pred.int` - the prediction interval (in hours) to use when interpolating SSM-estimated locations to tag-transmitted behavioural & physical observation records. This must be both less than or equal to the `time.step` value and also be a multiple of the `time.step` value (e.g., `time.step` = 3, `pred.int` could be 3, 6, 9 or 12 h). 
+
+In the `meta` block the parameters are:
+
+- `common_name` - the common name of the tagged species
+- `species_name` - the Latin name of the tagged species
+- `release_site` - the locality name closest to where the tag was deployed (e.g., "Sable Island")
+- `state_country` - the country or state (e.g., "Canada" or "French Overseas Territory")
+
+The `meta` block is only required when no metadata file is supplied in the `setup` block. In this case, ArgosQC obtains available tag deployment metadata from the tag manufacturer, restructures it, and appends the attributes listed in the `meta` block.
+
 
 ## ArgosQC Key Features
 https://github.com/ianjonsen/ArgosQC
