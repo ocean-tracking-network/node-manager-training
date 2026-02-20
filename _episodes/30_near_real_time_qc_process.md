@@ -17,19 +17,19 @@ questions:
 
 #### below topics can be on a separate lesson.
 
-- "How to access researchers' NRT data?"
-- "How to match satellite tags from "
+- "How do I get access to collaborating researchers' NRT data?"
+- "How to match satellite tags to metadata in my Node"
 - "Satellite data providers, programs, PTTs and UUIDs"
 
 
 
 objectives:
-- "Understand near-real-time animal location data"
-- "Understand satillite tags and vendors"
-- "Understand the purpose of ArgosQC and configuration parameters"
+- "Understand how to collect, process and quality-control near-real-time animal location data"
+- "Understand the differences between the major satellite tags models and vendors"
+- "Understand the purpose of ArgosQC in the data pipeline, and what its configuration parameters can do"
 
 keypoints:
-- "ArgosQC for near-real-time data"
+- "using ArgosQC to collect and process satellite position data in near-real-time"
 ---
 
 ArgosQC for near-real-time data is an essential automated process that uses state-space models (calling the underneath aniMotum R package) to filter noisy Argos satellite location data from vendors like SMRU and Wildlife Computers. Its effectiveness relies on configuring species-specific movement parameters and interpreting diagnostic outputs to produce reliable animal movement tracks for ecological research.
@@ -42,7 +42,7 @@ ArgosQC for near-real-time data is an essential automated process that uses stat
 ## Quality Control for NRT data
 1. With the Argos satellite system, tag location is measured by tag transmissions received by polar-orbiting Argos-Kinéis satellites as they pass overhead, and relayed to a base in France. The Doppler shift in tag transmission frequency is used to triangulate position of the tag. These calculations are conducted in real-time by the French organization Collecte Localisation Satellites (CLS). This positioning technology is less precise than GPS and requires a statistical quality control process (provided by the ArgosQC R package) to obtain more reliable locations and estimates of their uncertainty. 
 
-2. At a minimum, satellite tags transmit their location but, depending on their programming and on-board sensor capabilities, may also transmit summaries of behavioural data such as dive profiles or diving and surfacing activity summaries, and physical observations of water temperature, salinity and/or fluorimetry at depth (CTD/FTD profiles) as animal dive through the water column. Tag owners can obtain records of their tag(s) locations through time from CLS, but CLS also provides the location data and all tag transmission messages to the tag manufacturers in near real-time. The tag manufacturers decompress and organize these messages (typically) into distinct tag data files (e.g., one file per sensor data stream or behavioural activity) and make them available to the tag owners.
+2. At a minimum, satellite tags transmit their location but, depending on their programming and on-board sensor capabilities, may also transmit summaries of behavioural data such as dive profiles or diving and surfacing activity summaries, and physical observations of water temperature, salinity and/or fluorimetry at depth (CTD/FTD profiles) as animals dive through the water column. Tag owners can obtain records of their tag(s) locations through time from CLS, but CLS also provides the location data and all tag transmission messages to the tag manufacturers in near real-time. The tag manufacturers decompress and organize these messages (typically) into distinct tag data files (e.g., one file per sensor data stream or behavioural activity) and make them available to the tag owners via an API, data portal, or secure Web-Accessible Folder (WAF).
 
 3. Typically, the behavioural and physical observations data files either have crudely interpolated locations or no locations associated with each record. The ArgosQC R package uses a statistically robust interpolation to append a location and its uncertainty to each record, based on their observation datetime, in these data files. This provides more accurate locations for each tag-transmitted observation and eliminates the need for subsequent users of the data to geolocate every tag-transmitted observation.
 
@@ -197,7 +197,7 @@ https://github.com/ianjonsen/ArgosQC
 
 ## Feature Request and Bug Report
 
-As an open-source tool under active development (with the last commit on February 12, 2026), user feedback is essential for improving ArgosQC. If you encounter problems or have ideas for new features, you are encouraged to contribute through the following channels:
+As an open-source tool under active development, user feedback is essential for improving ArgosQC. If you encounter problems or have ideas for new features, you are encouraged to contribute through the following channels:
 
 Report Bugs via GitHub Issues: If you find a bug (e.g., a workflow error, data parsing problem, or unexpected crash), please submit a report through the repository's Issues tab. When reporting, include:
 
