@@ -71,7 +71,7 @@ A JSON configuration file provides all required information to fully specify an 
 
 The `setup` block specifies the National Observing Program (e.g., `atn`, `otn`, `imos`) overseeing data assembly & the directory paths for downloading or accessing tag data files, accessing metadata & output directories. The `harvest` block specifies data harvesting parameters such as user access to the tag manufacturer's data portal. The `model` block specifies model- and data-specific parameters required for SSM fitting. The `meta` block specifies species and deployment location information, but is only required when no metadata CSV file is specified in the `setup` block. The ArgosQC vignettes provide details on the block parameters specific to [SMRU](https://ianjonsen.github.io/ArgosQC/articles/SMRU_config_file.html) and [Wildlife Computers](https://ianjonsen.github.io/ArgosQC/articles/WC_config_file.html) config files.
 
-Setting up a `config` file is a straightforward process. The following is an example for Wildlife Computers (WC) tags. The JSON file looks like this:
+The JSON file for NRT QC of Wildlife Computers (WC) tags looks like this:
 
 ```
 [{"setup": 
@@ -132,12 +132,15 @@ In the `setup` block the parameters are:
 In the `harvest` block the parameters are:
 
 - `download` - a logical indicating whether the tag data files are to be downloaded from the WC Portal. If false, then the workflow looks for existing tag data in the `data.dir`.
-- `owner.id` - an alphanumeric ID identifying the tag owner in the WC Data Portal. ArgosQC has a function called `wc_get_collab_ids` that lists the `owner.id`'s for tag owners who have setup data sharing, via the WC Data Portal, with the node manager.
-- `wc.akey` - an alphanumeric access key set up by the node manager for accessing the WC Data Portal API. **details to be provided via WC Portal screenshots??**
-- `wc.skey` - an alphanumeric secret key set up by the node manager for accessing the WC Data Portal API. **details to be provided via WC Portal screenshots??**
-- `tag.list` - a CSV file listing the WC tags to be included in the QC workflow. The file has a single column with name `uuid`, where the `uuid` values are the UUID's assigned by WC to each tag dataset:
+- `owner.id` - an alphanumeric ID identifying the tag owner in the WC Data Portal (see next section for details on how to obtain). 
+- `wc.akey` - an alphanumeric access key set up by the node manager for accessing the WC Portal API (see next section for details on how to obtain). 
+- `wc.skey` - an alphanumeric secret key set up by the node manager for accessing the WC Portal API (see next section for details on how to obtain). 
+- `tag.list` - a CSV file listing the WC tags to be included in the QC workflow. By default, ArgoQC downloads all the tag datasets associated with the specified WC `owner.id`. The `tag.list` parameter provides a means to filter out tags listed on the Portal that are not to be included in the NRT QC. There are a variety of reasons why some tag datasets should not be included in a NRT QC workflow. For example, the tags are listed but have not yet been deployed; they have recently been deployed but not transmitted enough data; they were QC'd previously and are no longer actively transmitting data; or they are proving to be problematic - for a variety of reasons, e.g., faulty sensor(s) - during the QC workflow. Typically, tags need to transmit data for a minimum of 4-5 days before the NRT QC will be viable as too few location data will result in SSM convergence failures. The `tag.list` file has a single column with name `uuid`, where the `uuid` values are the UUID's assigned by WC to each tag dataset:
   
   ![](../fig/wc_tag.list.png){width=200}
+  
+  (see next section for details on how to obtain the UUID's from the WC Portal).
+  
 - `dropIDs` - is redundant and can be left set to `null` for all workflows.
 
 In the `model` block the parameters are:
@@ -165,6 +168,15 @@ In the `meta` block the parameters are:
 
 The `meta` block is only required when no metadata file is supplied in the `setup` block. In this case, ArgosQC obtains available tag deployment metadata from the tag manufacturer, restructures it, and appends the attributes listed in the `meta` block.
 
+## Setting up an ArgosQC `config` file for NRT QC workflow
+Setting up a `config` file requires a number of steps. For WC tags, node manager must:
+
+1. Ensure they have access to the WC Portal and its API by first registering for a WC user account **details to be provided via WC Portal screenshots??**
+2. Set up an access and secret key pair to securely interact with the API **details to be provided via WC Portal screenshots??**
+
+ArgosQC has a function called `wc_get_collab_ids` that lists the `owner.id`'s for tag owners who have setup data sharing, via the WC Data Portal, with the node manager. An example use case is provided below.
+
+**More details on setup to go here**
 
 ## ArgosQC Key Features
 https://github.com/ianjonsen/ArgosQC
