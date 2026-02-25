@@ -145,11 +145,11 @@ In the `harvest` block the parameters are:
 
 In the `model` block the parameters are:
 
-- `model` - the state-space model to be used to QC the location data. Can be either `rw` (a random walk model) or `crw` (a correlated random walk model). The `rw` model is the safest choice for most animal tracking data.
-- `vmax` - the maximum expected travel rate (in m/s) of the animals. For seals and penguins this is typically 3 m/s, for sea turtles it is usually 2 m/s, for flying sea birds it should set to between about 10 and 15 m/s depending on their maximum plausible travel rate.
+- `model` - the state-space model to be used to QC the location data. Can be either `rw` (a random walk model) or `crw` (a correlated random walk model). The `rw` model is the safest choice for most NRT QC workflows. The `crw` model can yield more accurate location estimates but only with high quality Argos data (i.e., observed locations at a consistent frequency of at least 5-10 locations/day with no prolonged, > ~2 days, data gaps).
+- `vmax` - the maximum expected sustanined travel rate (in m/s) of the animals. For seals, turtles, penguins, whales, sharks and other large fish a reasonable value is  3-5 m/s, for flying sea birds it should set higher (e.g., 10 - 15 m/s).
 - `time.step` - the regular time interval (in decimal hours) that the SSM estimates locations. Typically, this should fall in the range of 3 - 6 hours, but depends on the frequency of Argos locations. Shorter time.steps will generally increase processing time, longer will result in QC'd tracks that are too coarse to capture essential movement details (this can be assessed on a test QC run by viewing the QC-generated maps & diagnostic plots).
-- `proj` - An optional proj4string (with units in km) giving the projection that should be used for the Argos data when fitting the SSM - the QC'd data will also have this projection. If left `null` then ArgosQC guesses at the most appropriate projection based on where the majority of the Argos locations occur. Typically, a projection only needs to be specified when the Argos locations in a polar region, e.g., beyond +/- 50$^\circ$ latitude.
-- `reroute` - A logical indicating whether locations on land are to be rerouted off of land.
+- `proj` - An optional proj4string (with units in km) giving the projection that should be used for the Argos data when fitting the SSM - the QC'd data will also have this projection. If left `null` then ArgosQC guesses at the most appropriate projection based on the geographic region of the majority of the Argos locations. Typically, a projection only needs to be specified when the Argos locations in a polar region, e.g., beyond +/- 50$^\circ$ latitude. In these cases, a polar stereographic projection is usually optimal.
+- `reroute` - A logical indicating whether locations on land are to be rerouted off of land. This is usually warranted for most marine animals, however may be problematic for tagged animals (i.e., some seals & penguins) that frequently haulout on land for prolonged periods in the middle of tag deployments, and for seabirds that frequently fly over or return to land.
 - `dist` - the distance (in km) to buffer around SSM locations when rerouting off of land. Larger buffer distances include more coastline, which can improve rerouting in some circumstances but will increase processing time considerably. This shouldn't usually need to be changed from 20 km.
 - `barrier` - an optional ESRI shapefile for the land barrier used in rerouting. In rare cases where animal movements are highly localised and constrained to nearshore regions, a higher resolution land polygon dataset for the specific region may be more suitable than the default global land polygon dataset.
 - `buffer` - the distance (in km) to move rerouted locations away from the closest land. 
@@ -200,11 +200,11 @@ Steps 2 and 3 only need to be done once.
     
     Choose the appropriate `owner.id` and copy it into the ArgosQC config file. Only one `owner.id` can be used per config file:
     
-    ![](../fig/wc_config_owner.id.png){width=500}
+    ![](../fig/wc_config_owner.id.png){width=400}
     
 7.  Copy and paste the WC access and secret keys that were generated in step 3 into `harvest:wc.akey` and `harvest:wc.skey`, respectively:
 
-    ![](../fig/wc_config_akey_skey.png){width=500}
+    ![](../fig/wc_config_akey_skey.png){width=400}
     
 8.  Get the WC dataset UUID's from the Portal to populate the `harvest:tag.list` file, using the ArgosQC function `wc_get_uuids`:
     ```
@@ -228,15 +228,21 @@ Steps 2 and 3 only need to be done once.
     
     Move this CSV file into the QC working directory and copy the file name into `harvest:tag.list`:
     
-    ![](../fig/wc_config_tag.list.png){width=500}
+    ![](../fig/wc_config_tag.list.png){width=400}
     
-    To conduct a QC workflow on all the owner's tag datasets, `harvest:tag.list` can be set to `null`.
+    This approach is required, for example, when the owner's tags have been deployed on multiple species. In this case, separate QC workflows need to be run for each species. The WC Portal typically does not contain information on the species tags were deployed on, so the node manager will require some minimum deployment metadata from the tag owner to identify which tags (e.g., by tag serial number &/or deployment date) were deployed on which species. If all the owner's tags were deployed on a single species in a common geographic locations then they can likely be QC'd in a single workflow. To conduct a QC workflow on all the owner's tag datasets, `harvest:tag.list` should be set to `null`.
     
-10. 
+10. The `model` section of the config file provides parameters and information to conduct the QC, including: fitting the state-space model (SSM) to the tag location data; rerouting locations off of land; interpolating SSM locations to the times of each record in the various tag data files. A good starting place for parameter values is provided in the example config file:
 
+    ![](../fig/wc_config_model_params.png){width=400}
 
+    See the `Configuring ArgosQC` section (above) for an explanation of the typical parameter values. Generally, the config parameters only need to be set once per species but arriving at reasonable parameter values usually requires at least one QC test run. The node manager should examine the QC-generated map & diagnostic plots to ensure the QC results are reasonable. Below are some examples of the maps & diagnostic plots from "good" and "bad" QC outcomes.
 
 **More details on setup to go here**
+
+11. The `meta` section of the config file is only required if no metadata file is provided in the `setup` block. When no metadata file is provided, ArgosQC uses the fields in the `meta` block plus partial deployment metadata downloaded from the WC Portal. ArgosQC assembles these metadata attributes and writes a deployment metadata CSV file as one of the QC outputs. This file, if sufficiently complete, can be used as an input to subsequent QC runs by supplying the CSV file in the `setup` block. When both a metadata file & completed `meta` config block are provided, the attributes from the metadata file will supersede those in the `meta` block.
+
+
 
 ## ArgosQC Key Features
 https://github.com/ianjonsen/ArgosQC
