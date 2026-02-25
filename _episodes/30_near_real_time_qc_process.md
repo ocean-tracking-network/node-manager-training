@@ -168,13 +168,73 @@ In the `meta` block the parameters are:
 
 The `meta` block is only required when no metadata file is supplied in the `setup` block. In this case, ArgosQC obtains available tag deployment metadata from the tag manufacturer, restructures it, and appends the attributes listed in the `meta` block.
 
-## Setting up an ArgosQC `config` file for NRT QC workflow
-Setting up a `config` file requires a number of steps. For WC tags, node manager must:
+## How to set up an ArgosQC `config` file for a NRT QC workflow 
+###    Wildlife Computers tags
+Setting up a `config` file for the first time requires a number of steps. The node manager must first create a new JSON, e.g., by using the above example as a template and then:
 
-1. Ensure they have access to the WC Portal and its API by first registering for a WC user account **details to be provided via WC Portal screenshots??**
-2. Set up an access and secret key pair to securely interact with the API **details to be provided via WC Portal screenshots??**
+1.  Update the `setup` block, ensuring the directory and file paths point to the correct locations. Note, all sub-directories and files must be contained within a single working directory. ArgosQC will create the sub-directories inside of this working directory, if they do not exist. We recommend that tags deployed on multiple species, even if associated with the same `owner.id`, be split into separate QC workflows (i.e., have different config files).
 
-ArgosQC has a function called `wc_get_collab_ids` that lists the `owner.id`'s for tag owners who have setup data sharing, via the WC Data Portal, with the node manager. An example use case is provided below.
+2.  Ensure they have access to the WC Portal and its API by first registering for a WC Portal account: 
+![](../fig/wc_portal_create_account.png){width=400}
+
+3.  Login to the WC Portal account (a) select "Account Settings" (b), select "Web Services Security" (c.1) & add an access and secret key pair (c.2) to securely download data via the WC Portal API:
+  a.  ![](../fig/wc_portal_login.png){width=400}
+  b.  ![](../fig/wc_portal_account_settings.png){width=400}
+  c.  ![](../fig/wc_portal_security_keypair.png){width=400}
+
+Steps 2 and 3 only need to be done once.
+
+4.  Ensure the data owner(s) have explicitly set up data sharing with the node manager within the WC Portal. The data owner(s) will need the email address the node manager used for their WC Portal user account. Each time a data owner has new tags registered in the WC Portal, those tags will need to be explicitly shared with the node manager. This [document (p 19)](https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf) provides details on how data owners can set up data sharing within the WC Portal.
+
+5.  Set `harvest:download` to `true` if the data are to be downloaded from the WC Portal.
+
+6.  Once data sharing has been setup, the node manager must find the data owner(s) WC Portal ID(s). This can be done within R using the ArgosQC utility function `wc_get_collab_ids`:
+    
+    ```
+    ArgosQC:::wc_get_collab_ids(a.key = "...", s.key = "...")
+    ```
+    
+    Where the `a.key` and `s.key` values are obtained from the WC Portal (step 3c, above). Executing this function with R returns a data.frame of all data owners' (collaborators) ID's and email addresses who have set up data sharing with the node manager:
+    
+    ![](../fig/wc_owner.ids.png){width=300}
+    
+    Choose the appropriate `owner.id` and copy it into the ArgosQC config file. Only one `owner.id` can be used per config file:
+    
+    ![](../fig/wc_config_owner.id.png){width=500}
+    
+7.  Copy and paste the WC access and secret keys that were generated in step 3 into `harvest:wc.akey` and `harvest:wc.skey`, respectively:
+
+    ![](../fig/wc_config_akey_skey.png){width=500}
+    
+8.  Get the WC dataset UUID's from the Portal to populate the `harvest:tag.list` file, using the ArgosQC function `wc_get_uuids`:
+    ```
+    ArgosQC:::wc_get_uuids(a.key = "...", s.key = "...", owner.id = "...")
+    ```
+    
+    Where `a.key` and `s.key` are the node manager's keys, and `owner.id` is a single id obtained from step 6. Executing this function in R returns a data.frame of all the owner's datasets on the WC Portal; one per record:
+    
+    ![](../fig/wc_dataset_uuids.png){width=800}
+    
+    The key variables in this data.frame are:
+      - `id` - the dataset uuid
+      - `owner` - the owner's email address (to confirm that the correct data owner is listed)
+      - `tag` - the WC tag serial number
+      
+    Other variables listed are not fully parsed into human-readable form.
+    
+9.  To conduct a QC workflow on a subset of the listed tag datasets, copy their corresponding `id`s into a CSV file with a single variable names `uuid`:
+    
+    ![](../fig/wc_tag.list.png){width=200}
+    
+    Move this CSV file into the QC working directory and copy the file name into `harvest:tag.list`:
+    
+    ![](../fig/wc_config_tag.list.png){width=500}
+    
+    To conduct a QC workflow on all the owner's tag datasets, `harvest:tag.list` can be set to `null`.
+    
+10. 
+
+
 
 **More details on setup to go here**
 
