@@ -74,30 +74,30 @@ The `setup` block specifies the National Observing Program (e.g., `atn`, `otn`, 
 The JSON file for NRT QC of Wildlife Computers (WC) tags looks like this:
 
 ```
-[{"setup": 
+{"setup": 
 	{
 	"program":"otn",
-	"data.dir":"data_grey_seal_lidgard",
+	"data.dir":"grse/data",
 	"meta.file":null,
-	"maps.dir":"output/maps/grey_seal_lidgard",
-	"diag.dir":"output/diag/grey_seal_lidgard",
-	"output.dir":"output/irap/grey_seal_lidgard",
+	"maps.dir":"grse/maps",
+	"diag.dir":"grse/diag",
+	"output.dir":"grse/output",
 	"return.R":false
 	},
 "harvest": 
 	{
 	"download":true,
-	"owner.id":"558abcaea86a234b286bdc3e",
-	"wc.akey":"...",
-	"wc.skey":"...",
-	"tag.list":"grey_seal_lidgard_tags.csv",
+	"owner.id":"663d756e3cd05b1b7a0ff568",
+	"wc.akey":"VVeerW+G6YUe7olzlrOr6q5o2Nkjx5PTEwuwQrsMzTb=",
+	"wc.skey":"7k9MupziDacYNur/3IPMDjn7wum6oQk5eV2LBk02vLp=",
+	"tag.list":"grse_tags.csv",
 	"dropIDs":null
 	},
 "model": 
 	{
 	"model":"rw",
 	"vmax":3,
-	"time.step":3,
+	"time.step":6,
 	"proj":null,
 	"reroute":true,
 	"dist":20,
@@ -113,7 +113,7 @@ The JSON file for NRT QC of Wildlife Computers (WC) tags looks like this:
 	{
 	"common_name":"grey seal",
 	"species":"Halichoerus grypus",
-	"release_site":"unknown",
+	"release_site":"Sable Island",
 	"state_country":"Canada"
 	}
 }]
@@ -236,9 +236,21 @@ Steps 2 and 3 only need to be done once.
 
     ![](../fig/wc_config_model_params.png){width=400}
 
-    See the `Configuring ArgosQC` section (above) for an explanation of the typical parameter values. Generally, the config parameters only need to be set once per species but arriving at reasonable parameter values usually requires at least one QC test run. The node manager should examine the QC-generated map & diagnostic plots to ensure the QC results are reasonable. Below are some examples of the maps & diagnostic plots from "good" and "bad" QC outcomes.
+    See the `Configuring ArgosQC` section (above) for an explanation of the typical parameter values. Generally, the config parameters only need to be set once per species but arriving at reasonable parameter values usually requires at least one QC test run. The node manager should examine the QC-generated map of SSM-estimated locations & diagnostic plots to ensure the QC results are reasonable before operationalizing the workflow. Below are some examples of the maps & diagnostic plots with varying `time.step` parameter values.
 
-**More details on setup to go here**
+    ![](../fig/wc_qc_map12.png){width=400} ![](../fig/wc_qc_map6.png){width=400} 
+    ![](../fig/wc_qc_map3.png){width=400} ![](../fig/wc_qc_map1.png){width=400}
+    
+    Notice how the 12-h `time.step` results in jagged tracks that lack the movement detail of the tracks QC'd at shorter `time.step`'s. This is an indication that the 12-h `time.step` is a bit too coarse given the temporal resolution of the Argos locations. Conversely, the 1-h `time.step` results in some very obviously straight lines along which the SSM-estimated locations fall. This is an indication that the `time.step` is too fine relative to the frequency of the data and the SSM is interpolating too much between the Argos locations. If you look carefully, you can also see a hint of these straightlines in the 3-h `time.step` tracks, suggesting that the 6-h `time.step` may be the better choice for these data. In practice, either the 3- or the 6-h `time.step` will work almost equally for the NRT QC of these data. If a lot of tags (e.g., > 20) are being processed in one QC workflow then it will be a bit more efficient to choose the 6-h `time.step`.
+    
+    A check of the model fit diagnostic plots (just latitudes for the 2 grey seal tracks shown below) indicdates the model is fitting the Argos data reasonably well because the SSM-estimated latitudes (red points) generally smooth through the Argos latitudes (blue points). Bad fits would be characterized with numerous red points outside of the blue points (ie. above or below) - this case would suggest a slightly coarser `time.step` may be needed. Note, these diagnostic model fit plots do usually not change with differing `time.step`'s.
+    ![](../fig/wc_qc_lat_ssmfit.png)
+    
+    A final note on re-routing locations off of land. The example config file has the rerouting parameter `model:reroute` set to `true`, but a significant number of the seals' locations occur on Sable Island because the seals return to land periodically during the tag deployments (see above maps - Sable Island is roughly at the map centre where there is a large concentration of locations). A model run with re-routing turned on results in some re-routing artefacts (denoted by red arrows):
+    ![](../fig/wc_qc_map_reroute.png){width=600}
+    
+    For this reason, `model:reroute` was set to `false` and we accept that some small portion of locations may erroneously fall on land. A better solution for this issue would be generate a custom land polygon shapefile of the Nova Scotia mainland without a polygon for Sable Island. The is custom shapefile could then be added to the config file by providing the filename and path to the `model:barrier` parameter and setting `model:reroute` back to `true`.
+    
 
 11. The `meta` section of the config file is only required if no metadata file is provided in the `setup` block. When no metadata file is provided, ArgosQC uses the fields in the `meta` block plus partial deployment metadata downloaded from the WC Portal. ArgosQC assembles these metadata attributes and writes a deployment metadata CSV file as one of the QC outputs. This file, if sufficiently complete, can be used as an input to subsequent QC runs by supplying the CSV file in the `setup` block. When both a metadata file & completed `meta` config block are provided, the attributes from the metadata file will supersede those in the `meta` block.
 
