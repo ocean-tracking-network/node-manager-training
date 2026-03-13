@@ -22,24 +22,40 @@ A Data Push is when the OTN data system is re-verified and any new relevant info
 
 ## What is the Push Schedule?
 
-Push events happen **three** times a year. They start on the third Thursday of the "push months" which are February, June, and October. This date is the cut-off date for all data-loading; no records can be loaded after this. Please aim to have all tickets ready for verification **1 week** before this date.
+Push events happen **three** times a year. They start on the third Thursday of the "push months" which are February, June, and October. 
 
 With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
 
-Push schedule through 2026:
-- February 19, 2026
+Push schedule through 2027:
 - June 18, 2026
 - October 15, 2026
+- February 18, 2027
+- June 17, 2027
+- October 21, 2027
 
 ## Pre-Push Schedule
 
 In order to accommodate the increasing number of Nodes and meet Push deadlines, we have also prepared a shared pre-Push timeline for all nodes: 
-<img width="1722" height="272" alt="image" src="https://github.com/user-attachments/assets/559e4e43-75ff-47e9-a449-399fa8d1b12a" />
 
-The pre-Push timeline updates are as follows:
-- 20 days before the Push will be the submission deadline for data contributors and researchers
-- 7 days before the Push, there will be no more OTN helpers available for support (since we will be more focused on verification and Push organization) so please plan accordingly and reach out to the OTNDC team earlier for help with bigger messier data needs
-- On the Push date (listed above), the OTN data team will be moving any still-open issues being tracked by the nodes' ticketing systems to the next milestone, and the node will be "locked" or "hands-off" temporarily while we work on the between-networks part of the Push (including verification, cross-matching, inheritance, and building discovery tables). After these X days, each node will be unlocked and data loading can resume.
+![The Cycle of the Push](../fig/v2_node-manager-diagram.png) 
+
+There are 3 important deadlines to remember:
+- **data submission deadline**: recommended 20 days before the push date, but can be set by each node. 
+	- The date you select should leave you enough time to get all your data passed off for verification before the data loading cut-off date.
+	- This date can change for each push depending on your availability! Ex: if you're going on vacation, you can set your data submisison deadline date earlier.
+	- This is the date you tell your collaborators / researchers.
+- **data loading cut-off date**: the 3rd Monday of the push month (Feb, June, Oct).
+	- this is the date that's most important for node managers
+	- tickets must meet both of these criteria by this date:
+		1. ready for verification
+		2. assigned to OTN Database staff (currently Angela or Ying)
+	- tickets which do not meet this criteria will not make it into the push. This includes tickets that are assigned to OTN DAtabase staff for "loading big files" etc. Only verification tickets count at this stage, the rest have missed the cut-off
+- **push date**: the 3rd Thursday of the push month (Feb, June, Oct)
+	- this is an internally used metric - not affecting node managers work
+	- the date we use in the detection extract table (this is often entered when using DB Fix notebooks, so its still important to know)
+	- the date the OTN Database team starts the push tasks (like matching etc.)
+	- no verifications should be happening after this date
+
 
 ## Node Manager Roles During a Push
 
