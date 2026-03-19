@@ -48,9 +48,9 @@ ArgosQC for near-real-time data is an essential automated process that uses stat
 
 
 ## ArgosQC workflow and features
-1. ArgosQC workflows are intended to be run automatically via a scheduler and require minimal supervision. Separate workflows are provided for SMRU and Wildlife Computers tags. Both require the node manager to set up a JSON configuration file that specifies all required project information and QC parameters. In general, both workflows do the following:
+1. ArgosQC workflows are intended to be run automatically via a scheduler and require minimal supervision. ArgosQC provides two workflows, one for SMRU tag data and one for Wildlife Computers tag data. Both workflows require the node manager to set up a JSON configuration file that specifies all required project information and QC parameters. In general, both workflows do the following:
 - Downloads specified tag data from the tag manufacturer
-- Acquires any available deployment metadata from the tag Manufacturer & builds an operational deployment metadata file, or ingests a specified metadata file (CSV).
+- Acquires any available deployment metadata from the tag manufacturer & builds an operational deployment metadata file, or ingests a specified metadata file (CSV).
 - Prepares tag location data for state-space model (SSM) fitting
 - Fits the SSM in 2 passes to each tag location dataset. SSM fitting to multiple tag datasets is conducted in parallel across a number of available processors.
 - Reroutes any SSM-estimated locations that occur on land back into the ocean.
@@ -58,11 +58,13 @@ ArgosQC for near-real-time data is an essential automated process that uses stat
 - Generates diagnostic plots of the SSM fits to tag location data & a map of the SSM estimated tracks.
 - Combines all QC-annotated tag data files across individual tags & writes these aggregated files, plus SSM summary output & annotated deployment metadata, to CSV files as the final QC output.
 
+The workflows process multiple tag datasets at a time, but must be limited to data from a single data owner/researcher and to data from a single species.
+
 More specific details on the workflows are provided in the ArgosQC vignettes: [SMRU](https://ianjonsen.github.io/ArgosQC/articles/SMRU_workflow.html) and [Wildlife Computers](https://ianjonsen.github.io/ArgosQC/articles/WC_workflow.html). 
 
 
 ## Configuring ArgosQC
-A JSON configuration file provides all required information to fully specify an ArgosQC workflow. The config files are slightly different for SMRU vs Wildlife Computers tags, but both have the same 4-block structure, within which different QC parameters are specified:
+The entire QC process is automated, but requires a number of initial, manual steps to gain access to the tagging data and deployment metadata, and to set up a configuration file. A JSON configuration file provides all required information to fully specify an ArgosQC workflow. The config files are slightly different for SMRU vs Wildlife Computers tags, but both have the same 4-block structure, within which different QC parameters are specified:
 
 - `setup`
 - `harvest`
