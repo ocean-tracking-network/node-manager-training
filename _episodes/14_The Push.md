@@ -163,7 +163,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 
 ### Emailing Researchers - Using Contacts Table
 
-This section of the notebook relies on the `obis.detection_extracts_list` table, the current Push date, and the project and contact relations currently in each Node to create a single email per project PI and Point of Contact advising on all the updated data files from the current data push for their projects. This step should be done once all detection extracts are created and posted to the project repositories. This step should only be completed once, as repeating it may result in unecessary emails being sent to researchers
+This section of the notebook relies on the `obis.detection_extracts_list` table, the current Push date, and the project and contact relations currently in each Node to create a single email per contact advising on all the updated data files from the current data push for their projects. This step should be done once all detection extracts are created and posted to the project repositories. This step should only be completed once, as repeating it may result in unecessary emails being sent to researchers
 
 The first step of this section is to connect to the node database, if this has not already been done in the Nodebook.
 
