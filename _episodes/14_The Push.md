@@ -140,9 +140,9 @@ Once you have a list of the Detection Extracts to create, you can move on. The n
 
 ### Create Detection Extracts
 
-This cell will begin creating the identified detection extracts, one by one. You will be able to see a summary of the matched projects for each extract. Please wait for them all to complete - indicated by a **green checkmark** and a summary of the time it took to complete the extract.
+This cell will begin creating the identified detection extracts, one by one. You will be able to see a summary of the matched projects for each extract. Please wait for them all to complete - indicated by a $${\color{green}green}$$ checkmark and a summary of the time it took to complete the extract.
 
-**The following section is for Nodes who use Plone as their document management system only**
+**The following section is relevant to Nodes who use Plone as their document management system**
 
 > ### Uploading Extracts to Plone
 >
@@ -158,9 +158,43 @@ This cell will begin creating the identified detection extracts, one by one. You
 >
 > Now the Nodebook will upload all the Detection Extracts into their relevant folders on Plone.
 >
-> Please wait for them all to complete - indicated by a **green checkmark** and a summary of the time it took to complete the extract.
+> Please wait for them all to complete - indicated by a $${\color{green}green}$$ checkmark and a summary of the time it took to complete the extract.
 >
-> ### Emailing Researchers - Plone
+
+### Emailing Researchers - Using Contacts Table
+
+This section of the notebook relies on the `obis.detection_extracts_list` table, the current Push date, and the project and contact relations currently in each Node to create a single email per contact advising on all the updated data files from the current data push for their projects. This step should be done once all detection extracts are created and posted to the project repositories. This step should only be completed once, as repeating it may result in unecessary emails being sent to researchers
+
+The first step of this section is to connect to the node database, if this has not already been done in the Nodebook.
+
+Next the push date needs to be inputted, this needs to match the push date in the `obis.detection_extracts_list` table.
+
+The next cell is run without edits, collecting the detection extracts for this push and displaying them. 
+
+The following cell is for gathering the contacts for those projects on the extract list.
+
+![Contact Filtering](../fig/perPI_contact_filtering.png)
+
+You will then be able to print out your current email template. If necessary, you can edit the template by changing the `det_extracts_emailSpecial_perPI.j2 ` template, or the one specific to your node, in the `templates` subfolder of `ipython-utilities`, and changing the filepath to be `email_template = 'templates/det_extracts_emailSpecial_perPI.j2'`, then re-running.
+
+Next you need to supply a `.auth` file for an email account. The format will be like this: `email_auth_path = r'C:/path/to/email.auth'`. Success will be indicated with this message:
+~~~
+Email auth is set:
+ user= otndc@dal.ca
+ host= smtp.office365.com
+ cc= otndc@dal.ca
+ port= XXX
+~~~
+{: .language-plaintext .example}
+
+The next cell will allow for changes to the email _subject_, the _from_ field, and the email delay before a retry. This is also where a test email can be displayed. Change `send_email = False` to `send_email = True` in order to actually send the emails you have constructed. 
+
+The last cell of the section sends the emails that you have constructed.
+
+ --------------------------------------
+**The following section is relevant to Nodes who use Plone as their document management system**
+
+> ### Emailing Researchers - Plone (This method will be considered obsolete once the database contact method is fully adopted)
 >
 > Using the Plone users system, its possible to identify which researchers require an email notification.
 > First you need to supply a `.auth` file for an email account. The format will be like this: `email_auth_path = r'C:/path/to/email.auth'`. Success will be indicated with this message:
@@ -177,6 +211,7 @@ This cell will begin creating the identified detection extracts, one by one. You
 > Finally, this stage will send the emails. Ensure that `date = 'YYYY-MM-DD'` for the date you **uploaded** the extracts to Plone. This is how the Nodebook will determine which links to include in the email template.
 > First: set `send_mail = False`. Run the cell, select the projects of interest and `Simulate Sending Emails`.
 > If you are pleased with the output, you can then change `send_mail = True` and re-run. Choose `Send Emails` and they will be sent.
+ --------------------------------------
 
 ### Emailing Researchers - Manual
 
