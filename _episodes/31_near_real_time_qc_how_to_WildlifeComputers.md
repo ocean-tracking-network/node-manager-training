@@ -27,10 +27,12 @@ ArgosQC:::wc_get_collab_ids((a.key = "...", s.key = "...")
 If this function does not return a data.frame (or results in an error) then data sharing has not been setup correctly in the WC Portal and you will need to troubleshoot with the researcher.
 
 ## How to use the metadata to create a config file
-All details for constructing `ArgosQC` config files are in this Jupyter notebook: `ArgosQC_WildlifeComputers_Project_Config`
+All details for constructing `ArgosQC` config files are in this [Jupyter notebook](https://github.com/ocean-tracking-network/rt-sat-to-obis/blob/add_conda_env/ArgosQC_WildlifeComputers_Project_Config.ipynb).
 
 ## How to push that config file somewhere so it can be processed regularly by the RT process
-Details on how to do this are in this Jupyter notebook: `ArgosQC_WildlifeComputers_Project_Config`
+Details on how to do this are in this [Jupyter notebook](https://github.com/ocean-tracking-network/rt-sat-to-obis/blob/add_conda_env/ArgosQC_WildlifeComputers_Project_Config.ipynb).
 
 ## How to process a dataset that is no longer real-time - delayed-mode
-I can fill this in assuming the node-manager is going to use the fully automated QC on tags that are no longer active, but explaining how to do an interactive delayed-mode QC workflow is an in-person training session (a hands-on workshop) because it requires a number of decisions to be made based on intermediate outputs from individual ArgosQC functions.
+Tag datasets that are no longer real-time (deployments have ended) may be processed in the same manner as real-time datasets, except that the QC process only needs to be run once.
+
+
