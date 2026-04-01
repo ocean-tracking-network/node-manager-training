@@ -20,10 +20,11 @@ Ensure you have the researcher's username and password to access the data on the
 Once you have the researcher's username and password, these can be entered in the config file `harvest` block.
 
 ## How to use the metadata to create a config file
-All details for constructing `ArgosQC` config files are in this Jupyter notebook: `ArgosQC_SMRU_Project_Config`
+All details for constructing `ArgosQC` config files are in this [Jupyter notebook](https://github.com/ocean-tracking-network/rt-sat-to-obis/blob/add_conda_env/ArgosQC_SMRU_Project_Config.ipynb)
 
 ## How to push that config file somewhere so it can be processed regularly by the RT process
-Details on how to do this are in this Jupyter notebook: `ArgosQC_SMRU_Project_Config`
+Details on how to do this are in this [Jupyter notebook](https://github.com/ocean-tracking-network/rt-sat-to-obis/blob/add_conda_env/ArgosQC_SMRU_Project_Config.ipynb)
 
 ## How to process a dataset that is no longer real-time - delayed-mode
-I can fill this in assuming the node-manager is going to use the fully automated QC on tags that are no longer active, but explaining how to do an interactive delayed-mode QC workflow is an in-person training session (a hands-on workshop) because it requires a number of decisions to be made based on intermediate outputs from individual ArgosQC functions.
+Tag datasets that are no longer real-time (deployments have ended) may be processed in the same manner as real-time datasets, except that the QC process only needs to be run once.
+
