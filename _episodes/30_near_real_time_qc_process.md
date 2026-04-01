@@ -248,7 +248,7 @@ First, obtain the deployment metadata from the researcher, along with their SMRU
 3. Set the `smru.usr` and `smru.pwd` to the researcher's SMRU username and password.
 4. Set the `timeout` to `180` s. This can be increased for slower internet connections to ensure that file download from the SMRU server completes.
 5. Set `dropIDs` to `null` initially. If some SMRU tags fail to become active, then they can be removed from the QC process by listing the SMRU Ref ID in a .CSV file. Supply the filename here. 
-6. Set the `p2mdbtools` directory path on your machine so it points to the installed mdbtools software (required to access data within the SMRU .mdb files)
+6. Set the `p2mdbtools` directory path on your machine so it points to the locally installed mdbtools software (required to access data within the SMRU .mdb files)
 
     ![](../fig/smru_config_harvest.png){width=400}
 
