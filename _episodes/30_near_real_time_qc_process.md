@@ -171,26 +171,30 @@ In the `meta` block the parameters are:
 The `meta` block is only required when no metadata file is supplied in the `setup` block. In this case, ArgosQC obtains available tag deployment metadata from the tag manufacturer, restructures it, and appends the attributes listed in the `meta` block.
 
 ## How to set up an ArgosQC `config` file for a NRT QC workflow 
-###    Wildlife Computers tags
-Setting up a `config` file for the first time requires a number of steps. The node manager must first create a new JSON, e.g., by using the above example as a template and then:
+Setting up a `config` file for the first time requires a number of steps. Config files for Wildlife Computers tags and SMRU tags are similar but require slightly different information in their `harvest` blocks. Tags deployed across multiple species, even if associated with the same data owner, must be split into separate QC workflows (i.e., have different config files). The config file setup steps are documented below and organized by config file block. The `harvest` block setup differs between Wildlife Computers and SMRU tags, this section has been separate by tag manufacturer. 
 
-1.  Update the `setup` block, ensuring the directory and file paths point to the correct locations. Note, all sub-directories and files must be contained within a single working directory. ArgosQC will create the sub-directories inside of this working directory, if they do not exist. We recommend that tags deployed on multiple species, even if associated with the same `owner.id`, be split into separate QC workflows (i.e., have different config files).
+To setup a new `config` file, the node manager must first create a new JSON file and then:
 
-2.  Ensure they have access to the WC Portal and its API by first registering for a WC Portal account: 
+### `setup` block - all tags
+1.  Update the `setup` block, ensuring the directory and file paths point to the correct locations. Note, all sub-directories and files must be contained within a single working directory. ArgosQC will create the sub-directories inside of this working directory, if they do not exist. 
+
+
+### `harvest` block - Wildlive Computers tags
+1.  Ensure they have access to the WC Portal and its API by first registering for a WC Portal account: 
 ![](../fig/wc_portal_create_account.png){width=400}
 
-3.  Login to the WC Portal account (a) select "Account Settings" (b), select "Web Services Security" (c.1) & add an access and secret key pair (c.2) to securely download data via the WC Portal API:
+2.  Login to the WC Portal account (a) select "Account Settings" (b), select "Web Services Security" (c.1) & add an access and secret key pair (c.2) to securely download data via the WC Portal API:
   a.  ![](../fig/wc_portal_login.png){width=400}
   b.  ![](../fig/wc_portal_account_settings.png){width=400}
   c.  ![](../fig/wc_portal_security_keypair.png){width=400}
 
-Steps 2 and 3 only need to be done once.
+Steps 1 and 2 only need to be done once.
 
-4.  Ensure the data owner(s) have explicitly set up data sharing with the node manager within the WC Portal. The data owner(s) will need the email address the node manager used for their WC Portal user account. Each time a data owner has new tags registered in the WC Portal, those tags will need to be explicitly shared with the node manager. This [document (p 19)](https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf) provides details on how data owners can set up data sharing within the WC Portal.
+3.  Ensure the data owner(s) have explicitly set up data sharing with the node manager within the WC Portal. The data owner(s) will need the email address the node manager used for their WC Portal user account. Each time a data owner has new tags registered in the WC Portal, those tags will need to be explicitly shared with the node manager. This [document (p 19)](https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf) provides details on how data owners can set up data sharing within the WC Portal.
 
-5.  Set `harvest:download` to `true` if the data are to be downloaded from the WC Portal.
+4.  Set `harvest:download` to `true` if the data are to be downloaded from the WC Portal.
 
-6.  Once data sharing has been setup, the node manager must find the data owner(s) WC Portal ID(s). This can be done within R using the ArgosQC utility function `wc_get_collab_ids`:
+5.  Once data sharing has been setup, the node manager must find the data owner(s) WC Portal ID(s). This can be done within R using the ArgosQC utility function `wc_get_collab_ids`:
     
     ```
     ArgosQC:::wc_get_collab_ids(a.key = "...", s.key = "...")
@@ -204,11 +208,11 @@ Steps 2 and 3 only need to be done once.
     
     ![](../fig/wc_config_owner.id.png){width=400}
     
-7.  Copy and paste the WC access and secret keys that were generated in step 3 into `harvest:wc.akey` and `harvest:wc.skey`, respectively:
+6.  Copy and paste the WC access and secret keys that were generated in step 3 into `harvest:wc.akey` and `harvest:wc.skey`, respectively:
 
     ![](../fig/wc_config_akey_skey.png){width=400}
     
-8.  Get the WC dataset UUID's from the Portal to populate the `harvest:tag.list` file, using the ArgosQC function `wc_get_uuids`:
+7.  Get the WC dataset UUID's from the Portal to populate the `harvest:tag.list` file, using the ArgosQC function `wc_get_uuids`:
     ```
     ArgosQC:::wc_get_uuids(a.key = "...", s.key = "...", owner.id = "...")
     ```
@@ -224,7 +228,7 @@ Steps 2 and 3 only need to be done once.
       
     Other variables listed are not fully parsed into human-readable form.
     
-9.  To conduct a QC workflow on a subset of the listed tag datasets, copy their corresponding `id`s into a CSV file with a single variable names `uuid`:
+8.  To conduct a QC workflow on a subset of the listed tag datasets, copy their corresponding `id`s into a CSV file with a single variable names `uuid`:
     
     ![](../fig/wc_tag.list.png){width=200}
     
@@ -233,7 +237,23 @@ Steps 2 and 3 only need to be done once.
     ![](../fig/wc_config_tag.list.png){width=400}
     
     This approach is required, for example, when the owner's tags have been deployed on multiple species. In this case, separate QC workflows need to be run for each species. The WC Portal typically does not contain information on the species tags were deployed on, so the node manager will require some minimum deployment metadata from the tag owner to identify which tags (e.g., by tag serial number &/or deployment date) were deployed on which species. If all the owner's tags were deployed on a single species in a common geographic locations then they can likely be QC'd in a single workflow. To conduct a QC workflow on all the owner's tag datasets, `harvest:tag.list` should be set to `null`.
+
     
+
+### `harvest` block - SMRU tags
+First, obtain the deployment metadata from the researcher, along with their SMRU username and password to access their data on the SMRU server. The minimum deployment metadata must include the species name, the SMRU campaign id for the tags being deployed, e.g. `ct189`, the deployment site name (must be same for all tags in the deployment campaign), and the deployment country.
+
+1. To download data from the SMRU server, set `download` to `true`. 
+2. Set the `cid` to the SMRU campaign ID. If multiple active campaigns ID's exist for the researcher then these must be set up in separate config files so the QC process runs separately for each.
+3. Set the `smru.usr` and `smru.pwd` to the researcher's SMRU username and password.
+4. Set the `timeout` to `180` s. This can be increased for slower internet connections to ensure that file download from the SMRU server completes.
+5. Set `dropIDs` to `null` initially. If some SMRU tags fail to become active, then they can be removed from the QC process by listing the SMRU Ref ID in a .CSV file. Supply the filename here. 
+6. Set the `p2mdbtools` directory path on your machine so it points to the installed mdbtools software (required to access data within the SMRU .mdb files)
+
+    ![](../fig/smru_config_harvest.png){width=400}
+
+
+### `model` block - all tags   
 10. The `model` section of the config file provides parameters and information to conduct the QC, including: fitting the state-space model (SSM) to the tag location data; rerouting locations off of land; interpolating SSM locations to the times of each record in the various tag data files. A good starting place for parameter values is provided in the example config file:
 
     ![](../fig/wc_config_model_params.png){width=400}
@@ -253,8 +273,12 @@ Steps 2 and 3 only need to be done once.
     
     For this reason, `model:reroute` was set to `false` and we accept that some small portion of locations may erroneously fall on land. A better solution for this issue would be to generate a custom land polygon shapefile of the Nova Scotia mainland without a polygon for Sable Island. The is custom shapefile could then be added to the config file by providing the filename and path to the `model:barrier` parameter and setting `model:reroute` back to `true`. Other re-routing config parameters - `dist`, `buffer`, `centroids` - need not be changed from the provided defaults.
     
-
+### `meta` block - all tags
 11. The `meta` section of the config file is only required if no metadata file is provided in the `setup` block. When no metadata file is provided, ArgosQC uses the fields in the `meta` block plus partial deployment metadata downloaded from the WC Portal. ArgosQC assembles these metadata attributes and writes a deployment metadata CSV file as one of the QC outputs. This file, if sufficiently complete, can be used as an input to subsequent QC runs by supplying the CSV file in the `setup` block. When both a metadata file & completed `meta` config block are provided, the attributes from the metadata file will supersede those in the `meta` block.
+
+
+
+
 
 
 

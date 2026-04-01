@@ -12,7 +12,15 @@ questions:
 
 ## How to receive metadata & data access from a researcher to set up satellite data harvesting for Wildlife Computers tags
 ### Metadata
-The minimum metadata required by the QC process is: 1. species common name; 2. species scientific name; 3. release site (e.g., Sable Island); 4. release country; 5. tag serial number(s) and PTT ID(s). Use whatever method for obtaining these metadata from the researcher works for you.
+The minimum metadata required by the QC process is:
+
+1. species common name.  
+2. species scientific name.  
+3. release site (e.g., Sable Island).  
+4. release country.  
+5. tag serial number(s) and PTT ID(s). 
+
+Use whatever method for obtaining these metadata from the researcher works for you.
 
 ### Data access
 Ensure you have a Wildlife Computers (WC) Portal account & a security key pair set up (see 30_near_time_qc_process). Ask the researcher to setup sharing for their tag datasets via the WC Portal. The data owner(s) will need the email address the node manager used for their WC Portal user account. If the researcher does not know how to do this, refer them to the information on p. 19 in [document (p 19)](https://static.wildlifecomputers.com/Portal-and-Tag-Agent-User-Guide-2.pdf).

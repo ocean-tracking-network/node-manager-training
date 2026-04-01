@@ -12,7 +12,15 @@ questions:
 
 ## How to receive metadata & data access from a researcher to set up satellite data harvesting for SMRU tags
 ### Metadata
-The minimum metadata required by the QC process is: 1. species common name; 2. species scientific name; 3. release site (e.g., Sable Island); 4. release country; 5. SMRU campaign id(s) (e.g., ct190). Use whatever method for obtaining these metadata from the researcher works for you.
+The minimum metadata required by the QC process is: 
+
+1. species common name. 
+2. species scientific name. 
+3. release site (e.g., Sable Island). 
+4. release country. 
+5. SMRU campaign id(s) (e.g., ct190). 
+
+Use whatever method for obtaining these metadata from the researcher works for you.
 
 ### Data access
 Ensure you have the researcher's username and password to access the data on the [SMRU server](https://www.smru.st-andrews.ac.uk/protected/technical.html). The server page is accessible to anyone to view SMRU tag deployments by registered project, but access to data within individual deployment "campaigns" are behind a WAF. 
