@@ -107,7 +107,7 @@ In the next lesson we will practice using our database console viewer and connec
 In order to work efficiently as a Node Manager, the following programs are necessary and/or useful.
 
 ## Cross-Platform 
-
+<!-- Do we want to update with Positron also?  MG to PERSON Y/N -->
 **Visual Studio Code** - An advanced code editing integrated development environment (IDE). Also contains extensions that can run JuPyTeR notebooks, open CSV files in a visually appealing way, as well as handle updating your Git repositories.
 * [https://code.visualstudio.com/](https://code.visualstudio.com/)
 

@@ -14,7 +14,7 @@ keypoints:
 - "Loading tagging metadata requires judgement from the Data Manager"
 - "Communication with the researcher is essential when errors are found"
 ---
-
+<!-- Still factual checklist? MG to PERSON Y/N -->
 ## Process workflow
 The process workflow for tag metadata is as follows:
 <pre class="mermaid">
@@ -32,13 +32,14 @@ flowchart LR
 
 Once a project has been registered, the next step (for `Tracker` and `Data` project types) is to begin to quality control and load the project's tagging metadata into the database. Tagging metadata should be reported to your Node in the template provided [here](https://members.oceantrack.org/data/data-collection). This file holds information about the deployment of any and all tags (acoustic, PIT, satellite, floy etc.) in or on animals for the purposes of tracking their movements using either listening stations or via mark/recapture. Any biological metrics that were measured at tagging time, i.e. length, weight, population, are also able to be recorded for association with the tagging event, permitting future analyses.
 
-Recall that there are multiple levels of data tables in the database for tagging records: `raw tables` ("raw"), `cache tables` ("intermediate") and `otn tables` ("upper"). The process for loading tagging metadata evaluates and promotes the data through each of these levels, as reflected by the GitLab task list.
+Recall that there are multiple levels of data tables in the database for tagging records: `raw tables` ("raw"), `cache tables` ("intermediate") and `otn tables` ("upper"). The process for loading tagging metadata evaluates and promotes the data through each of these levels, as reflected by the GitLab Ticket checklist template found in the drop down menu under the 'Description'. 
+<!-- Which template specifically? MG to PERSON Y/N -->
 
 ## Completed Metadata
 
-Immediately, upon receipt of the metadata, create a new GitLab issue. Please use the `Tag Metadata` Issue checklist template.
+Immediately, upon receipt of the metadata, create a new GitLab ticket. Please use the `Tag Metadata` Work item checklist template.
 
-Here is the Issue checklist, for reference:
+Here is the Work item checklist, for reference:
 
 ~~~
 Tag Meta Data
@@ -53,8 +54,8 @@ Tag Meta Data
 - [ ] - NAME load otn tables (`tag-2` notebook)
 - [ ] - NAME verify otn tables (`tag-2` notebook)
 - [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final verification
+- [ ] - NAME label ticket with *'Verify'*
+- [ ] - NAME pass ticket to analyst for final verification
 - [ ] - NAME check for double reporting (verification_notebooks/Tag Verification notebook)
 ~~~
 {: .language-plaintext .example}
@@ -107,7 +108,7 @@ The metadata template [available here](https://members.oceantrack.org/data/data-
 
 # Quality Control - Tag-1 Nodebook
 
-Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
+Each step in the Work item checklist will be discussed here, along with other important notes required to use the Nodebook.
 
 ### Imports cell
 
@@ -294,7 +295,7 @@ Then, there will be **two** interactive tables provided, which can be used to id
 
 1. Comparison to otn_animals
 2. Comparison to otn_transmitters
-
+<!-- Still factual? MG to PERSON Y/N -->
 All text should be `black`, and you should scroll through the entire table, row-by-row, to review any values where the cell is `highlighted/flashing RED`. These are highlighting differences between the values in the `raw` table vs values in the `otn` table, for this animal record.
 
 If there are **no** highlighted/flashing red cells in a row, you can delete the record from the `no_dup` table by using the `delete` button on the left-side of the table. You can also use the `Select All` button if appropriate.
@@ -325,7 +326,7 @@ In Gitlab, this task can be completed at this stage:
 
 `- [ ] - NAME confirm no duplicates in raw table, review and remove ("tag-1b" notebook)`
 
-**Ensure you paste the `no_dup` table name (ex: c_tag_meta_2021_09_no_dup), if relevant, into the Issue** before you check the box. This is now the raw table that will be used for the result of the data-loading process.
+**Ensure you paste the `no_dup` table name (ex: c_tag_meta_2021_09_no_dup), if relevant, into the Ticket** before you check the box. This is now the raw table that will be used for the result of the data-loading process.
 
 # Quality Control - Tag-2 Nodebook
 
@@ -528,7 +529,7 @@ First: you should access the Repository folder in your browser and add the clean
 
 Then, please email a copy of this file to the researcher who submitted it, so they can use the "cleaned" version in the future.
 
-Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+Finally, the Ticket can be passed off to an OTN-analyst for final verification in the database.
 
 {% include links.md %}
 

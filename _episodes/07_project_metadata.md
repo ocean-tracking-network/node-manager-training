@@ -15,12 +15,13 @@ keypoints:
 ---
 
 ## Process workflow
+<!-- Check flowchart text 'Create Gitlab Work item' looks good MG to PERSON Y/N -->
 The process workflow for project metadata is as follows:
 <pre class="mermaid">
 flowchart LR
     proj_start(( )) --> get_meta(Receive <br />project metadata <br />from researchers)
     style proj_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    get_meta --> gitlab(Create <br />Gitlab <br />Work item)
     gitlab --> inspect(Visually <br />inspect)
     inspect --> nodebook(QC with <br />nodebooks)
     nodebook --> plone(Verify repository <br />folder <br />is correct)
@@ -34,14 +35,14 @@ The **first** step when you are contacted by a researcher who wants to register 
 
 ## Completed Metadata
 
-Immediately upon receipt of the metadata, you must create a new Gitlab Issue. Please use the `Project Metadata` Issue checklist template.
+Immediately upon receipt of the metadata, you must create a new Gitlab Ticket. Please use the `Project Metadata` work item checklist template found in the drop down menu under the 'Description'.
 
-Here is the Issue checklist, for reference:
-
+Here is the Work item checklist, for reference:
+<!-- Line 42 to line 62 Review if same as most current template selection MG to PERSON Y/N -->
 ~~~
 Project Metadata
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker**
+- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker** 
 - [ ] - NAME create schema and project records (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add project contact information (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add scientificnames (`Creating and Updating project metadata` notebook)
@@ -70,7 +71,7 @@ Once the researcher provides the completed file, the Data Manager should complet
 
 Please make sure of the following:
 
-1. Is the PI-provided collection code unique/appropriate? Do you need to create one yourself? Existing schemas/collection codes can be seen in the database.
+1. Is the PI-provided collection code unique/appropriate? Do you need to create one yourself? Existing schemas/collection codes can be seen and checked for prexistence in the database.
 1. Are there typos in the title or abstract?
 1. Are the contacts formatted correctly?
 1. Are the species formatted correctly?
@@ -147,7 +148,7 @@ format: Lastname, I., Lastname, I. YYYY. [Title from question 1 or suitable alte
 
 ## Quality Control - Create and Update Projects
 
-Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebooks.
+Each step in the Work item checklist will be discussed here, along with other important notes required to use the Nodebooks.
 
 ### Imports Cell
 
@@ -158,7 +159,7 @@ You will have to edit one section: `engine = get_engine()`
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 - The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_connection.kdbx')`.
 
-### Project Metadata Parser
+### Project Metadata Parser <!-- Has there been notebook updates to this? MG to PERSON Y/N -->
 
 This cell is where you input the information contained in the Project Metadata `.txt` file. There are two ways to do this:
 
@@ -173,8 +174,8 @@ The output will have useful information:
 - Are there strange characters in the collection code, project title, or abstract?
 - Were the names and affiliations of each contact successfully parsed? Are there any affiliated institutions which are not found? Are there any contacts which were not found that you expected to be?
 - Is the project URL formatted correctly?
-- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (entries with accepted taxonomies will have a success message of the format `INFO: Genus species is an accepted taxon, and has Aphia ID XXXXXX.`, followed by a URL)? Which ones have common names that do **not** match the WoRMS records (look at bottom of each species record for success: `OK: Animal name is an acceptable vernacular name for Genus species`)? **NOTE: any mismatches with common name can be fixed at a later stage, make a note in the Issue for your records**
-- Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Issue for your records**
+- Are all the species studied found in WoRMS? Are any of them non-accepted taxonomy (entries with accepted taxonomies will have a success message of the format `INFO: Genus species is an accepted taxon, and has Aphia ID XXXXXX.`, followed by a URL)? Which ones have common names that do **not** match the WoRMS records (look at bottom of each species record for success: `OK: Animal name is an acceptable vernacular name for Genus species`)? **NOTE: any mismatches with common name can be fixed at a later stage, make a note in the Ticket for your records**
+- Is the suggested Bounding Box appropriate based on the abstract? **NOTE: any issues with the scale of the bounding box can be fixed at a later stage, make a note in the Ticket for your records**
 - Are the start and end dates formatted correctly?
 
 Generally, most of the error messages arise from the **Contacts** and **Species** sections.
@@ -188,12 +189,12 @@ There are some fields which need to be set up by the Data Manager,  rather than 
 Run the cell to generate a fillable form with these fields:
 
 1. Node: select your node
-1. Collaboration Type: based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
+1. Collaboration Type: make an assessment based on the abstract, are they deploying only tags (`Tracker` project), only receivers (`Deployment` project) or both tags and receivers (`Data` project)?
 1. Ocean: choose the most appropriate ocean region based on the abstract.
 1. Shortname: usually a summarised version of the project title, which will be used as the name of the Data Portal folder. ex: `OTN Blue Sharks`.
 1. Longname: use the Title provided by the researcher, or something else, which is in "scientific-paper" style. ex: `Understanding the movements of Blue sharks through Nova Scotia waters, using acoustic telemetry.`
 1. Series Code: this will generally be the name of your node. Compare to values found in the database `obis.otn_resources` if you’re unsure.
-1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
+1. Institution Code: The main institution responsible for maintaining the project. Compare to values found in the database `obis.institution_codes` and `obis.otn_resources` if you’re unsure. **If this is a new Institution, please make a note in the Ticket, so you can add it later on**
 1. Country: based upon the abstract. Multiple countries can be listed as such: `CANADA, USA, EGYPT` etc.
 1. State: based upon the abstract. Multiple states can be listed as such: `NOVA SCOTIA, NEWFOUNDLAND` etc.
 1. Local Area: based upon the abstract. Location information. ex: `Halifax`
@@ -208,7 +209,7 @@ Verify the output from the parser cell, looking for several things:
 
 If anything is wrong, please begin again from the Manual Field input cell.
 
-If the institution code **IS NOT** found - compare to values found in the database `obis.institution_codes` and `obis.otn_resources`. **If this is a new Institution, please make a note in the Issue, so you can add it later on**
+If the institution code **IS NOT** found - compare to values found in the database `obis.institution_codes` and `obis.otn_resources`. **If this is a new Institution, please make a note in the Ticket, so you can add it later on**
 
 
 #### Task List Checkpoint
@@ -236,7 +237,7 @@ The cell titled `Verify the new project details before writing to the DB` is the
 
 Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it.
 
-
+<!-- Still factual representation of image/process MG to PERSON Y/N -->
 ![Proj 1](../fig/proj_meta_bounds.JPG)
 
 

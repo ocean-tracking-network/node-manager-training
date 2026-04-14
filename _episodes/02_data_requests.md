@@ -19,13 +19,13 @@ OTN recommends creating a "Data Request Response Policy".
 
 
 ## External Requests - Restricted Data
-
+<!-- Should we update to check if a project is public by default in line with recent policy update MG to Jon Y/N -->
 This is an example of how OTN handles these requests:
 
 1. Request for data (from person other than data owner) submitted
-2. Data request is scoped, in a GitLab Issue. All details from requester is included.
+2. Data request is scoped, in a GitLab Ticket. All details from requester is included.
 3. Impacted PIs are identified, and contacted, seeking written permission for requester to access the information.
-4. Written permission is documented in GitLab Issue, to preserve the paper-trail.
+4. Written permission is documented in GitLab Ticket, to preserve the paper-trail.
 5. Data request report is compiled and provided to requester, once all permissions have been received.
 
 
