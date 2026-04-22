@@ -11,7 +11,7 @@ objectives:
 - "Learn common errors and pitfalls that come up when loading detections"
 keypoints:
 - "Its important to handle errors when they come up as they can have implications on detections"
-- "OTN finishes off detections Issues by running Matching and sensor tag processing"
+- "OTN finishes off detections Tickets by running Matching and sensor tag processing"
 ---
 
 ## Process workflow
@@ -20,7 +20,7 @@ The process workflow for detection data is as follows:
 flowchart LR
     tag_start(( )) --> get_meta(Receive <br />detection data <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    get_meta --> gitlab(Create <br />Gitlab <br />Work item)
     gitlab --> inspect(Visually <br />inspect)
     inspect --> convert(Convert to <br />CSVs)
     convert --> nodebook(Process and verify <br />with nodebooks)
@@ -34,10 +34,10 @@ Once `deployment metadata` has been processed for a project, the related detecti
 
 ## Submitted Records
 
-Immediately upon receipt of the data files, you must create a new GitLab issue. Please use the `Detections` Issue checklist template.
+Immediately upon receipt of the data files, you must create a new GitLab Work item. Please use the `Detections` Work item checklist template found in the drop down menu under the 'Description'.
 
-Here is the Issue checklist, for reference:
-
+Here is the Work item checklist, for reference:
+<!-- Still factual? MG to PERSON Y/N -->
 ~~~
 Detections
 - [ ] - NAME add label *'loading records'*
@@ -50,7 +50,7 @@ Detections
 - [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
 - [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
-- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab issue number here**)
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab Work Item number here**)
 -----
 - [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **(put affected years here)**
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
@@ -60,8 +60,8 @@ Detections
 - [ ] - NAME load download records (`events-3` notebook)
 - [ ] - NAME verify download records (`events-3` notebook)
 - [ ] - NAME process receiver configuration (`events-4` notebook)
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to OTN analyst for final steps
+- [ ] - NAME label Work item with *'Verify'*
+- [ ] - NAME pass Work item to OTN analyst for final steps
 - [ ] - NAME check for double reporting (verification_notebooks/`Detection Verification` notebook)
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME overwrite sentinel tags with animal tags (`detections-4b` notebook)
@@ -109,7 +109,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 **For Lotek**
-- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
+- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model.
 
 For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
 
@@ -118,7 +118,7 @@ This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
 
 **IMPORTANT NOTE:** newer versions of `vdat.exe` are only being supported on Windows. Mac users will not be able to use this Nodebook. For instructions on using a program like Wine to run windows programs on other operating systems, contact the OTN Data Centre.
 
-Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`
+Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for Windows computers as `vdat.exe`
 
 - Access the Vemco (Innovasea) website to download `Fathom Connect` - [https://support.fishtracking.innovasea.com/s/downloads](https://support.fishtracking.innovasea.com/s/downloads)
 - Agree to the Licence 
@@ -126,8 +126,10 @@ Before you begin, you will need to ensure you have access to a Fathom vdat execu
 - Locate your ProgramFiles on your computer. Locate the `InnovaSea` subfolder, and the `Fathom` folder within.
 - Copy the full filepath to your `vdat.exe` file for use in the Nodebook - this will look like `C:/Program Files/Innovasea/Fathom/vdat.exe`
 
+<!-- Still factual? MG to PERSON Y/N -->
 NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions newer than `vdat-9.3.0-20240207-74ad8e-release` are safe to process Open Protocol data.  **NOT RECOMMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
 
+<!-- Why Mac guidance when doesnt work on Mac? MG to PERSON Y/N -->
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
     - Enable execution by running `chmod +x vdat`

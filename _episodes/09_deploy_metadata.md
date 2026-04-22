@@ -34,14 +34,14 @@ Once a project has been registered, the next step (for `Deployment` and `Data` p
 
 Recall that there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
 <!-- Formulate text to highlight that sometimes folks can put movers data in deployment sheets MG to MG Y/N -->
-**Check deployment sheet information for Movers**
+**Check deployment sheet information for Movers data i.e. VMT metadata**
 
 ## Submitted Metadata
 
 Immediately upon receipt of the metadata, create a new GitLab ticket. Please use the `Receiver_metadata` Work item checklist template found in the drop down menu under the 'Description'.
 
 Here is the Work item checklist, for reference:
-
+<!-- Still factual? MG to PERSON Y/N -->
 ~~~
 Receiver Metadata
 - [ ] - NAME add label *'loading records'*
@@ -87,7 +87,7 @@ Check for the following in the deployment metadata:
 	* recover_date_time
 2. If any of the above mandatory fields are blank, follow-up with the researcher will be required if:
 	* you cannot discern the values yourself.
-	* you do not have access to the Tag or Receiver Specifications from the manufacturer (relevant for the columns containing transmitter information).
+	* you do not have access to the Tag or Receiver Specifications from the manufacturer, these can be checked in DBeaver (relevant for the columns containing transmitter information).
 3. Are the station names in the metadata consistent with those already loaded to the database (ex. '_yyyy' appended to station names or special characters in the metadata)?
 4. Are all lat/longs in the correct sign? Are they in the correct format (decimal degrees)?
 5. Do all transceivers/test tags have their transmitters provided?
@@ -134,7 +134,7 @@ filepath = r'C:/Users/path/to/deployment_metadata.xlsx'
 ~~~
 {: .language-plaintext .example}
 
-
+<!-- Still factual? MG to PERSON Y/N -->
 You also must select the format of the Deployment metadata. Currently, only the FACT Network uses a slightly different format than the template [available here](https://members.oceantrack.org/data/data-collection). If its relevant for your Node, you can edit the `excel_fmt` section.
 
 Correct formatting looks something like this:
