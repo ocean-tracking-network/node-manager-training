@@ -13,7 +13,7 @@ keypoints:
 - "Its important to handle errors when they come up as they can have implications on detections"
 - "OTN finishes off detections Tickets by running Matching and sensor tag processing"
 ---
-
+<!-- Check flow diagram visually MG to PERSON Y/N -->
 ## Process workflow
 The process workflow for detection data is as follows:
 <pre class="mermaid">
@@ -86,7 +86,7 @@ Look for the following in the detection data:
 ## Convert to CSV
 
 Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
-
+<!-- Still factual? MG to PERSON Y/N -->
 **For Innovasea**
 - VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`
@@ -712,7 +712,7 @@ If a Push is ongoing, or if verification has not yet occurred, you **must** wait
 
 In GitLab, this task can be completed at this stage:
 
-`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**`
+`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab Work item number here)**`
 
 ### Creating detection views and loading to otn_detections
 
@@ -1187,6 +1187,6 @@ The remaining steps in the GitLab Checklist are completed outside the Nodebooks.
 
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 
-Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+Finally, the Work item can be passed off to an OTN-analyst for final verification in the database.
 
 {% include links.md %}

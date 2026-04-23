@@ -35,7 +35,7 @@ The **first** step when you are contacted by a researcher who wants to register 
 
 ## Completed Metadata
 
-Immediately upon receipt of the metadata, you must create a new Gitlab Ticket. Please use the `Project Metadata` work item checklist template found in the drop down menu under the 'Description'.
+Immediately upon receipt of the metadata, you must create a new Gitlab Ticket (aka Work Item). Please use the `Project Metadata` work item checklist template found in the drop down menu under the 'Description'.
 
 Here is the Work item checklist, for reference:
 <!-- Line 42 to line 62 Review if same as most current template selection MG to PERSON Y/N -->

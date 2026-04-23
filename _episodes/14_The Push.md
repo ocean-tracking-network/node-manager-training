@@ -55,7 +55,7 @@ We have created an OTNDC Bot that announces updates through OTN's node Slack cha
 
 ## Push Reports
 
-Once a push is completed, statistics are gathered about the overall push as well as metrics about each node. This process creates a snapshot of what each node looked like at the time of that push. The statistics tracked include metrics such as the number of issues in the push, the number of projects a node is managing, the total number of detections, and the size of the database.
+Once a push is completed, statistics are gathered about the overall push as well as metrics about each node. This process creates a snapshot of what each node looked like at the time of that push. The statistics tracked include metrics such as the number of tickets in the push, the number of projects a node is managing, the total number of detections, and the size of the database.
 
 Using this data, a push report is generated for each node. These reports provide a summary of the push, including graphs and figures that illustrate how each node is growing over time. In addition to sharing these reports, we try to schedule a check-in meeting with nodes. These meetings are not only a chance for OTN to get information to the nodes but also for you to relay any information to us.
 
@@ -83,11 +83,11 @@ Detection Extract files are formatted for direct ingestion by analysis packages 
 During the Push process, any new detection matches that are made are noted in the `obis.detection_extracts_list` table of your Node. These entries will have several pieces of useful information:
 - `detection_extract`: this contains the project code, year, and type of extract that needs to be created.
     * ex: `ABC,2022,t` will suggest that project ABC needs the extract `matched to animals 2022` (tracker format) created.
-- `git_issue_link`: the issue in which these detection matches were impacted
+- `git_issue_link`: the ticket in which these detection matches were impacted
 - `push_date`: the date of the Push when this extract will have to be made
 
 Using these fields, the `detections-create detection extracts` Nodebook can determine which extracts need to be created for each push.
-
+<!-- Do we still need this? MG to PERSON Y/N -->
 **As of December 2024, please ensure you are on the `main` branch of ipython utilities before running this Nodebook**
 
 To switch branches in Git, please follow the instructions on this page [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/updating-notebooks-after-bugfixes-and-new-features#changing-branches-of-ipython-utilities)
@@ -193,7 +193,7 @@ The last cell of the section sends the emails that you have constructed.
 
  --------------------------------------
 **The following section is relevant to Nodes who use Plone as their document management system**
-
+<!-- Should we update to clarify that we email all researchers on a project now, not just point of contact? MG to PERSON Y/N -->
 > ### Emailing Researchers - Plone (This method will be considered obsolete once the database contact method is fully adopted)
 >
 > Using the Plone users system, its possible to identify which researchers require an email notification.

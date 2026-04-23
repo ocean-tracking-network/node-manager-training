@@ -15,8 +15,8 @@ keypoints:
 - "`mission metadata`, `telemetry data` and `detection data` should be submitted prior to the Moving platform data loading process."
 ---
 
-Here is the issue checklist in the OTN Gitlab `Moving Platforms` template, for reference:
-
+Here is the Work item checklist in the OTN Gitlab `Moving Platforms` template, for reference:
+<!-- Still factual? MG to PERSON Y/N -->
 ~~~
 Moving platform 
 - [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
@@ -43,8 +43,8 @@ Moving platform
 - [ ] - NAME load download records (`events-3` notebook)
 - [ ] - NAME verify download records (`events-3` notebook)
 - [ ] - NAME process receiver configuration (`events-4` notebook)
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to analyst for final steps
+- [ ] - NAME label Work item with *'Verify'*
+- [ ] - NAME pass Work item to analyst for final steps
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME update detection extract table
 

@@ -62,6 +62,8 @@ It is **not** recommended to use a personal email account for this, since all th
 
 # Documenting data submission
 
+*NOTE: GitLab Work items are often referred to as "tickets" and "issue(s)", gitlab now uses work items and issues interchangably to refer to tickets. Work items is the prominent language used on the Gitlab website. Here we will generally use the term tickets with the exception of cases where we direct the user on using gitlab features.*
+
 Using one of the suggested means above, a user has submitted data and metadata to the Node Manager. Now what?
 
 OTN uses GitLab Tickets with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox. A ticket (a general name) functions as a live tracker of actions related to a piece of data or query/request. In gitlab a 'Work Item' is a ticket. When a new work item is created, there will be a number of drop down menus and text boxes that can be used to classify and organise the ticket for tracking. This makes the ticket searchable within gitlab via use of labeling or text etc, these tickets can then be found again and updated as required until the required action is resolved. 
@@ -70,7 +72,7 @@ Immediately upon receipt of a data file, you are advised to login to [OTN's GitL
 
 Once on the GitLab project page, you should navigate to the **Work items** menu option, on the left side. Think of your GitLab tickets as your running "TODO List"! You will want to create a new Ticket for each piece of data that is submitted.
 
-*NOTE: GitLab Work items are often referred to as "tickets" and "issue(s)", gitlab now uses work items and issues interchangably to refer to tickets. Work items is the prominent language used on the website.*
+
 
 ### Creating GitLab tickets
 
