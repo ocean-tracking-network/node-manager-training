@@ -6,7 +6,7 @@ permalink: index.html  # Is the only page that doesn't follow the pattern /:path
 
 {% include gh_variables.html %}
 
-This OTN-hosted training will provide OTN-style Node Managers with an overview of the processes and tools to use to 1) ensure data is formatted correctly and free form errors, 2) ingest data into the Database Node and 3) create any relevant data products for members of their Node.
+This OTN-hosted training will provide OTN-style Node Managers with an overview of the processes and tools to use to 1) ensure data is formatted correctly and free from errors, 2) ingest data into the Database Node and 3) create any relevant data products for members of their Node.
 
 Attendees should be detail oriented, in-tune with their local telemetry communities, and not afraid to ask questions!
 
