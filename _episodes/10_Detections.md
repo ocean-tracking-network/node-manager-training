@@ -98,7 +98,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
     - Select the relevant files and import into the Fathom Connect application
     - Export **all data types**, and choose the location you want to save the files
 
-- VUE **WARNING**: As of September 2025, VUE has been deprecated by Fathom and Fathom Connect. The only remaining exception is VMT/VR2/VR3 downloads, which still require VUE. Please send any VRL files that failed to convert to support.team@innovasea.com for further analysis.
+- VUE (**WARNING**: As of September 2025, VUE has been deprecated by Fathom and Fathom Connect. The only remaining exception is VMT/VR2/VR3 downloads, which still require VUE. Please send any VRL files that failed to convert to support.team@innovasea.com for further analysis.)
     - Open a new `database`
     - Import all the `VRL` files provided
       - Note: when prompted with setting Time Zone, set to UTC.
@@ -114,7 +114,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 **For Lotek**
 - Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
 
-For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
+For **all other manufacturers**, contact the OTN Data Team to get specifics on the detection data loading workflow.
 
 ## convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
