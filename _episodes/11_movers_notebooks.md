@@ -58,7 +58,7 @@ telemetry: **(put telemetry repository link here)**
 
 # Loading Mission Metadata
 
-Moving platform missing metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
+Moving platform mission metadata should be reported to the Node in the template provided here: [Moving Platforms Metadata](https://members.oceantrack.org/data/data-collection). 
 This spreadsheet file will contain one or more missions (rows) of the moving platform: identifiers, instruments used, and deployment/recovery times.
 
 1. Quality control the `MOVING PLATFORMS METADATA` spreadsheet. If any modification save revised version as `_QCed.xlsx`
