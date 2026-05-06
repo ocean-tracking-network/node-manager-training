@@ -88,6 +88,16 @@ Look for the following in the detection data:
 Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
 **For Innovasea**
+
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
+    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV. **Please consult the OTN Data Team for the latest and OS specific `vdat` executable version.**
+    - Instructions for this Nodebook are below
+
+- Fathom Connect App
+    - Choose "export data"
+    - Select the relevant files and import into the Fathom Connect application
+    - Export **all data types**, and choose the location you want to save the files
+
 - VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`
     - Import all the `VRL` files provided
@@ -97,14 +107,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 <img width="416" height="576" alt="image" src="https://github.com/user-attachments/assets/21c54173-b1e1-4a96-bf70-7d27537dda10" />
 
     - Select `export events` and choose the location you want to save the file
-- Fathom Connect App
-    - Choose "export data"
-    - Select the relevant files and import into the Fathom Connect application
-    - Export **all data types**, and choose the location you want to save the files
-- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
-    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV
-    - Instructions for this Nodebook are below
-
+    
 **For Thelma Biotel**
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
