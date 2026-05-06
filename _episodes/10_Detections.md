@@ -98,7 +98,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
     - Select the relevant files and import into the Fathom Connect application
     - Export **all data types**, and choose the location you want to save the files
 
-- VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
+- VUE **WARNING**: As of September 2025, VUE has been deprecated by Fathom and Fathom Connect. The only remaining exception is VMT/VR2/VR3 downloads, which still require VUE. Please send any VRL files that failed to convert to support.team@innovasea.com for further analysis.
     - Open a new `database`
     - Import all the `VRL` files provided
       - Note: when prompted with setting Time Zone, set to UTC.
