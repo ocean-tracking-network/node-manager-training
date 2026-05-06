@@ -90,7 +90,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 **For Innovasea**
 
 - `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
-    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV. **Please consult the OTN Data Team for the latest and OS specific `vdat` executable version.**
+    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV. **Please consult the OTN Data Centre for the latest and OS specific `vdat` executable version.**
     - Instructions for this Nodebook are below
 
 - Fathom Connect App
@@ -114,7 +114,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 **For Lotek**
 - Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
 
-For **all other manufacturers**, contact the OTN Data Team to get specifics on the detection data loading workflow.
+For **all other manufacturers**, contact the OTN Data Centre to get specifics on the detection data loading workflow.
 
 ## convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
