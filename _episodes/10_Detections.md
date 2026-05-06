@@ -219,11 +219,13 @@ There are also some optional inputs:
 
 Once you have added your information, you can run the cell.
 
-**NOTE:** You will receive a warning before loading an excessive number of detections from HR receivers. An option is also available to summarize the detections prior to loading. Contact OTN Data Centre for assitant.
+**NOTE:** You will receive a warning before loading excessive amount of detections from HR receivers. An option is also available to summarize the detections prior to loading. Contact OTN Data Centre for assitant.
 
 ### Verify Detection File and Load to Raw Table
 
 Next, the Nodebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
+
+Should this cell reports errors—such as invalid dates (e.g., dates falling in the 1970s or future years) or duplicate events—please contact the OTN Data Centre to correct the underlying raw tables.
 
 The Nodebook will indicate the success of the table-creation with a message such as this:
 
