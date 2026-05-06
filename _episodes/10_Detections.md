@@ -165,6 +165,14 @@ Run this cell to begin converting your files to CSV. They will be saved into the
 
 The Nodebook will indicate each file has been converted by adding a ✔️**green checkmark** beside each section as it progresses.
 
+### Review Partially Converted CSV Files 
+
+Run this cell, open and observe each .csv file that had DATA ERRORS during conversion.
+
+Option 1: Accept current CSV file with DATA ERROR(s) - if not too much data is missing: **No action required**
+
+Option 2: **Remove partially converted CSV(s) and replace with output from alternative vendor software**
+
 Once this step is complete, you may move onto the Detections - 1 Nodebook.
 
 
