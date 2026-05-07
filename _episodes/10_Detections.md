@@ -515,6 +515,8 @@ If duplicates are found you will see a bar chart showing the number of detection
 
 ![Detections 2](../fig/dets_2_duplicates.png)
 
+**Note:** Please contact OTN Data Centre if the X‑axis includes detections associated with incorrect years (such as 1970 or dates in the future).
+
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
 ~~~
