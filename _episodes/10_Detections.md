@@ -667,11 +667,11 @@ Once the timedrift calculation is done (indicated by ✔️**green checkmarks**)
 
 - Select one or more receivers and years to apply the time drift factors.
 
-- 
-e.g., if the failure point was `VR2AR-480583` - `detections_2021`, will need to run resume twice:
 
+For example the failure point was at `VR2Tx-480583 – detections_2021`:
+You will need to run the resume update twice to complete the process.
 
-- 1. Select `VR2AR-480583` and all receivers below it, select 2021 and cleck Update button
+- 1. Select `VR2Tx-480583` and all receivers below it, select 2021 and cleck Update button
 <img width="596" height="396" alt="image" src="https://github.com/user-attachments/assets/97886533-2a9a-46cf-ae57-494b3c87af17" />
 
 - 2. Select all receivers in the list, select 2022 and all years below it, and cleck Update button
