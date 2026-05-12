@@ -661,7 +661,22 @@ The Nodebook should identify **all** of the years that were affected by `detecti
 
 Once the timedrift calculation is done (indicated by ✔️**green checkmarks**).
 
-**Note** In the case of connection drop (or other interuptions) while updating the `detections_yyyy` and `sensor_match_yyyy` tables, take note of which `year` and `receiver` of the failure point. 
+**Note** If a connection drop (or other interruption) occurs while updating the detections_yyyy and sensor_match_yyyy tables, make a note of the year and receiver where the failure occurred. Then, uncomment and run the code cell. This will display a dropdown list of raw events tables, a list of receivers, and a list of years.
+
+- Select the raw events table that was used to load the time drift factors.
+
+- Select one or more receivers and years to apply the time drift factors.
+
+- 
+e.g., if the failure point was `VR2AR-480583` - `detections_2021`, will need to run resume twice:
+
+
+- 1. Select `VR2AR-480583` and all receivers below it, select 2021 and cleck Update button
+<img width="596" height="396" alt="image" src="https://github.com/user-attachments/assets/97886533-2a9a-46cf-ae57-494b3c87af17" />
+
+- 2. Select all receivers in the list, select 2022 and all years below it, and cleck Update button
+
+<img width="737" height="418" alt="image" src="https://github.com/user-attachments/assets/0c167f44-9139-4a51-ba72-5ee674202af5" />
 
 #### Task list checkpoint
 
