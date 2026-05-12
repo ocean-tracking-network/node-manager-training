@@ -661,6 +661,8 @@ The Nodebook should identify **all** of the years that were affected by `detecti
 
 Once the timedrift calculation is done (indicated by ✔️**green checkmarks**).
 
+**Note** In the case of connection drop (or other interuptions) while updating the `detections_yyyy` and `sensor_match_yyyy` tables, take note of which `year` and `receiver` of the failure point. 
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
