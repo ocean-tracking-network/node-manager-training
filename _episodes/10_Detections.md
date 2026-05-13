@@ -1,6 +1,6 @@
 ---
 title: "Detection Loading"
-teaching: 60
+teaching: 120
 exercises: 0
 questions:
 - "What is the workflow for loading detection data?"
@@ -88,7 +88,17 @@ Look for the following in the detection data:
 Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
 
 **For Innovasea**
-- VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
+
+- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
+    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV. **Please consult the OTN Data Centre for the latest and OS specific `vdat` executable version.**
+    - Instructions for this Nodebook are below
+
+- Fathom Connect App
+    - Choose "export data"
+    - Select the relevant files and import into the Fathom Connect application
+    - Export **all data types**, and choose the location you want to save the files
+
+- VUE (**WARNING**: As of September 2025, VUE has been deprecated by Fathom and Fathom Connect. The only remaining exception is VMT/VR2/VR3 downloads, which still require VUE. Please send any VRL files that failed to convert to support.team@innovasea.com for further analysis.)
     - Open a new `database`
     - Import all the `VRL` files provided
       - Note: when prompted with setting Time Zone, set to UTC.
@@ -97,21 +107,14 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 <img width="416" height="576" alt="image" src="https://github.com/user-attachments/assets/21c54173-b1e1-4a96-bf70-7d27537dda10" />
 
     - Select `export events` and choose the location you want to save the file
-- Fathom Connect App
-    - Choose "export data"
-    - Select the relevant files and import into the Fathom Connect application
-    - Export **all data types**, and choose the location you want to save the files
-- `convert - Fathom (vdat) Export - VRL to CSV` Nodebook <a name="convertToCSV"></a>
-    - This will use the `vdat.exe` executable to export from VRL/VDAT to CSV
-    - Instructions for this Nodebook are below
-
+    
 **For Thelma Biotel**
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 **For Lotek**
 - Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
 
-For **all other manufacturers**, contact OTN staff to get specifics on the detection data loading workflow.
+For **all other manufacturers**, contact the OTN Data Centre to get specifics on the detection data loading workflow.
 
 ## convert - Fathom (vdat) Export - VRL to CSV Nodebook
 This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
@@ -162,6 +165,14 @@ Run this cell to begin converting your files to CSV. They will be saved into the
 
 The Nodebook will indicate each file has been converted by adding a ✔️**green checkmark** beside each section as it progresses.
 
+### Review Partially Converted CSV Files 
+
+Run this cell, open and observe each .csv file that had DATA ERRORS during conversion.
+
+Option 1: Accept current CSV file with DATA ERROR(s) - if not too much data is missing: **No action required**
+
+Option 2: **Remove partially converted CSV(s) and replace with output from alternative vendor software**
+
 Once this step is complete, you may move onto the Detections - 1 Nodebook.
 
 
@@ -208,9 +219,13 @@ There are also some optional inputs:
 
 Once you have added your information, you can run the cell.
 
+**NOTE:** You will receive a warning before loading excessive amount of detections from HR receivers. An option is also available to summarize the detections prior to loading. Contact OTN Data Centre for assitant.
+
 ### Verify Detection File and Load to Raw Table
 
 Next, the Nodebook will review and verify the detection file(s) format, and report any error. Upon successful verification, you can then run the cell below which will attempt to load the detections into a new raw table.
+
+Should this cell reports errors—such as invalid dates (e.g., dates falling in the 1970s or future years) or duplicate events—please contact the OTN Data Centre to correct the underlying raw tables.
 
 The Nodebook will indicate the success of the table-creation with a message such as this:
 
@@ -500,6 +515,8 @@ If duplicates are found you will see a bar chart showing the number of detection
 
 ![Detections 2](../fig/dets_2_duplicates.png)
 
+**Note:** Please contact OTN Data Centre if the X‑axis includes detections associated with incorrect years (such as 1970 or dates in the future).
+
 After all this, the `raw` detection records are ready to be loaded into the `detections_yyyy` tables. The notebook will indicate success with the following message:
 
 ~~~
@@ -643,6 +660,23 @@ Finally, we are ready to update the times in both the `detections_yyyy` and `sen
 The Nodebook should identify **all** of the years that were affected by `detections-2` loading steps, so the notebook knows which tables need to be corrected.
 
 Once the timedrift calculation is done (indicated by ✔️**green checkmarks**).
+
+**Note** If a connection drop (or other interruption) occurs while updating the detections_yyyy and sensor_match_yyyy tables, make a note of the year and receiver where the failure occurred. Then, uncomment and run the code cell. This will display a dropdown list of raw events tables, a list of receivers, and a list of years.
+
+- Select the raw events table that was used to load the time drift factors.
+
+- Select one or more receivers and years to apply the time drift factors.
+
+
+For example the failure point was at `VR2Tx-480583 – detections_2021`:
+You will need to run the resume update twice to complete the process.
+
+- 1. Select `VR2Tx-480583` and all receivers below it, select 2021 and cleck Update button
+<img width="596" height="396" alt="image" src="https://github.com/user-attachments/assets/97886533-2a9a-46cf-ae57-494b3c87af17" />
+
+- 2. Select all receivers in the list, select 2022 and all years below it, and cleck Update button
+
+<img width="737" height="418" alt="image" src="https://github.com/user-attachments/assets/0c167f44-9139-4a51-ba72-5ee674202af5" />
 
 #### Task list checkpoint
 
