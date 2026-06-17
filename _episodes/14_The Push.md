@@ -193,7 +193,6 @@ The last cell of the section sends the emails that you have constructed.
 
  --------------------------------------
 **The following section is relevant to Nodes who use Plone as their document management system**
-<!-- Should we update to clarify that we email all researchers on a project now, not just point of contact? MG to PERSON Y/N -->
 > ### Emailing Researchers - Plone (This method will be considered obsolete once the database contact method is fully adopted)
 >
 > Using the Plone users system, its possible to identify which researchers require an email notification.

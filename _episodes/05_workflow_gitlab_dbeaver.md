@@ -22,7 +22,7 @@ Data Managers receive data from a researcher and then begin the process of QA/QC
 1. Records are received and a GitLab Ticket is created.
 1. Data are QA/QC'd using the OTN Nodebooks, and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
 1. Successful processing can be checked by using DBeaver to query and explore the database.
-<!-- Check flowchart text 'Create Gitlab Work item' looks good MG to PERSON Y/N -->
+
 <pre class="mermaid">
 flowchart LR
     data_start(( )) --> get_data(Receive metadata </br>from researchers)
@@ -47,10 +47,10 @@ There are many ways to receive data from researchers in your community/group. Fi
 The most common way to receive data and metadata from a researcher is through some type of file management website. This will require either an email notification system for the Node Manager or **constant** checking to look for new submissions.
 
 OTN-managed Nodes can always use the same Plone file management portal software that OTN itself uses to create and maintain private-access data repository folders into which researchers can deposit their data and metadata. These private folders also serve as the location where Detection Extracts are distributed to users, when available.
-<!-- Still factual? MG to PERSON Y/N -->
+
 The FACT Network currently uses a custom instance of Research Workspace for the same purpose.
-<!-- Still factual? MG to PERSON Y/N -->
-The ACT and GLATOS Networks use a custom data-submission form managed through their networks' web sites.
+
+The GLATOS Network use a custom data-submission form managed through their networks' web sites.
 
 Its common for groups of researchers to use DropBox, Google Drive, or something similar to share data/metadata when the Network is still small. This can be a great, accessible option but the caveat is that is is much more difficult to control access to each individual folder to protect the Data Policy, and it may be difficult to determine when new data has been submitted.
 
@@ -81,12 +81,11 @@ By choosing the **New item** button in the top-right of your screen, you will be
 - Title: Write the project name/code, the type of data submitted, and the submission date, this makes the ticket searchable in the future (eg: `HFX tag metadata 2022-02`)
 - Type: Should be type `Issue`.
 - Description: 
-    * There are pre-made *Templates* to choose from here, using the drop down menu. Ensure you choose the relevant checklist for the type of data that was submitted (eg: `Tag_metadata`). This will populate the large description field! 
-    <!-- Expand line 82: specific template text/choice for Tag, Deployment and Receiver offloads to be added to reduce confusion MG to Dan Y/N -->
+    * There are pre-made *Templates* to choose from here, using the drop down menu. Ensure you choose the relevant checklist for the type of data that was submitted (eg: `Tag_metadata`,'Receiver_metadata','Detections'). This will populate the large description field! 
     * Ensure you include the link to the submitted data file OR use the `Attach a file` option to attach a copy of the submitted data file to the ticket.
 - Assignee: Assign to yourself if this is a task for you, or to anyone else to whom you want to delegate.
 - Milestone: These are the upcoming Data Push dates. You should choose the nearest future PUSH date as the Milestone for this ticket.
-- Labels: This is for your reference - choose a label that will help you remember what stage of processing this ticket is in. Some common examples include `Ready to Load`,`Needs QC`, `Waiting for Metadata`, `Waiting for VRLs`, `Request PI Clarification` etc. You can create new labels at any time to help sort your tickets.
+- Labels: This is for your reference - choose a label that will help you remember what stage of processing this ticket is in. Some common examples include `Ready to Load`,'Loading records',`Needs QC`, `Waiting for Metadata`, `Waiting for VRLs`, `Request PI Clarification` etc. You can create new labels at any time to help sort your tickets. Addionally, there are now labels for 'Project metadata','receiver metadata', 'Tagging metadata' 'Detection data','Gliders/Movers'. It is standard practice in OTN to label the different data types being ticketed for searchability in Gitlab, labels tend to provide the best user-determined filtering system in Gitlab.
 
 With the above information supplied, you can click the **Create Issue** button.
 
@@ -103,20 +102,23 @@ You can tag anyone from the OTN Data Team in your GitLab ticket (using the `@NAM
 Once you have completed all the tasks in the template, you can edit the `Assignee` value in the top-right corner, and assign to someone from OTN's Database team (currently, Angela or Yinghuan). They will complete the final verification of the data, and close the item when completed. At this time, you can change the item Label to `Verify`, or something similar, to help visually "mark it off" your item list on the main page.
 
 ## GitLab practice
-<!-- Text to clarify where these are is required, they are in a sub-menu, '</> code' MG to PERSON Y/N -->
+
 At this time we will take a moment to practice making GitLab Work Items, and explore other pages on our GitLab like, `Milestones`, `Repository`, `Snippets`, and `Wiki`.
+- Milestones can be found under the Plan heading in the left-hand side of the Gitlab page when within your Node-DAQ gitlab section. Reviewing this page can give insight into the progression of ticket processing from unstarted, ongoing to completed. 
+- Repository is found under the Code heading in the left-hand side of the Gitlab page also. This page shows the files associated in the Gitlab such as templates (click .gitlab folder in upper left unter Files heading, then issue_templates). 
+-Snippets is found under the same Code heading, this a good place to store copy and pasteable email templates for repeated queries to researchers or responses for frequently asked questions. You can also store bits of code here and there such as SQL queries for the Node database for common database searches
+- Wiki is a place to store things like how-to-do's or process guides that may not have a template associated yet such as data policy agrrement tracking.  
 
 ## Database access
 
 As part of the OTN workflow, it may be prudent to use a database client like DBeaver to view the contents of your Node's database directly and make sure the data has been loaded as expected.
 
-DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for query writing and data exploration. We will assume that workshop attendees are novices in using this application.
-<!-- Do we want to add a link here too (in software training page previous too)? MG to PERSON Y/N -->
+DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for query writing and data exploration. We will assume that workshop attendees are novices in using this application. [https://dbeaver.io/](https://dbeaver.io/) (free and open access - **recommended**)
+
 
 ### Connecting to your database
 
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
-<!-- Line 118 to line 126 Still factual? MG to PERSON Y/N -->
 - Host: this could be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
 - Database: this will be your database name, something like `pathnode`. For training, it will be `nodetraining`.
 - Port: this is specified in your `.auth` file and will be four digits. For training, this port will be set to `5432`.
@@ -129,7 +131,6 @@ On the left-side you should now see a `Database Navigator` tab, and a list of al
 ### Writing a query in DBeaver
 
 If you wish to write a query to see a specific portion of your already-loaded data, you should first open a new SQL console. Choose `SQL Editor` from the top menu, then `New SQL Script`. A blank form should appear.
-<!-- Do we want to add some 'common' queries such as searching for a schema, researcher related projects MG to PERSON Y/N -->
 While writing SQL is out of the scope of this course, there are many great SQL resources available online. The general premise involves creating conditional `select` statements to specify the data you're interested in. As an example, `select * from hfx.rcvr_locations where rcv_serial_no = '12345';` will select all records from the HFX schema's rcvr_locations table where the serial number is 12345.
 
 To run a query, ensure your cursor (the vertical line that shows where you are editing text) is on the line you want to run, then either 1) right-click, and choose Execute, or 2) press CTRL-ENTER (CMD-ENTER for Mac). The results of your query will be displayed in the window below the SQL console.

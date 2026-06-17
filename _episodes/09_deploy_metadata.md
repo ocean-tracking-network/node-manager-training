@@ -33,8 +33,8 @@ Once a project has been registered, the next step (for `Deployment` and `Data` p
 
 
 Recall that there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
-<!-- Formulate text to highlight that sometimes folks can put movers data in deployment sheets MG to MG Y/N -->
-**Check deployment sheet information for Movers data i.e. VMT metadata**
+
+**Check deployment sheet information for misplaced Movers data i.e. VMT metadata**
 
 ## Submitted Metadata
 
@@ -45,11 +45,12 @@ Here is the Work item checklist, for reference:
 ~~~
 Receiver Metadata
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME load raw receiver metadata (`deploy` notebook) **put_table_name_in_ticket**
+- [ ] - NAME load raw receiver metadata (`deploy` notebook) **:fish: put_table_name_in_ticket**
+- [ ] - NAME [OTN only] check for *new* lost indicator in recovery column, list receiver serial numbers for OTN inventory updating, tag OTN daq personnel (only for current deployments/recoveries, not historical)
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 - [ ] - NAME verify raw table (`deploy` notebook)
-- [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc)
-- [ ] - NAME email notification of updated metadata file to PI and individual who submitted
+- [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc) **:fish: put_link_to_updated_metadata**
+- [ ] - NAME email notification of updated metadata file to PI and individual who submitted 
 - [ ] - NAME load station records (`deploy` notebook)
 - [ ] - NAME verify stations (`deploy` notebook)
 - [ ] - NAME load to rcvr_locations (`deploy` notebook)
@@ -57,11 +58,10 @@ Receiver Metadata
 - [ ] - NAME add transmitter records receivers with integral pingers (`deploy` notebook)
 - [ ] - NAME load to moorings (`deploy` notebook)
 - [ ] - NAME verify moorings (`deploy` notebook)
-- [ ] - NAME label ticket with *'Verify'*
-- [ ] - NAME pass ticket to OTN DAQ for reassignment to analyst
-- [ ] - NAME check if project is OTN loan, if yes, check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating.
-- [ ] - NAME pass ticket to OTN analyst for final verification
-- [ ] - NAME check for double reporting (verification_notebooks/Deployment Verification notebook)
+- [ ] - NAME label work item with *'Verify'*
+- [ ] - NAME reassign work item to OTN data analyst for final verification
+- [ ] - NAME check for double reporting (verification_notebooks/`Deployment Verification` notebook)
+
 
 **receiver deployment files/path:**
 ~~~
@@ -134,7 +134,7 @@ filepath = r'C:/Users/path/to/deployment_metadata.xlsx'
 ~~~
 {: .language-plaintext .example}
 
-<!-- Still factual? MG to PERSON Y/N -->
+
 You also must select the format of the Deployment metadata. Currently, only the FACT Network uses a slightly different format than the template [available here](https://members.oceantrack.org/data/data-collection). If its relevant for your Node, you can edit the `excel_fmt` section.
 
 Correct formatting looks something like this:

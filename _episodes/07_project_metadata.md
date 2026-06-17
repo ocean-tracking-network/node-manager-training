@@ -42,24 +42,38 @@ Here is the Work item checklist, for reference:
 ~~~
 Project Metadata
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME define type of project  **select here one of Data, Deployment, Tracker** 
+- [ ] - NAME define type of project  **select one: Data, Deployment, Tracker**
 - [ ] - NAME create schema and project records (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add project contact information (`Creating and Updating project metadata` notebook)
 - [ ] - NAME add scientificnames (`Creating and Updating project metadata` notebook)
+- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to obis.loan_tracking (`Creating and Updating project metadata` notebook)
 - [ ] - NAME verify all of above (`Creating and Updating project metadata` notebook)
-- [ ] - NAME [Plone-users only] create new project repository users (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [Plone-users only] create project repository folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [Plone-users only] add project repository users to folder (`Create Plone Folders and Add Users` notebook)
-- [ ] - NAME [Plone-users only] access project repository double-check project repository creation and user access 
-- [ ] - NAME add project metadata file to relevant project folder (Plone site, Research Workspace etc)
+- [ ] - NAME [OTN only] create new project repo users (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [OTN only] create project repo folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [OTN only] add project repo users to folder (`Create Plone Folders and Add Users` notebook)
+- [ ] - NAME [OTN only] access project repo double-check project repository creation and user access - **post repository URL HERE**
+- [ ] - NAME add project metadata file to project folder (OTN members.oceantrack.org, FACT RW etc)
 - [ ] - NAME email notification of updated metadata file to PI and individual who submitted
-- [ ] - NAME send onboarding email to all contacts
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to OTN DAQ staff
-- [ ] - NAME [OTN only] manually identify if this is a loan, if so add record to otnunit.obis.loan_tracking (`Creating and Updating project metadata` notebook)
+- [ ] - NAME send onboarding email to PIs using https://gitlab.oceantrack.org/otndc/otn-data-acquisition/-/snippets/203
 - [ ] - NAME [OTN only] if this is a loan, update links for PMO
-- [ ] - NAME pass issue to OTN analyst for final verification
+- [ ] - NAME [OTN only] check inbox for any email asking for an embargo on this project
+
+_If there is an embargo request:_
+- [ ] - NAME if there is an embargo request: create a new ticket using the correct task list (either 'Embargo_request_two_year' or 'Embargo_request_extended') and then skip down to the **Verification** steps. **Paste link to new ticket here**
+
+_If there is **no** embargo request:_
+- [ ] - NAME update the 'Publication of Tag Data' section with the embargo date as current date and select the *PI Approval* box (`Publication Control Table Update` notebook)
+- [ ] - NAME update the 'Publication of Detection Data' section with the embargo date as current date and select the *PI Approval* box (`Publication Control Table Update` notebook)
+- [ ] - NAME select **yes** for publish to OBIS, unless otherwise specified (`Publication Control Table Update` notebook)
+- [ ] - NAME select **yes** for publish to ERDDAP, unless otherwise specified (`Publication Control Table Update` notebook)
+- [ ] - NAME add signed data policy to the Background folder of the project folder **Paste link to file**
+- [ ] - NAME email PIs about making the Plone repo public as well _(do not need to wait on a response, pass ticket on to verification once email has been sent)_
+
+**Verification**
+- [ ] - NAME label work item with *'Verify'*
+- [ ] - NAME reassign work item to OTN data analyst for final verification
 - [ ] - NAME verify project in database
+- [ ] - NAME verify obis.publication_control updates
 
 **project metadata txt file**
 ~~~
@@ -159,7 +173,7 @@ You will have to edit one section: `engine = get_engine()`
 - On MacOS computers, you can usually find and copy the path to your database `.kdbx` file by right-clicking on the file and holding down the "option" key. On Windows, we recommend using the installed software Path Copy Copy, so you can copy a unix-style path by right-clicking.
 - The path should look like `engine = get_engine('C:/Users/username/Desktop/Auth files/database_connection.kdbx')`.
 
-### Project Metadata Parser <!-- Has there been notebook updates to this? MG to PERSON Y/N -->
+### Project Metadata Parser 
 
 This cell is where you input the information contained in the Project Metadata `.txt` file. There are two ways to do this:
 
@@ -237,7 +251,7 @@ The cell titled `Verify the new project details before writing to the DB` is the
 
 Based on the abstract, you can use the `Square Draw Tool` to re-draw the bounding box until you are happy with it.
 
-<!-- Still factual representation of image/process MG to PERSON Y/N -->
+
 ![Proj 1](../fig/proj_meta_bounds.JPG)
 
 
@@ -512,13 +526,28 @@ Successful output will be of this format:
 > {: .language-plaintext .example}
 >
 > Then you may choose `Add another user` and begin again.
->
-> The acceptable folder permissions may vary depending on the project role of the contact. Here are some guidelines:
-> - Principal Investigator: all permissions
-> - Researcher: all permissions except `Reviewer`
-> - Student: all permissions except `Reviewer`
-> - Technician: only `Contributor` and `Reader`
-> - Collaborator: only `Contributor` and `Reader`
+><!-- Requires rewrite for clarity in what this means for what a researcher can and can't do in Plone repo terms MG to PERSON Y/N -->
+Upon creation of a project or in cases of adding a new person to your project, you are asked to specify their role on the project. This role relates to the level of authority they have with regards to the repository itself and the data contained therein. 
+
+The actions a person can perform in the data repository are as follows: 
+
+Can add: A user can access the repository and share data files to be uploaded to the repository. 
+Can edit: A user can access the repository and can add files, edit files, remove files and make folders. 
+Can view: A user can access the repository and view files. 
+Can Review: A user can access the repository and has final say on data sharing. 
+
+The acceptable folder permissions may vary depending on the project role of the contact. Here are some guidelines:
+•	Principal Investigator: all permissions
+•	Researcher: all permissions except Reviewer
+•	Student: all permissions except Reviewer
+•	Technician: only Contributor and Reader
+•	Collaborator: only Contributor and Reader
+
+Roles and abilities in the OTN Data repository:
+Reader: Can view but cannot make changes. 
+Contributor: Can view the repository, can edit and can add.
+Reviewer:  Can do all of above and also has role of authority on what happens to the data in respect to sharing. 
+
 >
 > This is very fluid and can be edited at any time. These are guidelines only!
 >

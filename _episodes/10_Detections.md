@@ -13,7 +13,7 @@ keypoints:
 - "Its important to handle errors when they come up as they can have implications on detections"
 - "OTN finishes off detections Tickets by running Matching and sensor tag processing"
 ---
-<!-- Check flow diagram visually MG to PERSON Y/N -->
+
 ## Process workflow
 The process workflow for detection data is as follows:
 <pre class="mermaid">
@@ -41,32 +41,32 @@ Here is the Work item checklist, for reference:
 ~~~
 Detections
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Convert - Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
+- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `convert - Fathom (vdat) Export - VRL to CSV` notebook and `detections-1` notebook) **:fish:(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **(put detection years that were loaded here)**
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **:fish:(put detection years that were loaded here)**
 - [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **:fish:(put sensor years that were loaded here)**
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
-- [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
-- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab Work Item number here**)
------
-- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **(put affected years here)**
+- [ ] - NAME verify timedrift corrections (`detections-2b` notebook) **:fish:(put affected years here)**
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab work item number here)**
+------
+- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **:fish:(put affected years here)**
+- [ ] - NAME load sentinel records (`detections-3` notebook) 
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
-- [ ] - NAME load sentinel records (`detections-3` notebook)
-- [ ] - NAME check for missing receiver metadata (`detections-3b` notebook)
-- [ ] - NAME check for missing data records (`detections-3c` notebook)
+- [ ] - NAME check for missing receiver metadata (`detections-3b` notebook) and use Missing Metadata template to create a ticket **(put Gitlab work item number here)**
+- [ ] - NAME check for missing data records (`detections-3c` notebook) and use the Missing Detections template to create a ticket **(put Gitlab work item number here)**
 - [ ] - NAME load download records (`events-3` notebook)
 - [ ] - NAME verify download records (`events-3` notebook)
 - [ ] - NAME process receiver configuration (`events-4` notebook)
-- [ ] - NAME label Work item with *'Verify'*
-- [ ] - NAME pass Work item to OTN analyst for final steps
-- [ ] - NAME check for double reporting (verification_notebooks/`Detection Verification` notebook)
+- [ ] - NAME label work item with *'Verify'*, removed label *'loading records'*
+- [ ] - NAME reassign work item to OTN data analyst for final steps
+- [ ] - NAME run verification_notebooks/`Detection Verification` notebook
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME overwrite sentinel tags with animal tags (`detections-4b` notebook)
 - [ ] - NAME do sensor tag processing (`detections-5` notebook) - only done if vendor specifications are available
-- [ ] - NAME update detection extract table
+
 
 **detections files/path:**
 ~~~
@@ -86,7 +86,7 @@ Look for the following in the detection data:
 ## Convert to CSV
 
 Once the raw files are obtained, the data must often be converted to `.csv` format by the Node Manager. There are several ways this can be done, depending on the manufacturer.
-<!-- Still factual? MG to PERSON Y/N -->
+
 **For Innovasea**
 - VUE  (Obsolete, prefer Fathom Connect unless receiver unsupported)
     - Open a new `database`

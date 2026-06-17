@@ -16,43 +16,54 @@ keypoints:
 ---
 
 Here is the Work item checklist in the OTN Gitlab `Moving Platforms` template, for reference:
-<!-- Still factual? MG to PERSON Y/N -->
+
 ~~~
 Moving platform 
-- [ ] - NAME load raw metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
+
+metadata: **(put metadata plone link here)**
+
+data: **(put data plone link here)**
+
+telemetry: **(put telemetry plone link here)**
+
+- [ ] - NAME add label *'loading records'*
+- [ ] - NAME add label *'Gliders/Movers'*
+- [ ] - NAME verify raw mission metadata file (`movers-1` notebook)
+- [ ] - NAME load raw mission metadata file (`movers-1` notebook)**(:fish: table name: c_moving_platform_missions_yyyy)**
 - [ ] - NAME load raw telemetry files (`movers-2` notebook) **(:fish: table name: c_moving_platform_telemetry_yyyy**)
 - [ ] - NAME create telemetry table from raw table (`movers-2` notebook) **(:fish: table name: moving_platform_telemetry_yyyy**)
+- [ ] - NAME verify telemetry table (`movers-2` notebook) 
 - [ ] - NAME combine mission metadata with telemetry (`movers-2` notebook) **(:fish: table name: moving_platform_mission_telemetry_yyyy)**
-- [ ] - NAME load to raw detections (`detections-1` notebook) **(:fish: table name: c_detections_yyyy)**
-- [ ] - NAME verify raw detections table (`detections-1` notebook)
-- [ ] - NAME load raw events (`events-1` notebook) **(:fish: table name: c_events_yyyy )**
-- [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy_movers (`movers-2` notebook) **(:fish: put affected years here)**
-- [ ] - NAME delete self detections (`movers-3` notebook)
-- [ ] - NAME timedrift correction for affected detection (`movers-3` notebook)
-- [ ] - NAME verify timedrift corrections (`movers-3` notebook)
-- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (`movers-3` notebook)
-- [ ] - NAME load to sensor match (`movers-3` notebook) **(:fish: put affected years here)**
+- [ ] - NAME verify joined table (`movers-2` notebook)
+- [ ] - NAME load to raw detections (if detections available) (`detections-1` notebook) **(:fish: table name: c_detections_yyyy)**
+- [ ] - NAME verify raw detections table (if detections available) (`detections-1` notebook)
+- [ ] - NAME load raw events (if events available) (`events-1` notebook) **(:fish: table name: c_events_yyyy )**
+- [ ] - NAME load raw events to events table (if events available) (`events-2` notebook)
+- [ ] - NAME load to detections_yyyy_movers (if detections available) (`movers-3` notebook) **(:fish: put number of detections here)**
+- [ ] - NAME compare detections to telemetry (if detections available) (`movers-3b` notebook)
+- [ ] - NAME delete self detections (if detections available) (`movers-3` notebook) **(:fish: add number of detections removed here)**
+- [ ] - NAME add time drift factors (if events available) (`movers-3` notebook) **(:fish: put affected years here)**
+- [ ] - NAME timedrift correction for affected detection (if detections available) (`movers-3` notebook) **(:fish: put affected years here)**
+- [ ] - NAME verify timedrift corrections (if detections available) (`movers-3` notebook)
+- [ ] - NAME verify detections_yyyy_movers (looking for duplicates) (if detections available) (`movers-3` notebook)
+- [ ] - NAME load to sensor match (if detections available) (`movers-3` notebook) **(:fish: put affected years here)**
 - [ ] - NAME load formatted telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
-- [ ] - NAME load reduced telemetry tables (`movers-4` notebook) **(:fish: put affected years here)**
-- [ ] - NAME load glider as receiver tables (`movers-4` notebook) **(:fish: put affected years here)**
-- [ ] - NAME load into vw_detections_yyyy_movers (`movers-4` notebook) **(:fish: put affected years here)**
-- [ ] - NAME load view detections into otn_detections_yyyy (`movers-4` notebook) **(:fish: put affected years here)**
-- [ ] - NAME verify otn_detections_yyyy (`movers-4` notebook)
+- [ ] - NAME load moving_platform_as_receiver table (`movers-4` notebook)
+- [ ] - NAME load into vw_detections_yyyy_movers (if detections available) (`movers-4` notebook) **(:fish: put affected years here)**
+- [ ] - NAME load view detections into otn_detections_yyyy (if detections available) (`movers-4` notebook) **(:fish: put affected years here)**
+- [ ] - NAME verify otn_detections_yyyy (if detections available) (`movers-4` notebook)
 - [ ] - NAME create mission and receiver records in moorings (`movers-4` notebook)
-- [ ] - NAME load download records (`events-3` notebook)
-- [ ] - NAME verify download records (`events-3` notebook)
-- [ ] - NAME process receiver configuration (`events-4` notebook)
-- [ ] - NAME label Work item with *'Verify'*
-- [ ] - NAME pass Work item to analyst for final steps
+- [ ] - NAME check for missing receiver metadata (`detections-3b notebook`)
+- [ ] - NAME check for missing data records (`detections-3c notebook`)
+- [ ] - NAME load download records (if events available) (`events-3` notebook)
+- [ ] - NAME verify download records (if events available) (`events-3` notebook)
+- [ ] - NAME process receiver configuration (if events available) (`events-4` notebook)
+- [ ] - NAME label work item with *'Verify'*
+- [ ] - NAME reassign work item to OTN data analyst for final steps
 - [ ] - NAME match tags to animals (`detections-4` notebook)
-- [ ] - NAME update detection extract table
+- [ ] - NAME overwrite sentinel tags with animal tags (`detections-4b` notebook)
+- [ ] - NAME do sensor tag processing (`detections-5` notebook)
 
-metadata: **(put metadata repository link here)**
-
-data: **(put data repository link here)**
-
-telemetry: **(put telemetry repository link here)**
 
 ~~~
 

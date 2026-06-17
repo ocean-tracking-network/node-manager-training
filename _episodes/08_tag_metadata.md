@@ -42,21 +42,22 @@ Immediately, upon receipt of the metadata, create a new GitLab ticket. Please us
 Here is the Work item checklist, for reference:
 
 ~~~
-Tag Meta Data
+Tag Metadata
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME load raw tag metadata (`tag-1` notebook) **put_table_name_in_ticket**
+- [ ] - NAME load raw tag metadata (`tag-1` notebook) **:fish: put_table_name_in_ticket**
 - [ ] - NAME confirm no duplicates in raw table, review and remove (`tag-1b` notebook)
 - [ ] - NAME verify raw table (`tag-2` notebook)
-- [ ] - NAME post updated metadata to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
+- [ ] - NAME post updated metadata to project folder (OTN members.oceantrack.org, FACT RW etc) if needed **:fish: put_link_to_updated_metadata**
 - [ ] - NAME email notification of updated metadata file to PI and individual who submitted
 - [ ] - NAME build cache tables (`tag-2` notebook)
 - [ ] - NAME verify cache tables (`tag-2` notebook)
 - [ ] - NAME load otn tables (`tag-2` notebook)
 - [ ] - NAME verify otn tables (`tag-2` notebook)
 - [ ] - NAME verify tags are not part of another collection (`tag-2` notebook)
-- [ ] - NAME label ticket with *'Verify'*
-- [ ] - NAME pass ticket to analyst for final verification
-- [ ] - NAME check for double reporting (verification_notebooks/Tag Verification notebook)
+- [ ] - NAME label work item with *'Verify'*
+- [ ] - NAME reassign work item to OTN data analyst for final verification
+- [ ] - NAME check for double reporting (verification_notebooks/`Tag Verification` notebook)
+
 ~~~
 {: .language-plaintext .example}
 
@@ -295,7 +296,7 @@ Then, there will be **two** interactive tables provided, which can be used to id
 
 1. Comparison to otn_animals
 2. Comparison to otn_transmitters
-<!-- Still factual? MG to PERSON Y/N -->
+
 All text should be `black`, and you should scroll through the entire table, row-by-row, to review any values where the cell is `highlighted/flashing RED`. These are highlighting differences between the values in the `raw` table vs values in the `otn` table, for this animal record.
 
 If there are **no** highlighted/flashing red cells in a row, you can delete the record from the `no_dup` table by using the `delete` button on the left-side of the table. You can also use the `Select All` button if appropriate.

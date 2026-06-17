@@ -48,7 +48,6 @@ Run this cell. You will be prompted to create a password for the file (if it is 
 ### Create or Update Main Connections
 
 Run this cell. This section will have an editable form. If it is a new file, all fields will be blank. If it is an existing file, the previously-entered information will display. You may now edit the information, pressing the blue button when you are finished to save your results.
-<!-- Line 52 to line 57 Still factual? MG to PERSON Y/N -->
 - Conn Name: this is customizable - what is the name of this connection? We recommend choosing something like "OTN Database" to help you remember.
 - Host: this will be something like `matos.asascience.com` for your DB, but for training purposes we will use the IP of our Node Training DB: `129.173.48.161`.
 - Port: this is specified in your `.auth` file and will be four digits. Use `5432` for Node Training.
