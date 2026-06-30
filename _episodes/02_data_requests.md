@@ -24,7 +24,7 @@ This is an example of how OTN handles these requests:
 
 1. As OTN registered projects are public and open by default, check if the data requested is available publically for sharing. 
 2. Request for data (from person other than data owner) submitted
-3. Data request is scoped, in a GitLab Ticket. All details from requester is included.
+3. Data request is scoped in a GitLab Ticket. All details from requester is included.
 4. Impacted PIs are identified, and contacted, seeking written permission for requester to access the information.
 5. Written permission is documented in GitLab Ticket, to preserve the paper-trail.
 6. Data request report is compiled and provided to requester, once all permissions have been received.
