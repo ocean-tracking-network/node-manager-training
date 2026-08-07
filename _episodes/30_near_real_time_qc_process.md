@@ -90,8 +90,8 @@ The JSON file for NRT QC of Wildlife Computers (WC) tags looks like this:
 	{
 	"download":true,
 	"owner.id":"663d756e3cd05b1b7a0ff568",
-	"wc.akey":"VVeerW+G6YUe7olzlrOr6q5o2Nkjx5PTEwuwQrsMzTb=",
-	"wc.skey":"7k9MupziDacYNur/3IPMDjn7wum6oQk5eV2LBk02vLp=",
+	"wc.akey":"[Wildlife Computers akey]",
+	"wc.skey":"[Wildlife Computers skey]",
 	"tag.list":"grse_tags.csv",
 	"dropIDs":null
 	},
