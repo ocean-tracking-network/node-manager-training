@@ -25,14 +25,16 @@ Affiliated acoustic telemetry partner Networks may become an OTN Node by deployi
 # Basic Structure
 
 The basic structural decision at the centre of an OTN-style Database is that each of a Node's projects will be subdivided into their own database `schemas`. These schemas contain only the relevant tables and data to that project. The tables included in each schema are created and updated based on which types of data each project is reporting. 
-
+<!-- Line 29: Where in project metadata is this delineated? MG to PERSON Y/N -->
+<!-- Line 29: Is selected in Create and update projects.ipynb by Node Manager MG to MG Y/N -->
 Projects can have the type `tracker`, `deployment`, or `data`. 
 - Tracker projects only submit data about tag releases and animals. They get tables based on the tags, animals, and detections of those tags. 
 - Deployment projects only submit data about receivers and their collected data. These projects get tables related to receiver deployments and detections on their receivers. 
 - Data projects are projects that deploy both tags and receivers and will submit data related tags, animals, receivers, and detections and will get all the related tables.
+When loading the project metadata using the Create and Update projects.ipynb (shown in subsequent training materials: 07_project_metatdata.md) the data loader will select one of the above. 
 
 In addition to the project-specific `schemas`, there are some important common schemas in the Database that Node Managers will interact with. These additional schemas include the `obis`, `erddap`, `geoserver`, `vendor`, and `discovery` schemas. These schemas are found across all Nodes and are used to create important end-products and for processing. 
-- The `obis` schema holds summary data describing each project contained in the Node as well as the aggregated data from those projects. When data goes into a final table of the project schema it will be inherited into a table in `obis` (generally with a similar name). 
+- The `obis` schema holds summary data describing each project contained in the Node as well as the aggregated data from those projects. When data goes into a final table of the project schema it will be inherited into a table in `obis` (generally with a similar name). Of note, 'obis' is a legacy OTN schema name and bears no connection to the Ocean Biodiversity Information System (OBIS), although OTN does share publically available data to OBIS also. 
 - The `erddap` schema holds aggregated data re-formatted to be used to serve telemetry data via an ERDDAP data portal. 
 - The `geoserver` schema holds aggregated data re-formatted to be used to create geospatial data products published to a GeoServer. 
 - The `vendor` schema holds manufacturer specifications for tags and receivers, used for quality control purposes. 
@@ -111,7 +113,11 @@ flowchart BT
 
 `Project` data has a unique workflow from the other input data and metadata that flows into an OTN Node, it is generally the first bit of information received about a project, and will be used to create the new `schema` in the Database for a project. The type of project selected (`tracker`, `deployment`, or `data`) will determine the format of the tables in the newly created `schema`. The type of project will also impact the loading tools and processes that will be used later on. The general journey of project data is:
 - To register a new project a researcher will fill out a [project metadata template](https://members.oceantrack.org/data/data-collection) and submit it to the Node Manager. 
-- The Node Manager will visually evaluate the template to catch any obvious errors and then run the data through the OTN Nodebook responsible for creating and updating projects (`Create and Update Projects`). 
+- The Node Manager will visually evaluate the template to catch any obvious errors and then run the data through the OTN Nodebook responsible for creating and updating projects (`Create and Update Projects`). Such errors for visual inspection include; 
+-> Checking the researcher names, affiliations and emails are listed row wise per researcher and a data repository role has been chosen. 
+-> Obvious spelling errors. 
+-> Empty sections where no information has been provided 
+-> Non-english text characters, these are flagged by the nodebook but catching them visually allows for estimating time required to load project metadata. Non-english text characters are flagged as the database cannot store them readily so time is required to parse them. If an error is received when loading project metadata and a unicode character code is given such as U+00E1, you can google this and find what it is and visually scan or find and replace the metadata text for them. 
 - The `Create and Update Projects` notebook will make a new schema in the Database for that project, and fill it with the required tables based on the type of project. 
 - Summary tables are populated at this time (`scientificnames`, `contacts`, `otn_resources` etc).
 - After this, OTN analysts will verify the project one last time to make sure every necessary field is filled out and properly defined.
@@ -120,9 +126,9 @@ flowchart BT
 
 Even though `tag`, `deployment`, and `detections` data all have their own loading tools and processes, their general path through the database is the same. 
 - Their data workflows all begin with a submission of data or metadata files from a researcher. 
-- The Node Manager ensures there is a copy of the file on the Node's document management website. 
+- The Node Manager ensures there is a copy of the file on the Node's document management website, this is typically the Plone members repository but is decided in the creation of the node what this managment website will be. 
 - The Node Manager carries out visual quality control to catch any obvious errors. 
-- The data is then processed through the relevant OTN Nodebooks. This process is outlined by the task list associated with the GitLab Issue made for this data. 
+- The data is then processed through the relevant OTN Nodebooks. This process is outlined by the task list associated with the GitLab Ticket made for this data. 
 - The data will first be loaded into the "raw" tables. This is the table that holds the raw data as submitted by the researcher (the naming convention for raw tables is that they always have the prefix `c_` and will have a suffix indicating the date it was loaded, typically `YYYY_MM`). 
 - After the raw data table is verified, the data will move to the "intermediate" tables which act as a staging area for partially-processed data. 
 - After the intermediate table is verified, data will move to the "upper" tables, where the data is finished processing and is in its final form. This is the data that will be used for aggregation tables such as `obis` and for outputs such as Detection Extracts.
@@ -138,7 +144,7 @@ In order to create meaningful Detection Extracts, OTN and affiliated Nodes only 
 - Summary schemas like `discovery`, `erddap`, and `geoserver` are updated with the newly verified data.
 
 Summary schema records can be used to create maps and other record overviews such as this map of active OTN receivers: 
-
+<!-- Still factual? MG to PERSON Y/N -->
  <img src="../fig/active_receivers.JPG" alt="Summary Map" style="width:500px;"/>
  
 # Backing Up Your Data

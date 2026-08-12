@@ -19,7 +19,8 @@ The process workflow for deployment metadata is as follows:
 flowchart LR
     tag_start(( )) --> get_meta(Receive <br />deployment metadata <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    <!-- check fig, is work item inclusion okay MG to PERSON Y/N -->
+    get_meta --> gitlab(Create <br />Gitlab <br />Work item)
     gitlab --> inspect(Visually <br />inspect)
 inspect --> nodebook(Process and verify <br />with nodebooks)
     nodebook --> plone(Add metadata <br />to repository folder)
@@ -33,20 +34,23 @@ Once a project has been registered, the next step (for `Deployment` and `Data` p
 
 Recall that there are multiple levels of data-tables in the database for deployment records: `raw tables`, `rcvr_locations`, `stations` and `moorings`. The process for loading instrument metadata reflects this, as does the GitLab task list.
 
+**Check deployment sheet information for misplaced Movers data i.e. VMT metadata**
+
 ## Submitted Metadata
 
-Immediately upon receipt of the metadata, create a new GitLab issue. Please use the `Receiver_metadata` Issue checklist template.
+Immediately upon receipt of the metadata, create a new GitLab ticket. Please use the `Receiver_metadata` Work item checklist template found in the drop down menu under the 'Description'.
 
-Here is the Issue checklist, for reference:
-
+Here is the Work item checklist, for reference:
+<!-- Still factual? MG to PERSON Y/N -->
 ~~~
 Receiver Metadata
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME load raw receiver metadata (`deploy` notebook) **put_table_name_in_ticket**
+- [ ] - NAME load raw receiver metadata (`deploy` notebook) **:fish: put_table_name_in_ticket**
+- [ ] - NAME [OTN only] check for *new* lost indicator in recovery column, list receiver serial numbers for OTN inventory updating, tag OTN daq personnel (only for current deployments/recoveries, not historical)
 - [ ] - NAME check that station locations have not changed station "NAMES" since last submission (manual check)
 - [ ] - NAME verify raw table (`deploy` notebook)
-- [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc)
-- [ ] - NAME email notification of updated metadata file to PI and individual who submitted
+- [ ] - NAME post updated metadata file to project repository (OTN members.oceantrack.org, FACT RW etc) **:fish: put_link_to_updated_metadata**
+- [ ] - NAME email notification of updated metadata file to PI and individual who submitted 
 - [ ] - NAME load station records (`deploy` notebook)
 - [ ] - NAME verify stations (`deploy` notebook)
 - [ ] - NAME load to rcvr_locations (`deploy` notebook)
@@ -54,11 +58,10 @@ Receiver Metadata
 - [ ] - NAME add transmitter records receivers with integral pingers (`deploy` notebook)
 - [ ] - NAME load to moorings (`deploy` notebook)
 - [ ] - NAME verify moorings (`deploy` notebook)
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to OTN DAQ for reassignment to analyst
-- [ ] - NAME check if project is OTN loan, if yes, check for lost indicator in recovery column, list receiver serial numbers for OTN inventory updating.
-- [ ] - NAME pass issue to OTN analyst for final verification
-- [ ] - NAME check for double reporting (verification_notebooks/Deployment Verification notebook)
+- [ ] - NAME label work item with *'Verify'*
+- [ ] - NAME reassign work item to OTN data analyst for final verification
+- [ ] - NAME check for double reporting (verification_notebooks/`Deployment Verification` notebook)
+
 
 **receiver deployment files/path:**
 ~~~
@@ -84,7 +87,7 @@ Check for the following in the deployment metadata:
 	* recover_date_time
 2. If any of the above mandatory fields are blank, follow-up with the researcher will be required if:
 	* you cannot discern the values yourself.
-	* you do not have access to the Tag or Receiver Specifications from the manufacturer (relevant for the columns containing transmitter information).
+	* you do not have access to the Tag or Receiver Specifications from the manufacturer, these can be checked in DBeaver (relevant for the columns containing transmitter information).
 3. Are the station names in the metadata consistent with those already loaded to the database (ex. '_yyyy' appended to station names or special characters in the metadata)?
 4. Are all lat/longs in the correct sign? Are they in the correct format (decimal degrees)?
 5. Do all transceivers/test tags have their transmitters provided?
@@ -111,7 +114,7 @@ In GitLab, this task can be completed at this stage:
 
 # Quality Control - Deploy Nodebook
 
-Each step in the Issue checklist will be discussed here, along with other important notes required to use the Nodebook.
+Each step in the Ticket checklist will be discussed here, along with other important notes required to use the Nodebook.
 
 ### Imports Cell
 

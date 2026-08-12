@@ -55,7 +55,7 @@ If you encounter an error in your Nodebooks, its possible there is an issue with
 
 To identify a bug, here are the steps to take:
 1. Ask in our Slack channels to see if the error is caused by your dataset. This can include posting an error message, or just describing the output from the Nodebook, and why it is not as expected.
-2. If OTN developers identify that the problem is not your dataset, the next step will be to create a GitLab Issue [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/issues), using the `bug` template. You should assign to one of the OTN developers, and use the label `bugfix`.
+2. If OTN developers identify that the problem is not your dataset, the next step will be to create a GitLab Work item [here](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/work_items), using the `bug` template. You should assign to one of the OTN developers, and use the label `bugfix`.
 
 Here is the "bug" template, for your information:
 

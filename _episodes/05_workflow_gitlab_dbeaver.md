@@ -8,7 +8,7 @@ questions:
 - "How can a Node Manager interact with their database directly?"
 objectives:
 - "Understand the data-loading workflow"
-- "Understand how to create and use GitLab Issues"
+- "Understand how to create and use GitLab Work Items"
 - "Understand how to access and query your database tables"
 - "Understand how to use the `AUTH - Create and Update` notebook to maintain your database credentials file"
 keypoints:
@@ -16,10 +16,10 @@ keypoints:
 - "Data submissions and QC processes should be trackable and archived"
 - "OTN is always here to help with any step of the process"
 ---
-
+<!-- Broadly updated: Issues to Tickets text with exceptions made when user directed actions are noted MG to PERSON Y/N -->
 Data Managers receive data from a researcher and then begin the process of QA/QC and data matching:
 
-1. Records are received and a GitLab Issue is created.
+1. Records are received and a GitLab Ticket is created.
 1. Data are QA/QC'd using the OTN Nodebooks, and all progress is tracked in GitLab. Feedback between Data Manager and researchers happens at this stage, until data is clean and all GitLab tasks are completed.
 1. Successful processing can be checked by using DBeaver to query and explore the database.
 
@@ -27,7 +27,7 @@ Data Managers receive data from a researcher and then begin the process of QA/QC
 flowchart LR
     data_start(( )) --> get_data(Receive metadata </br>from researchers)
     style data_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_data --> gitlab(Create Gitlab issue </br>with template)
+    get_data --> gitlab(Create Gitlab work item </br>with template)
     gitlab --> viz{Visually inspect, </br>does metadata have errors?}
     viz --yes--> req(Request corrected data </br>from researchers)
     req --> end1(( ))
@@ -50,7 +50,7 @@ OTN-managed Nodes can always use the same Plone file management portal software 
 
 The FACT Network currently uses a custom instance of Research Workspace for the same purpose.
 
-The ACT and GLATOS Networks use a custom data-submission form managed through their networks' web sites.
+The GLATOS Network use a custom data-submission form managed through their networks' web sites.
 
 Its common for groups of researchers to use DropBox, Google Drive, or something similar to share data/metadata when the Network is still small. This can be a great, accessible option but the caveat is that is is much more difficult to control access to each individual folder to protect the Data Policy, and it may be difficult to determine when new data has been submitted.
 
@@ -62,57 +62,63 @@ It is **not** recommended to use a personal email account for this, since all th
 
 # Documenting data submission
 
+*NOTE: GitLab Work items are often referred to as "tickets" and "issue(s)", gitlab now uses work items and issues interchangably to refer to tickets. Work items is the prominent language used on the Gitlab website. Here we will generally use the term tickets with the exception of cases where we direct the user on using gitlab features.*
+
 Using one of the suggested means above, a user has submitted data and metadata to the Node Manager. Now what?
 
-OTN uses GitLab Issues with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox.
+OTN uses GitLab Tickets with templates of task-lists to ensure we NEVER forget a step in data loading, and that no file is ever lost/forgotten in an inbox. A ticket (a general name) functions as a live tracker of actions related to a piece of data or query/request. In gitlab a 'Work Item' is a ticket. When a new work item is created, there will be a number of drop down menus and text boxes that can be used to classify and organise the ticket for tracking. This makes the ticket searchable within gitlab via use of labeling or text etc, these tickets can then be found again and updated as required until the required action is resolved. 
 
 Immediately upon receipt of a data file, you are advised to login to [OTN's GitLab](https://gitlab.oceantrack.org). You will have a project for your Node named <YOURNODE-DAQ>. This is where you will navigate to. You may want to bookmark this webpage!
 
-Once on the GitLab project page, you should navigate to the **Issues** menu option, on the left side. Think of your GitLab issues as your running "TODO List"! You will want to create a new Issue for each piece of data that is submitted.
+Once on the GitLab project page, you should navigate to the **Work items** menu option, on the left side. Think of your GitLab tickets as your running "TODO List"! You will want to create a new Ticket for each piece of data that is submitted.
 
-*NOTE: GitLab Issues are often referred to as "tickets"*
 
-### Creating GitLab issues
 
-By choosing the **New Issue** button in the top-right of your screen, you will be taken to a new, blank, issue form. You will need to fill out the following fields:
+### Creating GitLab tickets
+
+By choosing the **New item** button in the top-right of your screen, you will be taken to a new, blank, ticket form. You will need to fill out the following fields:
 
 - Title: Write the project name/code, the type of data submitted, and the submission date, this makes the ticket searchable in the future (eg: `HFX tag metadata 2022-02`)
 - Type: Should be type `Issue`.
 - Description: 
-    * There are pre-made *Templates* to choose from here, using the drop down menu. Ensure you choose the relevant checklist for the type of data that was submitted (eg: `Tag_metadata`). This will populate the large description field! 
-    * Ensure you include the link to the submitted data file OR use the `Attach a file` option to attach a copy of the submitted data file to the issue.
+    * There are pre-made *Templates* to choose from here, using the drop down menu. Ensure you choose the relevant checklist for the type of data that was submitted (eg: `Tag_metadata`,'Receiver_metadata','Detections'). This will populate the large description field! 
+    * Ensure you include the link to the submitted data file OR use the `Attach a file` option to attach a copy of the submitted data file to the ticket.
 - Assignee: Assign to yourself if this is a task for you, or to anyone else to whom you want to delegate.
-- Milestone: These are the upcoming Data Push dates. You should choose the nearest future PUSH date as the Milestone for this issue.
-- Labels: This is for your reference - choose a label that will help you remember what stage of processing this issue is in. Some common examples include `Needs QC`, `Waiting for Metadata`, `Waiting for VRLs`, `Request PI Clarification` etc. You can create new labels at any time to help sort your tickets.
+- Milestone: These are the upcoming Data Push dates. You should choose the nearest future PUSH date as the Milestone for this ticket.
+- Labels: This is for your reference - choose a label that will help you remember what stage of processing this ticket is in. Some common examples include `Ready to Load`,'Loading records',`Needs QC`, `Waiting for Metadata`, `Waiting for VRLs`, `Request PI Clarification` etc. You can create new labels at any time to help sort your tickets. Addionally, there are now labels for 'Project metadata','receiver metadata', 'Tagging metadata' 'Detection data','Gliders/Movers'. It is standard practice in OTN to label the different data types being ticketed for searchability in Gitlab, labels tend to provide the best user-determined filtering system in Gitlab.
 
 With the above information supplied, you can click the **Create Issue** button.
 
 ### Using GitLab to track progress
 
-As you approach the deadline for data-loading, before a data PUSH, you should begin to work on your Issues which fall under that Milestone. When you open an issue, you will be able to see the remaining tasks to properly load/process that data along with the name of the OTN Nodebook you should use to complete each task.
+As you approach the deadline for data-loading, before a data PUSH, you should begin to work on your Items which fall under that Milestone. When you open an item, you will be able to see the remaining tasks to properly load/process that data along with the name of the OTN Nodebook you should use to complete each task.
 
-Keep GitLab open in your browser as you work through the relevant Nodebooks. You should check off the tasks as you complete them, and insert any comments you have into the bottom of the ticket. Comments can include error messages from the Nodebook, questions you have for the researcher, any re-formatting required, etc. At any time you can change the Labels on the issue, to help you remember the issue's status at a glance.
+Keep GitLab open in your browser as you work through the relevant Nodebooks. You should check off the tasks as you complete them, and insert any comments you have into the bottom of the ticket. Comments can include error messages from the Nodebook, questions you have for the researcher, any re-formatting required, etc. At any time you can change the Labels on the item, to help you remember the item's status at a glance.
 
 Once you are done for the day, you'll be able to come back and see exactly where you left off, thanks to the checklist!
 
-You can tag anyone from the OTN Data Team in your GitLab issue (using the `@NAME` syntax). We will be notified via email to come and check out the Issue and answer any questions that have been commented.
+You can tag anyone from the OTN Data Team in your GitLab ticket (using the `@NAME` syntax). We will be notified via email to come and check out the ticket and answer any questions that have been commented.
 
-Once you have completed all the tasks in the template, you can edit the `Assignee` value in the top-right corner, and assign to someone from OTN's Database team (currently, Angela or Yinghuan). They will complete the final verification of the data, and close the issue when completed. At this time, you can change the issue Label to `Verify`, or something similar, to help visually "mark it off" your issue list on the main page.
+Once you have completed all the tasks in the template, you can edit the `Assignee` value in the top-right corner, and assign to someone from OTN's Database team (currently, Angela or Yinghuan). They will complete the final verification of the data, and close the item when completed. At this time, you can change the item Label to `Verify`, or something similar, to help visually "mark it off" your item list on the main page.
 
 ## GitLab practice
 
-At this time we will take a moment to practice making GitLab Issues, and explore other pages on our GitLab like, `Milestones`, `Repository`, `Snippets`, and `Wiki`.
+At this time we will take a moment to practice making GitLab Work Items, and explore other pages on our GitLab like, `Milestones`, `Repository`, `Snippets`, and `Wiki`.
+- Milestones can be found under the Plan heading in the left-hand side of the Gitlab page when within your Node-DAQ gitlab section. Reviewing this page can give insight into the progression of ticket processing from unstarted, ongoing to completed. 
+- Repository is found under the Code heading in the left-hand side of the Gitlab page also. This page shows the files associated in the Gitlab such as templates (click .gitlab folder in upper left unter Files heading, then issue_templates). 
+-Snippets is found under the same Code heading, this a good place to store copy and pasteable email templates for repeated queries to researchers or responses for frequently asked questions. You can also store bits of code here and there such as SQL queries for the Node database for common database searches
+- Wiki is a place to store things like how-to-do's or process guides that may not have a template associated yet such as data policy agrrement tracking.  
 
 ## Database access
 
 As part of the OTN workflow, it may be prudent to use a database client like DBeaver to view the contents of your Node's database directly and make sure the data has been loaded as expected.
 
-DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for query writing and data exploration. We will assume that workshop attendees are novices in using this application.
+DBeaver is an open-source application for interacting directly with databases. There are lots of built-in tools for query writing and data exploration. We will assume that workshop attendees are novices in using this application. [https://dbeaver.io/](https://dbeaver.io/) (free and open access - **recommended**)
+
 
 ### Connecting to your database
 
 For this training we will connect to a Node Training test database, as practice. Once you open DBeaver, you will need to click on the `Database` menu item, and choose `New Database Connection`. A popup will appear, and you will choose the `PostreSQL` logo (the elephant) then click Next. Using the `.auth` file provided to you by OTNDC you will complete the following fields:
-
 - Host: this could be something like `matos.asascience.com` for your DB, but we will use the IP address: `129.173.48.161` for our Node Training DB.
 - Database: this will be your database name, something like `pathnode`. For training, it will be `nodetraining`.
 - Port: this is specified in your `.auth` file and will be four digits. For training, this port will be set to `5432`.
@@ -125,7 +131,6 @@ On the left-side you should now see a `Database Navigator` tab, and a list of al
 ### Writing a query in DBeaver
 
 If you wish to write a query to see a specific portion of your already-loaded data, you should first open a new SQL console. Choose `SQL Editor` from the top menu, then `New SQL Script`. A blank form should appear.
-
 While writing SQL is out of the scope of this course, there are many great SQL resources available online. The general premise involves creating conditional `select` statements to specify the data you're interested in. As an example, `select * from hfx.rcvr_locations where rcv_serial_no = '12345';` will select all records from the HFX schema's rcvr_locations table where the serial number is 12345.
 
 To run a query, ensure your cursor (the vertical line that shows where you are editing text) is on the line you want to run, then either 1) right-click, and choose Execute, or 2) press CTRL-ENTER (CMD-ENTER for Mac). The results of your query will be displayed in the window below the SQL console.

@@ -11,7 +11,7 @@ objectives:
 - "Learn common errors and pitfalls that come up when loading detections"
 keypoints:
 - "Its important to handle errors when they come up as they can have implications on detections"
-- "OTN finishes off detections Issues by running Matching and sensor tag processing"
+- "OTN finishes off detections Tickets by running Matching and sensor tag processing"
 ---
 
 ## Process workflow
@@ -20,7 +20,7 @@ The process workflow for detection data is as follows:
 flowchart LR
     tag_start(( )) --> get_meta(Receive <br />detection data <br />from researchers)
     style tag_start fill:#00FF00,stroke:#00FF00,stroke-width:4px
-    get_meta --> gitlab(Create <br />Gitlab <br />issue)
+    get_meta --> gitlab(Create <br />Gitlab <br />Work item)
     gitlab --> inspect(Visually <br />inspect)
     inspect --> convert(Convert to <br />CSVs)
     convert --> nodebook(Process and verify <br />with nodebooks)
@@ -34,39 +34,39 @@ Once `deployment metadata` has been processed for a project, the related detecti
 
 ## Submitted Records
 
-Immediately upon receipt of the data files, you must create a new GitLab issue. Please use the `Detections` Issue checklist template.
+Immediately upon receipt of the data files, you must create a new GitLab Work item. Please use the `Detections` Work item checklist template found in the drop down menu under the 'Description'.
 
-Here is the Issue checklist, for reference:
-
+Here is the Work item checklist, for reference:
+<!-- Still factual? MG to PERSON Y/N -->
 ~~~
 Detections
 - [ ] - NAME add label *'loading records'*
-- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `Convert - Fathom Export` notebook and `detections-1` notebook) **(put table names here)**
+- [ ] - NAME load raw detections and events `(detections-1` notebook and `events-1` notebook **OR** `convert - Fathom (vdat) Export - VRL to CSV` notebook and `detections-1` notebook) **:fish:(put table names here)**
 - [ ] - NAME upload raw detections to project folder (OTN members.oceantrack.org, FACT RW etc) if needed
 - [ ] - NAME verify raw detections table (`detections-1` notebook)
 - [ ] - NAME load raw events to events table (`events-2` notebook)
-- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **(put detection years that were loaded here)**
+- [ ] - NAME load to detections_yyyy (`detections-2` notebook) **:fish:(put detection years that were loaded here)**
 - [ ] - NAME verify detections_yyyy (looking for duplicates) (`detections-2` notebook)
-- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **(put sensor years that were loaded here)**
+- [ ] - NAME load to sensor_match_yyyy (`detections-2` notebook) **:fish:(put sensor years that were loaded here)**
 - [ ] - NAME timedrift correction for affected detection and sensor years (`detections-2b` notebook)
-- [ ] - NAME verify timedrift corrections (`detections-2b` notebook)
-- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! (**put Gitlab issue number here**)
------
-- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **(put affected years here)**
+- [ ] - NAME verify timedrift corrections (`detections-2b` notebook) **:fish:(put affected years here)**
+- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put Gitlab work item number here)**
+------
+- [ ] - NAME load to otn_detections_yyyy (`detections-3` notebook) **:fish:(put affected years here)**
+- [ ] - NAME load sentinel records (`detections-3` notebook) 
 - [ ] - NAME verify otn_detections_yyyy (`detections-3` notebook)
-- [ ] - NAME load sentinel records (`detections-3` notebook)
-- [ ] - NAME check for missing receiver metadata (`detections-3b` notebook)
-- [ ] - NAME check for missing data records (`detections-3c` notebook)
+- [ ] - NAME check for missing receiver metadata (`detections-3b` notebook) and use Missing Metadata template to create a ticket **(put Gitlab work item number here)**
+- [ ] - NAME check for missing data records (`detections-3c` notebook) and use the Missing Detections template to create a ticket **(put Gitlab work item number here)**
 - [ ] - NAME load download records (`events-3` notebook)
 - [ ] - NAME verify download records (`events-3` notebook)
 - [ ] - NAME process receiver configuration (`events-4` notebook)
-- [ ] - NAME label issue with *'Verify'*
-- [ ] - NAME pass issue to OTN analyst for final steps
-- [ ] - NAME check for double reporting (verification_notebooks/`Detection Verification` notebook)
+- [ ] - NAME label work item with *'Verify'*, removed label *'loading records'*
+- [ ] - NAME reassign work item to OTN data analyst for final steps
+- [ ] - NAME run verification_notebooks/`Detection Verification` notebook
 - [ ] - NAME match tags to animals (`detections-4` notebook)
 - [ ] - NAME overwrite sentinel tags with animal tags (`detections-4b` notebook)
 - [ ] - NAME do sensor tag processing (`detections-5` notebook) - only done if vendor specifications are available
-- [ ] - NAME update detection extract table
+
 
 **detections files/path:**
 ~~~
@@ -112,7 +112,7 @@ Once the raw files are obtained, the data must often be converted to `.csv` form
 - Use the `ComPort` software to open the `.tbdb` file and export as CSV
 
 **For Lotek**
-- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model
+- Exporting to CSV is more complicated, please reach out to OTN for specific steps for a given instrument model.
 
 For **all other manufacturers**, contact the OTN Data Centre to get specifics on the detection data loading workflow.
 
@@ -121,7 +121,7 @@ This will use the `vdat.exe` executable to export from VRL/VDAT to CSV.
 
 **IMPORTANT NOTE:** newer versions of `vdat.exe` are only being supported on Windows. Mac users will not be able to use this Nodebook. For instructions on using a program like Wine to run windows programs on other operating systems, contact the OTN Data Centre.
 
-Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for desktop computers as `vdat.exe`
+Before you begin, you will need to ensure you have access to a Fathom vdat executable. This executable ships with Fathom Connect for Windows computers as `vdat.exe`
 
 - Access the Vemco (Innovasea) website to download `Fathom Connect` - [https://support.fishtracking.innovasea.com/s/downloads](https://support.fishtracking.innovasea.com/s/downloads)
 - Agree to the Licence 
@@ -129,8 +129,10 @@ Before you begin, you will need to ensure you have access to a Fathom vdat execu
 - Locate your ProgramFiles on your computer. Locate the `InnovaSea` subfolder, and the `Fathom` folder within.
 - Copy the full filepath to your `vdat.exe` file for use in the Nodebook - this will look like `C:/Program Files/Innovasea/Fathom/vdat.exe`
 
+<!-- Still factual? MG to PERSON Y/N -->
 NOTE: Older versions of VDAT may have unintended consequences when converting newer files (like Open Protocol-enabled Innovasea receivers), and should not be used. Versions newer than `vdat-9.3.0-20240207-74ad8e-release` are safe to process Open Protocol data.  **NOT RECOMMENDED BY OTN:** If you are desperate for an older version of `vdat.exe` you can find them [here](https://gitlab.oceantrack.org/otndc/vdat-working-group/-/tree/master/releases?ref_type=heads) 
 
+<!-- Why Mac guidance when doesnt work on Mac? MG to PERSON Y/N -->
 - **MAC Users Only** 
     - Locate the vdat executable in your terminal by navigating with the command `cd /path/to/vdat/file`
     - Enable execution by running `chmod +x vdat`
@@ -744,7 +746,7 @@ If a Push is ongoing, or if verification has not yet occurred, you **must** wait
 
 In GitLab, this task can be completed at this stage:
 
-`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab issue number here)**`
+`- [ ] - NAME manually check for open, unverified receiver metadata, **STOP** if it exists! **(put GitLab Work item number here)**`
 
 ### Creating detection views and loading to otn_detections
 
@@ -1219,6 +1221,6 @@ The remaining steps in the GitLab Checklist are completed outside the Nodebooks.
 
 First: you should access the Repository folder in your browser and ensure the raw detections are posted in the `Data and Metadata` folder.
 
-Finally, the Issue can be passed off to an OTN-analyst for final verification in the database.
+Finally, the Work item can be passed off to an OTN-analyst for final verification in the database.
 
 {% include links.md %}
