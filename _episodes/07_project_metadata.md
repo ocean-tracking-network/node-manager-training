@@ -327,7 +327,7 @@ You should review to confirm the following:
 1. the scientific name matches an accepted WoRMS taxon. There should be a URL provided and no error messages.
 1. the common name is acceptable. If it is not, you can choose a value from the dropdown menu (taken directly from WoRMS' `vernacular` list) **OR** you can enter a custom value to match the common name provided by the researcher.
 
-Once you are sure that both the scientific and common names are correct, based on the information provided by both the project and the notebook, you may click the `Add to project` button for each animal record you'd like to insert.
+Once you are sure that both the scientific and common names are correct, based on the information provided by both the project and the notebook, you may click the `Submit values to database` button for each animal record you'd like to insert.
 
 There will be a confirmation display in the notebook to demonstrate if the insertion was successful.
 
