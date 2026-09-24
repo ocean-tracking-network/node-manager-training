@@ -733,6 +733,19 @@ These are then used to run the function in the next cell `load_into_otn_detectio
 You must select **all** years that were impacted by `detections_yyyy` or `sensor_match_yyyy` loading steps. Then click the `Load Detections` button to begin loading. The Nodebook will show a status bar indicating its progress.
 
 
+#### Trouble shooting notes
+
+1. **unq_otn_yyyy_sentinel_det** error may occur during loading sentinel tags. This error is often caused by overlapping transceivers. Please search for related `overlapping receiver/transceiver` issue in Gitlab. And resolve overlapping by correct `fieldnumber` for transceiver(s) or start/end date. If not existing Gitlab issue, please contact the OTN Data team or assistant.
+
+~~~
+...
+IntegrityError: (psycopg2.errors.UniqueViolation) duplicate key value violates unique constraint "unq_otn_2024_sentinel_det"
+DETAIL:  Key (institutioncode, collectioncode, catalognumber)=(INSTCODE, COLLECTIONCODE, A69-1601-63171-33598303) already exists.
+...
+~~~
+{: .language-plaintext .example}
+
+
 #### Task list checkpoint
 
 In GitLab, this task can be completed at this stage:
