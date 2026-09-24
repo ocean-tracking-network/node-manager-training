@@ -8,6 +8,8 @@ questions:
 
 
 
+<!-- is there any we want to add? MG to PERSON Y/N -->
+
 **1. Vendor Schema**
 
 

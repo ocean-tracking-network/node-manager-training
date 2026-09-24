@@ -111,6 +111,9 @@ In order to work efficiently as a Node Manager, the following programs are neces
 **Visual Studio Code** - An advanced code editing integrated development environment (IDE). Also contains extensions that can run JuPyTeR notebooks, open CSV files in a visually appealing way, as well as handle updating your Git repositories.
 * [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
+**Positron** - An advanced code editing integrated development environment (IDE), an RStudio version of VSCode. Also contains extensions that can run JuPyTeR notebooks, open CSV files in a visually appealing way, as well as handle updating your Git repositories.
+* [https://positron.posit.co/](https://positron.posit.co/)
+
 ## For WINDOWS users
 
 **Path Copy Copy** - For copying path links from your file browser. Since many of the notebooks require you to provide the path to the file you wish to load, being able to copy and paste the entire path at once can save a lot of time. 

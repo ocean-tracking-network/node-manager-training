@@ -41,7 +41,7 @@ flowchart LR
     style E fill:#ffffff,color:#000000
     E --> F{Does notebook exist?}
     style F fill:#000000,color:#ffffff
-    F -- No --> G[Create feature issue for </br>notebook creation and do fix </br>manually]
+    F -- No --> G[Create feature ticket for </br>notebook creation and do fix </br>manually]
     style G fill:#ffffff,color:#000000
     G --> H(( ))
     style H fill:#FF0000,stroke:#FF0000
@@ -91,11 +91,11 @@ An exciting feature of the Database Fix Notebooks is that if you add a Gitlab to
 
 To integrate the Gitlab token into your kdbx file, please use the instructions found at the bottom of the [AUTH - Create and Update](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/blob/main/AUTH%20-%20Create%20and%20Update.ipynb) notebook in ipython-utilities.
 
-## Issue Creation
+## Work item Creation
 
-The **first** step when you have confirmed an incorrect dataqbase value is to create a new Gitlab Issue with the `DB Fix` Issue checklist template.
+The **first** step when you have confirmed an incorrect dataqbase value is to create a new Gitlab work item with the `DB Fix` work item checklist template.
 
-Here is the Issue checklist, for reference:
+Here is the Work item checklist, for reference:
 
 ~~~
 # **DB Fix Issue**
@@ -124,7 +124,7 @@ Some of the Database Fix Notebooks require the user to provide a spreadsheet of 
 
 The required columns will be shown in the description as well. Once input, if there are missing required columns, the notebook will display an error identifiying which columns are missing. 
 
-The spreadsheet should be created and added to the created Gitlab issue, either in the description or in a comment.
+The spreadsheet should be created and added to the created Gitlab work item, either in the description or in a comment.
 
 ## Examples
 Once you know which notebook to use and have created the spreadsheet (if needed), you can open the correct Database Fix Notebook. This notebook will consist of a single cell to run.
@@ -136,7 +136,7 @@ The notebooks have similar formats so four examples will be demonstrated below.
 ### Example 1: Changing a receiver serial
 Let's say for the first example, a researcher has emailed saying that they made a typo in the receiver metadata and that serial 87654321 should actually be 12345678 for receivers 'CODE-87654321-2020-03-10' and 'CODE-87654321-2024-09-09' in project CODE.
 
-The first step is to create a Gitlab issue with the relevant information titled 'CODE Change receiver serial'.
+The first step is to create a Gitlab work item with the relevant information titled 'CODE Change receiver serial'.
 
 The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
 
@@ -175,7 +175,7 @@ If you have a gitlab token authorization associated with your kdbx, as mentioned
 ### Example 2: Changing tag end date
 Let's say for the second example, a researcher has emailed saying that they had forgotten to add the harvest date '2024-09-09 10:00:00' to tag 'A69-1303-12345' on animal 'CODE-Jane', which was released on '2024-01-01 13:00:00', which should be used instead of the estimated tag life '365 days'.
 
-The first step is to create a Gitlab issue with the relevant information titled 'CODE Change tag end date with harvest date' or something with relevant information.
+The first step is to create a Gitlab work item with the relevant information titled 'CODE Change tag end date with harvest date' or something with relevant information.
 
 The next step would be to figure out which notebook to use to make this change. Running the first cell in `0. Which notebook should I use` gives the following results:
 
@@ -213,7 +213,7 @@ If you have a gitlab token authorization associated with your kdbx, as mentioned
 ### Example 3: Fixing the_geom
 Let's say for the third example, you are verifying tag metadata for project 'NSBS' and an error comes up from ipython-utilities saying that the_geom is incorrect and the instructions direct you to the 'fix the_geom' Database Fix Notebook.
 
-The first step is to create a Gitlab issue with the relevant information titled 'NSBS fix the_geom'.
+The first step is to create a Gitlab work item with the relevant information titled 'NSBS fix the_geom'.
 
 You can then open the `Fix the_geom` notebook as the ipython-utilities nodebook will direct you. In this notebook, there is a description that does not have a spreadsheet so no spreadsheet is needed.
 
@@ -314,7 +314,7 @@ Once 'Update' is pressed, the notebook will display a success message describing
 If your .kdbx file includes a GitLab Access Token, as mentioned above, the Nodebook will automatically comment all updates and success messages in the created Gitlab ticket. Otherwise, you must copy and paste this information into the Issue manually.
 
 For Nodebooks that require updates to the databases of other nodes:
-1. If you have a GitLab Access Token: the Nodebook will provide the SQL needed to update other nodes and will automatically add a 'Cross-node executions' label to the Gitlab Issue.
+1. If you have a GitLab Access Token: the Nodebook will provide the SQL needed to update other nodes and will automatically add a 'Cross-node executions' label to the Gitlab work item.
 2. If you **do not** have a GitLab Access Token: the Nodebook will provide the SQL needed to update other nodes. Please add a 'Cross-node executions' label onto the Issue manually. 
 
 A text box to enter a super-user authorization to automatically run the SQL on the other node will be displayed:
@@ -323,11 +323,11 @@ A text box to enter a super-user authorization to automatically run the SQL on t
 
 If you have a super-user authorization for the other Node (ie; you are the Data Manager for multiple Nodes, or are OTN staff):
 1. You may enter the filepath of the super-user authorization in the above text box and will receive a success message, which will run the SQL on the other Node.
-2. Please remove the 'Cross-node executions' label from the Issue once completed
+2. Please remove the 'Cross-node executions' label from the Work item once completed
 
 ![Example Node Authorization - Filled](../fig/nmt_dbfix_genex_nodeauth_filled_redacted.png)
 
 If you **do not** have the super-user authorizations for the other Node :
 1. Please inform the associated Node Manager that you have SQL for them to run and send them the SQL.
-2. After they have run the SQL, please add a comment to the issue saying they have run the SQL
+2. After they have run the SQL, please add a comment to the work item saying they have run the SQL
 3. Remove the 'Cross-node executions' label.
