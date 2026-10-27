@@ -24,14 +24,18 @@ A Data Push is when the OTN data system is re-verified and any new relevant info
 
 Push events happen **three** times a year. They start on the third Thursday of the "push months" which are February, June, and October. 
 
-With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars.
+With the increased number of Nodes joining the Pushes, we are announcing the schedule for the next year. Please prepare in advance and mark your calendars. This schedule accounts for OTN closures.
 
-Push schedule through 2027:
-- June 18, 2026
-- October 15, 2026
-- February 18, 2027
-- June 17, 2027
-- October 21, 2027
+Push schedule through 2028:
+
+| Year |Data Loading Cutoff | Push Date |
+|-----------|-----------|-----------|
+|2027|February 16|February 18|
+|2027|June 14|June 17|
+|2027|October 18|October 21|
+|2028|February 14|February 17|
+|2028|June 12|June 15|
+|2028|October 16|October 19|
 
 ## Pre-Push Schedule
 
@@ -40,16 +44,16 @@ In order to accommodate the increasing number of Nodes and meet Push deadlines, 
 ![The Cycle of the Push](../fig/v2_node-manager-diagram.png) 
 
 There are 3 important deadlines to remember:
-- **data submission deadline**: recommended 20 days before the push date, but can be set by each node. 
+- **data submission deadline**: can be set by each node but recommend at least several weeks to process all incoming submissions. OTN uses the 1st of the push month. 
 	- The date you select should leave you enough time to get all your data passed off for verification before the data loading cut-off date.
 	- This date can change for each push depending on your availability! Ex: if you're going on vacation, you can set your data submisison deadline date earlier.
-	- This is the date you tell your collaborators / researchers.
-- **data loading cut-off date**: the 3rd Monday of the push month (Feb, June, Oct).
-	- this is the date that's most important for node managers
-	- tickets must meet both of these criteria by this date:
-		1. ready for verification
-		2. assigned to OTN Database staff (currently Angela or Ying)
-	- tickets which do not meet this criteria will not make it into the push. This includes tickets that are assigned to OTN DAtabase staff for "loading big files" etc. Only verification tickets count at this stage, the rest have missed the cut-off
+	- **This is the date you tell your collaborators / researchers.**
+- **data loading cut-off date**: the Monday before the 3rd Thursday of the push month (Feb, June, Oct). Cutoff is at 9:00 AM ADT. If this falls on a day in which OTN is closed, the data loading cutoff will be the following day.
+	- This is the date that's most important for node managers
+	- Tickets must meet both of these criteria by this date:
+		1. Ready for verification
+		2. Assigned to OTN Database staff (currently Angela or Ying)
+	- Tickets which do not meet this criteria will not make it into the push. This includes tickets that are assigned to OTN DAtabase staff for "loading big files" etc. Only verification tickets count at this stage, the rest have missed the cut-off
 - **push date**: the 3rd Thursday of the push month (Feb, June, Oct)
 	- this is an internally used metric - not affecting node managers work
 	- the date we use in the detection extract table (this is often entered when using DB Fix notebooks, so its still important to know)
@@ -64,6 +68,8 @@ Node Managers have two main jobs during a Push:
 1. The second job for Node Managers is to create and send out Detection Extracts when they are ready to be made. This will be done using the `detections - create detection extracts` Nodebook.
 
 Once the cut-off date has passed Node Managers are "off duty"! When it's time for Detection Extracts to be created and disseminated that task will be assigned to the Node Managers, but this does **not** signify the end of the Push. There are several more "behind the scenes" steps required.
+
+During this period, node managers can work on tasks that don't require changing database values. This might include updates to project repositories (Plone, etc.), issues that require emails to contributors, or initial inspection of files that weren't loaded in this push. Initial verification steps in loading notebooks _can_ be run during this stage, as long as you don't load past the "raw" tables (marked in notebooks by a stop sign).
 
 Please refrain from interacting with the Node Database until OTN staff have announced the Push has ended and data may be loaded again. 
 
