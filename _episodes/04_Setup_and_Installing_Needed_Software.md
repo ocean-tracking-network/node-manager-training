@@ -45,6 +45,26 @@ Mamba is a fast, cross-platform Python distribution and package manager. When yo
    - Run `./Miniforge3-[version]-Linux-x86_64.sh` in the Linux terminal to activate the installer.
    - Add this conda installation to your terminal environment by running `conda init`. Restart the terminal to see the changes reflected.
 
+# Python - UV
+UV is an extremely fast, cross-platform python package and project manager, written in Rust.
+
+  **UV Windows** - [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/)
+ - Run the powershell command under the installation title
+ ```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+ ```
+
+ **Uv MacOS and Linux** - [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/)
+ - Run the curl command under listed under the installation menu
+ 
+using curl
+ ```zsh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+ ```
+ or wget
+ ```zsh
+wget -qO- https://astral.sh/uv/install.sh | sh
+ ```
 # Git
 
 Git is a version-control system for text, it helps people to work on code collaboratively, and maintains a complete history of all changes made to the files in a project. We use Git at OTN to track and disseminate changes to the Nodebooks that are made by our developer team, and occasionally you will need to use Git to update your Nodebooks and receive those changes.
