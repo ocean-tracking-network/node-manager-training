@@ -12,7 +12,26 @@ This lesson will give attendees a chance to install all the relevant software, u
 
 `Python` is a popular general-purpose programming language that can be used for a wide variety of applications. It is the main language used by OTN and our data processing pipeline.
 
+`UV` is an extremely fast, cross-platform python package and project manager, written in Rust.
 `Mamba` is fast, cross-platform python distribution and a package manager. When you install `Mamba (through Miniforge)` you get a `python` interpreter, and many of the core python libraries. Managing your Python installation with Mamba allows you to be able to install and update all the packages needed to run the Nodebooks with one command rather than having to install each one individually. 
+
+  **UV Windows** - [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/)
+ - Run the powershell command under the installation title
+ ```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+ ```
+
+ **Uv MacOS and Linux** - [https://docs.astral.sh/uv/getting-started/installation/](https://docs.astral.sh/uv/getting-started/installation/)
+ - Run the curl command under listed under the installation menu
+
+using curl
+ ```zsh
+curl -LsSf https://astral.sh/uv/install.sh | sh
+ ```
+ or wget
+ ```zsh
+wget -qO- https://astral.sh/uv/install.sh | sh
+ ```
 
   **Miniforge Windows** - [https://conda-forge.org/miniforge/](https://conda-forge.org/miniforge/)
   - Select the option install for Just Me (recommended).
@@ -54,7 +73,63 @@ First, you will need a GitLab account. Please fill out this [signup form for an 
 
 Then, OTN staff will give you access to the relevant Projects containing the code we will use.
 
-**Install iPython Utilities** 
+## Install Nodebooks on Windows - UV
+1. Determine the parent folder in which you wish to keep the iPython Utilities Nodebooks.
+2. Open your `Powershell` console. Open run window: **Win + R**, type "**powershell**" and press **Enter**.
+   * Type `cd` then `Spacebar`. 
+   * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the `Powershell` window or press `Shift` while right clicking and select `Copy as path` from the context-menu.
+   * Then paste the filepath in the `Powershell` and hit `Enter`
+   * In summary, you should type `cd \path\to\desired\folder` before pressing enter.
+3. Create and activate the "**nodebook**" python environment. The creation process will only need to happen once.
+   * In your terminal, run the command:
+   ```powershell
+   uv venv --python 3.9 $HOME\envs\nodebook
+   ```
+   * Activate the nodebook environment using the command:
+   ```powershell
+   & "$HOME\envs\nodebook\Scripts\activate.ps1"
+   ```
+4. Run the `git clone` command to get the latest version iPython Utilities from our GitLab:
+```powershell
+git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git
+```
+5. Navigate to the newly created ipython-utilities subdirectory by running: `cd ipython-utilities`.
+6. Solve the environment by pulling the required python packages:
+```powershell
+uv pip install --no-build greenlet
+uv pip install -r requirements.txt
+```
+
+## Install Nodebooks on Mac/Linux - UV
+1. Determine the parent folder in which you wish to keep the iPython Utilities Nodebooks.
+2. Open your terminal application.
+   * Type `cd` then `Spacebar`. 
+   * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. In Finder you can press `Shift + Command + G` to copy the current folder's address. Press `Control + L` in most Linux distributions file explorer to gain access to the location bar.
+   * Paste the filepath in the terminal and hit `Enter`
+   * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
+3. Create and activate the "**nodebook**" python environment. The creation process will only need to happen once.
+   * In your terminal, run the command:
+   ```bash
+   uv venv --python 3.9 ~/envs/nodebook
+   ```
+   * Activate the nodebook environment using the command:
+   ```bash
+   source ~/envs/nodebook/bin/activate
+   ```
+4. Run the `git clone` command to get the latest version iPython Utilities from our GitLab:
+```bash
+git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git
+```
+5. Navigate to the newly created ipython-utilities subdirectory by running: `cd ipython-utilities`.
+6. Solve the environment by pulling the required python packages:
+```bash
+echo "psycopg2" > excludes.txt
+uv pip install psycopg2-binary
+uv pip install -r requirements.txt --excludes excludes.txt
+```
+
+
+## Install Nodebooks - Mamba
 
 1. Determine the folder in which you wish to keep the iPython Utilities Nodebooks.
 1. Open your `terminal` or `command prompt` app. 
@@ -62,19 +137,26 @@ Then, OTN staff will give you access to the relevant Projects containing the cod
    * You then need to get the filepath to the folder in which you wish to keep the iPython Utilities Nodebooks. You can either drag the folder into the `terminal` or `command prompt` app or hit `shift/option` while right clicking and select `copy as path` from the menu.
    * Then paste the filepath in the `terminal` or `command prompt` and hit `enter`
    * In summary, you should type `cd /path/to/desired/folder` before pressing enter.
-1. Create and activate the "nodebook" python enviornment. The creation process will only need to happen once.
+1. Create and activate the "nodebook" python environment. The creation process will only need to happen once.
    * In your terminal, run the command `conda create -n nodebook python=3.9`
    * Activate the nodebook environment using `conda activate nodebook`
 1. You are now able to run commands in that folder. Now run: `git clone https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities.git`. This will get the latest version iPython Utilities from our GitLab
 1. Navigate to the ipython-utilities subdirectory that was created by running `cd ipython-utilities`.
-1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`. 
-1. Create a new conda environment by running the command: `conda create -n nodebook python=3.9`. This will create the environment named **nodebook** using the python version 3.9.XX.
+1. Switch to the `integration` branch (which contains the most up-to-date code) by running `git checkout integration`.
 1. Now to install all required python packages by running the following: `mamba env update -n nodebook  t -f environment.yml`
 
-**To open and use the OTN Nodebooks:**
-- **MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /path/to/ipython-utilities`. Then, run the commands: 
+## To open and use the OTN Nodebooks:
+- **Conda MAC/WINDOWS/LINUX**: Open your terminal, and navigate to your ipython-utilities directory, using `cd /path/to/ipython-utilities`. Then, run the commands: 
    * `conda activate nodebook` to activate the nodebook python environment
    * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"` to open the Nodebooks in a browser window.
+- **UV MAC/WINDOWS/LINUX**: Open your terminal, and nvaigate to your ipython-utilities directory.
+   * **Windows (Powershell)**
+     * `& "$HOME\envs\nodebook\Scripts\activate.ps1"`
+     * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"`
+   * **Mac\Linux**
+     * `source ~/envs/nodebook/bin/activate`
+     * `jupyter notebook --config="nb_config.py" "0. Home.ipynb"`
+
 - **DO NOT CLOSE** your terminal/CMD instance that opens! This will need to remain open in the background in order for the Nodebooks to be operational.
 
 More operating system-specific instructions and troubleshooting tips can be found at: [https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities](https://gitlab.oceantrack.org/otn-partner-nodes/ipython-utilities/-/wikis/New-Install-of-Ipython-Utilities)
